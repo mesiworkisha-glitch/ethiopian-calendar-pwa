@@ -371,40 +371,189 @@ function renderIslamic() {
     container.innerHTML = html;
 }
 
+// -------------------------------------------------------------------------
+// Hierarchical Search & Conversion Engine 
+// -------------------------------------------------------------------------
 function setupConverter() {
     const btn = document.getElementById('btn-convert');
     if (!btn) return;
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
         let type = document.getElementById('conv-type').value;
-        let y = parseInt(document.getElementById('conv-year').value), mStr = document.getElementById('conv-month').value, d = parseInt(document.getElementById('conv-day').value);
+        let yStr = document.getElementById('conv-year').value.trim();
+        let mStr = document.getElementById('conv-month').value.trim();
+        let dStr = document.getElementById('conv-day').value.trim();
         let out = document.getElementById('converter-output');
         if (!out) return;
         
-        if (!y || !d) { out.innerHTML = "<p style='color:red;'>እባክዎ ዓመትና ቀን በትክክል ያስገቡ።</p>"; return; }
+        let now = new Date();
+        let curEth = gregorianToEthiopian(now.getFullYear(), now.getMonth()+1, now.getDate());
         
-        let gDate;
-        if (type === 'eth') {
-            let m = parseInt(mStr) || matchMonthName(mStr);
-            if (!m || m < 1 || m > 13 || d > getMonthLength(y, m)) { out.innerHTML = "<p style='color:red;'>የተሳሳተ የኢትዮጵያ ወር ወይም ቀን ገብቷል።</p>"; return; }
-            gDate = ethToGregorian(y, m, d);
-        } else if (type === 'greg') {
-            let m = parseInt(mStr); if (!m || m < 1 || m > 12) { out.innerHTML = "<p style='color:red;'>እባክዎ ወር ከ1-12 ቁጥር ያስገቡ።</p>"; return; }
-            gDate = new Date(y, m - 1, d);
-        } else {
-            let m = parseInt(mStr); if (!m || m < 1 || m > 12 || d > getIslamicMonthLength(y, m)) { out.innerHTML = "<p style='color:red;'>የተሳሳተ የሂጅሪ ወር ወይም ቀን ገብቷል።</p>"; return; }
-            gDate = jdnToGregorian(islamicToJdn(y, m, d));
-        }
+        let y = yStr ? parseInt(yStr) : null;
+        let d = dStr ? parseInt(dStr) : null;
+        let m = null;
 
-        let e = gregorianToEthiopian(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate());
-        let i = jdnToIslamic(gregorianToJdn(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate()));
-        
-        out.innerHTML = `<h3>የፍለጋ ውጤት</h3>
-        <ul>
-            <li><strong>የኢትዮጵያ ቀን፦</strong> ${MONTHS[e.em]} ${e.ed} ቀን ${e.ey} ዓ.ም (${WEEKDAYS[gDate.getDay()]})</li>
-            <li><strong>የግሪጎሪያን ቀን፦</strong> ${gDate.toISOString().split('T')[0]}</li>
-            <li><strong>የእስልምና (ሂጅሪ) ቀን፦</strong> ${ISLAMIC_MONTHS[i.im]} ${i.id} ቀን ${i.iy} ዓ.ሂ</li>
-        </ul>`;
+        if (type === 'eth') {
+            m = mStr ? (parseInt(mStr) || matchMonthName(mStr)) : null;
+            let useY = y !== null ? y : curEth.ey;
+            let useM = m !== null ? m : curEth.em;
+            
+            if (d !== null) {
+                if (useM < 1 || useM > 13 || d > getMonthLength(useY, useM) || d < 1) {
+                    out.innerHTML = "<p style='color:red;'>የተሳሳተ የኢትዮጵያ ወር ወይም ቀን ገብቷል።</p>"; return;
+                }
+                await renderFullDateSearch(useY, useM, d, out);
+            } else if (m !== null) {
+                if (useM < 1 || useM > 13) {
+                    out.innerHTML = "<p style='color:red;'>የተሳሳተ የኢትዮጵያ ወር ገብቷል።</p>"; return;
+                }
+                await renderMonthSearch(useY, useM, out);
+            } else {
+                await renderYearSearch(useY, out);
+            }
+        } else if (type === 'greg') {
+            m = mStr ? parseInt(mStr) : null;
+            let useY = y !== null ? y : now.getFullYear();
+            let useM = m !== null ? m : now.getMonth() + 1;
+            
+            if (d !== null) {
+                 let gDate = new Date(useY, useM - 1, d);
+                 let eDate = gregorianToEthiopian(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate());
+                 await renderFullDateSearch(eDate.ey, eDate.em, eDate.ed, out);
+            } else {
+                 out.innerHTML = "<p style='color:red;'>ለግሪጎሪያን (Gregorian) ፍለጋ እባክዎ ሙሉ ቀን ያስገቡ።</p>";
+            }
+        } else if (type === 'hijri') {
+             m = mStr ? parseInt(mStr) : null;
+             if (!y || !m || !d) {
+                 out.innerHTML = "<p style='color:red;'>ለሂጅሪ (Hijri) ፍለጋ እባክዎ ሙሉ ቀን (ዓመት፣ ወር፣ ቀን) ያስገቡ።</p>"; return;
+             }
+             let gDate = jdnToGregorian(islamicToJdn(y, m, d));
+             let eDate = gregorianToEthiopian(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate());
+             let iDate = {iy: y, im: m, id: d};
+             
+             out.innerHTML = `<h3>የፍለጋ ውጤት (ሂጅሪ)</h3>
+             <ul>
+                 <li><strong>የእስልምና (ሂጅሪ) ቀን፦</strong> ${ISLAMIC_MONTHS[iDate.im]} ${iDate.id} ቀን ${iDate.iy} ዓ.ሂ</li>
+                 <li><strong>የግሪጎሪያን ቀን፦</strong> ${gDate.toISOString().split('T')[0]}</li>
+                 <li><strong>የኢትዮጵያ ቀን፦</strong> ${MONTHS[eDate.em]} ${eDate.ed} ቀን ${eDate.ey} ዓ.ም</li>
+             </ul>`;
+        }
     });
+}
+
+// Sub-engine: Year Overview
+async function renderYearSearch(ey, out) {
+    let bh = calculateBahreHasab(ey);
+    let holidays = getFdreHolidays(ey);
+    
+    let html = `<h3>የ${ey} ዓ.ም ሙሉ መረጃ</h3>`;
+    html += `<h4>የባሕረ ሐሳብ መረጃ</h4><ul>
+        <li>ዓመተ ዓለም: ${bh.aa} | ወንጌላዊ: ዘመነ ${bh.wengelawi} | መደብ: ${bh.medeb} | ወንበር: ${bh.wenber}</li>
+        <li>ጥንተ ቀመር: ${bh.tinteQemer} | መጥቅዕ: ${bh.metqe} | አበቅቴ: ${bh.abekte} | መባጃ ሐመር: ${bh.mebajaHamer} (ተውሳክ: ${bh.mebajaHamerTewsak})</li>
+    </ul>`;
+    
+    html += `<h4>ተንቀሳቃሽ በዓላትና አጽዋማት</h4><ul>`;
+    for (let [name, dateObj] of Object.entries(bh.feasts)) {
+        html += `<li><strong>${name}:</strong> ${MONTHS[dateObj.m]} ${dateObj.d}</li>`;
+    }
+    html += `</ul>`;
+    
+    html += `<h4>ብሔራዊ በዓላት</h4><ul>`;
+    holidays.forEach(h => {
+         let e = gregorianToEthiopian(h.g.getFullYear(), h.g.getMonth()+1, h.g.getDate());
+         if (e.ey === ey) {
+             html += `<li><strong>${h.n}</strong> — ${MONTHS[e.em]} ${e.ed} (${WEEKDAYS[h.g.getDay()]})</li>`;
+         }
+    });
+    html += `</ul>`;
+    out.innerHTML = html;
+}
+
+// Sub-engine: Month Overview
+async function renderMonthSearch(ey, em, out) {
+    let monthLen = getMonthLength(ey, em);
+    let startG = ethToGregorian(ey, em, 1);
+    let endG = ethToGregorian(ey, em, monthLen);
+    let bh = calculateBahreHasab(ey);
+    let holidays = getFdreHolidays(ey);
+    let synaxData = await loadSynaxarium();
+    
+    let html = `<h3>${MONTHS[em]} ${ey} ዓ.ም</h3>`;
+    html += `<p>ከ ${startG.toISOString().split('T')[0]} እስከ ${endG.toISOString().split('T')[0]} (${monthLen} ቀናት)</p>`;
+    
+    let monthFeasts = Object.entries(bh.feasts).filter(([_, dObj]) => dObj.m === em);
+    if (monthFeasts.length > 0) {
+        html += `<h4>የወሩ ተንቀሳቃሽ በዓላት</h4><ul>`;
+        monthFeasts.forEach(([name, dObj]) => {
+            html += `<li><strong>${name}:</strong> ${MONTHS[dObj.m]} ${dObj.d}</li>`;
+        });
+        html += `</ul>`;
+    }
+    
+    let monthHolidays = holidays.filter(h => {
+         let e = gregorianToEthiopian(h.g.getFullYear(), h.g.getMonth()+1, h.g.getDate());
+         return e.ey === ey && e.em === em;
+    });
+    if (monthHolidays.length > 0) {
+        html += `<h4>የወሩ ብሔራዊ በዓላት</h4><ul>`;
+        monthHolidays.forEach(h => {
+             let e = gregorianToEthiopian(h.g.getFullYear(), h.g.getMonth()+1, h.g.getDate());
+             html += `<li><strong>${h.n}</strong> — ${MONTHS[e.em]} ${e.ed}</li>`;
+        });
+        html += `</ul>`;
+    }
+    
+    html += `<h4>የዕለት ዝርዝር (ስንክሳር)</h4><ul>`;
+    for (let d = 1; d <= monthLen; d++) {
+         let gDate = ethToGregorian(ey, em, d);
+         let entries = (synaxData[MONTHS[em]] && synaxData[MONTHS[em]][d]) || [];
+         let annual = entries.filter(e => !e.startsWith("ወርኃዊ በዓል፦ "));
+         
+         html += `<li><strong>${MONTHS[em]} ${d} (${WEEKDAYS[gDate.getDay()]}):</strong> `;
+         if (annual.length > 0) html += annual.join('፣ ');
+         else html += " - ";
+         html += `</li>`;
+    }
+    html += `</ul>`;
+    
+    out.innerHTML = html;
+}
+
+// Sub-engine: Exact Date Conversion
+async function renderFullDateSearch(ey, em, ed, out) {
+    let gDate = ethToGregorian(ey, em, ed);
+    let iDate = jdnToIslamic(gregorianToJdn(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate()));
+    let bh = calculateBahreHasab(ey);
+    let seasons = getSeasons(ey, em, ed, bh);
+    let chereka = (bh.abekte + (em - 1) + ed) % 30 || 30;
+    let synaxData = await loadSynaxarium();
+    
+    let html = `<h3>የፍለጋ ውጤት</h3>
+    <ul>
+        <li><strong>የኢትዮጵያ ቀን፦</strong> ${MONTHS[em]} ${ed} ቀን ${ey} ዓ.ም (${WEEKDAYS[gDate.getDay()]})</li>
+        <li><strong>የግሪጎሪያን ቀን፦</strong> ${gDate.toISOString().split('T')[0]}</li>
+        <li><strong>የእስልምና (ሂጅሪ) ቀን፦</strong> ${ISLAMIC_MONTHS[iDate.im]} ${iDate.id} ቀን ${iDate.iy} ዓ.ሂ</li>
+    </ul>`;
+    
+    html += `<h4>ወቅትና አጽዋማት</h4><ul>
+        <li><strong>ወቅት:</strong> ${seasons.climatic} | <strong>ዘመን:</strong> ${seasons.liturgical}</li>
+        <li><strong>የአጽዋም ዘመን:</strong> ${seasons.fasting}</li>
+        <li><strong>ሰርቀ ጨረቃ:</strong> ${chereka} | <strong>ኮከብ:</strong> ${getZodiacSign(gDate.getMonth()+1, gDate.getDate())} | <strong>ዓውደ ነገሥት:</strong> ${getAwdeNegestSign(gDate.getMonth()+1, gDate.getDate())}</li>
+    </ul>`;
+    
+    let entries = (synaxData[MONTHS[em]] && synaxData[MONTHS[em]][ed]) || [];
+    if (entries.length > 0) {
+        let annual = entries.filter(e => !e.startsWith("ወርኃዊ በዓል፦ "));
+        let monthly = entries.filter(e => e.startsWith("ወርኃዊ በዓል፦ ")).map(e => e.replace("ወርኃዊ በዓል፦ ", ""));
+        
+        html += `<h4>የዕለቱ ስንክሳር</h4>`;
+        if (annual.length > 0) html += `<p><strong>ዓመታዊ:</strong> ${annual.join('፣ ')}</p>`;
+        if (monthly.length > 0) html += `<p><strong>ወርኃዊ:</strong> ${monthly.join('፣ ')}</p>`;
+    } else {
+        html += `<p>ለዕለቱ የተመዘገበ የስንክሳር በዓል የለም።</p>`;
+    }
+    
+    out.innerHTML = html;
 }
 
 function setupSynaxarium() {
