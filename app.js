@@ -71,11 +71,23 @@ function jdnToEthiopian(jdn) {
     let dYear = yCycle === 0 ? rem : yCycle === 1 ? rem - 365 : yCycle === 2 ? rem - 730 : rem - 1096;
     return { ey: cycles * 4 + yCycle + 1, em: Math.floor(dYear / 30) + 1, ed: mod(dYear, 30) + 1 };
 }
+
+// IMPROVEMENT: Bulletproof Local Date initialization
 function makeDate(y, m, d) {
     let dt = new Date(0, 0, 1);
     dt.setFullYear(y, m - 1, d);
+    dt.setHours(0, 0, 0, 0);
     return dt;
 }
+
+// IMPROVEMENT: Bulletproof string formatting avoiding toISOString() timezone shift bugs
+function formatDate(dt) {
+    let y = dt.getFullYear();
+    let m = String(dt.getMonth() + 1).padStart(2, '0');
+    let d = String(dt.getDate()).padStart(2, '0');
+    return `${String(y).padStart(4, '0')}-${m}-${d}`;
+}
+
 function jdnToGregorian(jdn) {
     let l = jdn + 68569, n = Math.floor((4 * l) / 146097); l -= Math.floor((146097 * n + 3) / 4);
     let i = Math.floor((4000 * (l + 1)) / 1461001); l = l - Math.floor((1461 * i) / 4) + 31;
@@ -349,7 +361,7 @@ async function renderToday() {
     
     let html = `<p class="large-date"><strong>ዛሬ ${WEEKDAYS[now.getDay()]}፣ ${MONTHS[eth.em]} ${eth.ed} ቀን ${eth.ey} ዓ.ም</strong></p>
     <ul>
-        <li><strong>የግሪጎሪያን ቀን፦</strong> ${now.toISOString().split('T')[0]}</li>
+        <li><strong>የግሪጎሪያን ቀን፦</strong> ${formatDate(now)}</li>
         <li><strong>ዘመነ ወንጌላዊ፦</strong> ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${bh.aa})</li>
         <li><strong>የባሕረ ሐሳብ መረጃ፦</strong> መደብ: ${bh.medeb} | ወንበር: ${bh.wenber} | ጥንተ ቀመር: ${bh.tinteQemer} | ተውሳክ: ${bh.mebajaHamerTewsak}</li>
         <li><strong>የአጽዋም መለኪያ፦</strong> መጥቅዕ: ${bh.metqe} | አበቅቴ: ${bh.abekte} | መባጃ ሐመር: ${bh.mebajaHamer}</li>
@@ -389,7 +401,7 @@ function renderHolidays() {
     let list = getFdreHolidays(eth.ey);
     let html = `<ul>` + list.map(item => {
         let e = gregorianToEthiopian(item.g.getFullYear(), item.g.getMonth()+1, item.g.getDate());
-        return `<li><strong>${item.n}</strong> — ${WEEKDAYS[item.g.getDay()]}፣ ${MONTHS[e.em]} ${e.ed} (${item.g.toISOString().split('T')[0]}) [${item.c ? 'ተቋማት ይዘጋሉ':'ተቋማት ክፍት ናቸው'}]</li>`;
+        return `<li><strong>${item.n}</strong> — ${WEEKDAYS[item.g.getDay()]}፣ ${MONTHS[e.em]} ${e.ed} (${formatDate(item.g)}) [${item.c ? 'ተቋማት ይዘጋሉ':'ተቋማት ክፍት ናቸው'}]</li>`;
     }).join('') + `</ul>`;
     container.innerHTML = html;
 }
@@ -442,7 +454,16 @@ function setupConverter() {
                 await renderYearSearch(useY, out);
             }
         } else if (type === 'greg') {
-            m = mStr ? parseInt(mStr) : null;
+            // IMPROVEMENT: Fallback parsing to support English text months for Gregorian lookup
+            if (mStr && isNaN(mStr)) {
+                let mName = mStr.toLowerCase().substring(0,3);
+                let gMonths = ["","jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
+                m = gMonths.indexOf(mName);
+                if (m === -1) m = null;
+            } else {
+                m = mStr ? parseInt(mStr) : null;
+            }
+
             let useY = y !== null ? y : now.getFullYear();
             let useM = m !== null ? m : now.getMonth() + 1;
             
@@ -465,7 +486,7 @@ function setupConverter() {
              out.innerHTML = `<h3>የፍለጋ ውጤት (ሂጅሪ)</h3>
              <ul>
                  <li><strong>የእስልምና (ሂጅሪ) ቀን፦</strong> ${ISLAMIC_MONTHS[iDate.im]} ${iDate.id} ቀን ${iDate.iy} ዓ.ሂ</li>
-                 <li><strong>የግሪጎሪያን ቀን፦</strong> ${gDate.toISOString().split('T')[0]}</li>
+                 <li><strong>የግሪጎሪያን ቀን፦</strong> ${formatDate(gDate)}</li>
                  <li><strong>የኢትዮጵያ ቀን፦</strong> ${MONTHS[eDate.em]} ${eDate.ed} ቀን ${eDate.ey} ዓ.ም</li>
              </ul>`;
         }
@@ -508,7 +529,7 @@ async function renderMonthSearch(ey, em, out) {
     let synaxData = await loadSynaxarium();
     
     let html = `<h3>${MONTHS[em]} ${ey} ዓ.ም</h3>`;
-    html += `<p>ከ ${startG.toISOString().split('T')[0]} እስከ ${endG.toISOString().split('T')[0]} (${monthLen} ቀናት)</p>`;
+    html += `<p>ከ ${formatDate(startG)} እስከ ${formatDate(endG)} (${monthLen} ቀናት)</p>`;
     
     let monthFeasts = Object.entries(bh.feasts).filter(([_, dObj]) => dObj.m === em);
     if (monthFeasts.length > 0) {
@@ -559,7 +580,7 @@ async function renderFullDateSearch(ey, em, ed, out) {
     let html = `<h3>የፍለጋ ውጤት</h3>
     <ul>
         <li><strong>የኢትዮጵያ ቀን፦</strong> ${MONTHS[em]} ${ed} ቀን ${ey} ዓ.ም (${WEEKDAYS[gDate.getDay()]})</li>
-        <li><strong>የግሪጎሪያን ቀን፦</strong> ${gDate.toISOString().split('T')[0]}</li>
+        <li><strong>የግሪጎሪያን ቀን፦</strong> ${formatDate(gDate)}</li>
         <li><strong>የእስልምና (ሂጅሪ) ቀን፦</strong> ${ISLAMIC_MONTHS[iDate.im]} ${iDate.id} ቀን ${iDate.iy} ዓ.ሂ</li>
     </ul>`;
     
@@ -619,7 +640,11 @@ function setupPeriodic() {
         if (!out) return;
         if (!data.periods.length) { out.innerHTML = "<p>ምንም መረጃ አልተመዘገበም።</p>"; return; }
 
-        let periods = data.periods.map(p => new Date(p)).sort((a, b) => a - b);
+        // IMPROVEMENT: Parsing strictly to local Date avoids silent timezone shifting during tracking 
+        let periods = data.periods.map(p => {
+            let [py, pm, pd] = p.split('-');
+            return new Date(parseInt(py), parseInt(pm) - 1, parseInt(pd), 0, 0, 0, 0);
+        }).sort((a, b) => a - b);
         let last = periods[periods.length - 1], today = new Date();
         today.setHours(0, 0, 0, 0); last.setHours(0, 0, 0, 0);
 
@@ -647,10 +672,10 @@ function setupPeriodic() {
         let html = `<h3>የዑደት ሁኔታ መግለጫ</h3>
         <p><strong>የዑደት ቀን፦</strong> ${cycleDay} | <strong>ሁኔታ፦</strong> ${status}</p>
         <p>${nextMsg}</p>
-        <p><strong>የመጨረሻው የተመዘገበ ቀን፦</strong> ${MONTHS[eLast.em]} ${eLast.ed} ቀን ${eLast.ey} ዓ.ም (${last.toISOString().split('T')[0]})</p>`;
+        <p><strong>የመጨረሻው የተመዘገበ ቀን፦</strong> ${MONTHS[eLast.em]} ${eLast.ed} ቀን ${eLast.ey} ዓ.ም (${formatDate(last)})</p>`;
 
         html += `<h4>የቀጣይ ዑደት ትንበያ</h4><ul>
-        <li><strong>ቀጣይ የወር አበባ የሚጀምርበት ግምታዊ ቀን፦</strong> ${MONTHS[eNext.em]} ${eNext.ed} ቀን ${eNext.ey} ዓ.ም (${nextStart.toISOString().split('T')[0]})</li>
+        <li><strong>ቀጣይ የወር አበባ የሚጀምርበት ግምታዊ ቀን፦</strong> ${MONTHS[eNext.em]} ${eNext.ed} ቀን ${eNext.ey} ዓ.ም (${formatDate(nextStart)})</li>
         <li><strong>የመራቢያ ጊዜ (Fertile Window)፦</strong> ${MONTHS[eFertStart.em]} ${eFertStart.ed} - ${MONTHS[eFertEnd.em]} ${eFertEnd.ed} ቀን ${eFertEnd.ey} ዓ.ም</li>
         <li><strong>የእንቁላል መውረጃ ግምታዊ ቀን (Ovulation)፦</strong> ${MONTHS[eOvulation.em]} ${eOvulation.ed} ቀን ${eOvulation.ey} ዓ.ም</li>
         </ul>`;
@@ -665,7 +690,7 @@ function setupPeriodic() {
         let recent = periods.slice(-12).reverse();
         html += `<h4>የተመዘገቡ ቀናት</h4><ul>` + recent.map(p => {
             let e = gregorianToEthiopian(p.getFullYear(), p.getMonth() + 1, p.getDate());
-            return `<li>${WEEKDAYS[p.getDay()]}፣ ${p.toISOString().split('T')[0]} (${MONTHS[e.em]} ${e.ed} ቀን ${e.ey} ዓ.ም)</li>`;
+            return `<li>${WEEKDAYS[p.getDay()]}፣ ${formatDate(p)} (${MONTHS[e.em]} ${e.ed} ቀን ${e.ey} ዓ.ም)</li>`;
         }).join('') + `</ul>`;
 
         html += `<p><em>ማሳሰቢያ፦ ይህ ትንበያ በአማካይ ስሌት ላይ የተመሠረተ ግምት ብቻ ሲሆን፣ የሕክምና ማረጋገጫ ሆኖ አያገለግልም። ማንኛውም የጤና ስጋት ካለ ሐኪም ያማክሩ።</em></p>`;
@@ -716,7 +741,8 @@ function setupPeriodic() {
         data.cycle_len = cycleLen;
         data.period_len = periodLen;
 
-        let iso = g.toISOString().split('T')[0];
+        // IMPROVEMENT: Enforce saving robust local time layout
+        let iso = formatDate(g);
         if (!data.periods.includes(iso)) data.periods.push(iso);
         data.periods.sort();
         saveData(data);
