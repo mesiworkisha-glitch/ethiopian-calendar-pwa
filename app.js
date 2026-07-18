@@ -71,7 +71,6 @@ function jdnToIslamic(jdn) {
     return { iy, im, id };
 }
 function islamicToJdn(iy, im, id) { return Math.floor(id + Math.floor((59 * (im - 1) + 1) / 2) + (iy - 1) * 354 + Math.floor((3 + 11 * iy) / 30) + ISLAMIC_EPOCH - 1); }
-// Tabular check for leap years
 function isIslamicLeap(iy) { return (11 * iy + 14) % 30 < 11; }
 function getIslamicMonthLength(iy, im) { return im === 12 ? (isIslamicLeap(iy) ? 30 : 29) : (im % 2 === 1 ? 30 : 29); }
 function getIslamicEvents(im, id) {
@@ -94,12 +93,18 @@ function getAwdeNegestSign(m, d) {
     return d < signs[m-1][1] ? signs[m-1][2] : signs[m-1][3];
 }
 
-// Bahre Hasab Calendar Logic Core
+// Bahre Hasab Calendar Logic Core (Upgraded)
 function calculateBahreHasab(ey) {
-    let aa = ey + 5500, wenber = (aa % 19) === 0 ? 18 : (aa % 19) - 1;
-    let abekte = (wenber * 11) % 30 || 30, metqe = (wenber * 19) % 30 || 30;
-    let tinteQemer = (aa + Math.floor(aa / 4)) % 7;
-    let mMonthIdx = metqe > 14 ? 0 : 1, mWeekday = (tinteQemer + (mMonthIdx * 2) + (metqe - 1)) % 7;
+    let aa = ey + 5500;
+    let medeb = aa % 19;
+    let wenber = medeb === 0 ? 18 : medeb - 1;
+    let abekte = (wenber * 11) % 30 || 30;
+    let metqe = (wenber * 19) % 30 || 30;
+    let tinteQemerNum = (aa + Math.floor(aa / 4)) % 7;
+    let tinteQemer = ["ሰኞ", "ማክሰኞ", "ረቡዕ", "ሐሙስ", "ዓርብ", "ቅዳሜ", "እሁድ"][tinteQemerNum];
+    
+    let mMonthIdx = metqe > 14 ? 0 : 1;
+    let mWeekday = (tinteQemerNum + (mMonthIdx * 2) + (metqe - 1)) % 7;
     let mebajaHamerTewsak = {0:6, 1:5, 2:4, 3:3, 4:2, 5:8, 6:7}[mWeekday];
     let mebajaHamer = mebajaHamerTewsak + metqe;
     
@@ -111,7 +116,8 @@ function calculateBahreHasab(ey) {
         if(mIdx > 13) mIdx -= 13;
         feasts[name] = { m: mIdx, d: d };
     });
-    return { aa, wengelawi: {1:'ማቴዎስ', 2:'ማርቆስ', 3:'ሉቃስ', 0:'ዮሐንስ'}[aa % 4], metqe, abekte, mebajaHamer, feasts };
+    
+    return { aa, wengelawi: {1:'ማቴዎስ', 2:'ማርቆስ', 3:'ሉቃስ', 0:'ዮሐንስ'}[aa % 4], medeb, wenber, metqe, abekte, tinteQemer, mebajaHamer, mebajaHamerTewsak, feasts };
 }
 
 // Seasons, Liturgical Timelines and Fasting Progress
@@ -298,7 +304,7 @@ function initClock() {
     }, 1000);
 }
 
-// Render Summary Modules
+// Render Summary Modules (Upgraded with Bahre Hasab & Split Synaxarium Logic)
 async function renderToday() {
     const container = document.getElementById('today-summary');
     if (!container) return;
@@ -311,6 +317,8 @@ async function renderToday() {
     <ul>
         <li><strong>የግሪጎሪያን ቀን፦</strong> ${now.toISOString().split('T')[0]}</li>
         <li><strong>ዘመነ ወንጌላዊ፦</strong> ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${bh.aa})</li>
+        <li><strong>የባሕረ ሐሳብ መረጃ፦</strong> መደብ: ${bh.medeb} | ወንበር: ${bh.wenber} | ጥንተ ቀመር: ${bh.tinteQemer} | ተውሳክ: ${bh.mebajaHamerTewsak}</li>
+        <li><strong>የአጽዋም መለኪያ፦</strong> መጥቅዕ: ${bh.metqe} | አበቅቴ: ${bh.abekte} | መባጃ ሐመር: ${bh.mebajaHamer}</li>
         <li><strong>ወቅትና ቤተክርስቲያን፦</strong> ${seasons.climatic} | ${seasons.liturgical}</li>
         <li><strong>የአጽዋም ዘመን፦</strong> ${seasons.fasting} ${seasons.progress ? "<br><em>" + seasons.progress + "</em>" : ""}</li>
         <li><strong>ሰርቀ ጨረቃ፦</strong> ${chereka}</li>
@@ -321,9 +329,22 @@ async function renderToday() {
 
     let data = await loadSynaxarium();
     let entries = (data[MONTHS[eth.em]] && data[MONTHS[eth.em]][eth.ed]) || [];
+    
     if (entries.length > 0) {
-        html += `<h3>የዕለቱ ስንክሳር በዓላት</h3><ul>` + entries.map(e => `<li>${e}</li>`).join('') + `</ul>`;
+        let annualFeasts = entries.filter(e => !e.startsWith("ወርኃዊ በዓል፦ "));
+        let monthlyFeasts = entries.filter(e => e.startsWith("ወርኃዊ በዓል፦ ")).map(e => e.replace("ወርኃዊ በዓል፦ ", ""));
+
+        html += `<h3>የዕለቱ ስንክሳር በዓላት</h3>`;
+        if (annualFeasts.length > 0) {
+            html += `<h4>ዓመታዊ በዓላት</h4><ul>` + annualFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
+        }
+        if (monthlyFeasts.length > 0) {
+            html += `<h4>ወርኃዊ በዓላት</h4><ul>` + monthlyFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
+        }
+    } else {
+        html += `<p>ለዕለቱ የተመዘገበ የስንክሳር በዓል የለም።</p>`;
     }
+
     container.innerHTML = html;
 }
 

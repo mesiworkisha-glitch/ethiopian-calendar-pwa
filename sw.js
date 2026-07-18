@@ -1,11 +1,12 @@
-// Changed version to v2 to force an update
-const CACHE_NAME = 'ethio-calendar-v2';
+// Upgraded version to v3 to force update and new strategies
+const CACHE_NAME = 'ethio-calendar-v3';
 const ASSETS = [
     './index.html',
     './style.css',
     './app.js',
     './manifest.json',
-    './synaxarium_feasts.json'
+    './synaxarium_feasts.json',
+    './icon.svg' // CRITICAL FIX: The app icon is now cached for strict offline capability
 ];
 
 self.addEventListener('install', (event) => {
@@ -18,7 +19,7 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Added an activate event to delete the old 'v1' cache
+// Activate event to clear old cache deployments
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((cacheNames) => {
@@ -33,20 +34,25 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Changed to Network-First strategy
+// Stale-While-Revalidate strategy for optimal offline PWA capability
 self.addEventListener('fetch', (event) => {
     event.respondWith(
-        fetch(event.request)
-            .then((networkResponse) => {
-                // If the network works, update the cache with the fresh file and return it
-                return caches.open(CACHE_NAME).then((cache) => {
-                    cache.put(event.request, networkResponse.clone());
-                    return networkResponse;
-                });
-            })
-            .catch(() => {
-                // If the network fails (offline), fall back to the cache
-                return caches.match(event.request);
-            })
+        caches.match(event.request).then((cachedResponse) => {
+            // Initiate a network request to update the cache in the background
+            const fetchPromise = fetch(event.request).then((networkResponse) => {
+                if (networkResponse && networkResponse.status === 200) {
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, networkResponse.clone());
+                    });
+                }
+                return networkResponse;
+            }).catch(() => {
+                // Silently ignore network errors to ensure smooth offline fallback
+                console.warn('Network request failed, relying purely on cache for: ', event.request.url);
+            });
+
+            // Return the cached response immediately if present, otherwise wait for the network request
+            return cachedResponse || fetchPromise;
+        })
     );
 });
