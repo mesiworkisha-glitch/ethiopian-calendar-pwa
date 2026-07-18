@@ -1,16 +1,26 @@
 {
   "name": "Ethiopian Calendar & Bahre Hasab",
   "short_name": "EthioCalendar",
+  "description": "የኢትዮጵያ ቀን አቆጣጠር፣ ባሕረ ሐሳብ፣ ስንክሳር እና የእስልምና ቀን መቀየሪያ",
+  "lang": "am",
+  "dir": "ltr",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0066cc",
   "icons": [
     {
       "src": "icon.svg",
-      "sizes": "192x192 512x512",
+      "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ]
 }

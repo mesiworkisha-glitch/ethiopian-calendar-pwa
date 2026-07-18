@@ -1,11 +1,9 @@
-// Global Constants & Mapping Arrays
 const MONTHS = ["", "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜ"];
 const WEEKDAYS = ["እሁድ", "ሰኞ", "ማክሰኞ", "ረቡዕ", "ሐሙስ", "ዓርብ", "ቅዳሜ"];
 const ISLAMIC_MONTHS = ["", "ሙሐረም", "ሰፈር", "ረቢዑል አወል", "ረቢዑል ሳኒ", "ጀማደል አወል", "ጀማደል ሳኒ", "ረጀብ", "ሻእባን", "ረመዳን", "ሸዋል", "ዙልቂዳህ", "ዙልሒጃህ"];
 const ENGLISH_MONTHS = ["", "Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", "Miazia", "Ginbot", "Sene", "Hamle", "Nehase", "Pagume"];
 const ISLAMIC_EPOCH = 1948440;
 
-// Amharic Homophone Normalizer Engine
 const AMHARIC_HOMOPHONE_MAP = {};
 const AMHARIC_GROUPS = [["ሀሁሂሃሄህሆ", "ሐሑሒሓሔሕሖ", "ኀኁኂኃኄኅኆ"], ["ሰሱሲሳሴስሶ", "ሠሡሢሣሤሥሦ"], ["አኡኢኣኤእኦ", "ዐዑዒዓዔዕዖ"], ["ጸጹጺጻጼጽጾ", "ፀፁፂፃፄፅፆ"]];
 AMHARIC_GROUPS.forEach(g => {
@@ -18,29 +16,49 @@ function normalizeAmharic(text) {
     return Array.from(text || "").map(ch => AMHARIC_HOMOPHONE_MAP[ch] || ch).join("");
 }
 
-// Complex Month Parsing Dictionary Aliases
-const MONTH_ALIASES = {
-    3: ["ህዳር", "ሕዳር", "hedar"], 4: ["ታህሳስ", "ታሕሳስ", "tahesas", "tachesas"],
-    11: ["ሃምሌ", "ኃምሌ", "hamlie"], 12: ["ነሃሴ", "ነኃሴ", "nehasse"],
-    13: ["ጳጐሜ", "ጳጎሜ", "ጳጉሜን", "pagumen", "paguemen"]
+const MONTH_ALIASES_AM = {
+    3: ["ህዳር", "ሕዳር"], 4: ["ታህሳስ", "ታሕሳስ"],
+    11: ["ሃምሌ", "ኃምሌ"], 12: ["ነሃሴ", "ነኃሴ"],
+    13: ["ጳጐሜ", "ጳጎሜ", "ጳጉሜን", "ጳጐሜን", "ጳጎሜን"]
+};
+const MONTH_ALIASES_EN = {
+    1: ["Maskaram", "Maskarem"], 2: ["Tikemt", "Tekemt", "Tiqimt"],
+    3: ["Hedar"], 4: ["Tahesas", "Tachesas"], 5: ["Ter"],
+    6: ["Yekatit", "Yekattit"], 7: ["Magabit"], 8: ["Miyazya", "Miyazia"],
+    9: ["Genbot"], 10: ["Sane"], 11: ["Hamlie"], 12: ["Nehasse", "Nehase"],
+    13: ["Pagumen", "Paguemen", "Paguemien"]
 };
 
 function matchMonthName(text) {
-    let raw = (text || "").trim().toLowerCase();
+    let raw = (text || "").trim();
     if (raw.length < 2) return null;
     let normAm = normalizeAmharic(raw);
+    let normEn = raw.toLowerCase();
+    let matches = new Set();
+
     for (let idx = 1; idx <= 13; idx++) {
-        let targets = [MONTHS[idx], ENGLISH_MONTHS[idx]].map(t => t.toLowerCase());
-        if (MONTH_ALIASES[idx]) targets = targets.concat(MONTH_ALIASES[idx].map(a => a.toLowerCase()));
-        for (let target of targets) {
-            let normT = normalizeAmharic(target);
-            if (normT === normAm || normT.startsWith(normAm) || normAm.startsWith(normT)) return idx;
+        let amCandidates = [MONTHS[idx]].concat(MONTH_ALIASES_AM[idx] || []);
+        for (let candidate of amCandidates) {
+            let normC = normalizeAmharic(candidate);
+            if (normC === normAm || normC.startsWith(normAm) || normAm.startsWith(normC)) {
+                matches.add(idx);
+                break;
+            }
+        }
+        let enCandidates = [ENGLISH_MONTHS[idx]].concat(MONTH_ALIASES_EN[idx] || []);
+        for (let candidate of enCandidates) {
+            let normC = candidate.toLowerCase();
+            if (normC === normEn || normC.startsWith(normEn) || normEn.startsWith(normC)) {
+                matches.add(idx);
+                break;
+            }
         }
     }
+
+    if (matches.size === 1) return [...matches][0];
     return null;
 }
 
-// Core Math Foundations (Julian Day Calculations)
 function ethiopianToJdn(ey, em, ed) { return 1724221 + (ey - 1) * 365 + Math.floor(ey / 4) + (em - 1) * 30 + (ed - 1); }
 function gregorianToJdn(gy, gm, gd) {
     let a = Math.floor((14 - gm) / 12), y = gy + 4800 - a, m = gm + 12 * a - 3;
@@ -62,7 +80,6 @@ function ethToGregorian(ey, em, ed) { return jdnToGregorian(ethiopianToJdn(ey, e
 function gregorianToEthiopian(gy, gm, gd) { return jdnToEthiopian(gregorianToJdn(gy, gm, gd)); }
 function getMonthLength(ey, em) { return em === 13 ? (ey % 4 === 3 ? 6 : 5) : 30; }
 
-// Islamic Calendar Engines
 function jdnToIslamic(jdn) {
     let l = jdn - ISLAMIC_EPOCH + 10632, n = Math.floor((l - 1) / 10631); l = l - 10631 * n + 354;
     let j = (Math.floor((10985 - l) / 5316) * Math.floor((50 * l) / 17719)) + (Math.floor(l / 5670) * Math.floor((43 * l) / 15238));
@@ -83,7 +100,6 @@ function getIslamicEvents(im, id) {
     return ev;
 }
 
-// Zodiac Computations
 function getZodiacSign(m, d) {
     const signs = [[1,20,"ካፕሪኮርን ♑","አኳሪየስ ♒"],[2,19,"አኳሪየስ ♒","ፓይሰስ ♓"],[3,21,"ፓይሰስ ♓","አሪየስ ♈"],[4,20,"አሪየስ ♈","ታውረስ ♉"],[5,21,"ታውረስ ♉","ጀሚናይ ♊"],[6,21,"ጀሚናይ ♊","ካንሰር ♋"],[7,23,"ካንሰር ♋","ሊዮ ♌"],[8,23,"ሊዮ ♌","ቨርጎ ♍"],[9,23,"ቨርጎ ♍","ሊብራ ♎"],[10,23,"ሊብራ ♎","ስኮርፒዮ ♏"],[11,22,"ስኮርፒዮ ♏","ሳጂታሪየስ ♐"],[12,22,"ሳጂታሪየስ ♐","ካፕሪኮርን ♑"]];
     return d < signs[m-1][1] ? signs[m-1][2] : signs[m-1][3];
@@ -93,7 +109,6 @@ function getAwdeNegestSign(m, d) {
     return d < signs[m-1][1] ? signs[m-1][2] : signs[m-1][3];
 }
 
-// Bahre Hasab Calendar Logic Core (Upgraded)
 function calculateBahreHasab(ey) {
     let aa = ey + 5500;
     let medeb = aa % 19;
@@ -120,7 +135,6 @@ function calculateBahreHasab(ey) {
     return { aa, wengelawi: {1:'ማቴዎስ', 2:'ማርቆስ', 3:'ሉቃስ', 0:'ዮሐንስ'}[aa % 4], medeb, wenber, metqe, abekte, tinteQemer, mebajaHamer, mebajaHamerTewsak, feasts };
 }
 
-// Seasons, Liturgical Timelines and Fasting Progress
 function getSeasons(ey, em, ed, bh) {
     let dayNum = (em - 1) * 30 + ed;
     let climatic = dayNum >= 26 && dayNum <= 115 ? "መፀው" : dayNum >= 116 && dayNum <= 205 ? "በጋ" : dayNum >= 206 && dayNum <= 295 ? "በልግ" : "ክረምት";
@@ -140,9 +154,10 @@ function getSeasons(ey, em, ed, bh) {
     else if (dayNum >= fNenewe && dayNum < fNenewe + 3) fasting = "ጾመ ነነዌ";
     else if (dayNum === 130) fasting = "ጾመ ገሀድ (የጥምቀት ዋዜማ)";
     else if (dayNum >= fTensae && dayNum <= fPentecost) fasting = "የአጽዋም ዘመን አይደለም (ኀምሳ ዕለት)";
+    else if (dayNum === 119 || dayNum === 131) fasting = "የአጽዋም ዘመን አይደለም (በዓል)";
     else {
         let wd = ethToGregorian(ey, em, ed).getDay();
-        if ((wd === 3 || wd === 5) && dayNum !== 119 && dayNum !== 131) fasting = "ጾመ ድኅነት (ረቡዕ እና ዓርብ ጾም)";
+        if (wd === 3 || wd === 5) fasting = "ጾመ ድኅነት (ረቡዕ እና ዓርብ ጾም)";
     }
 
     let liturgical = "ዘመነ ክረምት";
@@ -202,7 +217,6 @@ function getUpcomingEvents(ey, em, ed, bh) {
     return "በዚህ ዓመት ቀጣይ የተመዘገበ በዓል የለም።";
 }
 
-// Public National FDRE Holidays Engine
 function getFdreHolidays(ey) {
     let startG = ethToGregorian(ey, 1, 1), yearG = startG.getFullYear();
     let bh = calculateBahreHasab(ey);
@@ -230,13 +244,12 @@ function getFdreHolidays(ey) {
     for (let y = hStart - 1; y <= hEnd + 1; y++) {
         [[3,12,"መውሊድ"],[10,1,"ዒድ አልፈጥር"],[12,10,"ዒድ አልአድሐ (አረፋ)"]].forEach(([m,d,name]) => {
             let j = islamicToJdn(y, m, d);
-            if (j >= startJ && j <= endJ) h.push({ n: name, g: jdnToGregorian(j), c: true, note: "ቀኑ ሂሳባዊ ነው" });
+            if (j >= startJ && j < endJ) h.push({ n: name, g: jdnToGregorian(j), c: true, note: "ቀኑ ሂሳባዊ ነው" });
         });
     }
     return h.sort((a,b) => a.g - b.g);
 }
 
-// Synaxarium Database Request
 let synaxariumData = null;
 async function loadSynaxarium() {
     if (synaxariumData) return synaxariumData;
@@ -247,7 +260,6 @@ async function loadSynaxarium() {
     return synaxariumData;
 }
 
-// Safe Initializer Wrapper Loop
 document.addEventListener('DOMContentLoaded', () => {
     const modules = [
         { name: "Tabs Control", func: setupTabs },
@@ -257,7 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Islamic View", func: renderIslamic },
         { name: "Converter Form", func: setupConverter },
         { name: "Synaxarium Search", func: setupSynaxarium },
-        { name: "Menstrual Tracker", func: setupPeriodic }
+        { name: "Menstrual Tracker", func: setupPeriodic },
+        { name: "Clipboard Copy", func: setupClipboardCopy }
     ];
 
     modules.forEach(m => {
@@ -269,24 +282,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Single Page View Router (Resilient Event Listeners)
 function setupTabs() {
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             let targetId = btn.getAttribute('data-target') || btn.dataset.target;
             if (!targetId) return;
 
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.tab-content').forEach(t => {
+                t.classList.remove('active');
+                t.hidden = true;
+            });
 
             btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
             let contentTab = document.getElementById(targetId);
-            if (contentTab) contentTab.classList.add('active');
+            if (contentTab) {
+                contentTab.classList.add('active');
+                contentTab.hidden = false;
+            }
         });
     });
 }
 
-// Clock Execution Node
+function announceStatus(msg) {
+    const el = document.getElementById('status-announcer');
+    if (!el) return;
+    el.textContent = '';
+    setTimeout(() => { el.textContent = msg; }, 50);
+}
+
 function initClock() {
     const timeBar = document.getElementById('local-time-bar');
     if (!timeBar) return;
@@ -304,7 +332,6 @@ function initClock() {
     }, 1000);
 }
 
-// Render Summary Modules (Upgraded with Bahre Hasab & Split Synaxarium Logic)
 async function renderToday() {
     const container = document.getElementById('today-summary');
     if (!container) return;
@@ -371,9 +398,6 @@ function renderIslamic() {
     container.innerHTML = html;
 }
 
-// -------------------------------------------------------------------------
-// Hierarchical Search & Conversion Engine 
-// -------------------------------------------------------------------------
 function setupConverter() {
     const btn = document.getElementById('btn-convert');
     if (!btn) return;
@@ -441,7 +465,6 @@ function setupConverter() {
     });
 }
 
-// Sub-engine: Year Overview
 async function renderYearSearch(ey, out) {
     let bh = calculateBahreHasab(ey);
     let holidays = getFdreHolidays(ey);
@@ -469,7 +492,6 @@ async function renderYearSearch(ey, out) {
     out.innerHTML = html;
 }
 
-// Sub-engine: Month Overview
 async function renderMonthSearch(ey, em, out) {
     let monthLen = getMonthLength(ey, em);
     let startG = ethToGregorian(ey, em, 1);
@@ -519,7 +541,6 @@ async function renderMonthSearch(ey, em, out) {
     out.innerHTML = html;
 }
 
-// Sub-engine: Exact Date Conversion
 async function renderFullDateSearch(ey, em, ed, out) {
     let gDate = ethToGregorian(ey, em, ed);
     let iDate = jdnToIslamic(gregorianToJdn(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate()));
@@ -585,40 +606,111 @@ function setupPeriodic() {
     if (!form) return;
     const loadData = () => JSON.parse(localStorage.getItem('periodic_tracker_data')) || { periods: [], cycle_len: 28, period_len: 5 };
     const saveData = (d) => localStorage.setItem('periodic_tracker_data', JSON.stringify(d));
-    
+
     const updateUI = () => {
         let data = loadData(), out = document.getElementById('periodic-output');
         if (!out) return;
         if (!data.periods.length) { out.innerHTML = "<p>ምንም መረጃ አልተመዘገበም።</p>"; return; }
-        
-        let last = new Date(data.periods[data.periods.length - 1]), today = new Date();
-        today.setHours(0,0,0,0); last.setHours(0,0,0,0);
-        
+
+        let periods = data.periods.map(p => new Date(p)).sort((a, b) => a - b);
+        let last = periods[periods.length - 1], today = new Date();
+        today.setHours(0, 0, 0, 0); last.setHours(0, 0, 0, 0);
+
         let cycleDay = Math.floor((today - last) / 86400000) + 1;
         let nextStart = new Date(last.getTime() + data.cycle_len * 86400000);
+        let daysUntilNext = Math.round((nextStart - today) / 86400000);
         let ovulation = new Date(nextStart.getTime() - 14 * 86400000);
-        
-        let status = cycleDay <= data.period_len ? "በወር አበባ ጊዜ ውስጥ ነዎት።" : 
-                     (today >= new Date(ovulation.getTime() - 5*86400000) && today <= new Date(ovulation.getTime() + 86400000)) ? 
-                     "በመራቢያ (የልጅ መውለጃ) ጊዜ ውስጥ ነዎት።" : "በተለመደው የዑደት ቀናት ውስጥ ነዎት።";
-        
-        let eNext = gregorianToEthiopian(nextStart.getFullYear(), nextStart.getMonth()+1, nextStart.getDate());
-        out.innerHTML = `<h3>የዑደት ሁኔታ መግለጫ</h3>
+        let fertileStart = new Date(ovulation.getTime() - 5 * 86400000);
+        let fertileEnd = new Date(ovulation.getTime() + 1 * 86400000);
+
+        let status = cycleDay <= data.period_len ? "በወር አበባ ጊዜ ውስጥ ነዎት።" :
+            (today >= fertileStart && today <= fertileEnd) ?
+            "በመራቢያ (የልጅ መውለጃ) ጊዜ ውስጥ ነዎት።" : "በተለመደው የዑደት ቀናት ውስጥ ነዎት።";
+
+        let nextMsg = daysUntilNext >= 0
+            ? `ቀጣዩ የወር አበባ የሚመጣው በ${daysUntilNext} ቀናት ውስጥ ነው።`
+            : `የሚጠበቀው ቀን ካለፈ ${Math.abs(daysUntilNext)} ቀናት ሆኖታል።`;
+
+        let eNext = gregorianToEthiopian(nextStart.getFullYear(), nextStart.getMonth() + 1, nextStart.getDate());
+        let eLast = gregorianToEthiopian(last.getFullYear(), last.getMonth() + 1, last.getDate());
+        let eFertStart = gregorianToEthiopian(fertileStart.getFullYear(), fertileStart.getMonth() + 1, fertileStart.getDate());
+        let eFertEnd = gregorianToEthiopian(fertileEnd.getFullYear(), fertileEnd.getMonth() + 1, fertileEnd.getDate());
+        let eOvulation = gregorianToEthiopian(ovulation.getFullYear(), ovulation.getMonth() + 1, ovulation.getDate());
+
+        let html = `<h3>የዑደት ሁኔታ መግለጫ</h3>
         <p><strong>የዑደት ቀን፦</strong> ${cycleDay} | <strong>ሁኔታ፦</strong> ${status}</p>
-        <p><strong>የሚቀጥለው ዑደት መጀመሪያ፦</strong> ${MONTHS[eNext.em]} ${eNext.ed} ቀን ${eNext.ey} ዓ.ም (${nextStart.toISOString().split('T')[0]})</p>`;
+        <p>${nextMsg}</p>
+        <p><strong>የመጨረሻው የተመዘገበ ቀን፦</strong> ${MONTHS[eLast.em]} ${eLast.ed} ቀን ${eLast.ey} ዓ.ም (${last.toISOString().split('T')[0]})</p>`;
+
+        html += `<h4>የቀጣይ ዑደት ትንበያ</h4><ul>
+        <li><strong>ቀጣይ የወር አበባ የሚጀምርበት ግምታዊ ቀን፦</strong> ${MONTHS[eNext.em]} ${eNext.ed} ቀን ${eNext.ey} ዓ.ም (${nextStart.toISOString().split('T')[0]})</li>
+        <li><strong>የመራቢያ ጊዜ (Fertile Window)፦</strong> ${MONTHS[eFertStart.em]} ${eFertStart.ed} - ${MONTHS[eFertEnd.em]} ${eFertEnd.ed} ቀን ${eFertEnd.ey} ዓ.ም</li>
+        <li><strong>የእንቁላል መውረጃ ግምታዊ ቀን (Ovulation)፦</strong> ${MONTHS[eOvulation.em]} ${eOvulation.ed} ቀን ${eOvulation.ey} ዓ.ም</li>
+        </ul>`;
+
+        if (periods.length >= 2) {
+            let intervals = [];
+            for (let i = 1; i < periods.length; i++) intervals.push((periods[i] - periods[i - 1]) / 86400000);
+            let avg = intervals.reduce((a, b) => a + b, 0) / intervals.length;
+            html += `<p><strong>ከተመዘገበው ታሪክ የተሰላ አማካይ ዑደት ርዝመት፦</strong> ${avg.toFixed(1)} ቀናት (ከ${intervals.length} ዑደቶች)</p>`;
+        }
+
+        let recent = periods.slice(-12).reverse();
+        html += `<h4>የተመዘገቡ ቀናት</h4><ul>` + recent.map(p => {
+            let e = gregorianToEthiopian(p.getFullYear(), p.getMonth() + 1, p.getDate());
+            return `<li>${WEEKDAYS[p.getDay()]}፣ ${p.toISOString().split('T')[0]} (${MONTHS[e.em]} ${e.ed} ቀን ${e.ey} ዓ.ም)</li>`;
+        }).join('') + `</ul>`;
+
+        html += `<p><em>ማሳሰቢያ፦ ይህ ትንበያ በአማካይ ስሌት ላይ የተመሠረተ ግምት ብቻ ሲሆን፣ የሕክምና ማረጋገጫ ሆኖ አያገለግልም። ማንኛውም የጤና ስጋት ካለ ሐኪም ያማክሩ።</em></p>`;
+
+        out.innerHTML = html;
     };
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        let y = parseInt(document.getElementById('per-year').value), m = parseInt(document.getElementById('per-month').value), d = parseInt(document.getElementById('per-day').value);
+        let out = document.getElementById('periodic-output');
+        let y = parseInt(document.getElementById('per-year').value);
+        let m = parseInt(document.getElementById('per-month').value);
+        let d = parseInt(document.getElementById('per-day').value);
+        let cycleLen = parseInt(document.getElementById('per-cycle').value);
+        let periodLen = parseInt(document.getElementById('per-len').value);
+
+        if (!y || !m || !d) {
+            if (out) out.innerHTML = "<p style='color:red;'>እባክዎ ዓመት፣ ወር እና ቀን ያስገቡ።</p>";
+            return;
+        }
+        if (m < 1 || m > 13) {
+            if (out) out.innerHTML = "<p style='color:red;'>ወር ከ1 እስከ 13 ብቻ መሆን አለበት።</p>";
+            return;
+        }
+        let monthLen = getMonthLength(y, m);
+        if (d < 1 || d > monthLen) {
+            if (out) out.innerHTML = `<p style='color:red;'>ለ${MONTHS[m]} ቀን ከ1 እስከ ${monthLen} ብቻ መሆን አለበት።</p>`;
+            return;
+        }
+        if (!cycleLen || cycleLen < 15 || cycleLen > 60) {
+            if (out) out.innerHTML = "<p style='color:red;'>የዑደት ርዝመት ከ15 እስከ 60 ቀናት መካከል መሆን አለበት።</p>";
+            return;
+        }
+        if (!periodLen || periodLen < 1 || periodLen > 15) {
+            if (out) out.innerHTML = "<p style='color:red;'>የወር አበባ ቆይታ ከ1 እስከ 15 ቀናት መካከል መሆን አለበት።</p>";
+            return;
+        }
+
         let g = ethToGregorian(y, m, d);
-        
+        let today = new Date(); today.setHours(0, 0, 0, 0);
+        let gAtMidnight = new Date(g.getFullYear(), g.getMonth(), g.getDate());
+        if (gAtMidnight > today) {
+            if (out) out.innerHTML = "<p style='color:red;'>የገባው ቀን ወደፊት ስለሆነ እባክዎ ያለፈ ቀን ያስገቡ።</p>";
+            return;
+        }
+
         let data = loadData();
-        data.cycle_len = parseInt(document.getElementById('per-cycle').value);
-        data.period_len = parseInt(document.getElementById('per-len').value);
-        
+        data.cycle_len = cycleLen;
+        data.period_len = periodLen;
+
         let iso = g.toISOString().split('T')[0];
-        if(!data.periods.includes(iso)) data.periods.push(iso);
+        if (!data.periods.includes(iso)) data.periods.push(iso);
         data.periods.sort();
         saveData(data);
         updateUI();
@@ -632,4 +724,39 @@ function setupPeriodic() {
         });
     }
     updateUI();
+}
+
+function setupClipboardCopy() {
+    const copyEthBtn = document.getElementById('btn-copy-date');
+    if (copyEthBtn) {
+        copyEthBtn.addEventListener('click', async () => {
+            let now = new Date();
+            let eth = gregorianToEthiopian(now.getFullYear(), now.getMonth() + 1, now.getDate());
+            let bh = calculateBahreHasab(eth.ey);
+            let msg = `${WEEKDAYS[now.getDay()]}፣ ${MONTHS[eth.em]} ${eth.ed} ቀን ${eth.ey} ዓ.ም። ዘመነ ${bh.wengelawi}።`;
+            try {
+                await navigator.clipboard.writeText(msg);
+                announceStatus("ቀኑ ኮፒ ተደርጓል (Copied to clipboard)");
+            } catch (e) {
+                announceStatus("ኮፒ ማድረግ አልተቻለም (Failed to copy)");
+            }
+        });
+    }
+
+    const copyHijriBtn = document.getElementById('btn-copy-hijri');
+    if (copyHijriBtn) {
+        copyHijriBtn.addEventListener('click', async () => {
+            let now = new Date();
+            let jdn = gregorianToJdn(now.getFullYear(), now.getMonth() + 1, now.getDate());
+            let isl = jdnToIslamic(jdn);
+            let g = jdnToGregorian(jdn);
+            let msg = `${WEEKDAYS[g.getDay()]}፣ ${ISLAMIC_MONTHS[isl.im]} ${isl.id} ቀን ${isl.iy} ዓ.ሂ`;
+            try {
+                await navigator.clipboard.writeText(msg);
+                announceStatus("የሂጅሪ ቀኑ ኮፒ ተደርጓል (Copied to clipboard)");
+            } catch (e) {
+                announceStatus("ኮፒ ማድረግ አልተቻለም (Failed to copy)");
+            }
+        });
+    }
 }

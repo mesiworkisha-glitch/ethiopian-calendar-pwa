@@ -1,44 +1,50 @@
-// Upgraded version to v3 to force update and new strategies
-const CACHE_NAME = 'ethio-calendar-v3';
+const CACHE_NAME = 'ethio-calendar-v4';
 const ASSETS = [
+    './',
     './index.html',
     './style.css',
     './app.js',
     './manifest.json',
     './synaxarium_feasts.json',
-    './icon.svg' // CRITICAL FIX: The app icon is now cached for strict offline capability
+    './icon.svg'
 ];
 
 self.addEventListener('install', (event) => {
-    // Force the new service worker to take over immediately
     self.skipWaiting();
     event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            return cache.addAll(ASSETS);
+        caches.open(CACHE_NAME).then(async (cache) => {
+            const results = await Promise.allSettled(
+                ASSETS.map((url) => cache.add(url))
+            );
+            results.forEach((result, i) => {
+                if (result.status === 'rejected') {
+                    console.warn('Service worker: failed to precache', ASSETS[i], result.reason);
+                }
+            });
         })
     );
 });
 
-// Activate event to clear old cache deployments
 self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.keys().then((cacheNames) => {
-            return Promise.all(
+        Promise.all([
+            caches.keys().then((cacheNames) => Promise.all(
                 cacheNames.map((cacheName) => {
                     if (cacheName !== CACHE_NAME) {
                         return caches.delete(cacheName);
                     }
                 })
-            );
-        })
+            )),
+            self.clients.claim()
+        ])
     );
 });
 
-// Stale-While-Revalidate strategy for optimal offline PWA capability
 self.addEventListener('fetch', (event) => {
+    if (event.request.method !== 'GET') return;
+
     event.respondWith(
         caches.match(event.request).then((cachedResponse) => {
-            // Initiate a network request to update the cache in the background
             const fetchPromise = fetch(event.request).then((networkResponse) => {
                 if (networkResponse && networkResponse.status === 200) {
                     caches.open(CACHE_NAME).then((cache) => {
@@ -47,12 +53,17 @@ self.addEventListener('fetch', (event) => {
                 }
                 return networkResponse;
             }).catch(() => {
-                // Silently ignore network errors to ensure smooth offline fallback
-                console.warn('Network request failed, relying purely on cache for: ', event.request.url);
+                console.warn('Network request failed, relying on cache for:', event.request.url);
+                return null;
             });
 
-            // Return the cached response immediately if present, otherwise wait for the network request
-            return cachedResponse || fetchPromise;
+            return cachedResponse || fetchPromise.then((networkResponse) => {
+                if (networkResponse) return networkResponse;
+                if (event.request.mode === 'navigate') {
+                    return caches.match('./index.html');
+                }
+                return new Response('', { status: 503, statusText: 'Offline' });
+            });
         })
     );
 });
