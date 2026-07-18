@@ -34,6 +34,7 @@ nav {
     overflow-x: auto;
     background: #e2e8f0;
     border-bottom: 1px solid var(--border-color);
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 .nav-btn {
@@ -75,6 +76,7 @@ main {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     margin-bottom: 20px;
+    overflow-wrap: break-word; /* Prevents long outputs from breaking out of the card */
 }
 
 .form-group {
@@ -83,14 +85,26 @@ main {
     margin-bottom: 15px;
 }
 
+/* IMPROVED: Added flex-wrap and responsive gaps */
 .form-row {
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap; 
+    gap: 15px; 
     margin-bottom: 15px;
 }
 
-.form-row input, .form-group input, select {
-    flex: 1;
+/* IMPROVED: Ensure form groups inside a row scale correctly */
+.form-row > .form-group {
+    flex: 1 1 calc(33.333% - 15px);
+    min-width: 120px; /* Forces wrapping if the screen is too small */
+    margin-bottom: 0;
+}
+
+/* IMPROVED: Added box-sizing and 100% width for stability */
+.form-group input, 
+.form-group select {
+    width: 100%;
+    box-sizing: border-box;
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -109,6 +123,8 @@ button {
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
+    margin-right: 10px; /* Space between inline buttons */
+    margin-bottom: 10px;
 }
 
 .btn-primary { background: var(--primary-color); color: white; }
@@ -139,6 +155,19 @@ select:focus-visible {
 .info-output ul {
     padding-left: 20px;
 }
+
 .info-output li {
     margin-bottom: 8px;
+}
+
+/* MOBILE OPTIMIZATIONS */
+@media (max-width: 480px) {
+    .form-row > .form-group {
+        flex: 1 1 100%; /* Make inputs take full width on very small screens */
+    }
+    
+    button {
+        width: 100%; /* Make buttons easily tappable on mobile */
+        margin-right: 0;
+    }
 }

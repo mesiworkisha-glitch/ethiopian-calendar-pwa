@@ -64,21 +64,28 @@ function gregorianToJdn(gy, gm, gd) {
     let a = Math.floor((14 - gm) / 12), y = gy + 4800 - a, m = gm + 12 * a - 3;
     return gd + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
 }
+function mod(a, b) { return ((a % b) + b) % b; }
 function jdnToEthiopian(jdn) {
-    let r = jdn - 1724221, cycles = Math.floor(r / 1461), rem = r % 1461;
+    let r = jdn - 1724221, cycles = Math.floor(r / 1461), rem = mod(r, 1461);
     let yCycle = rem < 365 ? 0 : rem < 730 ? 1 : rem < 1096 ? 2 : 3;
     let dYear = yCycle === 0 ? rem : yCycle === 1 ? rem - 365 : yCycle === 2 ? rem - 730 : rem - 1096;
-    return { ey: cycles * 4 + yCycle + 1, em: Math.floor(dYear / 30) + 1, ed: (dYear % 30) + 1 };
+    return { ey: cycles * 4 + yCycle + 1, em: Math.floor(dYear / 30) + 1, ed: mod(dYear, 30) + 1 };
+}
+function makeDate(y, m, d) {
+    let dt = new Date(0, 0, 1);
+    dt.setFullYear(y, m - 1, d);
+    return dt;
 }
 function jdnToGregorian(jdn) {
     let l = jdn + 68569, n = Math.floor((4 * l) / 146097); l -= Math.floor((146097 * n + 3) / 4);
     let i = Math.floor((4000 * (l + 1)) / 1461001); l = l - Math.floor((1461 * i) / 4) + 31;
     let j = Math.floor((80 * l) / 2447); let d = l - Math.floor((2447 * j) / 80); l = Math.floor(j / 11);
-    let m = j + 2 - 12 * l, y = 100 * (n - 49) + i + l; return new Date(y, m - 1, d);
+    let m = j + 2 - 12 * l, y = 100 * (n - 49) + i + l;
+    return makeDate(y, m, d);
 }
 function ethToGregorian(ey, em, ed) { return jdnToGregorian(ethiopianToJdn(ey, em, ed)); }
 function gregorianToEthiopian(gy, gm, gd) { return jdnToEthiopian(gregorianToJdn(gy, gm, gd)); }
-function getMonthLength(ey, em) { return em === 13 ? (ey % 4 === 3 ? 6 : 5) : 30; }
+function getMonthLength(ey, em) { return em === 13 ? (mod(ey, 4) === 3 ? 6 : 5) : 30; }
 
 function jdnToIslamic(jdn) {
     let l = jdn - ISLAMIC_EPOCH + 10632, n = Math.floor((l - 1) / 10631); l = l - 10631 * n + 354;
@@ -88,7 +95,7 @@ function jdnToIslamic(jdn) {
     return { iy, im, id };
 }
 function islamicToJdn(iy, im, id) { return Math.floor(id + Math.floor((59 * (im - 1) + 1) / 2) + (iy - 1) * 354 + Math.floor((3 + 11 * iy) / 30) + ISLAMIC_EPOCH - 1); }
-function isIslamicLeap(iy) { return (11 * iy + 14) % 30 < 11; }
+function isIslamicLeap(iy) { return mod(11 * iy + 14, 30) < 11; }
 function getIslamicMonthLength(iy, im) { return im === 12 ? (isIslamicLeap(iy) ? 30 : 29) : (im % 2 === 1 ? 30 : 29); }
 function getIslamicEvents(im, id) {
     let ev = [];
@@ -111,15 +118,15 @@ function getAwdeNegestSign(m, d) {
 
 function calculateBahreHasab(ey) {
     let aa = ey + 5500;
-    let medeb = aa % 19;
+    let medeb = mod(aa, 19);
     let wenber = medeb === 0 ? 18 : medeb - 1;
-    let abekte = (wenber * 11) % 30 || 30;
-    let metqe = (wenber * 19) % 30 || 30;
-    let tinteQemerNum = (aa + Math.floor(aa / 4)) % 7;
+    let abekte = mod(wenber * 11, 30) || 30;
+    let metqe = mod(wenber * 19, 30) || 30;
+    let tinteQemerNum = mod(aa + Math.floor(aa / 4), 7);
     let tinteQemer = ["ሰኞ", "ማክሰኞ", "ረቡዕ", "ሐሙስ", "ዓርብ", "ቅዳሜ", "እሁድ"][tinteQemerNum];
     
     let mMonthIdx = metqe > 14 ? 0 : 1;
-    let mWeekday = (tinteQemerNum + (mMonthIdx * 2) + (metqe - 1)) % 7;
+    let mWeekday = mod(tinteQemerNum + (mMonthIdx * 2) + (metqe - 1), 7);
     let mebajaHamerTewsak = {0:6, 1:5, 2:4, 3:3, 4:2, 5:8, 6:7}[mWeekday];
     let mebajaHamer = mebajaHamerTewsak + metqe;
     
@@ -132,7 +139,7 @@ function calculateBahreHasab(ey) {
         feasts[name] = { m: mIdx, d: d };
     });
     
-    return { aa, wengelawi: {1:'ማቴዎስ', 2:'ማርቆስ', 3:'ሉቃስ', 0:'ዮሐንስ'}[aa % 4], medeb, wenber, metqe, abekte, tinteQemer, mebajaHamer, mebajaHamerTewsak, feasts };
+    return { aa, wengelawi: {1:'ማቴዎስ', 2:'ማርቆስ', 3:'ሉቃስ', 0:'ዮሐንስ'}[mod(aa, 4)], medeb, wenber, metqe, abekte, tinteQemer, mebajaHamer, mebajaHamerTewsak, feasts };
 }
 
 function getSeasons(ey, em, ed, bh) {
@@ -199,7 +206,7 @@ function getUpcomingEvents(ey, em, ed, bh) {
     
     [[1,"እንቁጣጣሽ (አዲስ ዓመት)"], [17,"የመስቀል በዓል"], [75,"ጾመ ነቢያት ይጀምራል"], 
      [130,"ጾመ ገሀድ"], [131,"ጥምቀት"], [331,"ጾመ ፍልሰታ ይጀምራል"], [345,"ፍልሰታ ለማርያም"]].forEach(e => events.push(e));
-    events.push([ey % 4 === 0 ? 118 : 119, "ገና (ልደት)"]);
+    events.push([mod(ey, 4) === 0 ? 118 : 119, "ገና (ልደት)"]);
 
     for (const [name, dateObj] of Object.entries(bh.feasts)) {
         events.push([(dateObj.m - 1) * 30 + dateObj.d, name]);
@@ -220,7 +227,7 @@ function getUpcomingEvents(ey, em, ed, bh) {
 function getFdreHolidays(ey) {
     let startG = ethToGregorian(ey, 1, 1), yearG = startG.getFullYear();
     let bh = calculateBahreHasab(ey);
-    let gennaDay = ey % 4 === 0 ? 28 : 29;
+    let gennaDay = mod(ey, 4) === 0 ? 28 : 29;
     
     let h = [
         { n: "እንቁጣጣሽ (አዲስ ዓመት)", g: startG, c: true },
@@ -231,7 +238,7 @@ function getFdreHolidays(ey) {
         { n: "የዓድዋ ድል በዓል", g: ethToGregorian(ey, 6, 23), c: true },
         { n: "የሰማዕታት መታሰቢያ ቀን", g: ethToGregorian(ey, 6, 12), c: false },
         { n: "የአርበኞች ድል በዓል", g: ethToGregorian(ey, 8, 27), c: true },
-        { n: "የዓለም የሠራተኞች ቀን", g: new Date(yearG + 1, 4, 1), c: true },
+        { n: "የዓለም የሠራተኞች ቀን", g: makeDate(yearG + 1, 5, 1), c: true },
         { n: "ስቅለት", g: ethToGregorian(ey, bh.feasts["ስቅለት"].m, bh.feasts["ስቅለት"].d), c: true },
         { n: "ትንሣኤ (ፋሲካ)", g: ethToGregorian(ey, bh.feasts["ትንሣኤ"].m, bh.feasts["ትንሣኤ"].d), c: true }
     ];
@@ -440,7 +447,7 @@ function setupConverter() {
             let useM = m !== null ? m : now.getMonth() + 1;
             
             if (d !== null) {
-                 let gDate = new Date(useY, useM - 1, d);
+                 let gDate = makeDate(useY, useM, d);
                  let eDate = gregorianToEthiopian(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate());
                  await renderFullDateSearch(eDate.ey, eDate.em, eDate.ed, out);
             } else {
@@ -699,7 +706,7 @@ function setupPeriodic() {
 
         let g = ethToGregorian(y, m, d);
         let today = new Date(); today.setHours(0, 0, 0, 0);
-        let gAtMidnight = new Date(g.getFullYear(), g.getMonth(), g.getDate());
+        let gAtMidnight = new Date(g); gAtMidnight.setHours(0, 0, 0, 0);
         if (gAtMidnight > today) {
             if (out) out.innerHTML = "<p style='color:red;'>የገባው ቀን ወደፊት ስለሆነ እባክዎ ያለፈ ቀን ያስገቡ።</p>";
             return;
