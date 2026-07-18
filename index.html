@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የኢትዮጵያ ካላንደር PWA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <h1>የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ</h1>
+        <div id="local-time-bar" aria-live="off">የኢትዮጵያ ሰዓት በመጫን ላይ...</div>
+    </header>
+
+    <nav aria-label="የመተግበሪያው ክፍሎች">
+        <button class="nav-btn active" data-target="tab-today">ዛሬ</button>
+        <button class="nav-btn" data-target="tab-holidays">ብሔራዊ በዓላት</button>
+        <button class="nav-btn" data-target="tab-islamic">ሂጅሪ አቆጣጠር</button>
+        <button class="nav-btn" data-target="tab-converter">ቀን መቀየሪያ</button>
+        <button class="nav-btn" data-target="tab-synaxarium">ስንክሳር ፍለጋ</button>
+        <button class="nav-btn" data-target="tab-periodic">የወር አበባ ዑደት</button>
+    </nav>
+
+    <main>
+        <!-- Tab: Today's Full Info -->
+        <section id="tab-today" class="tab-content active">
+            <div class="card">
+                <h2>የዕለቱ ሙሉ መረጃ</h2>
+                <div id="today-summary" class="info-output"></div>
+            </div>
+        </section>
+
+        <!-- Tab: FDRE Holidays -->
+        <section id="tab-holidays" class="tab-content">
+            <div class="card">
+                <h2>የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት</h2>
+                <div id="holidays-output" class="info-output"></div>
+            </div>
+        </section>
+
+        <!-- Tab: Islamic Calendar -->
+        <section id="tab-islamic" class="tab-content">
+            <div class="card">
+                <h2>የእስልምና (ሂጅሪ) ቀን አቆጣጠር</h2>
+                <div id="islamic-summary" class="info-output"></div>
+            </div>
+        </section>
+
+        <!-- Tab: Date Converter -->
+        <section id="tab-converter" class="tab-content">
+            <div class="card">
+                <h2>ቀን መፈለጊያና መቀየሪያ</h2>
+                <div class="form-group">
+                    <label for="conv-type">የቀን ዓይነት</label>
+                    <select id="conv-type">
+                        <option value="eth">የኢትዮጵያ ቀን</option>
+                        <option value="greg">የግሪጎሪያን (ፈረንጅ) ቀን</option>
+                        <option value="hijri">የሂጅሪ (እስላማዊ) ቀን</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <input type="number" id="conv-year" placeholder="ዓመት (ለምሳሌ 2018)">
+                    <input type="text" id="conv-month" placeholder="ወር (ቁጥር 1-13 ወይም ስም)">
+                    <input type="number" id="conv-day" placeholder="ቀን">
+                </div>
+                <button id="btn-convert" class="btn-primary">ቀይር / ፈልግ</button>
+                <div id="converter-output" class="info-output margin-top"></div>
+            </div>
+        </section>
+
+        <!-- Tab: Synaxarium Search -->
+        <section id="tab-synaxarium" class="tab-content">
+            <div class="card">
+                <h2>በስንክሳር ውስጥ ፍለጋ</h2>
+                <div class="form-group">
+                    <label for="synax-query">የቅዱስ ወይም የበዓል ስም ያስገቡ</label>
+                    <input type="text" id="synax-query" placeholder="ለምሳሌ፡ ሚካኤል ወይም ተክለ ሃይማኖት">
+                </div>
+                <button id="btn-search-synax" class="btn-primary">ፈልግ</button>
+                <div id="synax-output" class="info-output margin-top"></div>
+            </div>
+        </section>
+
+        <!-- Tab: Menstrual Tracking -->
+        <section id="tab-periodic" class="tab-content">
+            <div class="card">
+                <h2>የወር አበባ ዑደት ማቀናበሪያና መከታተያ</h2>
+                <form id="periodic-form">
+                    <p>የመጨረሻው የወር አበባ የታየበትን ቀን በኢትዮጵያ አቆጣጠር ያስገቡ፦</p>
+                    <div class="form-row">
+                        <input type="number" id="per-year" placeholder="ዓመት (ዓ.ም)" required>
+                        <input type="number" id="per-month" placeholder="ወር (1-13)" required>
+                        <input type="number" id="per-day" placeholder="ቀን" required>
+                    </div>
+                    <div class="form-group margin-top">
+                        <label for="per-cycle">የዑደት ርዝመት (በቀናት፣ አብዛኛውን ጊዜ 28)</label>
+                        <input type="number" id="per-cycle" value="28" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="per-len">የወር አበባ የሚቆይበት ጊዜ (በቀናት፣ አብዛኛውን ጊዜ 5)</label>
+                        <input type="number" id="per-len" value="5" required>
+                    </div>
+                    <button type="submit" class="btn-primary">አስቀምጥ</button>
+                    <button type="button" id="btn-clear-periodic" class="btn-danger">መረጃ አጥፋ</button>
+                </form>
+                <div id="periodic-output" class="info-output margin-top"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(console.error);
+        }
+    </script>
+</body>
+</html>
