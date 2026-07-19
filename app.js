@@ -20,6 +20,12 @@ const i18n = {
         result_title: "ውጤት", lbl_ethiopian: "ኢትዮጵያዊ", lbl_gregorian: "ግሪጎሪያን", lbl_hebrew: "ዕብራይስጥ", lbl_hijri: "ሂጅሪ", txt_days: "ቀናት", lbl_tabular_hijri: "(ሠንጠረዥ ሂጅሪ)",
         cycle_details: "የዑደት ዝርዝር", cycle_day_lbl: "የዑደት ቀን", next_period_est: "የሚቀጥለው ግምታዊ ቀን", days_left: "ቀናት ቀርተዋል",
         age_result: "ውጤት", age_years: "ዓመታት", age_months: "ወራት", total_life_days: "ጠቅላላ የኑሮ ቀናት",
+        err_enter_date: "እባክዎ ዓመት፣ ወር እና ቀን ያስገቡ።", err_invalid_year: "እባክዎ ትክክለኛ ዓመት ያስገቡ።",
+        err_invalid_month_eth: "ወር ከ1 እስከ 13 ብቻ መሆን አለበት።", err_invalid_month_greg: "የተሳሳተ ወር ገብቷል፤ ከ1 እስከ 12 ያስገቡ።",
+        err_invalid_day: "የተሳሳተ ቀን ገብቷል።", err_full_date_required: "እባክዎ ሙሉ ቀን (ዓመት፣ ወር፣ ቀን) ያስገቡ።",
+        err_cycle_range: "የዑደት ርዝመት ከ15 እስከ 60 ቀናት መካከል መሆን አለበት።", err_period_range: "የወር አበባ ቆይታ ከ1 እስከ 15 ቀናት መካከል መሆን አለበት።",
+        err_future_date: "የገባው ቀን ወደፊት ስለሆነ እባክዎ ያለፈ ቀን ያስገቡ።", err_generic: "የተከሰተ ችግር አለ፤ እባክዎ የገቡት መረጃ ትክክል መሆኑን ያረጋግጡ።",
+        no_data: "ምንም መረጃ አልተመዘገበም።",
         months: ["", "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜ"],
         weekdays: ["እሁድ", "ሰኞ", "ማክሰኞ", "ረቡዕ", "ሐሙስ", "ዓርብ", "ቅዳሜ"],
         islamic_months: ["", "ሙሐረም", "ሰፈር", "ረቢዑል አወል", "ረቢዑል ሳኒ", "ጀማደል አወል", "ጀማደል ሳኒ", "ረጀብ", "ሻእባን", "ረመዳን", "ሸዋል", "ዙልቂዳህ", "ዙልሒጃህ"],
@@ -53,6 +59,12 @@ const i18n = {
         result_title: "Result", lbl_ethiopian: "Ethiopian", lbl_gregorian: "Gregorian", lbl_hebrew: "Hebrew", lbl_hijri: "Hijri", txt_days: "Days", lbl_tabular_hijri: "(Tabular Hijri)",
         cycle_details: "Cycle Details", cycle_day_lbl: "Cycle Day", next_period_est: "Next Period (Est.)", days_left: "Days Left",
         age_result: "Result", age_years: "Yrs", age_months: "Mos", total_life_days: "Total Life Days",
+        err_enter_date: "Please enter year, month, and day.", err_invalid_year: "Please enter a valid year.",
+        err_invalid_month_eth: "Month must be between 1 and 13.", err_invalid_month_greg: "Invalid month; enter 1 to 12.",
+        err_invalid_day: "Invalid day entered.", err_full_date_required: "Please enter a full date (year, month, day).",
+        err_cycle_range: "Cycle length must be between 15 and 60 days.", err_period_range: "Period length must be between 1 and 15 days.",
+        err_future_date: "That date is in the future; please enter a past date.", err_generic: "Something went wrong; please check your input.",
+        no_data: "No data recorded yet.",
         months: ["", "Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", "Miazia", "Ginbot", "Sene", "Hamle", "Nehase", "Pagume"],
         weekdays: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         islamic_months: ["", "Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani", "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"],
@@ -86,6 +98,12 @@ const i18n = {
         result_title: "Bu'aa", lbl_ethiopian: "Itoophiyaa", lbl_gregorian: "Gregorian", lbl_hebrew: "Hebrew", lbl_hijri: "Hijiraa", txt_days: "Guyyoota", lbl_tabular_hijri: "(Hijiraa Tarreeffamaa)",
         cycle_details: "Ibsa Marsaa", cycle_day_lbl: "Guyyaa Marsaa", next_period_est: "Laguu Itti Aanu (Tilmaama)", days_left: "Guyyoota Hafan",
         age_result: "Bu'aa", age_years: "Waggoota", age_months: "Ji'oota", total_life_days: "Guyyoota Jireenyaa Waliigalaa",
+        err_enter_date: "Maaloo bara, ji'a, guyyaa galchi.", err_invalid_year: "Maaloo bara sirrii galchi.",
+        err_invalid_month_eth: "Ji'i 1 hanga 13 gidduu ta'uu qaba.", err_invalid_month_greg: "Ji'i dogoggora; 1 hanga 12 galchi.",
+        err_invalid_day: "Guyyaan galfame dogoggora.", err_full_date_required: "Maaloo guyyaa guutuu (bara, ji'a, guyyaa) galchi.",
+        err_cycle_range: "Dheerinni marsaa guyyaa 15 hanga 60 gidduu ta'uu qaba.", err_period_range: "Turtiin laguu guyyaa 1 hanga 15 gidduu ta'uu qaba.",
+        err_future_date: "Guyyaan kun kan fuulduraati; maaloo guyyaa darbe galchi.", err_generic: "Rakkoon uumameera; maaloo galtee kee mirkaneessi.",
+        no_data: "Hanga ammaatti odeeffannoon hin galmoofne.",
         months: ["", "Fulbaana", "Onkololeessa", "Sadaasa", "Muddee", "Amajjii", "Guraandhala", "Bitooteessa", "Caamsaa", "Waxabajjii", "Adooleessa", "Hagayya", "Qaammee"],
         weekdays: ["Dilbata", "Wiixata", "Kibxata", "Roobii", "Kamisa", "Jimaata", "Sanbata"],
         islamic_months: ["", "Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani", "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"],
@@ -119,6 +137,12 @@ const i18n = {
         result_title: "ውጽኢት", lbl_ethiopian: "ናይ ኢትዮጵያ", lbl_gregorian: "ግሪጎሪያን", lbl_hebrew: "እብራይስጢ", lbl_hijri: "ሂጅራ", txt_days: "መዓልታት", lbl_tabular_hijri: "(ሰሌዳዊ ሂጅራ)",
         cycle_details: "ዝርዝር ዑደት", cycle_day_lbl: "መዓልቲ ዑደት", next_period_est: "ዝቕጽል ግምታዊ ዕለት", days_left: "መዓልታት ተሪፉ",
         age_result: "ውጽኢት", age_years: "ዓመታት", age_months: "ኣዋርሕ", total_life_days: "ጠቕላላ መዓልታት ህይወት",
+        err_enter_date: "በጃኹም ዓመት፣ ወርሒን መዓልትን ኣእትዉ።", err_invalid_year: "በጃኹም ቅኑዕ ዓመት ኣእትዉ።",
+        err_invalid_month_eth: "ወርሒ ካብ 1 ክሳብ 13 ጥራይ ክኸውን ኣለዎ።", err_invalid_month_greg: "ግጉይ ወርሒ ኣቲኹም፤ ካብ 1 ክሳብ 12 ኣእትዉ።",
+        err_invalid_day: "ግጉይ መዓልቲ ኣቲኹም።", err_full_date_required: "በጃኹም ምሉእ ዕለት (ዓመት፣ ወርሒ፣ መዓልቲ) ኣእትዉ።",
+        err_cycle_range: "ንውሓት ዑደት ካብ 15 ክሳብ 60 መዓልታት ክኸውን ኣለዎ።", err_period_range: "ግዜ ወርሓዊ ጽግያት ካብ 1 ክሳብ 15 መዓልታት ክኸውን ኣለዎ።",
+        err_future_date: "እዚ ዕለት እዚ ናይ መጻኢ ስለዝኾነ በጃኹም ዝሓለፈ ዕለት ኣእትዉ።", err_generic: "ጸገም ተፈጢሩ፤ በጃኹም ዘእቶኹምዎ መረጃ ኣረጋግጹ።",
+        no_data: "ክሳብ ሕጂ ዝተመዝገበ መረጃ የለን።",
         months: ["", "መስከረም", "ጥቅምቲ", "ሕዳር", "ታሕሳስ", "ጥሪ", "ለካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰነ", "ሓምለ", "ነሓሰ", "ጳጉሜን"],
         weekdays: ["ሰንበት", "ሰኑይ", "ሠሉስ", "ረቡዕ", "ኃሙስ", "ዓርቢ", "ቀዳም"],
         islamic_months: ["", "ሙሓረም", "ሰፈር", "ረቢዑል ኣወል", "ረቢዑል ሳኒ", "ጀማደል ኣወል", "ጀማደል ሳኒ", "ረጀብ", "ሻእባን", "ረመዳን", "ሸዋል", "ዙልቂዳህ", "ዙልሒጃህ"],
@@ -157,6 +181,10 @@ function updateStaticTranslations() {
 
 function getMonths() { return t('months'); }
 function getWeekdays() { return t('weekdays'); }
+function getWeekdaysMondayFirst() {
+    let w = getWeekdays();
+    return [w[1], w[2], w[3], w[4], w[5], w[6], w[0]];
+}
 
 const ENGLISH_MONTHS = ["", "Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", "Miazia", "Ginbot", "Sene", "Hamle", "Nehase", "Pagume"];
 const ISLAMIC_EPOCH = 1948440;
@@ -277,7 +305,7 @@ function getMoonPhaseText(age) {
 }
 
 function getAddisSunTimes(gDate) {
-    let start = new Date(gDate.getFullYear(), 0, 0);
+    let start = makeDate(gDate.getFullYear(), 1, 0);
     let dayOfYear = Math.floor((gDate - start) / 86400000);
     let offsetMinutes = 25 * Math.sin(2 * Math.PI * (dayOfYear - 80) / 365);
     
@@ -435,7 +463,7 @@ function calculateBahreHasab(ey) {
     let abekte = mod(wenber * 11, 30) || 30;
     let metqe = mod(wenber * 19, 30) || 30;
     let tinteQemerNum = mod(aa + Math.floor(aa / 4), 7);
-    let tinteQemer = getWeekdays()[tinteQemerNum] || getWeekdays()[1];
+    let tinteQemer = getWeekdaysMondayFirst()[tinteQemerNum] || getWeekdaysMondayFirst()[0];
     
     let mMonthIdx = metqe > 14 ? 0 : 1;
     let mWeekday = mod(tinteQemerNum + (mMonthIdx * 2) + (metqe - 1), 7);
@@ -647,7 +675,7 @@ function refreshLiveOutputs() {
         const btnAge = document.getElementById('btn-calc-age');
         if (btnAge) btnAge.click();
     }
-    
+
     const pregOut = document.getElementById('preg-output');
     if (pregOut && pregOut.innerHTML !== "") {
         const btnPreg = document.getElementById('btn-calc-preg');
@@ -805,57 +833,81 @@ function renderIslamic() {
     container.innerHTML = html;
 }
 
+function isReasonableYear(y) { return Number.isFinite(y) && Math.abs(y) <= 200000; }
+
 function setupConverter() {
     const btn = document.getElementById('btn-convert');
     if (!btn) return;
     btn.addEventListener('click', async () => {
-        let type = document.getElementById('conv-type').value;
-        let yStr = document.getElementById('conv-year').value.trim();
-        let mStr = document.getElementById('conv-month').value.trim();
-        let dStr = document.getElementById('conv-day').value.trim();
         let out = document.getElementById('converter-output');
         if (!out) return;
-        
-        let now = new Date();
-        let curEth = gregorianToEthiopian(now.getFullYear(), now.getMonth()+1, now.getDate());
-        
-        let y = yStr ? parseInt(yStr) : null;
-        let d = dStr ? parseInt(dStr) : null;
-        let m = null;
+        try {
+            let type = document.getElementById('conv-type').value;
+            let yStr = document.getElementById('conv-year').value.trim();
+            let mStr = document.getElementById('conv-month').value.trim();
+            let dStr = document.getElementById('conv-day').value.trim();
 
-        if (type === 'eth') {
-            m = mStr ? (parseInt(mStr) || matchMonthName(mStr)) : null;
-            let useY = y !== null ? y : curEth.ey;
-            let useM = m !== null ? m : curEth.em;
-            if (d !== null) {
-                if (useM < 1 || useM > 13 || d > getMonthLength(useY, useM) || d < 1) return;
-                await renderFullDateSearch(useY, useM, d, out);
-            } else if (m !== null) {
-                if (useM < 1 || useM > 13) return;
-                await renderMonthSearch(useY, useM, out);
-            } else {
-                await renderYearSearch(useY, out);
+            let now = new Date();
+            let curEth = gregorianToEthiopian(now.getFullYear(), now.getMonth()+1, now.getDate());
+
+            let y = yStr ? parseInt(yStr) : null;
+            let d = dStr ? parseInt(dStr) : null;
+            let m = null;
+
+            if (y !== null && !isReasonableYear(y)) {
+                out.innerHTML = `<p style="color:red;">${t('err_invalid_year')}</p>`; return;
             }
-        } else if (type === 'greg') {
-            m = mStr ? parseInt(mStr) : null;
-            let useY = y !== null ? y : now.getFullYear();
-            let useM = m !== null ? m : now.getMonth() + 1;
-            
-            if (d !== null) {
-                 let gDate = makeDate(useY, useM, d);
-                 let eDate = gregorianToEthiopian(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate());
-                 await renderFullDateSearch(eDate.ey, eDate.em, eDate.ed, out);
+
+            if (type === 'eth') {
+                m = mStr ? (parseInt(mStr) || matchMonthName(mStr)) : null;
+                let useY = y !== null ? y : curEth.ey;
+                let useM = m !== null ? m : curEth.em;
+                if (d !== null) {
+                    if (useM < 1 || useM > 13 || d > getMonthLength(useY, useM) || d < 1) {
+                        out.innerHTML = `<p style="color:red;">${t('err_invalid_day')}</p>`; return;
+                    }
+                    await renderFullDateSearch(useY, useM, d, out);
+                } else if (m !== null) {
+                    if (useM < 1 || useM > 13) {
+                        out.innerHTML = `<p style="color:red;">${t('err_invalid_month_eth')}</p>`; return;
+                    }
+                    await renderMonthSearch(useY, useM, out);
+                } else {
+                    await renderYearSearch(useY, out);
+                }
+            } else if (type === 'greg') {
+                m = mStr ? parseInt(mStr) : null;
+                let useY = y !== null ? y : now.getFullYear();
+                let useM = m !== null ? m : now.getMonth() + 1;
+
+                if (useM < 1 || useM > 12) {
+                    out.innerHTML = `<p style="color:red;">${t('err_invalid_month_greg')}</p>`; return;
+                }
+                if (d !== null) {
+                    if (d < 1 || d > 31) {
+                        out.innerHTML = `<p style="color:red;">${t('err_invalid_day')}</p>`; return;
+                    }
+                    let gDate = makeDate(useY, useM, d);
+                    let eDate = gregorianToEthiopian(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate());
+                    await renderFullDateSearch(eDate.ey, eDate.em, eDate.ed, out);
+                } else {
+                    out.innerHTML = `<p style="color:red;">${t('err_full_date_required')}</p>`;
+                }
+            } else if (type === 'julian' || type === 'hebrew' || type === 'hijri') {
+                m = mStr ? parseInt(mStr) : null;
+                if (y === null || m === null || d === null) {
+                    out.innerHTML = `<p style="color:red;">${t('err_full_date_required')}</p>`; return;
+                }
+                let jdn = (type === 'julian') ? julianToJdn(y, m, d) :
+                          (type === 'hebrew') ? hebrewToJdn(y, m, d) :
+                          islamicToJdn(y, m, d);
+
+                let eDate = jdnToEthiopian(jdn);
+                await renderFullDateSearch(eDate.ey, eDate.em, eDate.ed, out);
             }
-        } else if (type === 'julian' || type === 'hebrew' || type === 'hijri') {
-            m = mStr ? parseInt(mStr) : null;
-            if (y === null || m === null || d === null) return;
-            let jdn = (type === 'julian') ? julianToJdn(y, m, d) : 
-                      (type === 'hebrew') ? hebrewToJdn(y, m, d) : 
-                      islamicToJdn(y, m, d);
-            
-            let gDate = jdnToGregorian(jdn);
-            let eDate = jdnToEthiopian(jdn);
-            await renderFullDateSearch(eDate.ey, eDate.em, eDate.ed, out);
+        } catch (err) {
+            console.error('Converter error:', err);
+            if (out) out.innerHTML = `<p style="color:red;">${t('err_generic')}</p>`;
         }
     });
 }
@@ -927,13 +979,32 @@ function setupSynaxarium() {
 function setupPeriodic() {
     const form = document.getElementById('periodic-form');
     if (!form) return;
-    const loadData = () => JSON.parse(localStorage.getItem('periodic_tracker_data')) || { periods: [], cycle_len: 28, period_len: 5 };
-    const saveData = (d) => localStorage.setItem('periodic_tracker_data', JSON.stringify(d));
+
+    let memoryFallback = { periods: [], cycle_len: 28, period_len: 5 };
+    let storageBlocked = false;
+
+    const loadData = () => {
+        try {
+            return JSON.parse(localStorage.getItem('periodic_tracker_data')) || { periods: [], cycle_len: 28, period_len: 5 };
+        } catch (e) {
+            storageBlocked = true;
+            return memoryFallback;
+        }
+    };
+    const saveData = (d) => {
+        try {
+            localStorage.setItem('periodic_tracker_data', JSON.stringify(d));
+        } catch (e) {
+            storageBlocked = true;
+            memoryFallback = d;
+        }
+    };
 
     const updateUI = () => {
+      try {
         let data = loadData(), out = document.getElementById('periodic-output');
         if (!out) return;
-        if (!data.periods.length) { out.innerHTML = ""; return; }
+        if (!data.periods.length) { out.innerHTML = `<p>${t('no_data')}</p>`; return; }
 
         let periods = data.periods.map(p => {
             let [py, pm, pd] = p.split('-');
@@ -946,40 +1017,84 @@ function setupPeriodic() {
         let nextStart = new Date(last.getTime() + data.cycle_len * 86400000);
         let daysUntilNext = Math.round((nextStart - today) / 86400000);
         let eNext = gregorianToEthiopian(nextStart.getFullYear(), nextStart.getMonth() + 1, nextStart.getDate());
-        
+
         let mList = getMonths();
 
         let html = `<h3>${t('cycle_details')}</h3>
         <p><strong>${t('cycle_day_lbl')}:</strong> ${fNum(cycleDay)}</p>
         <p><strong>${t('next_period_est')}:</strong> ${mList[eNext.em]} ${fNum(eNext.ed)}, ${fNum(eNext.ey)} (${formatDate(nextStart)}) — <strong>${fNum(daysUntilNext)} ${t('days_left')}</strong></p>`;
 
+        if (storageBlocked) html = `<p style="color:#a66;"><em>${t('err_generic')}</em></p>` + html;
+
         out.innerHTML = html;
+      } catch (err) {
+        console.error('Periodic tracker render error:', err);
+        let out = document.getElementById('periodic-output');
+        if (out) out.innerHTML = `<p style="color:red;">${t('err_generic')}</p>`;
+      }
     };
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        let y = parseInt(document.getElementById('per-year').value);
-        let m = parseInt(document.getElementById('per-month').value);
-        let d = parseInt(document.getElementById('per-day').value);
-        let cycleLen = parseInt(document.getElementById('per-cycle').value);
-        let periodLen = parseInt(document.getElementById('per-len').value);
+        let out = document.getElementById('periodic-output');
+        try {
+            let y = parseInt(document.getElementById('per-year').value);
+            let m = parseInt(document.getElementById('per-month').value);
+            let d = parseInt(document.getElementById('per-day').value);
+            let cycleLen = parseInt(document.getElementById('per-cycle').value);
+            let periodLen = parseInt(document.getElementById('per-len').value);
 
-        let g = ethToGregorian(y, m, d);
-        let data = loadData();
-        data.cycle_len = cycleLen;
-        data.period_len = periodLen;
+            if (!y || !m || !d) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_enter_date')}</p>`; return;
+            }
+            if (!isReasonableYear(y)) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_invalid_year')}</p>`; return;
+            }
+            if (m < 1 || m > 13) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_invalid_month_eth')}</p>`; return;
+            }
+            let monthLen = getMonthLength(y, m);
+            if (d < 1 || d > monthLen) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_invalid_day')}</p>`; return;
+            }
+            if (!cycleLen || cycleLen < 15 || cycleLen > 60) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_cycle_range')}</p>`; return;
+            }
+            if (!periodLen || periodLen < 1 || periodLen > 15) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_period_range')}</p>`; return;
+            }
 
-        let iso = `${g.getFullYear()}-${g.getMonth()+1}-${g.getDate()}`;
-        if (!data.periods.includes(iso)) data.periods.push(iso);
-        data.periods.sort();
-        saveData(data);
-        updateUI();
+            let g = ethToGregorian(y, m, d);
+            let today = new Date(); today.setHours(0, 0, 0, 0);
+            let gAtMidnight = new Date(g); gAtMidnight.setHours(0, 0, 0, 0);
+            if (gAtMidnight > today) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_future_date')}</p>`; return;
+            }
+
+            let data = loadData();
+            data.cycle_len = cycleLen;
+            data.period_len = periodLen;
+
+            let iso = `${g.getFullYear()}-${String(g.getMonth()+1).padStart(2,'0')}-${String(g.getDate()).padStart(2,'0')}`;
+            if (!data.periods.includes(iso)) data.periods.push(iso);
+            data.periods.sort();
+            saveData(data);
+            updateUI();
+        } catch (err) {
+            console.error('Periodic tracker submit error:', err);
+            if (out) out.innerHTML = `<p style="color:red;">${t('err_generic')}</p>`;
+        }
     });
 
     const clearBtn = document.getElementById('btn-clear-periodic');
     if (clearBtn) {
         clearBtn.addEventListener('click', () => {
-            localStorage.removeItem('periodic_tracker_data');
+            try {
+                localStorage.removeItem('periodic_tracker_data');
+            } catch (e) {
+                storageBlocked = true;
+                memoryFallback = { periods: [], cycle_len: 28, period_len: 5 };
+            }
             updateUI();
         });
     }
@@ -990,28 +1105,48 @@ function setupAgeCalc() {
     const btn = document.getElementById('btn-calc-age');
     if (!btn) return;
     btn.addEventListener('click', () => {
-        let bY = parseInt(document.getElementById('age-year').value);
-        let bM = parseInt(document.getElementById('age-month').value);
-        let bD = parseInt(document.getElementById('age-day').value);
         let out = document.getElementById('age-output');
-        
-        if (!bY || !bM || !bD || bM > 13 || bM < 1 || bD < 1 || bD > 30) return;
+        try {
+            let bY = parseInt(document.getElementById('age-year').value);
+            let bM = parseInt(document.getElementById('age-month').value);
+            let bD = parseInt(document.getElementById('age-day').value);
 
-        let now = new Date();
-        let curEth = gregorianToEthiopian(now.getFullYear(), now.getMonth() + 1, now.getDate());
-        
-        let cY = curEth.ey, cM = curEth.em, cD = curEth.ed;
-        let bJdn = ethiopianToJdn(bY, bM, bD);
-        let cJdn = ethiopianToJdn(cY, cM, cD);
+            if (!bY || !bM || !bD) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_enter_date')}</p>`; return;
+            }
+            if (!isReasonableYear(bY)) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_invalid_year')}</p>`; return;
+            }
+            if (bM < 1 || bM > 13) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_invalid_month_eth')}</p>`; return;
+            }
+            if (bD < 1 || bD > getMonthLength(bY, bM)) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_invalid_day')}</p>`; return;
+            }
 
-        let years = cY - bY; let months = cM - bM; let days = cD - bD;
-        if (days < 0) { months--; let prevMonth = cM === 1 ? 13 : cM - 1; let prevYear = cM === 1 ? cY - 1 : cY; days += getMonthLength(prevYear, prevMonth); }
-        if (months < 0) { years--; months += 13; }
+            let now = new Date();
+            let curEth = gregorianToEthiopian(now.getFullYear(), now.getMonth() + 1, now.getDate());
 
-        let totalDays = cJdn - bJdn;
-        out.innerHTML = `<h3>${t('age_result')}</h3>
-        <p><strong>${fNum(years)} ${t('age_years')}, ${fNum(months)} ${t('age_months')}, ${fNum(days)} ${t('txt_days')}</strong></p>
-        <p>${t('total_life_days')}: ${fNum(totalDays)}</p>`;
+            let cY = curEth.ey, cM = curEth.em, cD = curEth.ed;
+            let bJdn = ethiopianToJdn(bY, bM, bD);
+            let cJdn = ethiopianToJdn(cY, cM, cD);
+
+            if (bJdn > cJdn) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_future_date')}</p>`; return;
+            }
+
+            let years = cY - bY; let months = cM - bM; let days = cD - bD;
+            if (days < 0) { months--; let prevMonth = cM === 1 ? 13 : cM - 1; let prevYear = cM === 1 ? cY - 1 : cY; days += getMonthLength(prevYear, prevMonth); }
+            if (months < 0) { years--; months += 13; }
+
+            let totalDays = cJdn - bJdn;
+            out.innerHTML = `<h3>${t('age_result')}</h3>
+            <p><strong>${fNum(years)} ${t('age_years')}, ${fNum(months)} ${t('age_months')}, ${fNum(days)} ${t('txt_days')}</strong></p>
+            <p>${t('total_life_days')}: ${fNum(totalDays)}</p>`;
+        } catch (err) {
+            console.error('Age calculator error:', err);
+            if (out) out.innerHTML = `<p style="color:red;">${t('err_generic')}</p>`;
+        }
     });
 }
 
@@ -1019,48 +1154,64 @@ function setupPregnancyCalc() {
     const btn = document.getElementById('btn-calc-preg');
     if (!btn) return;
     btn.addEventListener('click', () => {
-        let y = parseInt(document.getElementById('preg-year').value);
-        let m = parseInt(document.getElementById('preg-month').value);
-        let d = parseInt(document.getElementById('preg-day').value);
         let out = document.getElementById('preg-output');
+        try {
+            let y = parseInt(document.getElementById('preg-year').value);
+            let m = parseInt(document.getElementById('preg-month').value);
+            let d = parseInt(document.getElementById('preg-day').value);
 
-        if (!y || !m || !d || m > 13 || m < 1 || d < 1 || d > 30) return;
+            if (!y || !m || !d) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_enter_date')}</p>`; return;
+            }
+            if (!isReasonableYear(y)) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_invalid_year')}</p>`; return;
+            }
+            if (m < 1 || m > 13) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_invalid_month_eth')}</p>`; return;
+            }
+            if (d < 1 || d > getMonthLength(y, m)) {
+                if (out) out.innerHTML = `<p style="color:red;">${t('err_invalid_day')}</p>`; return;
+            }
 
-        let lmpJdn = ethiopianToJdn(y, m, d);
-        let eddJdn = lmpJdn + 280;
-        
-        let eddEth = jdnToEthiopian(eddJdn);
-        let eddGreg = jdnToGregorian(eddJdn);
+            let lmpJdn = ethiopianToJdn(y, m, d);
+            let eddJdn = lmpJdn + 280;
 
-        let now = new Date();
-        let nowJdn = gregorianToJdn(now.getFullYear(), now.getMonth() + 1, now.getDate());
-        let elapsedDays = nowJdn - lmpJdn;
+            let eddEth = jdnToEthiopian(eddJdn);
+            let eddGreg = jdnToGregorian(eddJdn);
 
-        let gestation = "";
-        let trimester = "";
+            let now = new Date();
+            let nowJdn = gregorianToJdn(now.getFullYear(), now.getMonth() + 1, now.getDate());
+            let elapsedDays = nowJdn - lmpJdn;
 
-        if (elapsedDays < 0) {
-            gestation = "-";
-            trimester = "-";
-        } else if (elapsedDays > 300) {
-            gestation = t('txt_delivered');
-            trimester = "-";
-        } else {
-            let weeks = Math.floor(elapsedDays / 7);
-            let days = elapsedDays % 7;
-            gestation = `${fNum(weeks)} ${t('txt_weeks')} ${t('txt_and')} ${fNum(days)} ${t('txt_days')}`;
+            let gestation = "";
+            let trimester = "";
 
-            if (weeks < 13) trimester = t('trim_1');
-            else if (weeks < 27) trimester = t('trim_2');
-            else trimester = t('trim_3');
+            if (elapsedDays < 0) {
+                gestation = "-";
+                trimester = "-";
+            } else if (elapsedDays > 300) {
+                gestation = t('txt_delivered');
+                trimester = "-";
+            } else {
+                let weeks = Math.floor(elapsedDays / 7);
+                let days = elapsedDays % 7;
+                gestation = `${fNum(weeks)} ${t('txt_weeks')} ${t('txt_and')} ${fNum(days)} ${t('txt_days')}`;
+
+                if (weeks < 13) trimester = t('trim_1');
+                else if (weeks < 27) trimester = t('trim_2');
+                else trimester = t('trim_3');
+            }
+
+            let mList = getMonths();
+
+            out.innerHTML = `<h3>${t('preg_result_title')}</h3>
+            <p><strong>${t('preg_edd')}:</strong> ${mList[eddEth.em]} ${fNum(eddEth.ed)}, ${fNum(eddEth.ey)} (${formatDate(eddGreg)})</p>
+            <p><strong>${t('preg_gestation')}:</strong> ${gestation}</p>
+            <p><strong>${t('preg_trimester')}:</strong> ${trimester}</p>`;
+        } catch (err) {
+            console.error('Pregnancy calculator error:', err);
+            if (out) out.innerHTML = `<p style="color:red;">${t('err_generic')}</p>`;
         }
-
-        let mList = getMonths();
-
-        out.innerHTML = `<h3>${t('preg_result_title')}</h3>
-        <p><strong>${t('preg_edd')}:</strong> ${mList[eddEth.em]} ${fNum(eddEth.ed)}, ${fNum(eddEth.ey)} (${formatDate(eddGreg)})</p>
-        <p><strong>${t('preg_gestation')}:</strong> ${gestation}</p>
-        <p><strong>${t('preg_trimester')}:</strong> ${trimester}</p>`;
     });
 }
 
