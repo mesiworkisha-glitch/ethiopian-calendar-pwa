@@ -2,7 +2,7 @@ const i18n = {
     am: {
         app_title: "የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ",
         intro_desc: "ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የስንክሳር ፍለጋ፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ።",
-        nav_today: "ዛሬ", nav_holidays: "ብሔራዊ በዓላት", nav_hijri: "ሂጅሪ አቆጣጠር", nav_converter: "ቀን መቀየሪያ", nav_synaxarium: "ስንክሳር ፍለጋ", nav_period: "የወር አበባ ዑደት", nav_age: "ዕድሜ ማስያ",
+        nav_today: "ዛሬ", nav_holidays: "ብሔራዊ በዓላት", nav_hijri: "ሂጅሪ አቆጣጠር", nav_converter: "ቀን መቀየሪያ", nav_synaxarium: "ስንክሳር ፍለጋ", nav_period: "የወር አበባ ዑደት", nav_age: "ዕድሜ ማስያ", nav_pregnancy: "የወሊድ ጊዜ መገመቻ",
         today_title: "የዕለቱ ሙሉ መረጃ", btn_copy_date: "ቀኑን ኮፒ አድርግ",
         holidays_title: "የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት",
         hijri_title: "የእስልምና (ሂጅሪ) ቀን አቆጣጠር", btn_copy_hijri: "ሂጅሪ ቀን ኮፒ አድርግ",
@@ -11,6 +11,12 @@ const i18n = {
         synax_title: "በስንክሳር ውስጥ ፍለጋ", synax_label: "የቅዱስ ወይም የበዓል ስም ያስገቡ", ph_synax: "ለምሳሌ፡ ሚካኤል", btn_search: "ፈልግ",
         per_title: "የወር አበባ ዑደት ማቀናበሪያ", per_desc: "የመጨረሻው የወር አበባ የታየበትን ቀን በኢትዮጵያ አቆጣጠር ያስገቡ፦", per_year: "ዓመት", per_month: "ወር (1-13)", per_day: "ቀን", per_cycle_len: "የዑደት ርዝመት (በቀናት)", per_period_len: "የወር አበባ የሚቆይበት ጊዜ", btn_save: "አስቀምጥ", btn_clear: "መረጃ አጥፋ",
         age_title: "ትክክለኛ ዕድሜ ማስያ", age_desc: "የትውልድ ቀንዎን በኢትዮጵያ አቆጣጠር ያስገቡ፦", btn_calc_age: "ዕድሜዬን አስላ",
+        
+        // Pregnancy Calculator Translations
+        preg_title: "የእርግዝና እና የወሊድ ጊዜ መገመቻ", preg_desc: "የመጨረሻው የወር አበባ የታየበትን የመጀመሪያ ቀን (LMP) ያስገቡ፦", btn_calc_preg: "አስላ",
+        preg_result_title: "ውጤት", preg_edd: "የሚጠበቀው የወሊድ ቀን (EDD)", preg_gestation: "የእርግዝናው ዕድሜ", preg_trimester: "የእርግዝና ደረጃ (Trimester)",
+        trim_1: "1ኛ (First)", trim_2: "2ኛ (Second)", trim_3: "3ኛ (Third)", txt_weeks: "ሳምንታት", txt_and: "እና", txt_delivered: "አልፏል / ተወልዷል (Post-term)",
+        
         footer_credit: "የተዘጋጀው በ", footer_telegram: "በቴሌግራም እንገናኝ",
         lbl_greg: "የግሪጎሪያን ቀን", lbl_jul: "የጁሊያን ቀን", lbl_heb: "የዕብራውያን ቀን", lbl_wengelawi: "ዘመነ ወንጌላዊ", lbl_bahire: "የባሕረ ሐሳብ መረጃ", lbl_fast_metric: "የአጽዋም መለኪያ", lbl_season: "ወቅትና ቤተክርስቲያን", lbl_fasting: "የአጽዋም ዘመን", lbl_moon: "ሰርቀ ጨረቃ", lbl_sun: "ፀሐይ መውጫ/መግቢያ", lbl_zodiac: "ኮከብ (Zodiac)", lbl_awde: "ዓውደ ነገሥት",
         txt_today: "ዛሬ", txt_year: "ዓ.ም", txt_day: "ቀን", txt_time: "የኢትዮጵያ ሰዓት", txt_copied: "ኮፒ ተደርጓል (Copied)", txt_fail: "ኮፒ ማድረግ አልተቻለም (Failed)",
@@ -26,12 +32,13 @@ const i18n = {
         fast_none: "የአጽዋም ዘመን አይደለም", fast_abiy: "ዐቢይ ጾም", fast_nebiyat: "ጾመ ነቢያት", fast_filseta: "ጾመ ፍልሰታ", fast_hawaryat: "ጾመ ሐዋርያት", fast_nenewe: "ጾመ ነነዌ", fast_gehad: "ጾመ ገሀድ", fast_hamsa: "ኀምሳ ዕለት", fast_dihnet: "ጾመ ድኅነት",
         fest_debre_zeyit: "ደብረ ዘይት", fest_hosanna: "ሆሳዕና", fest_siklet: "ስቅለት", fest_tensae: "ትንሣኤ", fest_rikbe_kahnat: "ርክበ ካህናት", fest_erget: "ዕርገት", fest_parakletos: "ጰራቅሊጦስ",
         hol_enkutatash: "እንቁጣጣሽ", hol_meskel: "መስቀል", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ ለማርያም", hol_genna: "ገና (ልደት)", hol_adwa: "የዓድዋ ድል", hol_patriots: "የአርበኞች ድል", hol_labor: "የሠራተኞች ቀን",
-        hol_ashura: "ዓሹራ (Ashura)", hol_mawlid: "መውሊድ (Mawlid)", hol_isra: "እስራ ወሚዕራጅ (Isra and Mi'raj)", hol_ramadan: "ረመዳን (Ramadan)", hol_laylat: "Laylat al‑Qadr", hol_eid_fitr: "ዒድ አልፊጥር (Eid al-Fitr)", hol_arafah: "የዐረፋ ቀን (Day of Arafah)", hol_eid_adha: "ዒድ አልአድሐ (Eid al-Adha)", hol_hajj: "Hajj"
+        hol_ashura: "ዓሹራ (Ashura)", hol_mawlid: "መውሊድ (Mawlid)", hol_isra: "እስራ ወሚዕራጅ (Isra and Mi'raj)", hol_ramadan: "ረመዳን (Ramadan)", hol_laylat: "Laylat al‑Qadr", hol_eid_fitr: "ዒድ አልፊጥር (Eid al-Fitr)", hol_arafah: "የዐረፋ ቀን (Day of Arafah)", hol_eid_adha: "ዒድ አልአድሐ (Eid al-Adha)", hol_hajj: "Hajj",
+        bh_medeb: "መደብ", bh_wenber: "ወንበር", bh_tinte: "ጥንተ ቀመር", bh_metqe: "መጥቅዕ", bh_abekte: "አበቅቴ", bh_hamer: "መባጃ ሐመር"
     },
     en: {
         app_title: "Ethiopian Calendar & Bahire Hasab",
         intro_desc: "Free, offline-capable app: Accurate Bahire Hasab, movable feasts, fasting seasons, Synaxarium search, and conversion for Gregorian, Julian, Hebrew, and Hijri dates.",
-        nav_today: "Today", nav_holidays: "National Holidays", nav_hijri: "Hijri Calendar", nav_converter: "Date Converter", nav_synaxarium: "Synaxarium", nav_period: "Period Tracker", nav_age: "Age Calculator",
+        nav_today: "Today", nav_holidays: "National Holidays", nav_hijri: "Hijri Calendar", nav_converter: "Date Converter", nav_synaxarium: "Synaxarium", nav_period: "Period Tracker", nav_age: "Age Calculator", nav_pregnancy: "Pregnancy Calc",
         today_title: "Today's Full Details", btn_copy_date: "Copy Date",
         holidays_title: "This Year's National Holidays",
         hijri_title: "Islamic (Hijri) Calendar", btn_copy_hijri: "Copy Hijri Date",
@@ -40,6 +47,11 @@ const i18n = {
         synax_title: "Synaxarium Search", synax_label: "Enter Saint or Feast Name (Amharic)", ph_synax: "e.g., ሚካኤል", btn_search: "Search",
         per_title: "Menstrual Cycle Tracker", per_desc: "Enter the date of your last period (Ethiopian Calendar):", per_year: "Year", per_month: "Month (1-13)", per_day: "Day", per_cycle_len: "Cycle Length (days)", per_period_len: "Period Length (days)", btn_save: "Save", btn_clear: "Clear Data",
         age_title: "Exact Age Calculator", age_desc: "Enter your birth date (Ethiopian Calendar):", btn_calc_age: "Calculate Age",
+        
+        preg_title: "Pregnancy & Due Date Calculator", preg_desc: "Enter the first day of your last menstrual period (LMP):", btn_calc_preg: "Calculate Due Date",
+        preg_result_title: "Result", preg_edd: "Expected Due Date (EDD)", preg_gestation: "Gestational Age", preg_trimester: "Trimester",
+        trim_1: "First", trim_2: "Second", trim_3: "Third", txt_weeks: "Weeks", txt_and: "and", txt_delivered: "Post-term / Delivered",
+        
         footer_credit: "Developed by ", footer_telegram: "Connect on Telegram",
         lbl_greg: "Gregorian Date", lbl_jul: "Julian Date", lbl_heb: "Hebrew Date", lbl_wengelawi: "Evangelist (Wengelawi)", lbl_bahire: "Bahire Hasab Data", lbl_fast_metric: "Fasting Metrics", lbl_season: "Season & Liturgy", lbl_fasting: "Fasting Period", lbl_moon: "Moon Phase", lbl_sun: "Sunrise/Sunset (Addis Ababa)", lbl_zodiac: "Zodiac", lbl_awde: "Awde Negest",
         txt_today: "Today", txt_year: "EC", txt_day: "", txt_time: "Ethiopian Time", txt_copied: "Copied to clipboard", txt_fail: "Failed to copy",
@@ -55,12 +67,13 @@ const i18n = {
         fast_none: "Not a Fasting Period", fast_abiy: "Great Lent (Abiy Tsom)", fast_nebiyat: "Fast of the Prophets", fast_filseta: "Fast of Assumption (Filseta)", fast_hawaryat: "Fast of the Apostles", fast_nenewe: "Fast of Nineveh", fast_gehad: "Fast of Gehad", fast_hamsa: "Pentecost (Hamsa Elet)", fast_dihnet: "Fast of Salvation (Wed/Fri)",
         fest_debre_zeyit: "Mount of Olives (Debre Zeyit)", fest_hosanna: "Palm Sunday (Hosanna)", fest_siklet: "Good Friday (Siklet)", fest_tensae: "Easter (Tensae)", fest_rikbe_kahnat: "Meeting of Priests", fest_erget: "Ascension (Erget)", fest_parakletos: "Paraclete",
         hol_enkutatash: "New Year (Enkutatash)", hol_meskel: "Finding of the True Cross (Meskel)", hol_timkat: "Epiphany (Timkat)", hol_filseta_maryam: "Assumption of Mary", hol_genna: "Christmas (Genna)", hol_adwa: "Victory of Adwa", hol_patriots: "Patriots' Victory Day", hol_labor: "Labor Day",
-        hol_ashura: "Ashura", hol_mawlid: "Mawlid", hol_isra: "Isra and Mi'raj", hol_ramadan: "Ramadan", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Eid al-Fitr", hol_arafah: "Day of Arafah", hol_eid_adha: "Eid al-Adha", hol_hajj: "Hajj"
+        hol_ashura: "Ashura", hol_mawlid: "Mawlid", hol_isra: "Isra and Mi'raj", hol_ramadan: "Ramadan", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Eid al-Fitr", hol_arafah: "Day of Arafah", hol_eid_adha: "Eid al-Adha", hol_hajj: "Hajj",
+        bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer"
     },
     om: {
         app_title: "Kalaandarii Itoophiyaa & Bahire Hasab",
         intro_desc: "Appii tolaa, sarara malee hojjetu: Herrega Bahire Hasab sirrii, ayyaanoota, yeroo soomaa, fi jijjiirraa guyyaa (Gregorian, Julian, Hebrew, Hijri).",
-        nav_today: "Har'a", nav_holidays: "Ayyaanoota", nav_hijri: "Kalaandarii Hijiraa", nav_converter: "Guyyaa Jijjiiri", nav_synaxarium: "Sinksikara", nav_period: "Hordoffii Marsaa", nav_age: "Umrii Herregi",
+        nav_today: "Har'a", nav_holidays: "Ayyaanoota", nav_hijri: "Kalaandarii Hijiraa", nav_converter: "Guyyaa Jijjiiri", nav_synaxarium: "Sinksikara", nav_period: "Hordoffii Marsaa", nav_age: "Umrii Herregi", nav_pregnancy: "Herrega Ulfaa",
         today_title: "Odeeffannoo Har'aa Guutuu", btn_copy_date: "Guyyaa Garagalchi",
         holidays_title: "Ayyaanoota Biyyooleessa Bara Kanaa",
         hijri_title: "Kalaandarii Islaamaa (Hijiraa)", btn_copy_hijri: "Guyyaa Hijiraa Garagalchi",
@@ -69,6 +82,11 @@ const i18n = {
         synax_title: "Sinksikara Barbaadi", synax_label: "Maqaa Qulqulluu (Afaan Amaaraatiin)", ph_synax: "Fkn: ሚካኤል", btn_search: "Barbaadi",
         per_title: "Hordoffii Marsaa Laguu", per_desc: "Guyyaa marsaan laguu kee xumuraa itti eegale galchi (Kalaandarii Itoophiyaatiin):", per_year: "Bara", per_month: "Ji'a (1-13)", per_day: "Guyyaa", per_cycle_len: "Dheerina Marsaa (guyyoota)", per_period_len: "Turmaata Laguu (guyyoota)", btn_save: "Olkaa'i", btn_clear: "Haquu",
         age_title: "Herrega Umrii Sirrii", age_desc: "Guyyaa dhaloota kee galchi (Kalaandarii Itoophiyaatiin):", btn_calc_age: "Umrii Koo Herregi",
+        
+        preg_title: "Herrega Yeroo Ulfaa fi Dahumsaa", preg_desc: "Guyyaa marsaan laguu kee xumuraa itti eegale galchi (LMP):", btn_calc_preg: "Herregi",
+        preg_result_title: "Bu'aa", preg_edd: "Guyyaa Dahumsaa Eegadamu", preg_gestation: "Umrii Ulfaa", preg_trimester: "Sadarkaa Ulfaa",
+        trim_1: "1ffaa", trim_2: "2ffaa", trim_3: "3ffaa", txt_weeks: "Torbanoota", txt_and: "fi", txt_delivered: "Darbeera / Daheera",
+        
         footer_credit: "Kan hojjete ", footer_telegram: "Telegram irratti nu qunnamaa",
         lbl_greg: "Guyyaa Gregorian", lbl_jul: "Guyyaa Julian", lbl_heb: "Guyyaa Hebrew", lbl_wengelawi: "Wangeelaawwii", lbl_bahire: "Ragaa Bahire Hasab", lbl_fast_metric: "Safartuu Soomaa", lbl_season: "Waqtii fi Bataskaana", lbl_fasting: "Yeroo Soomaa", lbl_moon: "Sadarkaa Ji'aa", lbl_sun: "Ba'uu/Lixuu Aduu", lbl_zodiac: "Urjii (Zodiac)", lbl_awde: "Awde Negest",
         txt_today: "Har'a", txt_year: "B.I", txt_day: "Guyyaa", txt_time: "Sa'aatii Itoophiyaa", txt_copied: "Garagalfameera", txt_fail: "Garagalchuu hin dandeenye",
@@ -84,12 +102,13 @@ const i18n = {
         fast_none: "Yeroo Soomaa Miti", fast_abiy: "Sooma Guddaa", fast_nebiyat: "Sooma Raajotaa", fast_filseta: "Sooma Filsetaa", fast_hawaryat: "Sooma Ergamootaa", fast_nenewe: "Sooma Nanawaa", fast_gehad: "Sooma Gehaad", fast_hamsa: "Hamsa Elet", fast_dihnet: "Sooma Fayyinaa",
         fest_debre_zeyit: "Debre Zeyit", fest_hosanna: "Hosanna", fest_siklet: "Jimaata Fannoo", fest_tensae: "Du'aa Ka'uu (Tensae)", fest_rikbe_kahnat: "Rikbe Kahnat", fest_erget: "Erget", fest_parakletos: "Parakletos",
         hol_enkutatash: "Ayyaana Haaraa (Enkutatash)", hol_meskel: "Masqala", hol_timkat: "Cuuphaa", hol_filseta_maryam: "Filsetaa", hol_genna: "Ayyaana Dhalootaa (Genna)", hol_adwa: "Injiifannoo Adwaa", hol_patriots: "Guyyaa Arbegnootaa", hol_labor: "Guyyaa Hojjettootaa",
-        hol_ashura: "Aashuraa", hol_mawlid: "Mawliid", hol_isra: "Isra fi Mi'raaj", hol_ramadan: "Ramadaana", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Iid Al-Faxir", hol_arafah: "Arafa", hol_eid_adha: "Iid Al-Adhaa", hol_hajj: "Hajjii"
+        hol_ashura: "Aashuraa", hol_mawlid: "Mawliid", hol_isra: "Isra fi Mi'raaj", hol_ramadan: "Ramadaana", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Iid Al-Faxir", hol_arafah: "Arafa", hol_eid_adha: "Iid Al-Adhaa", hol_hajj: "Hajjii",
+        bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer"
     },
     ti: {
         app_title: "ካላንደር ኢትዮጵያን ባሕረ ሓሳብን",
         intro_desc: "ብነጻን ብዘይ ኢንተርነትን ዝሰርሕ ኣፕሊኬሽን፦ ቅኑዕ ስሌት ባሕረ ሓሳብ፣ ተንቀሳቐስቲ በዓላት፣ እዋናት ጾም፣ መርበብ ስንክሳርን መቐየሪ ዕለታትን።",
-        nav_today: "ሎሚ", nav_holidays: "ሃገራዊ በዓላት", nav_hijri: "ኣቆጻጽራ ሂጅራ", nav_converter: "መቐየሪ ዕለት", nav_synaxarium: "ድለያ ስንክሳር", nav_period: "ዑደት ጽግያት", nav_age: "ዕድመ መሕሰቢ",
+        nav_today: "ሎሚ", nav_holidays: "ሃገራዊ በዓላት", nav_hijri: "ኣቆጻጽራ ሂጅራ", nav_converter: "መቐየሪ ዕለት", nav_synaxarium: "ድለያ ስንክሳር", nav_period: "ዑደት ጽግያት", nav_age: "ዕድመ መሕሰቢ", nav_pregnancy: "ግምት መሕረሲ",
         today_title: "ናይ ሎሚ ምሉእ ሓበሬታ", btn_copy_date: "ዕለት ኮፒ ግበር",
         holidays_title: "ናይ ሎምዘመን ሃገራዊ በዓላት",
         hijri_title: "ኣቆጻጽራ እስልምና (ሂጅራ)", btn_copy_hijri: "ዕለት ሂጅራ ኮፒ ግበር",
@@ -98,6 +117,11 @@ const i18n = {
         synax_title: "ኣብ ስንክሳር ድለ", synax_label: "ስም ቅዱስ ወይ በዓል ኣእቱ (ብኣምሓርኛ)", ph_synax: "ንኣብነት፡ ሚካኤል", btn_search: "ድለ",
         per_title: "ዑደት ጽግያት መከታተሊ", per_desc: "ናይ መወዳእታ ጽግያት ዝረኣኹምሉ ዕለት ብኣቆጻጽራ ኢትዮጵያ ኣእትዉ፦", per_year: "ዓመት", per_month: "ወርሒ (1-13)", per_day: "መዓልቲ", per_cycle_len: "ንውሓት ዑደት (ብመዓልታት)", per_period_len: "ግዜ ጽግያት (ብመዓልታት)", btn_save: "ኣቐምጥ", btn_clear: "ሓበሬታ ኣጥፍእ",
         age_title: "ልክዕ ዕድመ መሕሰቢ", age_desc: "ዕለት ልደትኩም ብኣቆጻጽራ ኢትዮጵያ ኣእትዉ፦", btn_calc_age: "ዕድመይ ሕሰብ",
+        
+        preg_title: "ግምት ዕለተ ወሊድን ጥንስን", preg_desc: "ናይ መወዳእታ ጽግያት ዝረኣኹምሉ ዕለት (LMP) ኣእትዉ፦", btn_calc_preg: "ሕሰብ",
+        preg_result_title: "ውጽኢት", preg_edd: "ትጽቢት ዝግበረሉ ዕለተ ወሊድ", preg_gestation: "ዕድመ ጥንሲ", preg_trimester: "ደረጃ ጥንሲ",
+        trim_1: "1ይ", trim_2: "2ይ", trim_3: "3ይ", txt_weeks: "ሰሙናት", txt_and: "ን", txt_delivered: "ሓሊፉ / ተወሊዱ",
+        
         footer_credit: "ዘዳለዎ ", footer_telegram: "ብቴሌግራም ንራኸብ",
         lbl_greg: "ዕለት ግሪጎሪያን", lbl_jul: "ዕለት ጁልያን", lbl_heb: "ዕለት እብራውያን", lbl_wengelawi: "ዘመነ ወንጌላዊ", lbl_bahire: "ሓበሬታ ባሕረ ሓሳብ", lbl_fast_metric: "መለክዒ ጾም", lbl_season: "ወቕትን ቤተክርስትያንን", lbl_fasting: "እዋን ጾም", lbl_moon: "ወርሒ", lbl_sun: "ምብራቕ/ምዕራብ ጸሓይ", lbl_zodiac: "ኮኾብ (Zodiac)", lbl_awde: "ዓውደ ነገሥት",
         txt_today: "ሎሚ", txt_year: "ዓ.ም", txt_day: "መዓልቲ", txt_time: "ሰዓት ኢትዮጵያ", txt_copied: "ኮፒ ተገይሩ", txt_fail: "ኮፒ ምግባር ኣይተኻእለን",
@@ -113,7 +137,8 @@ const i18n = {
         fast_none: "እዋን ጾም ኣይኮነን", fast_abiy: "ዓቢ ጾም", fast_nebiyat: "ጾመ ነቢያት", fast_filseta: "ጾመ ፍልሰታ", fast_hawaryat: "ጾመ ሓዋርያት", fast_nenewe: "ጾመ ነነዌ", fast_gehad: "ጾመ ገሃድ", fast_hamsa: "ሓምሳ ዕለት", fast_dihnet: "ጾመ ድሕነት",
         fest_debre_zeyit: "ደብረ ዘይት", fest_hosanna: "ሆሳእና", fest_siklet: "ስቕለት", fest_tensae: "ትንሳኤ", fest_rikbe_kahnat: "ርክበ ካህናት", fest_erget: "ዕርገት", fest_parakletos: "ጰራቅሊጦስ",
         hol_enkutatash: "ሓዱሽ ዓመት", hol_meskel: "መስቀል", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ", hol_genna: "ልደት", hol_adwa: "ዓወት ዓድዋ", hol_patriots: "ዓወት ሓርበኛታት", hol_labor: "መዓልቲ ሰራሕተኛታት",
-        hol_ashura: "ዓሹራ", hol_mawlid: "መውሊድ", hol_isra: "እስራ ወሚዕራጅ", hol_ramadan: "ረመዳን", hol_laylat: "ለይለተል ቀድር", hol_eid_fitr: "ዒድ ኣልፈጥር", hol_arafah: "መዓልቲ ዓረፋ", hol_eid_adha: "ዒድ ኣልኣድሓ", hol_hajj: "ሓጅ"
+        hol_ashura: "ዓሹራ", hol_mawlid: "መውሊድ", hol_isra: "እስራ ወሚዕራጅ", hol_ramadan: "ረመዳን", hol_laylat: "ለይለተል ቀድር", hol_eid_fitr: "ዒድ ኣልፈጥር", hol_arafah: "መዓልቲ ዓረፋ", hol_eid_adha: "ዒድ ኣልኣድሓ", hol_hajj: "ሓጅ",
+        bh_medeb: "መደብ", bh_wenber: "ወንበር", bh_tinte: "ጥንተ ቀመር", bh_metqe: "መጥቅዕ", bh_abekte: "ኣበቅቴ", bh_hamer: "መባጃ ሓመር"
     }
 };
 
@@ -562,6 +587,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Synaxarium Search", func: setupSynaxarium },
         { name: "Menstrual Tracker", func: setupPeriodic },
         { name: "Age Calculator", func: setupAgeCalc },
+        { name: "Pregnancy Calculator", func: setupPregnancyCalc },
         { name: "Clipboard Copy", func: setupClipboardCopy },
         { name: "Footer", func: initFooter }
     ];
@@ -618,6 +644,12 @@ function refreshLiveOutputs() {
     if (ageOut && ageOut.innerHTML !== "") {
         const btnAge = document.getElementById('btn-calc-age');
         if (btnAge) btnAge.click();
+    }
+    
+    const pregOut = document.getElementById('preg-output');
+    if (pregOut && pregOut.innerHTML !== "") {
+        const btnPreg = document.getElementById('btn-calc-preg');
+        if (btnPreg) btnPreg.click();
     }
 }
 
@@ -708,8 +740,8 @@ async function renderToday() {
         <li><strong>${t('lbl_jul')}፦</strong> ${fNum(julian.jy)}-${String(julian.jm).padStart(2,'0')}-${String(julian.jd).padStart(2,'0')}</li>
         <li><strong>${t('lbl_heb')}፦</strong> ${hebrewMonthStr} ${fNum(hebrew.hd)}, ${fNum(hebrew.hy)}</li>
         <li><strong>${t('lbl_wengelawi')}፦</strong> ${bh.wengelawi} (${fNum(bh.aa)})</li>
-        <li><strong>${t('lbl_bahire')}፦</strong> M: ${fNum(bh.medeb)} | W: ${fNum(bh.wenber)} | T: ${bh.tinteQemer}</li>
-        <li><strong>${t('lbl_fast_metric')}፦</strong> M: ${fNum(bh.metqe)} | A: ${fNum(bh.abekte)} | H: ${fNum(bh.mebajaHamer)}</li>
+        <li><strong>${t('lbl_bahire')}፦</strong> ${t('bh_medeb')}: ${fNum(bh.medeb)} | ${t('bh_wenber')}: ${fNum(bh.wenber)} | ${t('bh_tinte')}: ${bh.tinteQemer}</li>
+        <li><strong>${t('lbl_fast_metric')}፦</strong> ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
         <li><strong>${t('lbl_fasting')}፦</strong> ${seasons.fasting} <em>${seasons.progress}</em></li>
         <li><strong>${t('lbl_moon')}፦</strong> ${getMoonPhaseText(cherekaAge)} (${fNum(cherekaAge)})</li>
         <li><strong>${t('lbl_sun')}፦</strong> ☀️ ${sunTimes.rise} 🌙 ${sunTimes.set}</li>
@@ -816,7 +848,7 @@ function setupConverter() {
 async function renderYearSearch(ey, out) {
     let bh = calculateBahreHasab(ey);
     let html = `<h3>${fNum(ey)} ${t('txt_year')}</h3>`;
-    html += `<ul><li>${t('lbl_bahire')}: M: ${fNum(bh.medeb)} | W: ${fNum(bh.wenber)} | T: ${bh.tinteQemer}</li></ul>`;
+    html += `<ul><li>${t('lbl_bahire')}: ${t('bh_medeb')}: ${fNum(bh.medeb)} | ${t('bh_wenber')}: ${fNum(bh.wenber)} | ${t('bh_tinte')}: ${bh.tinteQemer}</li></ul>`;
     out.innerHTML = html;
 }
 
@@ -965,6 +997,55 @@ function setupAgeCalc() {
         out.innerHTML = `<h3>${t('age_result')}</h3>
         <p><strong>${fNum(years)} ${t('age_years')}, ${fNum(months)} ${t('age_months')}, ${fNum(days)} ${t('txt_days')}</strong></p>
         <p>${t('total_life_days')}: ${fNum(totalDays)}</p>`;
+    });
+}
+
+function setupPregnancyCalc() {
+    const btn = document.getElementById('btn-calc-preg');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+        let y = parseInt(document.getElementById('preg-year').value);
+        let m = parseInt(document.getElementById('preg-month').value);
+        let d = parseInt(document.getElementById('preg-day').value);
+        let out = document.getElementById('preg-output');
+
+        if (!y || !m || !d || m > 13 || m < 1 || d < 1 || d > 30) return;
+
+        let lmpJdn = ethiopianToJdn(y, m, d);
+        let eddJdn = lmpJdn + 280; // Standard 40 weeks exact gestation computation
+        
+        let eddEth = jdnToEthiopian(eddJdn);
+        let eddGreg = jdnToGregorian(eddJdn);
+
+        let now = new Date();
+        let nowJdn = gregorianToJdn(now.getFullYear(), now.getMonth() + 1, now.getDate());
+        let elapsedDays = nowJdn - lmpJdn;
+
+        let gestation = "";
+        let trimester = "";
+
+        if (elapsedDays < 0) {
+            gestation = "-";
+            trimester = "-";
+        } else if (elapsedDays > 300) {
+            gestation = t('txt_delivered');
+            trimester = "-";
+        } else {
+            let weeks = Math.floor(elapsedDays / 7);
+            let days = elapsedDays % 7;
+            gestation = `${fNum(weeks)} ${t('txt_weeks')} ${t('txt_and')} ${fNum(days)} ${t('txt_days')}`;
+
+            if (weeks < 13) trimester = t('trim_1');
+            else if (weeks < 27) trimester = t('trim_2');
+            else trimester = t('trim_3');
+        }
+
+        let mList = getMonths();
+
+        out.innerHTML = `<h3>${t('preg_result_title')}</h3>
+        <p><strong>${t('preg_edd')}:</strong> ${mList[eddEth.em]} ${fNum(eddEth.ed)}, ${fNum(eddEth.ey)} (${formatDate(eddGreg)})</p>
+        <p><strong>${t('preg_gestation')}:</strong> ${gestation}</p>
+        <p><strong>${t('preg_trimester')}:</strong> ${trimester}</p>`;
     });
 }
 
