@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ethio-calendar-v6';
+const CACHE_NAME = 'ethio-calendar-v7';
 const ASSETS = [
     './',
     './index.html',
@@ -6,7 +6,10 @@ const ASSETS = [
     './app.js',
     './manifest.json',
     './synaxarium_feasts.json',
-    './icon.svg'
+    './icon.svg',
+    './icon-192.png',
+    './icon-512.png',
+    './og-image.png'
 ];
 
 self.addEventListener('install', (event) => {

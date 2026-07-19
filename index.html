@@ -13,13 +13,15 @@
     <meta property="og:title" content="የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ">
     <meta property="og:description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ እና የሂጅሪ ቀን መቀየሪያ - ከመስመር ውጭም ጭምር የሚሠራ መተግበሪያ።">
     <meta property="og:url" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/">
-    <meta property="og:image" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/icon.svg">
+    <meta property="og:image" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:locale" content="am_ET">
 
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ">
     <meta name="twitter:description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ እና የሂጅሪ ቀን መቀየሪያ።">
-    <meta name="twitter:image" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/icon.svg">
+    <meta name="twitter:image" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/og-image.png">
 
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
@@ -30,6 +32,11 @@
         <div id="local-time-bar" aria-live="off">የኢትዮጵያ ሰዓት በመጫን ላይ...</div>
     </header>
 
+    <p class="intro">
+        ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የስንክሳር ፍለጋ፣ የግሪጎሪያን፣ የጁሊያን፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ፣ እንዲሁም ሁሉንም ብሔራዊ በዓላት በአንድ ቦታ ያገኙበታል። ለዓይነ ስውራንና ለስክሪን አንባቢ ተጠቃሚዎች ምቹ ሆኖ የተዘጋጀ ነው።
+        <br><span class="intro-en">Free, fully offline-capable Ethiopian calendar &amp; Bahire Hasab — built accessible from the ground up.</span>
+    </p>
+
     <div id="status-announcer" class="sr-only" role="status" aria-live="assertive"></div>
 
     <nav aria-label="የመተግበሪያው ክፍሎች" role="tablist">
@@ -39,6 +46,7 @@
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-converter" id="navbtn-converter" data-target="tab-converter">ቀን መቀየሪያ</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium">ስንክሳር ፍለጋ</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-periodic" id="navbtn-periodic" data-target="tab-periodic">የወር አበባ ዑደት</button>
+        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-age" id="navbtn-age" data-target="tab-age">ዕድሜ ማስያ</button>
     </nav>
 
     <main>
@@ -73,6 +81,8 @@
                     <select id="conv-type">
                         <option value="eth">የኢትዮጵያ ቀን</option>
                         <option value="greg">የግሪጎሪያን (ፈረንጅ) ቀን</option>
+                        <option value="julian">የጁሊያን (Julian) ቀን</option>
+                        <option value="hebrew">የዕብራውያን (Hebrew) ቀን</option>
                         <option value="hijri">የሂጅሪ (እስላማዊ) ቀን</option>
                     </select>
                 </div>
@@ -138,6 +148,29 @@
                     <button type="button" id="btn-clear-periodic" class="btn-danger">መረጃ አጥፋ</button>
                 </form>
                 <div id="periodic-output" class="info-output margin-top" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section id="tab-age" class="tab-content" role="tabpanel" aria-labelledby="navbtn-age" hidden>
+            <div class="card">
+                <h2>ትክክለኛ ዕድሜ ማስያ (በኢትዮጵያ አቆጣጠር)</h2>
+                <p>የትውልድ ቀንዎን በኢትዮጵያ አቆጣጠር ያስገቡ፦</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age-year">ዓ.ም</label>
+                        <input type="number" id="age-year" placeholder="ዓመት" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age-month">ወር (1-13)</label>
+                        <input type="number" id="age-month" placeholder="ወር" min="1" max="13" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age-day">ቀን</label>
+                        <input type="number" id="age-day" placeholder="ቀን" min="1" max="30" required>
+                    </div>
+                </div>
+                <button id="btn-calc-age" class="btn-primary">ዕድሜዬን አስላ</button>
+                <div id="age-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
         </section>
     </main>

@@ -178,3 +178,20 @@ footer {
     color: #4a5568;
     font-size: 0.9rem;
 }
+
+.intro {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    text-align: center;
+    color: var(--text-color);
+    background: #eaf2fc;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.intro-en {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: #5a6b85;
+}

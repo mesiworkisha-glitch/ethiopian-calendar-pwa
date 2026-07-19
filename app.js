@@ -59,6 +59,127 @@ function matchMonthName(text) {
     return null;
 }
 
+// --- NEW ALGORITHMS: Julian, Sunrise/Sunset, Moon Phase ---
+function jdnToJulian(jdn) {
+    let b = jdn + 1524;
+    let c = Math.floor((b - 122.1) / 365.25);
+    let d = Math.floor(365.25 * c);
+    let e = Math.floor((b - d) / 30.6001);
+    let day = b - d - Math.floor(30.6001 * e);
+    let month = e < 14 ? e - 1 : e - 13;
+    let year = month > 2 ? c - 4716 : c - 4715;
+    return { jy: year, jm: month, jd: day };
+}
+function julianToJdn(y, m, d) {
+    if (m < 3) { y--; m += 12; }
+    return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d - 1524;
+}
+
+function getMoonPhaseText(age) {
+    if(age === 30 || age < 2) return "🌑 አዲስ ጨረቃ (New Moon)";
+    if(age < 7) return "🌒 እየሞላ የሚሄድ (Waxing Crescent)";
+    if(age >= 7 && age <= 8) return "🌓 ግማሽ ጨረቃ (First Quarter)";
+    if(age < 14) return "🌔 (Waxing Gibbous)";
+    if(age >= 14 && age <= 16) return "🌕 ሙሉ ጨረቃ (Full Moon)";
+    if(age < 22) return "🌖 (Waning Gibbous)";
+    if(age >= 22 && age <= 23) return "🌗 የመጨረሻ ሩብ (Last Quarter)";
+    return "🌘 እየጎደለ የሚሄድ (Waning Crescent)";
+}
+
+function getAddisSunTimes(gDate) {
+    let start = new Date(gDate.getFullYear(), 0, 0);
+    let dayOfYear = Math.floor((gDate - start) / 86400000);
+    let offsetMinutes = 25 * Math.sin(2 * Math.PI * (dayOfYear - 80) / 365);
+    
+    let riseMin = Math.round(15 - offsetMinutes);
+    let setMin = Math.round(15 + offsetMinutes);
+    let riseHr = 6, setHr = 18;
+    
+    if (riseMin >= 60) { riseHr++; riseMin -= 60; }
+    if (riseMin < 0) { riseHr--; riseMin += 60; }
+    if (setMin >= 60) { setHr++; setMin -= 60; }
+    if (setMin < 0) { setHr--; setMin += 60; }
+
+    return {
+        rise: `${riseHr}:${String(riseMin).padStart(2,'0')} ጠዋት`,
+        set: `${setHr - 12}:${String(setMin).padStart(2,'0')} ማታ`
+    };
+}
+// ---------------------------------------------------------
+
+// --- NEW ALGORITHMS: HEBREW CALENDAR MATH ---
+const HEBREW_EPOCH = 347998;
+function hebrewLeap(year) { return mod((7 * year + 1), 19) < 7; }
+function hebrewDelay1(year) {
+    let months = Math.floor((235 * year - 234) / 19);
+    let parts = 12084 + (13753 * months);
+    let day = (months * 29) + Math.floor(parts / 25920);
+    if (mod(3 * (day + 1), 7) < 3) day++;
+    return day;
+}
+function hebrewDelay2(year) {
+    let delay1 = hebrewDelay1(year);
+    let delay2 = hebrewDelay1(year + 1);
+    if ((delay2 - delay1) === 356) return 2;
+    if ((delay2 - delay1) === 382) return 1;
+    return 0;
+}
+function hebrewFirstOfYear(year) {
+    return HEBREW_EPOCH + hebrewDelay1(year) + hebrewDelay2(year);
+}
+function hebrewYearLength(year) {
+    return hebrewFirstOfYear(year + 1) - hebrewFirstOfYear(year);
+}
+function hebrewMonthLength(year, month) {
+    let isLeap = hebrewLeap(year);
+    let len = hebrewYearLength(year);
+    let isComplete = (len === 355 || len === 385);
+    let isDeficient = (len === 353 || len === 383);
+    
+    if (month === 1) return 30; // Tishri
+    if (month === 2) return isComplete ? 30 : 29; // Heshvan
+    if (month === 3) return isDeficient ? 29 : 30; // Kislev
+    if (month === 4) return 29; // Tevet
+    if (month === 5) return 30; // Shevat
+    if (month === 6) return isLeap ? 30 : 29; // Adar I / Adar
+    
+    let mAfter = isLeap ? month - 7 : month - 6; 
+    if (isLeap && month === 7) return 29; // Adar II
+    if (mAfter === 1) return 30; // Nisan
+    if (mAfter === 2) return 29; // Iyar
+    if (mAfter === 3) return 30; // Sivan
+    if (mAfter === 4) return 29; // Tammuz
+    if (mAfter === 5) return 30; // Av
+    if (mAfter === 6) return 29; // Elul
+    return 0;
+}
+function hebrewToJdn(y, m, d) {
+    let jdn = hebrewFirstOfYear(y);
+    for (let i = 1; i < m; i++) jdn += hebrewMonthLength(y, i);
+    return jdn + d - 1;
+}
+function jdnToHebrew(jdn) {
+    let y = Math.floor((jdn - HEBREW_EPOCH) / 365.2468) + 1;
+    while (jdn >= hebrewFirstOfYear(y + 1)) y++;
+    while (jdn < hebrewFirstOfYear(y)) y--;
+    
+    let firstOfYear = hebrewFirstOfYear(y);
+    let dayOfYear = jdn - firstOfYear + 1;
+    let m = 1;
+    while (true) {
+        let len = hebrewMonthLength(y, m);
+        if (dayOfYear <= len) break;
+        dayOfYear -= len;
+        m++;
+    }
+    return { hy: y, hm: m, hd: dayOfYear };
+}
+function getHebrewMonthName(isLeap, m) {
+    if (isLeap) return ["", "ቲሽሪ (Tishrei)", "ቼሽቫን (Cheshvan)", "ኪስሌቭ (Kislev)", "ቴቬት (Tevet)", "ሸቫት (Shevat)", "አዳር 1 (Adar I)", "አዳር 2 (Adar II)", "ኒሳን (Nisan)", "ኢያር (Iyar)", "ሲቫን (Sivan)", "ታሙዝ (Tammuz)", "አቭ (Av)", "ኤሉል (Elul)"][m];
+    return ["", "ቲሽሪ (Tishrei)", "ቼሽቫን (Cheshvan)", "ኪስሌቭ (Kislev)", "ቴቬት (Tevet)", "ሸቫት (Shevat)", "አዳር (Adar)", "ኒሳን (Nisan)", "ኢያር (Iyar)", "ሲቫን (Sivan)", "ታሙዝ (Tammuz)", "አቭ (Av)", "ኤሉል (Elul)"][m];
+}
+// ---------------------------------------------------------
+
 function ethiopianToJdn(ey, em, ed) { return 1724221 + (ey - 1) * 365 + Math.floor(ey / 4) + (em - 1) * 30 + (ed - 1); }
 function gregorianToJdn(gy, gm, gd) {
     let a = Math.floor((14 - gm) / 12), y = gy + 4800 - a, m = gm + 12 * a - 3;
@@ -72,7 +193,6 @@ function jdnToEthiopian(jdn) {
     return { ey: cycles * 4 + yCycle + 1, em: Math.floor(dYear / 30) + 1, ed: mod(dYear, 30) + 1 };
 }
 
-// IMPROVEMENT: Bulletproof Local Date initialization
 function makeDate(y, m, d) {
     let dt = new Date(0, 0, 1);
     dt.setFullYear(y, m - 1, d);
@@ -80,7 +200,6 @@ function makeDate(y, m, d) {
     return dt;
 }
 
-// IMPROVEMENT: Bulletproof string formatting avoiding toISOString() timezone shift bugs
 function formatDate(dt) {
     let y = dt.getFullYear();
     let m = String(dt.getMonth() + 1).padStart(2, '0');
@@ -289,6 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Converter Form", func: setupConverter },
         { name: "Synaxarium Search", func: setupSynaxarium },
         { name: "Menstrual Tracker", func: setupPeriodic },
+        { name: "Age Calculator", func: setupAgeCalc },
         { name: "Clipboard Copy", func: setupClipboardCopy },
         { name: "Footer", func: initFooter }
     ];
@@ -356,19 +476,31 @@ async function renderToday() {
     const container = document.getElementById('today-summary');
     if (!container) return;
     let now = new Date(), eth = gregorianToEthiopian(now.getFullYear(), now.getMonth()+1, now.getDate());
+    
+    let jdn = gregorianToJdn(now.getFullYear(), now.getMonth()+1, now.getDate());
+    let julian = jdnToJulian(jdn);
+    let hebrew = jdnToHebrew(jdn);
+    let hebrewMonthStr = getHebrewMonthName(hebrewLeap(hebrew.hy), hebrew.hm);
+
     let bh = calculateBahreHasab(eth.ey), seasons = getSeasons(eth.ey, eth.em, eth.ed, bh);
     let upcoming = getUpcomingEvents(eth.ey, eth.em, eth.ed, bh);
-    let chereka = (bh.abekte + (eth.em - 1) + eth.ed) % 30 || 30;
+    
+    let cherekaAge = (bh.abekte + (eth.em - 1) + eth.ed) % 30 || 30;
+    let moonPhase = getMoonPhaseText(cherekaAge);
+    let sunTimes = getAddisSunTimes(now);
     
     let html = `<p class="large-date"><strong>ዛሬ ${WEEKDAYS[now.getDay()]}፣ ${MONTHS[eth.em]} ${eth.ed} ቀን ${eth.ey} ዓ.ም</strong></p>
     <ul>
         <li><strong>የግሪጎሪያን ቀን፦</strong> ${formatDate(now)}</li>
+        <li><strong>የጁሊያን (Julian) ቀን፦</strong> ${julian.jy}-${String(julian.jm).padStart(2,'0')}-${String(julian.jd).padStart(2,'0')}</li>
+        <li><strong>የዕብራውያን (Hebrew) ቀን፦</strong> ${hebrewMonthStr} ${hebrew.hd} ቀን ${hebrew.hy}</li>
         <li><strong>ዘመነ ወንጌላዊ፦</strong> ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${bh.aa})</li>
         <li><strong>የባሕረ ሐሳብ መረጃ፦</strong> መደብ: ${bh.medeb} | ወንበር: ${bh.wenber} | ጥንተ ቀመር: ${bh.tinteQemer} | ተውሳክ: ${bh.mebajaHamerTewsak}</li>
         <li><strong>የአጽዋም መለኪያ፦</strong> መጥቅዕ: ${bh.metqe} | አበቅቴ: ${bh.abekte} | መባጃ ሐመር: ${bh.mebajaHamer}</li>
         <li><strong>ወቅትና ቤተክርስቲያን፦</strong> ${seasons.climatic} | ${seasons.liturgical}</li>
         <li><strong>የአጽዋም ዘመን፦</strong> ${seasons.fasting} ${seasons.progress ? "<br><em>" + seasons.progress + "</em>" : ""}</li>
-        <li><strong>ሰርቀ ጨረቃ፦</strong> ${chereka}</li>
+        <li><strong>ሰርቀ ጨረቃ (Moon Phase)፦</strong> ${moonPhase} (ቀን ${cherekaAge})</li>
+        <li><strong>ፀሐይ መውጫ/መግቢያ (አዲስ አበባ)፦</strong> መውጫ ${sunTimes.rise} | መግቢያ ${sunTimes.set}</li>
         <li><strong>ኮከብ (Zodiac)፦</strong> ${getZodiacSign(now.getMonth()+1, now.getDate())}</li>
         <li><strong>ዓውደ ነገሥት፦</strong> ${getAwdeNegestSign(now.getMonth()+1, now.getDate())}</li>
     </ul>
@@ -455,7 +587,6 @@ function setupConverter() {
                 await renderYearSearch(useY, out);
             }
         } else if (type === 'greg') {
-            // IMPROVEMENT: Fallback parsing to support English text months for Gregorian lookup
             if (mStr && isNaN(mStr)) {
                 let mName = mStr.toLowerCase().substring(0,3);
                 let gMonths = ["","jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
@@ -475,6 +606,37 @@ function setupConverter() {
             } else {
                  out.innerHTML = "<p style='color:red;'>ለግሪጎሪያን (Gregorian) ፍለጋ እባክዎ ሙሉ ቀን ያስገቡ።</p>";
             }
+        } else if (type === 'julian') {
+            m = mStr ? parseInt(mStr) : null;
+            if (y === null || m === null || d === null) {
+                 out.innerHTML = "<p style='color:red;'>ለጁሊያን (Julian) ፍለጋ እባክዎ ሙሉ ቀን (ዓመት፣ ወር፣ ቀን) ያስገቡ።</p>"; return;
+            }
+            let jdn = julianToJdn(y, m, d);
+            let gDate = jdnToGregorian(jdn);
+            let eDate = jdnToEthiopian(jdn);
+            
+            out.innerHTML = `<h3>የፍለጋ ውጤት (Julian)</h3>
+            <ul>
+                <li><strong>የጁሊያን ቀን፦</strong> ${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}</li>
+                <li><strong>የግሪጎሪያን ቀን፦</strong> ${formatDate(gDate)}</li>
+                <li><strong>የኢትዮጵያ ቀን፦</strong> ${MONTHS[eDate.em]} ${eDate.ed} ቀን ${eDate.ey} ዓ.ም</li>
+            </ul>`;
+        } else if (type === 'hebrew') {
+            m = mStr ? parseInt(mStr) : null;
+            if (y === null || m === null || d === null) {
+                 out.innerHTML = "<p style='color:red;'>ለዕብራውያን (Hebrew) ፍለጋ እባክዎ ሙሉ ቀን (ዓመት፣ ወር፣ ቀን) ያስገቡ።</p>"; return;
+            }
+            let jdn = hebrewToJdn(y, m, d);
+            let gDate = jdnToGregorian(jdn);
+            let eDate = jdnToEthiopian(jdn);
+            let hebrewMonthStr = getHebrewMonthName(hebrewLeap(y), m);
+            
+            out.innerHTML = `<h3>የፍለጋ ውጤት (Hebrew)</h3>
+            <ul>
+                <li><strong>የዕብራውያን ቀን፦</strong> ${hebrewMonthStr} ${d} ቀን ${y}</li>
+                <li><strong>የግሪጎሪያን ቀን፦</strong> ${formatDate(gDate)}</li>
+                <li><strong>የኢትዮጵያ ቀን፦</strong> ${MONTHS[eDate.em]} ${eDate.ed} ቀን ${eDate.ey} ዓ.ም</li>
+            </ul>`;
         } else if (type === 'hijri') {
              m = mStr ? parseInt(mStr) : null;
              if (!y || !m || !d) {
@@ -572,7 +734,12 @@ async function renderMonthSearch(ey, em, out) {
 
 async function renderFullDateSearch(ey, em, ed, out) {
     let gDate = ethToGregorian(ey, em, ed);
-    let iDate = jdnToIslamic(gregorianToJdn(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate()));
+    let jdn = gregorianToJdn(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate());
+    
+    let iDate = jdnToIslamic(jdn);
+    let hebrew = jdnToHebrew(jdn);
+    let hebrewMonthStr = getHebrewMonthName(hebrewLeap(hebrew.hy), hebrew.hm);
+
     let bh = calculateBahreHasab(ey);
     let seasons = getSeasons(ey, em, ed, bh);
     let chereka = (bh.abekte + (em - 1) + ed) % 30 || 30;
@@ -582,6 +749,7 @@ async function renderFullDateSearch(ey, em, ed, out) {
     <ul>
         <li><strong>የኢትዮጵያ ቀን፦</strong> ${MONTHS[em]} ${ed} ቀን ${ey} ዓ.ም (${WEEKDAYS[gDate.getDay()]})</li>
         <li><strong>የግሪጎሪያን ቀን፦</strong> ${formatDate(gDate)}</li>
+        <li><strong>የዕብራውያን (Hebrew) ቀን፦</strong> ${hebrewMonthStr} ${hebrew.hd} ቀን ${hebrew.hy}</li>
         <li><strong>የእስልምና (ሂጅሪ) ቀን፦</strong> ${ISLAMIC_MONTHS[iDate.im]} ${iDate.id} ቀን ${iDate.iy} ዓ.ሂ</li>
     </ul>`;
     
@@ -641,7 +809,6 @@ function setupPeriodic() {
         if (!out) return;
         if (!data.periods.length) { out.innerHTML = "<p>ምንም መረጃ አልተመዘገበም።</p>"; return; }
 
-        // IMPROVEMENT: Parsing strictly to local Date avoids silent timezone shifting during tracking 
         let periods = data.periods.map(p => {
             let [py, pm, pd] = p.split('-');
             return new Date(parseInt(py), parseInt(pm) - 1, parseInt(pd), 0, 0, 0, 0);
@@ -742,7 +909,6 @@ function setupPeriodic() {
         data.cycle_len = cycleLen;
         data.period_len = periodLen;
 
-        // IMPROVEMENT: Enforce saving robust local time layout
         let iso = formatDate(g);
         if (!data.periods.includes(iso)) data.periods.push(iso);
         data.periods.sort();
@@ -758,6 +924,55 @@ function setupPeriodic() {
         });
     }
     updateUI();
+}
+
+function setupAgeCalc() {
+    const btn = document.getElementById('btn-calc-age');
+    if (!btn) return;
+    
+    btn.addEventListener('click', () => {
+        let bY = parseInt(document.getElementById('age-year').value);
+        let bM = parseInt(document.getElementById('age-month').value);
+        let bD = parseInt(document.getElementById('age-day').value);
+        let out = document.getElementById('age-output');
+        
+        if (!bY || !bM || !bD || bM > 13 || bM < 1 || bD < 1 || bD > 30) {
+            out.innerHTML = "<p style='color:red;'>እባክዎ ትክክለኛ የኢትዮጵያ ቀን ያስገቡ።</p>";
+            return;
+        }
+
+        let now = new Date();
+        let curEth = gregorianToEthiopian(now.getFullYear(), now.getMonth() + 1, now.getDate());
+        
+        let cY = curEth.ey, cM = curEth.em, cD = curEth.ed;
+        let bJdn = ethiopianToJdn(bY, bM, bD);
+        let cJdn = ethiopianToJdn(cY, cM, cD);
+
+        if (bJdn > cJdn) {
+            out.innerHTML = "<p style='color:red;'>የትውልድ ቀን ከዛሬ ቀን መብለጥ አይችልም።</p>";
+            return;
+        }
+
+        let years = cY - bY;
+        let months = cM - bM;
+        let days = cD - bD;
+
+        if (days < 0) {
+            months--;
+            let prevMonth = cM === 1 ? 13 : cM - 1;
+            let prevYear = cM === 1 ? cY - 1 : cY;
+            days += getMonthLength(prevYear, prevMonth);
+        }
+        if (months < 0) {
+            years--;
+            months += 13; 
+        }
+
+        let totalDays = cJdn - bJdn;
+        out.innerHTML = `<h3>የእርስዎ ትክክለኛ ዕድሜ፦</h3>
+        <p><strong>${years} ዓመት፣ ${months} ወር እና ${days} ቀን</strong></p>
+        <p>በድምሩ በሕይወት የቆዩበት ቀናት፦ ${totalDays.toLocaleString()} ቀናት</p>`;
+    });
 }
 
 function initFooter() {
