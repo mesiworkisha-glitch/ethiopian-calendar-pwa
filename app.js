@@ -515,7 +515,13 @@ function getUpcomingEvents(ey, em, ed, bh) {
             let daysLeft = events[i][0] - todayNum;
             let targetEm = Math.floor((events[i][0] - 1) / 30) + 1;
             let targetEd = ((events[i][0] - 1) % 30) + 1;
-            return `${t(events[i][1])} (${m[targetEm]} ${fNum(targetEd)}) — +${fNum(daysLeft)}`;
+            let eventName = t(events[i][1]);
+            let dateStr = `${m[targetEm]} ${fNum(targetEd)}`;
+            if (events[i][1].startsWith('fast_')) {
+                return `${eventName} (${dateStr}) — በ${fNum(daysLeft)} ቀናት ውስጥ ይጀምራል`;
+            } else {
+                return `${eventName} (${dateStr}) — በ${fNum(daysLeft)} ቀናት ውስጥ`;
+            }
         }
     }
     return "";
@@ -748,7 +754,7 @@ async function renderToday() {
     </ul>`;
 
     // Add heading for upcoming events
-    html += `<h3>ቀጣይ በዓላትና ጾማት</h3>`;
+    html += `<h3>ቀጣይ በዓላትና አጽዋማት</h3>`;
     html += `<p style="background:rgba(0,102,204,0.1); padding:10px; border-left:4px solid #0066cc;"><strong>${upcoming}</strong></p>`;
 
     let data = await loadSynaxarium();
