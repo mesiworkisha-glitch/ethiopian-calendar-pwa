@@ -291,8 +291,8 @@ function getAddisSunTimes(gDate) {
     if (setMin < 0) { setHr--; setMin += 60; }
 
     return {
-        rise: `${fNum(riseHr)}:${String(riseMin).padStart(2,'0')}`,
-        set: `${fNum(setHr - 12)}:${String(setMin).padStart(2,'0')}`
+        rise: `${fNum(riseHr)}:${String(riseMin).padStart(2,'0')} ጠዋት`,
+        set: `${fNum(setHr - 12)}:${String(setMin).padStart(2,'0')} ማታ`
     };
 }
 
@@ -745,8 +745,11 @@ async function renderToday() {
         <li><strong>ፀሐይ መውጫ/መግቢያ (አዲስ አበባ)፦</strong> መውጫ ${sunTimes.rise} | መግቢያ ${sunTimes.set}</li>
         <li><strong>ኮከብ (Zodiac)፦</strong> ${getZodiacSign(now.getMonth()+1, now.getDate())}</li>
         <li><strong>ዓውደ ነገሥት፦</strong> ${getAwdeNegestSign(now.getMonth()+1, now.getDate())}</li>
-    </ul>
-    <p style="background:rgba(0,102,204,0.1); padding:10px; border-left:4px solid #0066cc;"><strong>${upcoming}</strong></p>`;
+    </ul>`;
+
+    // Add heading for upcoming events
+    html += `<h3>ቀጣይ በዓላትና ጾማት</h3>`;
+    html += `<p style="background:rgba(0,102,204,0.1); padding:10px; border-left:4px solid #0066cc;"><strong>${upcoming}</strong></p>`;
 
     let data = await loadSynaxarium();
     let amharicMonths = ["", "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜ"];
