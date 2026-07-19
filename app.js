@@ -1,7 +1,7 @@
 const i18n = {
     am: {
         app_title: "የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ",
-        intro_desc: "ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የአጽዋም ፍለጋ፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ።",
+        intro_desc: "ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የስንክሳር ፍለጋ፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ።",
         nav_today: "ዛሬ", nav_holidays: "ብሔራዊ በዓላት", nav_hijri: "ሂጅሪ አቆጣጠር", nav_converter: "ቀን መቀየሪያ", nav_synaxarium: "ስንክሳር ፍለጋ", nav_period: "የወር አበባ ዑደት", nav_age: "ዕድሜ ማስያ",
         today_title: "የዕለቱ ሙሉ መረጃ", btn_copy_date: "ቀኑን ኮፒ አድርግ",
         holidays_title: "የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት",
@@ -210,9 +210,10 @@ function matchMonthName(text) {
     let normAm = normalizeAmharic(raw);
     let normEn = raw.toLowerCase();
     let matches = new Set();
+    const MONTHS_REF = getMonths();
 
     for (let idx = 1; idx <= 13; idx++) {
-        let amCandidates = [getMonths()[idx]].concat(MONTH_ALIASES_AM[idx] || []);
+        let amCandidates = [MONTHS_REF[idx]].concat(MONTH_ALIASES_AM[idx] || []);
         for (let candidate of amCandidates) {
             let normC = normalizeAmharic(candidate);
             if (normC === normAm || normC.startsWith(normAm) || normAm.startsWith(normC)) {
@@ -229,7 +230,6 @@ function matchMonthName(text) {
             }
         }
     }
-
     if (matches.size === 1) return [...matches][0];
     return null;
 }
@@ -296,12 +296,8 @@ function hebrewDelay2(year) {
     if ((delay2 - delay1) === 382) return 1;
     return 0;
 }
-function hebrewFirstOfYear(year) {
-    return HEBREW_EPOCH + hebrewDelay1(year) + hebrewDelay2(year);
-}
-function hebrewYearLength(year) {
-    return hebrewFirstOfYear(year + 1) - hebrewFirstOfYear(year);
-}
+function hebrewFirstOfYear(year) { return HEBREW_EPOCH + hebrewDelay1(year) + hebrewDelay2(year); }
+function hebrewYearLength(year) { return hebrewFirstOfYear(year + 1) - hebrewFirstOfYear(year); }
 function hebrewMonthLength(year, month) {
     let isLeap = hebrewLeap(year);
     let len = hebrewYearLength(year);
@@ -675,12 +671,15 @@ function initClock() {
     setInterval(() => {
         let now = new Date(), hr = now.getHours(), min = now.getMinutes(), sec = now.getSeconds();
         let ethHr = (hr - 6) % 12; if (ethHr <= 0) ethHr += 12;
+        let period = hr < 6 ? "ሌሊት" : hr < 12 ? "ጠዋት" : hr < 18 ? "ከሰዓት በኋላ" : "ማታ";
+        
         let dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0, 0);
         if (now < dayStart) dayStart.setDate(dayStart.getDate() - 1);
         let elapsed = Math.floor((now - dayStart) / 1000);
         let kekros = Math.floor(elapsed / 1440);
         let kaelit = Math.floor((elapsed % 1440) / 24);
-        timeBar.innerText = `${t('txt_time')}፦ ${fNum(ethHr)}:${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')} | ኬክሮስ፦ ${fNum(kekros)} ከ${fNum(kaelit)} ካልዒት`;
+
+        timeBar.innerText = `${t('txt_time')}፦ ${fNum(ethHr)}:${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')} ${period} | ኬክሮስ፦ ${fNum(kekros)} ከ${fNum(kaelit)} ካልዒት`;
     }, 1000);
 }
 
