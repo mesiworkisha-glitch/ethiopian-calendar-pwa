@@ -289,7 +289,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Converter Form", func: setupConverter },
         { name: "Synaxarium Search", func: setupSynaxarium },
         { name: "Menstrual Tracker", func: setupPeriodic },
-        { name: "Clipboard Copy", func: setupClipboardCopy }
+        { name: "Clipboard Copy", func: setupClipboardCopy },
+        { name: "Footer", func: initFooter }
     ];
 
     modules.forEach(m => {
@@ -757,6 +758,12 @@ function setupPeriodic() {
         });
     }
     updateUI();
+}
+
+function initFooter() {
+    const el = document.getElementById('footer-year');
+    if (!el) return;
+    el.textContent = new Date().getFullYear();
 }
 
 function setupClipboardCopy() {
