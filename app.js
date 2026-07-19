@@ -1135,9 +1135,59 @@ function setupAgeCalc() {
                 if (out) out.innerHTML = `<p style="color:red;">${t('err_future_date')}</p>`; return;
             }
 
-            let years = cY - bY; let months = cM - bM; let days = cD - bD;
-            if (days < 0) { months--; let prevMonth = cM === 1 ? 13 : cM - 1; let prevYear = cM === 1 ? cY - 1 : cY; days += getMonthLength(prevYear, prevMonth); }
-            if (months < 0) { years--; months += 13; }
+            // ---- FIXED AGE CALCULATION ----
+            let years = cY - bY;
+            let months = cM - bM;
+            let days = cD - bD;
+
+            // Borrow days from months until days >= 0
+            while (days < 0) {
+                months--;
+                // Determine the effective year and month after decrementing months
+                let effYear = bY + years;
+                let effMonth = bM + months;
+                // Normalize effMonth to 1..13, adjust effYear
+                while (effMonth < 1) {
+                    effMonth += 13;
+                    effYear--;
+                }
+                while (effMonth > 13) {
+                    effMonth -= 13;
+                    effYear++;
+                }
+                days += getMonthLength(effYear, effMonth);
+            }
+
+            // Normalize months to 1..13
+            while (months < 1) {
+                months += 13;
+                years--;
+            }
+            while (months > 13) {
+                months -= 13;
+                years++;
+            }
+
+            // Ensure days is less than the length of the current month (carry over to months)
+            let effYear = bY + years;
+            let effMonth = bM + months;
+            while (effMonth < 1) { effMonth += 13; effYear--; }
+            while (effMonth > 13) { effMonth -= 13; effYear++; }
+            while (days >= getMonthLength(effYear, effMonth)) {
+                days -= getMonthLength(effYear, effMonth);
+                months++;
+                // Normalize months and year
+                while (months > 13) {
+                    months -= 13;
+                    years++;
+                }
+                // Recalculate effYear, effMonth
+                effYear = bY + years;
+                effMonth = bM + months;
+                while (effMonth < 1) { effMonth += 13; effYear--; }
+                while (effMonth > 13) { effMonth -= 13; effYear++; }
+            }
+            // ---- END FIXED AGE CALCULATION ----
 
             let totalDays = cJdn - bJdn;
             out.innerHTML = `<h3>${t('age_result')}</h3>
