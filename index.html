@@ -51,6 +51,7 @@
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium" data-i18n="nav_synaxarium">ስንክሳር ፍለጋ</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-periodic" id="navbtn-periodic" data-target="tab-periodic" data-i18n="nav_period">የወር አበባ ዑደት</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-age" id="navbtn-age" data-target="tab-age" data-i18n="nav_age">ዕድሜ ማስያ</button>
+        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-pregnancy" id="navbtn-pregnancy" data-target="tab-pregnancy" data-i18n="nav_pregnancy">የወሊድ ጊዜ መገመቻ</button>
     </nav>
 
     <main>
@@ -175,6 +176,29 @@
                 </div>
                 <button id="btn-calc-age" class="btn-primary" data-i18n="btn_calc_age">ዕድሜዬን አስላ</button>
                 <div id="age-output" class="info-output margin-top" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section id="tab-pregnancy" class="tab-content" role="tabpanel" aria-labelledby="navbtn-pregnancy" hidden>
+            <div class="card">
+                <h2 data-i18n="preg_title">የእርግዝና እና የወሊድ ጊዜ መገመቻ</h2>
+                <p data-i18n="preg_desc">የመጨረሻው የወር አበባ የታየበትን የመጀመሪያ ቀን (LMP) ያስገቡ፦</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preg-year" data-i18n="per_year">ዓመት (ዓ.ም)</label>
+                        <input type="number" id="preg-year" placeholder="ዓመት" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preg-month" data-i18n="per_month">ወር (1-13)</label>
+                        <input type="number" id="preg-month" placeholder="ወር" min="1" max="13" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preg-day" data-i18n="per_day">ቀን</label>
+                        <input type="number" id="preg-day" placeholder="ቀን" min="1" max="30" required>
+                    </div>
+                </div>
+                <button id="btn-calc-preg" class="btn-primary" data-i18n="btn_calc_preg">አስላ</button>
+                <div id="preg-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
         </section>
     </main>
