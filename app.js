@@ -11,12 +11,9 @@ const i18n = {
         synax_title: "በስንክሳር ውስጥ ፍለጋ", synax_label: "የቅዱስ ወይም የበዓል ስም ያስገቡ", ph_synax: "ለምሳሌ፡ ሚካኤል", btn_search: "ፈልግ",
         per_title: "የወር አበባ ዑደት ማቀናበሪያ", per_desc: "የመጨረሻው የወር አበባ የታየበትን ቀን በኢትዮጵያ አቆጣጠር ያስገቡ፦", per_year: "ዓመት", per_month: "ወር (1-13)", per_day: "ቀን", per_cycle_len: "የዑደት ርዝመት (በቀናት)", per_period_len: "የወር አበባ የሚቆይበት ጊዜ", btn_save: "አስቀምጥ", btn_clear: "መረጃ አጥፋ",
         age_title: "ትክክለኛ ዕድሜ ማስያ", age_desc: "የትውልድ ቀንዎን በኢትዮጵያ አቆጣጠር ያስገቡ፦", btn_calc_age: "ዕድሜዬን አስላ",
-        
-        // Pregnancy Calculator Translations
         preg_title: "የእርግዝና እና የወሊድ ጊዜ መገመቻ", preg_desc: "የመጨረሻው የወር አበባ የታየበትን የመጀመሪያ ቀን (LMP) ያስገቡ፦", btn_calc_preg: "አስላ",
         preg_result_title: "ውጤት", preg_edd: "የሚጠበቀው የወሊድ ቀን (EDD)", preg_gestation: "የእርግዝናው ዕድሜ", preg_trimester: "የእርግዝና ደረጃ (Trimester)",
         trim_1: "1ኛ (First)", trim_2: "2ኛ (Second)", trim_3: "3ኛ (Third)", txt_weeks: "ሳምንታት", txt_and: "እና", txt_delivered: "አልፏል / ተወልዷል (Post-term)",
-        
         footer_credit: "የተዘጋጀው በ", footer_telegram: "በቴሌግራም እንገናኝ",
         lbl_greg: "የግሪጎሪያን ቀን", lbl_jul: "የጁሊያን ቀን", lbl_heb: "የዕብራውያን ቀን", lbl_wengelawi: "ዘመነ ወንጌላዊ", lbl_bahire: "የባሕረ ሐሳብ መረጃ", lbl_fast_metric: "የአጽዋም መለኪያ", lbl_season: "ወቅትና ቤተክርስቲያን", lbl_fasting: "የአጽዋም ዘመን", lbl_moon: "ሰርቀ ጨረቃ", lbl_sun: "ፀሐይ መውጫ/መግቢያ", lbl_zodiac: "ኮከብ (Zodiac)", lbl_awde: "ዓውደ ነገሥት",
         txt_today: "ዛሬ", txt_year: "ዓ.ም", txt_day: "ቀን", txt_time: "የኢትዮጵያ ሰዓት", txt_copied: "ኮፒ ተደርጓል (Copied)", txt_fail: "ኮፒ ማድረግ አልተቻለም (Failed)",
@@ -47,11 +44,9 @@ const i18n = {
         synax_title: "Synaxarium Search", synax_label: "Enter Saint or Feast Name (Amharic)", ph_synax: "e.g., ሚካኤል", btn_search: "Search",
         per_title: "Menstrual Cycle Tracker", per_desc: "Enter the date of your last period (Ethiopian Calendar):", per_year: "Year", per_month: "Month (1-13)", per_day: "Day", per_cycle_len: "Cycle Length (days)", per_period_len: "Period Length (days)", btn_save: "Save", btn_clear: "Clear Data",
         age_title: "Exact Age Calculator", age_desc: "Enter your birth date (Ethiopian Calendar):", btn_calc_age: "Calculate Age",
-        
         preg_title: "Pregnancy & Due Date Calculator", preg_desc: "Enter the first day of your last menstrual period (LMP):", btn_calc_preg: "Calculate Due Date",
         preg_result_title: "Result", preg_edd: "Expected Due Date (EDD)", preg_gestation: "Gestational Age", preg_trimester: "Trimester",
         trim_1: "First", trim_2: "Second", trim_3: "Third", txt_weeks: "Weeks", txt_and: "and", txt_delivered: "Post-term / Delivered",
-        
         footer_credit: "Developed by ", footer_telegram: "Connect on Telegram",
         lbl_greg: "Gregorian Date", lbl_jul: "Julian Date", lbl_heb: "Hebrew Date", lbl_wengelawi: "Evangelist (Wengelawi)", lbl_bahire: "Bahire Hasab Data", lbl_fast_metric: "Fasting Metrics", lbl_season: "Season & Liturgy", lbl_fasting: "Fasting Period", lbl_moon: "Moon Phase", lbl_sun: "Sunrise/Sunset (Addis Ababa)", lbl_zodiac: "Zodiac", lbl_awde: "Awde Negest",
         txt_today: "Today", txt_year: "EC", txt_day: "", txt_time: "Ethiopian Time", txt_copied: "Copied to clipboard", txt_fail: "Failed to copy",
@@ -82,11 +77,9 @@ const i18n = {
         synax_title: "Sinksikara Barbaadi", synax_label: "Maqaa Qulqulluu (Afaan Amaaraatiin)", ph_synax: "Fkn: ሚካኤል", btn_search: "Barbaadi",
         per_title: "Hordoffii Marsaa Laguu", per_desc: "Guyyaa marsaan laguu kee xumuraa itti eegale galchi (Kalaandarii Itoophiyaatiin):", per_year: "Bara", per_month: "Ji'a (1-13)", per_day: "Guyyaa", per_cycle_len: "Dheerina Marsaa (guyyoota)", per_period_len: "Turmaata Laguu (guyyoota)", btn_save: "Olkaa'i", btn_clear: "Haquu",
         age_title: "Herrega Umrii Sirrii", age_desc: "Guyyaa dhaloota kee galchi (Kalaandarii Itoophiyaatiin):", btn_calc_age: "Umrii Koo Herregi",
-        
         preg_title: "Herrega Yeroo Ulfaa fi Dahumsaa", preg_desc: "Guyyaa marsaan laguu kee xumuraa itti eegale galchi (LMP):", btn_calc_preg: "Herregi",
         preg_result_title: "Bu'aa", preg_edd: "Guyyaa Dahumsaa Eegadamu", preg_gestation: "Umrii Ulfaa", preg_trimester: "Sadarkaa Ulfaa",
         trim_1: "1ffaa", trim_2: "2ffaa", trim_3: "3ffaa", txt_weeks: "Torbanoota", txt_and: "fi", txt_delivered: "Darbeera / Daheera",
-        
         footer_credit: "Kan hojjete ", footer_telegram: "Telegram irratti nu qunnamaa",
         lbl_greg: "Guyyaa Gregorian", lbl_jul: "Guyyaa Julian", lbl_heb: "Guyyaa Hebrew", lbl_wengelawi: "Wangeelaawwii", lbl_bahire: "Ragaa Bahire Hasab", lbl_fast_metric: "Safartuu Soomaa", lbl_season: "Waqtii fi Bataskaana", lbl_fasting: "Yeroo Soomaa", lbl_moon: "Sadarkaa Ji'aa", lbl_sun: "Ba'uu/Lixuu Aduu", lbl_zodiac: "Urjii (Zodiac)", lbl_awde: "Awde Negest",
         txt_today: "Har'a", txt_year: "B.I", txt_day: "Guyyaa", txt_time: "Sa'aatii Itoophiyaa", txt_copied: "Garagalfameera", txt_fail: "Garagalchuu hin dandeenye",
@@ -117,11 +110,9 @@ const i18n = {
         synax_title: "ኣብ ስንክሳር ድለ", synax_label: "ስም ቅዱስ ወይ በዓል ኣእቱ (ብኣምሓርኛ)", ph_synax: "ንኣብነት፡ ሚካኤል", btn_search: "ድለ",
         per_title: "ዑደት ጽግያት መከታተሊ", per_desc: "ናይ መወዳእታ ጽግያት ዝረኣኹምሉ ዕለት ብኣቆጻጽራ ኢትዮጵያ ኣእትዉ፦", per_year: "ዓመት", per_month: "ወርሒ (1-13)", per_day: "መዓልቲ", per_cycle_len: "ንውሓት ዑደት (ብመዓልታት)", per_period_len: "ግዜ ጽግያት (ብመዓልታት)", btn_save: "ኣቐምጥ", btn_clear: "ሓበሬታ ኣጥፍእ",
         age_title: "ልክዕ ዕድመ መሕሰቢ", age_desc: "ዕለት ልደትኩም ብኣቆጻጽራ ኢትዮጵያ ኣእትዉ፦", btn_calc_age: "ዕድመይ ሕሰብ",
-        
         preg_title: "ግምት ዕለተ ወሊድን ጥንስን", preg_desc: "ናይ መወዳእታ ጽግያት ዝረኣኹምሉ ዕለት (LMP) ኣእትዉ፦", btn_calc_preg: "ሕሰብ",
         preg_result_title: "ውጽኢት", preg_edd: "ትጽቢት ዝግበረሉ ዕለተ ወሊድ", preg_gestation: "ዕድመ ጥንሲ", preg_trimester: "ደረጃ ጥንሲ",
         trim_1: "1ይ", trim_2: "2ይ", trim_3: "3ይ", txt_weeks: "ሰሙናት", txt_and: "ን", txt_delivered: "ሓሊፉ / ተወሊዱ",
-        
         footer_credit: "ዘዳለዎ ", footer_telegram: "ብቴሌግራም ንራኸብ",
         lbl_greg: "ዕለት ግሪጎሪያን", lbl_jul: "ዕለት ጁልያን", lbl_heb: "ዕለት እብራውያን", lbl_wengelawi: "ዘመነ ወንጌላዊ", lbl_bahire: "ሓበሬታ ባሕረ ሓሳብ", lbl_fast_metric: "መለክዒ ጾም", lbl_season: "ወቕትን ቤተክርስትያንን", lbl_fasting: "እዋን ጾም", lbl_moon: "ወርሒ", lbl_sun: "ምብራቕ/ምዕራብ ጸሓይ", lbl_zodiac: "ኮኾብ (Zodiac)", lbl_awde: "ዓውደ ነገሥት",
         txt_today: "ሎሚ", txt_year: "ዓ.ም", txt_day: "መዓልቲ", txt_time: "ሰዓት ኢትዮጵያ", txt_copied: "ኮፒ ተገይሩ", txt_fail: "ኮፒ ምግባር ኣይተኻእለን",
@@ -432,6 +423,11 @@ function getZodiacSign(m, d) {
     return d < signs[m-1][1] ? signs[m-1][2] : signs[m-1][3];
 }
 
+function getAwdeNegestSign(m, d) {
+    const signs = [[1,20,"ጀዲ (መሬት) — ንስር","ደለዊ (ነፋስ) — በሬ"],[2,19,"ደለዊ (ነፋስ) — በሬ","ሑት (ውሃ) — ከይሲ"],[3,21,"ሑት (ውሃ) — ከይሲ","ሐመል (እሳት) — ድብ"],[4,20,"ሐመል (እሳት) — ድብ","ሠውር (መሬት) — ዝንጀሮ"],[5,21,"ሠውር (መሬት) — ዝንጀሮ","ገውዝ (ነፋስ) — ዓጋዘን"],[6,21,"ገውዝ (ነፋስ) — ዓጋዘን","ሸርጣን (ውሃ) — ቀበሮ"],[7,23,"ሸርጣን (ውሃ) — ቀበሮ","አሰድ (እሳት) — አንበሳ"],[8,23,"አሰድ (እሳት) — አንበሳ","ሰንቡላ (መሬት) — ጉጉት"],[9,23,"ሰንቡላ (መሬት) — ጉጉት","ሚዛን (ነፋስ) — ተኩላ"],[10,23,"ሚዛን (ነፋስ) — ተኩላ","ዓቅራብ (ውሃ) — ነብር"],[11,22,"ዓቅራብ (ውሃ) — ነብር","ቀውስ (እሳት) — ጅብ"],[12,22,"ቀውስ (እሳት) — ጅብ","ጀዲ (መሬት) — ንስር"]];
+    return d < signs[m-1][1] ? signs[m-1][2] : signs[m-1][3];
+}
+
 function calculateBahreHasab(ey) {
     let aa = ey + 5500;
     let medeb = mod(aa, 19);
@@ -732,20 +728,23 @@ async function renderToday() {
     let upcoming = getUpcomingEvents(eth.ey, eth.em, eth.ed, bh);
     
     let cherekaAge = (bh.abekte + (eth.em - 1) + eth.ed) % 30 || 30;
+    let moonPhase = getMoonPhaseText(cherekaAge);
     let sunTimes = getAddisSunTimes(now);
     
-    let html = `<p class="large-date"><strong>${t('txt_today')} ${wList[now.getDay()]}፣ ${mList[eth.em]} ${fNum(eth.ed)} ${t('txt_day')} ${fNum(eth.ey)} ${t('txt_year')}</strong></p>
+    let html = `<p class="large-date"><strong>ዛሬ ${wList[now.getDay()]}፣ ${mList[eth.em]} ${fNum(eth.ed)} ቀን ${fNum(eth.ey)} ዓ.ም</strong></p>
     <ul>
-        <li><strong>${t('lbl_greg')}፦</strong> ${formatDate(now)}</li>
-        <li><strong>${t('lbl_jul')}፦</strong> ${fNum(julian.jy)}-${String(julian.jm).padStart(2,'0')}-${String(julian.jd).padStart(2,'0')}</li>
-        <li><strong>${t('lbl_heb')}፦</strong> ${hebrewMonthStr} ${fNum(hebrew.hd)}, ${fNum(hebrew.hy)}</li>
-        <li><strong>${t('lbl_wengelawi')}፦</strong> ${bh.wengelawi} (${fNum(bh.aa)})</li>
-        <li><strong>${t('lbl_bahire')}፦</strong> ${t('bh_medeb')}: ${fNum(bh.medeb)} | ${t('bh_wenber')}: ${fNum(bh.wenber)} | ${t('bh_tinte')}: ${bh.tinteQemer}</li>
-        <li><strong>${t('lbl_fast_metric')}፦</strong> ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
-        <li><strong>${t('lbl_fasting')}፦</strong> ${seasons.fasting} <em>${seasons.progress}</em></li>
-        <li><strong>${t('lbl_moon')}፦</strong> ${getMoonPhaseText(cherekaAge)} (${fNum(cherekaAge)})</li>
-        <li><strong>${t('lbl_sun')}፦</strong> ☀️ ${sunTimes.rise} 🌙 ${sunTimes.set}</li>
-        <li><strong>${t('lbl_zodiac')}፦</strong> ${getZodiacSign(now.getMonth()+1, now.getDate())}</li>
+        <li><strong>የግሪጎሪያን ቀን፦</strong> ${formatDate(now)}</li>
+        <li><strong>የጁሊያን (Julian) ቀን፦</strong> ${fNum(julian.jy)}-${String(julian.jm).padStart(2,'0')}-${String(julian.jd).padStart(2,'0')}</li>
+        <li><strong>የዕብራውያን (Hebrew) ቀን፦</strong> ${hebrewMonthStr} ${fNum(hebrew.hd)} ቀን ${fNum(hebrew.hy)}</li>
+        <li><strong>ዘመነ ወንጌላዊ፦</strong> ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${fNum(bh.aa)})</li>
+        <li><strong>የባሕረ ሐሳብ መረጃ፦</strong> መደብ: ${fNum(bh.medeb)} | ወንበር: ${fNum(bh.wenber)} | ጥንተ ቀመር: ${bh.tinteQemer} | ተውሳክ: ${fNum(bh.mebajaHamerTewsak)}</li>
+        <li><strong>የአጽዋም መለኪያ፦</strong> መጥቅዕ: ${fNum(bh.metqe)} | አበቅቴ: ${fNum(bh.abekte)} | መባጃ ሐመር: ${fNum(bh.mebajaHamer)}</li>
+        <li><strong>ወቅትና ቤተክርስቲያን፦</strong> ${seasons.climatic} | ${seasons.liturgical}</li>
+        <li><strong>የአጽዋም ዘመን፦</strong> ${seasons.fasting} ${seasons.progress ? "<br><em>" + seasons.progress + "</em>" : ""}</li>
+        <li><strong>ሰርቀ ጨረቃ (Moon Phase)፦</strong> ${moonPhase} (ቀን ${fNum(cherekaAge)})</li>
+        <li><strong>ፀሐይ መውጫ/መግቢያ (አዲስ አበባ)፦</strong> መውጫ ${sunTimes.rise} | መግቢያ ${sunTimes.set}</li>
+        <li><strong>ኮከብ (Zodiac)፦</strong> ${getZodiacSign(now.getMonth()+1, now.getDate())}</li>
+        <li><strong>ዓውደ ነገሥት፦</strong> ${getAwdeNegestSign(now.getMonth()+1, now.getDate())}</li>
     </ul>
     <p style="background:rgba(0,102,204,0.1); padding:10px; border-left:4px solid #0066cc;"><strong>${upcoming}</strong></p>`;
 
@@ -755,10 +754,17 @@ async function renderToday() {
     
     if (entries.length > 0) {
         let annualFeasts = entries.filter(e => !e.startsWith("ወርኃዊ በዓል፦ "));
-        html += `<h3>${t('nav_synaxarium')}</h3>`;
+        let monthlyFeasts = entries.filter(e => e.startsWith("ወርኃዊ በዓል፦ ")).map(e => e.replace("ወርኃዊ በዓል፦ ", ""));
+
+        html += `<h3>የዕለቱ ስንክሳር በዓላት</h3>`;
         if (annualFeasts.length > 0) {
-            html += `<ul>` + annualFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
+            html += `<h4>ዓመታዊ በዓላት</h4><ul>` + annualFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
         }
+        if (monthlyFeasts.length > 0) {
+            html += `<h4>ወርኃዊ በዓላት</h4><ul>` + monthlyFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
+        }
+    } else {
+        html += `<p>ለዕለቱ የተመዘገበ የስንክሳር በዓል የለም።</p>`;
     }
 
     container.innerHTML = html;
@@ -1012,7 +1018,7 @@ function setupPregnancyCalc() {
         if (!y || !m || !d || m > 13 || m < 1 || d < 1 || d > 30) return;
 
         let lmpJdn = ethiopianToJdn(y, m, d);
-        let eddJdn = lmpJdn + 280; // Standard 40 weeks exact gestation computation
+        let eddJdn = lmpJdn + 280;
         
         let eddEth = jdnToEthiopian(eddJdn);
         let eddGreg = jdnToGregorian(eddJdn);
