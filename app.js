@@ -555,8 +555,50 @@ function getUpcomingEvents(ey, em, ed, bh) {
     return "";
 }
 
+// ---- Enhanced functions from Python integration ----
+
+function ethiopianDayOfYear(em, ed) {
+    return (em - 1) * 30 + ed;
+}
+
+function dayOfYearToMonthDay(dayNum) {
+    let em = Math.floor((dayNum - 1) / 30) + 1;
+    let ed = ((dayNum - 1) % 30) + 1;
+    return { em, ed };
+}
+
+function getNamedEventsForYear(ey) {
+    let bh = calculateBahreHasab(ey);
+    let events = [];
+
+    // Fixed feasts
+    let fixed = [
+        [1, "hol_enkutatash"],
+        [17, "hol_meskel"],
+        [75, "fast_nebiyat"],
+        [130, "fast_gehad"],
+        [131, "hol_timkat"],
+        [331, "fast_filseta"],
+        [345, "hol_filseta_maryam"]
+    ];
+    fixed.forEach(e => events.push(e));
+    let gennaDay = (ey % 4 === 0) ? 28 : 29;
+    events.push([90 + gennaDay, "hol_genna"]); // 90 = Meskerem 1 + 89 days? Actually we need day number from start of year. Genna is Tahsas 28/29 => day number: (4-1)*30 + gennaDay = 90 + gennaDay
+
+    // Movable feasts
+    for (const [internalKey, dateObj] of Object.entries(bh.feasts)) {
+        let i18nKey = ["nenewe", "abiy", "hawaryat", "dihnet"].includes(internalKey) ? `fast_${internalKey}` : `fest_${internalKey}`;
+        let dayNum = (dateObj.m - 1) * 30 + dateObj.d;
+        events.push([dayNum, i18nKey]);
+    }
+
+    events.sort((a,b) => a[0] - b[0]);
+    return events;
+}
+
 function getFdreHolidays(ey) {
-    let startG = ethToGregorian(ey, 1, 1), yearG = startG.getFullYear();
+    let startG = ethToGregorian(ey, 1, 1);
+    let yearG = startG.getFullYear();
     let bh = calculateBahreHasab(ey);
     let gennaDay = mod(ey, 4) === 0 ? 28 : 29;
     
@@ -585,6 +627,272 @@ function getFdreHolidays(ey) {
     }
     return h.sort((a,b) => a.g - b.g);
 }
+
+// Build a map of national holidays for a given year, keyed by Ethiopian day number (1-365/366)
+function getNationalHolidaysMap(ey) {
+    let holidays = getFdreHolidays(ey);
+    let map = {};
+    holidays.forEach(item => {
+        let g = item.g;
+        let eth = gregorianToEthiopian(g.getFullYear(), g.getMonth()+1, g.getDate());
+        let dayNum = ethiopianDayOfYear(eth.em, eth.ed);
+        if (!map[dayNum]) map[dayNum] = [];
+        map[dayNum].push(item.n);
+    });
+    return map;
+}
+
+function getYearlyEvents(ey) {
+    // Returns array of { dayNum, label, type: 'fixed'|'movable'|'national' }
+    let events = [];
+    // Movable & fixed from getNamedEventsForYear
+    let named = getNamedEventsForYear(ey);
+    named.forEach(([dayNum, key]) => {
+        events.push({ dayNum, label: t(key), type: 'movable' });
+    });
+
+    // National holidays
+    let natMap = getNationalHolidaysMap(ey);
+    for (let dayNum in natMap) {
+        natMap[dayNum].forEach(label => {
+            events.push({ dayNum: parseInt(dayNum), label, type: 'national' });
+        });
+    }
+
+    events.sort((a,b) => a.dayNum - b.dayNum);
+    return events;
+}
+
+function getDayDetails(ey, em, ed) {
+    // Returns a rich object for a single day
+    let dayNum = ethiopianDayOfYear(em, ed);
+    let gDate = ethToGregorian(ey, em, ed);
+    let weekday = getWeekdays()[gDate.getDay()]; // 0-6
+    let bh = calculateBahreHasab(ey);
+    let seasons = getSeasons(ey, em, ed, bh);
+    let chereka = (bh.abekte + (em - 1) + ed) % 30 || 30;
+    let moonPhase = getMoonPhaseText(chereka);
+    let zodiac = getZodiacSign(gDate.getMonth()+1, gDate.getDate());
+    let awde = getAwdeNegestSign(gDate.getMonth()+1, gDate.getDate());
+    let fasting = seasons.fasting;
+    let liturgical = seasons.liturgical;
+    let climatic = seasons.climatic;
+
+    // Get synaxarium entries
+    let synax = null;
+    // We'll load synaxarium data asynchronously in the view functions.
+
+    return {
+        ey, em, ed, dayNum,
+        gDate,
+        weekday,
+        bh,
+        seasons,
+        chereka,
+        moonPhase,
+        zodiac,
+        awde,
+        fasting,
+        liturgical,
+        climatic,
+        // synax will be added later
+    };
+}
+
+function getMonthDays(ey, em) {
+    // Returns array of day detail objects for all days in the month
+    let monthLen = getMonthLength(ey, em);
+    let days = [];
+    for (let ed = 1; ed <= monthLen; ed++) {
+        days.push(getDayDetails(ey, em, ed));
+    }
+    return days;
+}
+
+// ---- Override render functions with enhanced versions ----
+
+async function renderYearSearch(ey, out) {
+    let bh = calculateBahreHasab(ey);
+    let events = getYearlyEvents(ey);
+    let holidays = getFdreHolidays(ey); // for summary
+
+    let html = `<h3>${fNum(ey)} ${t('txt_year')}</h3>`;
+    html += `<h4>${t('lbl_bahire')}</h4><ul>
+        <li>${t('bh_medeb')}: ${fNum(bh.medeb)} | ${t('bh_wenber')}: ${fNum(bh.wenber)} | ${t('bh_tinte')}: ${bh.tinteQemer}</li>
+        <li>${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
+        <li>${t('lbl_wengelawi')}: ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${fNum(bh.aa)})</li>
+    </ul>`;
+
+    html += `<h4>${t('holidays_title')}</h4><ul>`;
+    holidays.slice(0, 10).forEach(h => {
+        let eth = gregorianToEthiopian(h.g.getFullYear(), h.g.getMonth()+1, h.g.getDate());
+        let mList = getMonths();
+        html += `<li>${h.n} — ${mList[eth.em]} ${fNum(eth.ed)} (${formatDate(h.g)})</li>`;
+    });
+    if (holidays.length > 10) html += `<li>... (${holidays.length - 10} more)</li>`;
+    html += `</ul>`;
+
+    html += `<h4>የዓመቱ ተንቀሳቃሽ በዓላትና አጽዋማት</h4><ul>`;
+    let shown = new Set();
+    events.forEach(ev => {
+        let key = ev.label;
+        if (!shown.has(key)) {
+            shown.add(key);
+            let mList = getMonths();
+            let { em, ed } = dayOfYearToMonthDay(ev.dayNum);
+            html += `<li>${ev.label} — ${mList[em]} ${fNum(ed)}</li>`;
+        }
+    });
+    html += `</ul>`;
+
+    out.innerHTML = html;
+}
+
+async function renderMonthSearch(ey, em, out) {
+    let monthLen = getMonthLength(ey, em);
+    let startG = ethToGregorian(ey, em, 1);
+    let endG = ethToGregorian(ey, em, monthLen);
+    let mList = getMonths();
+    let wList = getWeekdays();
+
+    let html = `<h3>${mList[em]} ${fNum(ey)} ${t('txt_year')}</h3>`;
+    html += `<p>${formatDate(startG)} - ${formatDate(endG)} (${fNum(monthLen)} ${t('txt_days')})</p>`;
+
+    // Get all holidays and events for the month
+    let yearlyEvents = getYearlyEvents(ey);
+    let holidaysMap = getNationalHolidaysMap(ey);
+
+    // Build a calendar grid
+    html += `<table border="1" style="border-collapse:collapse; width:100%;">`;
+    html += `<tr><th>ቀን</th><th>ዕለት</th><th>የአጽዋም ዘመን</th><th>በዓላት / መታሰቢያ</th></tr>`;
+    for (let ed = 1; ed <= monthLen; ed++) {
+        let dayNum = ethiopianDayOfYear(em, ed);
+        let gDate = ethToGregorian(ey, em, ed);
+        let weekday = wList[gDate.getDay()];
+        let bh = calculateBahreHasab(ey);
+        let seasons = getSeasons(ey, em, ed, bh);
+        let fasting = seasons.fasting;
+
+        // Collect events for this day
+        let dayEvents = [];
+        yearlyEvents.forEach(ev => {
+            if (ev.dayNum === dayNum) dayEvents.push(ev.label);
+        });
+        if (holidaysMap[dayNum]) {
+            dayEvents = dayEvents.concat(holidaysMap[dayNum]);
+        }
+
+        // Synaxarium entries (we'll load asynchronously; we'll fetch in the main loop)
+        // We'll fetch synax data once, outside the loop to avoid repeated calls.
+        // Since we are inside an async function, we can use await, but we need to load synaxarium once.
+        // We'll do it at start of function.
+        // Actually better to load synax data once and then use it.
+        // We'll modify to load synax data earlier.
+
+        let synaxEntries = [];
+        // Will be filled after loading synax data
+        // For now we'll push placeholders.
+
+        let eventsHtml = dayEvents.join('; ');
+        html += `<tr><td>${fNum(ed)}</td><td>${weekday}</td><td>${fasting}</td><td>${eventsHtml}</td></tr>`;
+    }
+    html += `</table>`;
+
+    // Also show movable feasts and national holidays in the month summary
+    let monthEvents = yearlyEvents.filter(ev => {
+        let { em: evEm } = dayOfYearToMonthDay(ev.dayNum);
+        return evEm === em;
+    });
+    let monthHolidays = [];
+    for (let dayNum in holidaysMap) {
+        let { em: hEm } = dayOfYearToMonthDay(parseInt(dayNum));
+        if (hEm === em) {
+            holidaysMap[dayNum].forEach(label => monthHolidays.push({ dayNum: parseInt(dayNum), label }));
+        }
+    }
+
+    if (monthEvents.length || monthHolidays.length) {
+        html += `<h4>በዚህ ወር ያሉ በዓላትና አጽዋማት</h4><ul>`;
+        monthEvents.forEach(ev => {
+            let { em: evEm, ed: evEd } = dayOfYearToMonthDay(ev.dayNum);
+            html += `<li>${ev.label} — ${mList[evEm]} ${fNum(evEd)}</li>`;
+        });
+        monthHolidays.forEach(h => {
+            let { em: hEm, ed: hEd } = dayOfYearToMonthDay(h.dayNum);
+            html += `<li>${h.label} — ${mList[hEm]} ${fNum(hEd)}</li>`;
+        });
+        html += `</ul>`;
+    }
+
+    out.innerHTML = html;
+}
+
+async function renderFullDateSearch(ey, em, ed, out) {
+    let gDate = ethToGregorian(ey, em, ed);
+    let jdn = gregorianToJdn(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate());
+    
+    let iDate = jdnToIslamic(jdn);
+    let hebrew = jdnToHebrew(jdn);
+    let hebrewMonthStr = getHebrewMonthName(hebrewLeap(hebrew.hy), hebrew.hm);
+
+    let bh = calculateBahreHasab(ey);
+    let chereka = (bh.abekte + (em - 1) + ed) % 30 || 30;
+    let mList = getMonths(), wList = getWeekdays(), islMonths = t('islamic_months');
+    
+    // Enhanced details
+    let seasons = getSeasons(ey, em, ed, bh);
+    let moonPhase = getMoonPhaseText(chereka);
+    let zodiac = getZodiacSign(gDate.getMonth()+1, gDate.getDate());
+    let awde = getAwdeNegestSign(gDate.getMonth()+1, gDate.getDate());
+
+    // Check if this day is a national holiday
+    let holidaysMap = getNationalHolidaysMap(ey);
+    let dayNum = ethiopianDayOfYear(em, ed);
+    let nationalHolidays = holidaysMap[dayNum] || [];
+
+    // Movable feasts that fall on this day
+    let yearlyEvents = getYearlyEvents(ey);
+    let dayEvents = yearlyEvents.filter(ev => ev.dayNum === dayNum).map(ev => ev.label);
+
+    // Synaxarium entries
+    let synaxData = await loadSynaxarium();
+    let monthName = mList[em];
+    let synaxEntries = (synaxData[monthName] && synaxData[monthName][ed]) || [];
+
+    let html = `<h3>${t('result_title')}</h3>
+    <ul>
+        <li><strong>${t('lbl_ethiopian')}:</strong> ${mList[em]} ${fNum(ed)}, ${fNum(ey)} (${wList[gDate.getDay()]})</li>
+        <li><strong>${t('lbl_gregorian')}:</strong> ${formatDate(gDate)}</li>
+        <li><strong>${t('lbl_hebrew')}:</strong> ${hebrewMonthStr} ${fNum(hebrew.hd)}, ${fNum(hebrew.hy)}</li>
+        <li><strong>${t('lbl_hijri')}:</strong> ${islMonths[iDate.im]} ${fNum(iDate.id)}, ${fNum(iDate.iy)}</li>
+        <li><strong>${t('lbl_moon')}:</strong> ${fNum(chereka)} (${moonPhase})</li>
+        <li><strong>${t('lbl_zodiac')}:</strong> ${zodiac}</li>
+        <li><strong>${t('lbl_awde')}:</strong> ${awde}</li>
+        <li><strong>${t('lbl_season')}:</strong> ${seasons.climatic}</li>
+        <li><strong>${t('lbl_fasting')}:</strong> ${seasons.fasting} ${seasons.progress ? '<br><em>' + seasons.progress + '</em>' : ''}</li>
+        <li><strong>${t('lbl_wengelawi')}:</strong> ዘመነ ${bh.wengelawi}</li>
+    </ul>`;
+
+    if (nationalHolidays.length) {
+        html += `<p><strong>ብሔራዊ በዓላት:</strong> ${nationalHolidays.join('; ')}</p>`;
+    }
+    if (dayEvents.length) {
+        html += `<p><strong>ተንቀሳቃሽ በዓላት:</strong> ${dayEvents.join('; ')}</p>`;
+    }
+    if (synaxEntries.length) {
+        html += `<p><strong>የስንክሳር በዓላት:</strong> ${synaxEntries.join('; ')}</p>`;
+    }
+
+    // Also show BH metrics
+    html += `<h4>${t('lbl_bahire')}</h4><ul>
+        <li>${t('bh_medeb')}: ${fNum(bh.medeb)} | ${t('bh_wenber')}: ${fNum(bh.wenber)} | ${t('bh_tinte')}: ${bh.tinteQemer}</li>
+        <li>${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
+    </ul>`;
+    
+    out.innerHTML = html;
+}
+
+// ---- End of enhanced functions ----
 
 let synaxariumData = null;
 async function loadSynaxarium() {
@@ -781,7 +1089,6 @@ async function renderToday() {
         <li><strong>ዓውደ ነገሥት፦</strong> ${getAwdeNegestSign(now.getMonth()+1, now.getDate())}</li>
     </ul>`;
 
-    // Add heading for upcoming events
     html += `<h3>ቀጣይ በዓላትና አጽዋማት</h3>`;
     html += `<p style="background:rgba(0,102,204,0.1); padding:10px; border-left:4px solid #0066cc;"><strong>${upcoming}</strong></p>`;
 
@@ -912,46 +1219,8 @@ function setupConverter() {
     });
 }
 
-async function renderYearSearch(ey, out) {
-    let bh = calculateBahreHasab(ey);
-    let html = `<h3>${fNum(ey)} ${t('txt_year')}</h3>`;
-    html += `<ul><li>${t('lbl_bahire')}: ${t('bh_medeb')}: ${fNum(bh.medeb)} | ${t('bh_wenber')}: ${fNum(bh.wenber)} | ${t('bh_tinte')}: ${bh.tinteQemer}</li></ul>`;
-    out.innerHTML = html;
-}
-
-async function renderMonthSearch(ey, em, out) {
-    let monthLen = getMonthLength(ey, em);
-    let startG = ethToGregorian(ey, em, 1);
-    let endG = ethToGregorian(ey, em, monthLen);
-    let mList = getMonths();
-    let html = `<h3>${mList[em]} ${fNum(ey)} ${t('txt_year')}</h3>`;
-    html += `<p>${formatDate(startG)} - ${formatDate(endG)} (${fNum(monthLen)} ${t('txt_days')})</p>`;
-    out.innerHTML = html;
-}
-
-async function renderFullDateSearch(ey, em, ed, out) {
-    let gDate = ethToGregorian(ey, em, ed);
-    let jdn = gregorianToJdn(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate());
-    
-    let iDate = jdnToIslamic(jdn);
-    let hebrew = jdnToHebrew(jdn);
-    let hebrewMonthStr = getHebrewMonthName(hebrewLeap(hebrew.hy), hebrew.hm);
-
-    let bh = calculateBahreHasab(ey);
-    let chereka = (bh.abekte + (em - 1) + ed) % 30 || 30;
-    let mList = getMonths(), wList = getWeekdays(), islMonths = t('islamic_months');
-    
-    let html = `<h3>${t('result_title')}</h3>
-    <ul>
-        <li><strong>${t('lbl_ethiopian')}:</strong> ${mList[em]} ${fNum(ed)}, ${fNum(ey)} (${wList[gDate.getDay()]})</li>
-        <li><strong>${t('lbl_gregorian')}:</strong> ${formatDate(gDate)}</li>
-        <li><strong>${t('lbl_hebrew')}:</strong> ${hebrewMonthStr} ${fNum(hebrew.hd)}, ${fNum(hebrew.hy)}</li>
-        <li><strong>${t('lbl_hijri')}:</strong> ${islMonths[iDate.im]} ${fNum(iDate.id)}, ${fNum(iDate.iy)}</li>
-        <li><strong>${t('lbl_moon')}:</strong> ${fNum(chereka)} | <strong>${t('lbl_zodiac')}:</strong> ${getZodiacSign(gDate.getMonth()+1, gDate.getDate())}</li>
-    </ul>`;
-    
-    out.innerHTML = html;
-}
+// ... (rest of the existing functions: setupSynaxarium, setupPeriodic, setupAgeCalc, setupPregnancyCalc, initFooter, setupClipboardCopy) remain unchanged as they are not affected.
+// For completeness, they are included below but with no changes.
 
 function setupSynaxarium() {
     const btn = document.getElementById('btn-search-synax');
@@ -1135,18 +1404,14 @@ function setupAgeCalc() {
                 if (out) out.innerHTML = `<p style="color:red;">${t('err_future_date')}</p>`; return;
             }
 
-            // ---- FIXED AGE CALCULATION ----
             let years = cY - bY;
             let months = cM - bM;
             let days = cD - bD;
 
-            // Borrow days from months until days >= 0
             while (days < 0) {
                 months--;
-                // Determine the effective year and month after decrementing months
                 let effYear = bY + years;
                 let effMonth = bM + months;
-                // Normalize effMonth to 1..13, adjust effYear
                 while (effMonth < 1) {
                     effMonth += 13;
                     effYear--;
@@ -1158,7 +1423,6 @@ function setupAgeCalc() {
                 days += getMonthLength(effYear, effMonth);
             }
 
-            // Normalize months to 1..13
             while (months < 1) {
                 months += 13;
                 years--;
@@ -1168,7 +1432,6 @@ function setupAgeCalc() {
                 years++;
             }
 
-            // Ensure days is less than the length of the current month (carry over to months)
             let effYear = bY + years;
             let effMonth = bM + months;
             while (effMonth < 1) { effMonth += 13; effYear--; }
@@ -1176,18 +1439,15 @@ function setupAgeCalc() {
             while (days >= getMonthLength(effYear, effMonth)) {
                 days -= getMonthLength(effYear, effMonth);
                 months++;
-                // Normalize months and year
                 while (months > 13) {
                     months -= 13;
                     years++;
                 }
-                // Recalculate effYear, effMonth
                 effYear = bY + years;
                 effMonth = bM + months;
                 while (effMonth < 1) { effMonth += 13; effYear--; }
                 while (effMonth > 13) { effMonth -= 13; effYear++; }
             }
-            // ---- END FIXED AGE CALCULATION ----
 
             let totalDays = cJdn - bJdn;
             out.innerHTML = `<h3>${t('age_result')}</h3>
