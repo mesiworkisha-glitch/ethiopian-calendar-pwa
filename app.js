@@ -2,7 +2,7 @@ const i18n = {
     am: {
         app_title: "የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ",
         intro_desc: "ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የስንክሳር ፍለጋ፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ።",
-        nav_today: "ዛሬ", nav_holidays: "ብሔራዊ በዓላት", nav_hijri: "ሂጅሪ አቆጣጠር", nav_converter: "ቀን መቀየሪያ", nav_synaxarium: "ስንክሳር ፍለጋ", nav_period: "የወር አበባ ዑደት", nav_age: "ዕድሜ ማስያ", nav_pregnancy: "የእርግዝና ጊዜ መከታተያ",
+        nav_today: "ዛሬ", nav_holidays: "ብሔራዊ በዓላት", nav_hijri: "ሂጅሪ አቆጣጠር", nav_converter: "ቀን መቀየሪያ", nav_synaxarium: "ስንክሳር ፍለጋ", nav_period: "የወር አበባ ዑደት", nav_age: "ዕድሜ ማስያ", nav_pregnancy: "የእርግዝና እና የወሊድ ጊዜ መገመቻ",
         today_title: "የዕለቱ ሙሉ መረጃ", btn_copy_date: "ቀኑን ኮፒ አድርግ",
         holidays_title: "የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት",
         hijri_title: "የእስልምና (ሂጅሪ) ቀን አቆጣጠር", btn_copy_hijri: "ሂጅሪ ቀን ኮፒ አድርግ",
