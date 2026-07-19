@@ -1,8 +1,7 @@
-// --- i18n Translation Dictionary ---
 const i18n = {
     am: {
         app_title: "የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ",
-        intro_desc: "ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የስንክሳር ፍለጋ፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ።",
+        intro_desc: "ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የአጽዋም ፍለጋ፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ።",
         nav_today: "ዛሬ", nav_holidays: "ብሔራዊ በዓላት", nav_hijri: "ሂጅሪ አቆጣጠር", nav_converter: "ቀን መቀየሪያ", nav_synaxarium: "ስንክሳር ፍለጋ", nav_period: "የወር አበባ ዑደት", nav_age: "ዕድሜ ማስያ",
         today_title: "የዕለቱ ሙሉ መረጃ", btn_copy_date: "ቀኑን ኮፒ አድርግ",
         holidays_title: "የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት",
@@ -18,21 +17,13 @@ const i18n = {
         result_title: "ውጤት", lbl_ethiopian: "ኢትዮጵያዊ", lbl_gregorian: "ግሪጎሪያን", lbl_hebrew: "ዕብራይስጥ", lbl_hijri: "ሂጅሪ", txt_days: "ቀናት", lbl_tabular_hijri: "(ሠንጠረዥ ሂጅሪ)",
         cycle_details: "የዑደት ዝርዝር", cycle_day_lbl: "የዑደት ቀን", next_period_est: "የሚቀጥለው ግምታዊ ቀን", days_left: "ቀናት ቀርተዋል",
         age_result: "ውጤት", age_years: "ዓመታት", age_months: "ወራት", total_life_days: "ጠቅላላ የኑሮ ቀናት",
-        
-        // Dynamic Arrays & Values
         months: ["", "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜ"],
         weekdays: ["እሁድ", "ሰኞ", "ማክሰኞ", "ረቡዕ", "ሐሙስ", "ዓርብ", "ቅዳሜ"],
         islamic_months: ["", "ሙሐረም", "ሰፈር", "ረቢዑል አወል", "ረቢዑል ሳኒ", "ጀማደል አወል", "ጀማደል ሳኒ", "ረጀብ", "ሻእባን", "ረመዳን", "ሸዋል", "ዙልቂዳህ", "ዙልሒጃህ"],
-        
-        // Seasons & Moon
         season_autumn: "መፀው (Autumn)", season_summer: "በጋ (Summer)", season_spring: "በልግ (Spring)", season_winter: "ክረምት (Winter)",
         liturgical_kremt: "ዘመነ ክረምት",
         moon_new: "🌑 አዲስ ጨረቃ (New Moon)", moon_wax_cresc: "🌒 እየሞላ የሚሄድ (Waxing Crescent)", moon_first_q: "🌓 ግማሽ ጨረቃ (First Quarter)", moon_wax_gibb: "🌔 (Waxing Gibbous)", moon_full: "🌕 ሙሉ ጨረቃ (Full Moon)", moon_wan_gibb: "🌖 (Waning Gibbous)", moon_last_q: "🌗 የመጨረሻ ሩብ (Last Quarter)", moon_wan_cresc: "🌘 እየጎደለ የሚሄድ (Waning Crescent)",
-        
-        // Fasting
         fast_none: "የአጽዋም ዘመን አይደለም", fast_abiy: "ዐቢይ ጾም", fast_nebiyat: "ጾመ ነቢያት", fast_filseta: "ጾመ ፍልሰታ", fast_hawaryat: "ጾመ ሐዋርያት", fast_nenewe: "ጾመ ነነዌ", fast_gehad: "ጾመ ገሀድ", fast_hamsa: "ኀምሳ ዕለት", fast_dihnet: "ጾመ ድኅነት",
-        
-        // Feasts & Holidays
         fest_debre_zeyit: "ደብረ ዘይት", fest_hosanna: "ሆሳዕና", fest_siklet: "ስቅለት", fest_tensae: "ትንሣኤ", fest_rikbe_kahnat: "ርክበ ካህናት", fest_erget: "ዕርገት", fest_parakletos: "ጰራቅሊጦስ",
         hol_enkutatash: "እንቁጣጣሽ", hol_meskel: "መስቀል", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ ለማርያም", hol_genna: "ገና (ልደት)", hol_adwa: "የዓድዋ ድል", hol_patriots: "የአርበኞች ድል", hol_labor: "የሠራተኞች ቀን",
         hol_ashura: "ዓሹራ (Ashura)", hol_mawlid: "መውሊድ (Mawlid)", hol_isra: "እስራ ወሚዕራጅ (Isra and Mi'raj)", hol_ramadan: "ረመዳን (Ramadan)", hol_laylat: "Laylat al‑Qadr", hol_eid_fitr: "ዒድ አልፊጥር (Eid al-Fitr)", hol_arafah: "የዐረፋ ቀን (Day of Arafah)", hol_eid_adha: "ዒድ አልአድሐ (Eid al-Adha)", hol_hajj: "Hajj"
@@ -55,17 +46,13 @@ const i18n = {
         result_title: "Result", lbl_ethiopian: "Ethiopian", lbl_gregorian: "Gregorian", lbl_hebrew: "Hebrew", lbl_hijri: "Hijri", txt_days: "Days", lbl_tabular_hijri: "(Tabular Hijri)",
         cycle_details: "Cycle Details", cycle_day_lbl: "Cycle Day", next_period_est: "Next Period (Est.)", days_left: "Days Left",
         age_result: "Result", age_years: "Yrs", age_months: "Mos", total_life_days: "Total Life Days",
-        
         months: ["", "Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", "Miazia", "Ginbot", "Sene", "Hamle", "Nehase", "Pagume"],
         weekdays: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         islamic_months: ["", "Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani", "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"],
-        
         season_autumn: "Autumn (Meher)", season_summer: "Summer (Bega)", season_spring: "Spring (Belg)", season_winter: "Winter (Kiremt)",
         liturgical_kremt: "Zemene Kiremt",
         moon_new: "🌑 New Moon", moon_wax_cresc: "🌒 Waxing Crescent", moon_first_q: "🌓 First Quarter", moon_wax_gibb: "🌔 Waxing Gibbous", moon_full: "🌕 Full Moon", moon_wan_gibb: "🌖 Waning Gibbous", moon_last_q: "🌗 Last Quarter", moon_wan_cresc: "🌘 Waning Crescent",
-        
         fast_none: "Not a Fasting Period", fast_abiy: "Great Lent (Abiy Tsom)", fast_nebiyat: "Fast of the Prophets", fast_filseta: "Fast of Assumption (Filseta)", fast_hawaryat: "Fast of the Apostles", fast_nenewe: "Fast of Nineveh", fast_gehad: "Fast of Gehad", fast_hamsa: "Pentecost (Hamsa Elet)", fast_dihnet: "Fast of Salvation (Wed/Fri)",
-        
         fest_debre_zeyit: "Mount of Olives (Debre Zeyit)", fest_hosanna: "Palm Sunday (Hosanna)", fest_siklet: "Good Friday (Siklet)", fest_tensae: "Easter (Tensae)", fest_rikbe_kahnat: "Meeting of Priests", fest_erget: "Ascension (Erget)", fest_parakletos: "Paraclete",
         hol_enkutatash: "New Year (Enkutatash)", hol_meskel: "Finding of the True Cross (Meskel)", hol_timkat: "Epiphany (Timkat)", hol_filseta_maryam: "Assumption of Mary", hol_genna: "Christmas (Genna)", hol_adwa: "Victory of Adwa", hol_patriots: "Patriots' Victory Day", hol_labor: "Labor Day",
         hol_ashura: "Ashura", hol_mawlid: "Mawlid", hol_isra: "Isra and Mi'raj", hol_ramadan: "Ramadan", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Eid al-Fitr", hol_arafah: "Day of Arafah", hol_eid_adha: "Eid al-Adha", hol_hajj: "Hajj"
@@ -88,17 +75,13 @@ const i18n = {
         result_title: "Bu'aa", lbl_ethiopian: "Itoophiyaa", lbl_gregorian: "Gregorian", lbl_hebrew: "Hebrew", lbl_hijri: "Hijiraa", txt_days: "Guyyoota", lbl_tabular_hijri: "(Hijiraa Tarreeffamaa)",
         cycle_details: "Ibsa Marsaa", cycle_day_lbl: "Guyyaa Marsaa", next_period_est: "Laguu Itti Aanu (Tilmaama)", days_left: "Guyyoota Hafan",
         age_result: "Bu'aa", age_years: "Waggoota", age_months: "Ji'oota", total_life_days: "Guyyoota Jireenyaa Waliigalaa",
-        
         months: ["", "Fulbaana", "Onkololeessa", "Sadaasa", "Muddee", "Amajjii", "Guraandhala", "Bitooteessa", "Caamsaa", "Waxabajjii", "Adooleessa", "Hagayya", "Qaammee"],
         weekdays: ["Dilbata", "Wiixata", "Kibxata", "Roobii", "Kamisa", "Jimaata", "Sanbata"],
         islamic_months: ["", "Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani", "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"],
-        
         season_autumn: "Arfaasaa (Autumn)", season_summer: "Bona (Summer)", season_spring: "Birraa (Spring)", season_winter: "Ganna (Winter)",
         liturgical_kremt: "Zemene Kiremt",
         moon_new: "🌑 Ji'a Haaraa", moon_wax_cresc: "🌒 Ji'a Guddataa", moon_first_q: "🌓 Kurmaana Duraa", moon_wax_gibb: "🌔 Ji'a Walakkaa", moon_full: "🌕 Ji'a Guutuu", moon_wan_gibb: "🌖 Ji'a Hir'ataa", moon_last_q: "🌗 Kurmaana Dhumaa", moon_wan_cresc: "🌘 Ji'a Dhumuuf",
-        
         fast_none: "Yeroo Soomaa Miti", fast_abiy: "Sooma Guddaa", fast_nebiyat: "Sooma Raajotaa", fast_filseta: "Sooma Filsetaa", fast_hawaryat: "Sooma Ergamootaa", fast_nenewe: "Sooma Nanawaa", fast_gehad: "Sooma Gehaad", fast_hamsa: "Hamsa Elet", fast_dihnet: "Sooma Fayyinaa",
-        
         fest_debre_zeyit: "Debre Zeyit", fest_hosanna: "Hosanna", fest_siklet: "Jimaata Fannoo", fest_tensae: "Du'aa Ka'uu (Tensae)", fest_rikbe_kahnat: "Rikbe Kahnat", fest_erget: "Erget", fest_parakletos: "Parakletos",
         hol_enkutatash: "Ayyaana Haaraa (Enkutatash)", hol_meskel: "Masqala", hol_timkat: "Cuuphaa", hol_filseta_maryam: "Filsetaa", hol_genna: "Ayyaana Dhalootaa (Genna)", hol_adwa: "Injiifannoo Adwaa", hol_patriots: "Guyyaa Arbegnootaa", hol_labor: "Guyyaa Hojjettootaa",
         hol_ashura: "Aashuraa", hol_mawlid: "Mawliid", hol_isra: "Isra fi Mi'raaj", hol_ramadan: "Ramadaana", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Iid Al-Faxir", hol_arafah: "Arafa", hol_eid_adha: "Iid Al-Adhaa", hol_hajj: "Hajjii"
@@ -121,17 +104,13 @@ const i18n = {
         result_title: "ውጽኢት", lbl_ethiopian: "ናይ ኢትዮጵያ", lbl_gregorian: "ግሪጎሪያን", lbl_hebrew: "እብራይስጢ", lbl_hijri: "ሂጅራ", txt_days: "መዓልታት", lbl_tabular_hijri: "(ሰሌዳዊ ሂጅራ)",
         cycle_details: "ዝርዝር ዑደት", cycle_day_lbl: "መዓልቲ ዑደት", next_period_est: "ዝቕጽል ግምታዊ ዕለት", days_left: "መዓልታት ተሪፉ",
         age_result: "ውጽኢት", age_years: "ዓመታት", age_months: "ኣዋርሕ", total_life_days: "ጠቕላላ መዓልታት ህይወት",
-        
         months: ["", "መስከረም", "ጥቅምቲ", "ሕዳር", "ታሕሳስ", "ጥሪ", "ለካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰነ", "ሓምለ", "ነሓሰ", "ጳጉሜን"],
         weekdays: ["ሰንበት", "ሰኑይ", "ሠሉስ", "ረቡዕ", "ኃሙስ", "ዓርቢ", "ቀዳም"],
         islamic_months: ["", "ሙሓረም", "ሰፈር", "ረቢዑል ኣወል", "ረቢዑል ሳኒ", "ጀማደል ኣወል", "ጀማደል ሳኒ", "ረጀብ", "ሻእባን", "ረመዳን", "ሸዋል", "ዙልቂዳህ", "ዙልሒጃህ"],
-        
         season_autumn: "ቀውዒ (Autumn)", season_summer: "ሓጋይ (Summer)", season_spring: "ጽድያ (Spring)", season_winter: "ክረምቲ (Winter)",
         liturgical_kremt: "ዘመነ ክረምቲ",
         moon_new: "🌑 ሓዳስ ወርሒ", moon_wax_cresc: "🌒 እናመልአት እትኸይድ", moon_first_q: "🌓 ፈረቓ ወርሒ", moon_wax_gibb: "🌔 እናመልአት እትኸይድ", moon_full: "🌕 ምልእቲ ወርሒ", moon_wan_gibb: "🌖 እናጎደለት እትኸይድ", moon_last_q: "🌗 ናይ መወዳእታ ርብዒ", moon_wan_cresc: "🌘 እናጎደለት እትኸይድ",
-        
         fast_none: "እዋን ጾም ኣይኮነን", fast_abiy: "ዓቢ ጾም", fast_nebiyat: "ጾመ ነቢያት", fast_filseta: "ጾመ ፍልሰታ", fast_hawaryat: "ጾመ ሓዋርያት", fast_nenewe: "ጾመ ነነዌ", fast_gehad: "ጾመ ገሃድ", fast_hamsa: "ሓምሳ ዕለት", fast_dihnet: "ጾመ ድሕነት",
-        
         fest_debre_zeyit: "ደብረ ዘይት", fest_hosanna: "ሆሳእና", fest_siklet: "ስቕለት", fest_tensae: "ትንሳኤ", fest_rikbe_kahnat: "ርክበ ካህናት", fest_erget: "ዕርገት", fest_parakletos: "ጰራቅሊጦስ",
         hol_enkutatash: "ሓዱሽ ዓመት", hol_meskel: "መስቀል", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ", hol_genna: "ልደት", hol_adwa: "ዓወት ዓድዋ", hol_patriots: "ዓወት ሓርበኛታት", hol_labor: "መዓልቲ ሰራሕተኛታት",
         hol_ashura: "ዓሹራ", hol_mawlid: "መውሊድ", hol_isra: "እስራ ወሚዕራጅ", hol_ramadan: "ረመዳን", hol_laylat: "ለይለተል ቀድር", hol_eid_fitr: "ዒድ ኣልፈጥር", hol_arafah: "መዓልቲ ዓረፋ", hol_eid_adha: "ዒድ ኣልኣድሓ", hol_hajj: "ሓጅ"
@@ -140,7 +119,6 @@ const i18n = {
 
 let currentLang = localStorage.getItem('lang') || 'am';
 
-// --- Dynamic Translation Core ---
 function t(key) {
     if (i18n[currentLang] && i18n[currentLang][key]) return i18n[currentLang][key];
     if (i18n['am'] && i18n['am'][key]) return i18n['am'][key];
@@ -161,14 +139,12 @@ function updateStaticTranslations() {
     document.documentElement.lang = currentLang;
 }
 
-// Data Array Getters Refactored to use i18n Dictionary
 function getMonths() { return t('months'); }
 function getWeekdays() { return t('weekdays'); }
 
 const ENGLISH_MONTHS = ["", "Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", "Miazia", "Ginbot", "Sene", "Hamle", "Nehase", "Pagume"];
 const ISLAMIC_EPOCH = 1948440;
 
-// --- GE'EZ NUMERAL CONVERSION SYSTEM ---
 let useGeezNumerals = localStorage.getItem('use_geez_numerals') === 'true';
 
 function convertToGeez(num) {
@@ -234,10 +210,9 @@ function matchMonthName(text) {
     let normAm = normalizeAmharic(raw);
     let normEn = raw.toLowerCase();
     let matches = new Set();
-    const MONTHS_REF = getMonths();
 
     for (let idx = 1; idx <= 13; idx++) {
-        let amCandidates = [MONTHS_REF[idx]].concat(MONTH_ALIASES_AM[idx] || []);
+        let amCandidates = [getMonths()[idx]].concat(MONTH_ALIASES_AM[idx] || []);
         for (let candidate of amCandidates) {
             let normC = normalizeAmharic(candidate);
             if (normC === normAm || normC.startsWith(normAm) || normAm.startsWith(normC)) {
@@ -254,6 +229,7 @@ function matchMonthName(text) {
             }
         }
     }
+
     if (matches.size === 1) return [...matches][0];
     return null;
 }
@@ -320,8 +296,12 @@ function hebrewDelay2(year) {
     if ((delay2 - delay1) === 382) return 1;
     return 0;
 }
-function hebrewFirstOfYear(year) { return HEBREW_EPOCH + hebrewDelay1(year) + hebrewDelay2(year); }
-function hebrewYearLength(year) { return hebrewFirstOfYear(year + 1) - hebrewFirstOfYear(year); }
+function hebrewFirstOfYear(year) {
+    return HEBREW_EPOCH + hebrewDelay1(year) + hebrewDelay2(year);
+}
+function hebrewYearLength(year) {
+    return hebrewFirstOfYear(year + 1) - hebrewFirstOfYear(year);
+}
 function hebrewMonthLength(year, month) {
     let isLeap = hebrewLeap(year);
     let len = hebrewYearLength(year);
@@ -438,7 +418,7 @@ function calculateBahreHasab(ey) {
     let abekte = mod(wenber * 11, 30) || 30;
     let metqe = mod(wenber * 19, 30) || 30;
     let tinteQemerNum = mod(aa + Math.floor(aa / 4), 7);
-    let tinteQemer = getWeekdays()[tinteQemerNum] || t('weekdays')[1]; // Fallback to Monday equivalent
+    let tinteQemer = getWeekdays()[tinteQemerNum] || getWeekdays()[1];
     
     let mMonthIdx = metqe > 14 ? 0 : 1;
     let mWeekday = mod(tinteQemerNum + (mMonthIdx * 2) + (metqe - 1), 7);
@@ -448,7 +428,6 @@ function calculateBahreHasab(ey) {
     let feasts = {};
     let base = metqe > 14 ? 5 : 6;
     
-    // Using English/internal reference keys here for mapping
     [["nenewe",0], ["abiy",14], ["debre_zeyit",41], ["hosanna",62], ["siklet",67], ["tensae",69], ["rikbe_kahnat",93], ["erget",108], ["parakletos",118], ["hawaryat",119], ["dihnet",121]].forEach(([name, offset]) => {
         let tot = mebajaHamer + offset, mIdx = base, d = tot;
         while(d > 30) { d -= 30; mIdx++; }
@@ -505,13 +484,10 @@ function getUpcomingEvents(ey, em, ed, bh) {
     let events = [];
     let m = getMonths();
     
-    // Fixed Holidays referencing i18n
     [[1, "hol_enkutatash"], [17, "hol_meskel"], [75, "fast_nebiyat"], [130, "fast_gehad"], [131, "hol_timkat"], [331, "fast_filseta"], [345, "hol_filseta_maryam"]].forEach(e => events.push(e));
     events.push([mod(ey, 4) === 0 ? 118 : 119, "hol_genna"]);
 
-    // Dynamic Feasts
     for (const [internalKey, dateObj] of Object.entries(bh.feasts)) {
-        // Map internal keys back to i18n keys depending on if it's considered a fast or feast usually
         let i18nKey = ["nenewe", "abiy", "hawaryat", "dihnet"].includes(internalKey) ? `fast_${internalKey}` : `fest_${internalKey}`;
         events.push([(dateObj.m - 1) * 30 + dateObj.d, i18nKey]);
     }
@@ -701,8 +677,10 @@ function initClock() {
         let ethHr = (hr - 6) % 12; if (ethHr <= 0) ethHr += 12;
         let dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0, 0);
         if (now < dayStart) dayStart.setDate(dayStart.getDate() - 1);
-        
-        timeBar.innerText = `${t('txt_time')}፦ ${fNum(ethHr)}:${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
+        let elapsed = Math.floor((now - dayStart) / 1000);
+        let kekros = Math.floor(elapsed / 1440);
+        let kaelit = Math.floor((elapsed % 1440) / 24);
+        timeBar.innerText = `${t('txt_time')}፦ ${fNum(ethHr)}:${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')} | ኬክሮስ፦ ${fNum(kekros)} ከ${fNum(kaelit)} ካልዒት`;
     }, 1000);
 }
 
@@ -741,7 +719,6 @@ async function renderToday() {
     <p style="background:rgba(0,102,204,0.1); padding:10px; border-left:4px solid #0066cc;"><strong>${upcoming}</strong></p>`;
 
     let data = await loadSynaxarium();
-    // Synaxarium source data mapping relies on specific amharic strings in standard form.
     let amharicMonths = ["", "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜ"];
     let entries = (data[amharicMonths[eth.em]] && data[amharicMonths[eth.em]][eth.ed]) || [];
     
