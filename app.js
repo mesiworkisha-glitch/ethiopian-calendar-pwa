@@ -483,13 +483,37 @@ function calculateBahreHasab(ey) {
     return { aa, wengelawi: {1:'ማቴዎስ', 2:'ማርቆስ', 3:'ሉቃስ', 0:'ዮሐንስ'}[mod(aa, 4)], medeb, wenber, metqe, abekte, tinteQemer, mebajaHamer, mebajaHamerTewsak, feasts };
 }
 
+// ---- New liturgical season function ----
+function getLiturgicalSeason(ey, em, ed, bh) {
+    let current_day = ethiopianDayOfYear(em, ed);
+    let nenewe_day = (bh.feasts.nenewe.m - 1) * 30 + bh.feasts.nenewe.d;
+    let abiy_day = (bh.feasts.abiy.m - 1) * 30 + bh.feasts.abiy.d;
+    let hosanna_day = (bh.feasts.hosanna.m - 1) * 30 + bh.feasts.hosanna.d;
+    let tensae_day = (bh.feasts.tensae.m - 1) * 30 + bh.feasts.tensae.d;
+    let pentecost_day = (bh.feasts.parakletos.m - 1) * 30 + bh.feasts.parakletos.d;
+
+    if (current_day >= 1 && current_day <= 16) return "ዘመነ ዮሐንስ";
+    else if (current_day >= 17 && current_day <= 25) return "ዘመነ መስቀል";
+    else if (current_day >= 26 && current_day <= 65) return "ዘመነ ጽጌ";
+    else if (current_day >= 66 && current_day <= 74) return "ዘመነ አስተምህሮ";
+    else if (current_day >= 75 && current_day <= 118) return "ዘመነ ስብከት (የነቢያት ጾም)";
+    else if (current_day >= 119 && current_day <= 130) return "ዘመነ አሥተርእዮ (ልደት)";
+    else if (current_day >= 131 && current_day < nenewe_day) return "ዘመነ ጥምቀት";
+    else if (current_day >= nenewe_day && current_day < abiy_day) return "ዘመነ ነነዌ";
+    else if (current_day >= abiy_day && current_day < hosanna_day) return "ዘመነ ዐቢይ ጾም";
+    else if (current_day >= hosanna_day && current_day < tensae_day) return "ሰሙነ ሕማማት";
+    else if (current_day >= tensae_day && current_day <= pentecost_day) return "ዘመነ ትንሣኤ (ኀምሳ ዕለት)";
+    else if (current_day > pentecost_day && current_day <= 305) return "ዘመነ ሐዋርያት / ጰራቅሊጦስ";
+    else if (current_day >= 306 && current_day <= 345) return "ዘመነ ክረምት (ፍልሰታ)";
+    else return "ዘመነ ክረምት";
+}
+
 function getSeasons(ey, em, ed, bh) {
     let dayNum = (em - 1) * 30 + ed;
     let climatic = dayNum >= 26 && dayNum <= 115 ? t('season_autumn') : dayNum >= 116 && dayNum <= 205 ? t('season_summer') : dayNum >= 206 && dayNum <= 295 ? t('season_spring') : t('season_winter');
     
     let fNenewe = (bh.feasts.nenewe.m - 1) * 30 + bh.feasts.nenewe.d;
     let fAbiy = (bh.feasts.abiy.m - 1) * 30 + bh.feasts.abiy.d;
-    let fHosanna = (bh.feasts.hosanna.m - 1) * 30 + bh.feasts.hosanna.d;
     let fTensae = (bh.feasts.tensae.m - 1) * 30 + bh.feasts.tensae.d;
     let fHawariat = (bh.feasts.hawaryat.m - 1) * 30 + bh.feasts.hawaryat.d;
     let fPentecost = (bh.feasts.parakletos.m - 1) * 30 + bh.feasts.parakletos.d;
@@ -521,7 +545,8 @@ function getSeasons(ey, em, ed, bh) {
             break;
         }
     }
-    return { climatic, liturgical: t('liturgical_kremt'), fasting, progress };
+    let liturgical = getLiturgicalSeason(ey, em, ed, bh);
+    return { climatic, liturgical, fasting, progress };
 }
 
 function getUpcomingEvents(ey, em, ed, bh) {
@@ -583,7 +608,7 @@ function getNamedEventsForYear(ey) {
     ];
     fixed.forEach(e => events.push(e));
     let gennaDay = (ey % 4 === 0) ? 28 : 29;
-    events.push([90 + gennaDay, "hol_genna"]); // 90 = Meskerem 1 + 89 days? Actually we need day number from start of year. Genna is Tahsas 28/29 => day number: (4-1)*30 + gennaDay = 90 + gennaDay
+    events.push([90 + gennaDay, "hol_genna"]); // Genna is on Tahsas 28/29
 
     // Movable feasts
     for (const [internalKey, dateObj] of Object.entries(bh.feasts)) {
@@ -664,23 +689,15 @@ function getYearlyEvents(ey) {
 }
 
 function getDayDetails(ey, em, ed) {
-    // Returns a rich object for a single day
     let dayNum = ethiopianDayOfYear(em, ed);
     let gDate = ethToGregorian(ey, em, ed);
-    let weekday = getWeekdays()[gDate.getDay()]; // 0-6
+    let weekday = getWeekdays()[gDate.getDay()];
     let bh = calculateBahreHasab(ey);
     let seasons = getSeasons(ey, em, ed, bh);
     let chereka = (bh.abekte + (em - 1) + ed) % 30 || 30;
     let moonPhase = getMoonPhaseText(chereka);
     let zodiac = getZodiacSign(gDate.getMonth()+1, gDate.getDate());
     let awde = getAwdeNegestSign(gDate.getMonth()+1, gDate.getDate());
-    let fasting = seasons.fasting;
-    let liturgical = seasons.liturgical;
-    let climatic = seasons.climatic;
-
-    // Get synaxarium entries
-    let synax = null;
-    // We'll load synaxarium data asynchronously in the view functions.
 
     return {
         ey, em, ed, dayNum,
@@ -691,16 +708,11 @@ function getDayDetails(ey, em, ed) {
         chereka,
         moonPhase,
         zodiac,
-        awde,
-        fasting,
-        liturgical,
-        climatic,
-        // synax will be added later
+        awde
     };
 }
 
 function getMonthDays(ey, em) {
-    // Returns array of day detail objects for all days in the month
     let monthLen = getMonthLength(ey, em);
     let days = [];
     for (let ed = 1; ed <= monthLen; ed++) {
@@ -714,7 +726,9 @@ function getMonthDays(ey, em) {
 async function renderYearSearch(ey, out) {
     let bh = calculateBahreHasab(ey);
     let events = getYearlyEvents(ey);
-    let holidays = getFdreHolidays(ey); // for summary
+    let holidays = getFdreHolidays(ey);
+    let mList = getMonths();
+    let wList = getWeekdays();
 
     let html = `<h3>${fNum(ey)} ${t('txt_year')}</h3>`;
     html += `<h4>${t('lbl_bahire')}</h4><ul>
@@ -726,8 +740,7 @@ async function renderYearSearch(ey, out) {
     html += `<h4>${t('holidays_title')}</h4><ul>`;
     holidays.slice(0, 10).forEach(h => {
         let eth = gregorianToEthiopian(h.g.getFullYear(), h.g.getMonth()+1, h.g.getDate());
-        let mList = getMonths();
-        html += `<li>${h.n} — ${mList[eth.em]} ${fNum(eth.ed)} (${formatDate(h.g)})</li>`;
+        html += `<li>${h.n} — ${wList[h.g.getDay()]}፣ ${mList[eth.em]} ${fNum(eth.ed)} (${formatDate(h.g)})</li>`;
     });
     if (holidays.length > 10) html += `<li>... (${holidays.length - 10} more)</li>`;
     html += `</ul>`;
@@ -738,9 +751,10 @@ async function renderYearSearch(ey, out) {
         let key = ev.label;
         if (!shown.has(key)) {
             shown.add(key);
-            let mList = getMonths();
             let { em, ed } = dayOfYearToMonthDay(ev.dayNum);
-            html += `<li>${ev.label} — ${mList[em]} ${fNum(ed)}</li>`;
+            let gDate = ethToGregorian(ey, em, ed);
+            let weekday = wList[gDate.getDay()];
+            html += `<li>${ev.label} — ${weekday}፣ ${mList[em]} ${fNum(ed)} (${formatDate(gDate)})</li>`;
         }
     });
     html += `</ul>`;
@@ -762,15 +776,20 @@ async function renderMonthSearch(ey, em, out) {
     let yearlyEvents = getYearlyEvents(ey);
     let holidaysMap = getNationalHolidaysMap(ey);
 
+    // Preload synaxarium data once for the month
+    let synaxData = await loadSynaxarium();
+    let monthName = mList[em];
+
     // Build a calendar grid
     html += `<table border="1" style="border-collapse:collapse; width:100%;">`;
-    html += `<tr><th>ቀን</th><th>ዕለት</th><th>የአጽዋም ዘመን</th><th>በዓላት / መታሰቢያ</th></tr>`;
+    html += `<tr><th>ቀን</th><th>ዕለት</th><th>የአጽዋም ዘመን</th><th>የቤተክርስቲያን ዘመን</th><th>በዓላት / መታሰቢያ</th></tr>`;
     for (let ed = 1; ed <= monthLen; ed++) {
         let dayNum = ethiopianDayOfYear(em, ed);
         let gDate = ethToGregorian(ey, em, ed);
         let weekday = wList[gDate.getDay()];
         let bh = calculateBahreHasab(ey);
         let seasons = getSeasons(ey, em, ed, bh);
+        let liturgical = seasons.liturgical;
         let fasting = seasons.fasting;
 
         // Collect events for this day
@@ -781,20 +800,14 @@ async function renderMonthSearch(ey, em, out) {
         if (holidaysMap[dayNum]) {
             dayEvents = dayEvents.concat(holidaysMap[dayNum]);
         }
-
-        // Synaxarium entries (we'll load asynchronously; we'll fetch in the main loop)
-        // We'll fetch synax data once, outside the loop to avoid repeated calls.
-        // Since we are inside an async function, we can use await, but we need to load synaxarium once.
-        // We'll do it at start of function.
-        // Actually better to load synax data once and then use it.
-        // We'll modify to load synax data earlier.
-
-        let synaxEntries = [];
-        // Will be filled after loading synax data
-        // For now we'll push placeholders.
+        // Synaxarium entries
+        let synaxEntries = (synaxData[monthName] && synaxData[monthName][ed]) || [];
+        if (synaxEntries.length) {
+            dayEvents = dayEvents.concat(synaxEntries);
+        }
 
         let eventsHtml = dayEvents.join('; ');
-        html += `<tr><td>${fNum(ed)}</td><td>${weekday}</td><td>${fasting}</td><td>${eventsHtml}</td></tr>`;
+        html += `<tr><td>${fNum(ed)}</td><td>${weekday}</td><td>${fasting}</td><td>${liturgical}</td><td>${eventsHtml}</td></tr>`;
     }
     html += `</table>`;
 
@@ -815,11 +828,15 @@ async function renderMonthSearch(ey, em, out) {
         html += `<h4>በዚህ ወር ያሉ በዓላትና አጽዋማት</h4><ul>`;
         monthEvents.forEach(ev => {
             let { em: evEm, ed: evEd } = dayOfYearToMonthDay(ev.dayNum);
-            html += `<li>${ev.label} — ${mList[evEm]} ${fNum(evEd)}</li>`;
+            let gDate = ethToGregorian(ey, evEm, evEd);
+            let weekday = wList[gDate.getDay()];
+            html += `<li>${ev.label} — ${weekday}፣ ${mList[evEm]} ${fNum(evEd)} (${formatDate(gDate)})</li>`;
         });
         monthHolidays.forEach(h => {
             let { em: hEm, ed: hEd } = dayOfYearToMonthDay(h.dayNum);
-            html += `<li>${h.label} — ${mList[hEm]} ${fNum(hEd)}</li>`;
+            let gDate = ethToGregorian(ey, hEm, hEd);
+            let weekday = wList[gDate.getDay()];
+            html += `<li>${h.label} — ${weekday}፣ ${mList[hEm]} ${fNum(hEd)} (${formatDate(gDate)})</li>`;
         });
         html += `</ul>`;
     }
@@ -868,7 +885,7 @@ async function renderFullDateSearch(ey, em, ed, out) {
         <li><strong>${t('lbl_moon')}:</strong> ${fNum(chereka)} (${moonPhase})</li>
         <li><strong>${t('lbl_zodiac')}:</strong> ${zodiac}</li>
         <li><strong>${t('lbl_awde')}:</strong> ${awde}</li>
-        <li><strong>${t('lbl_season')}:</strong> ${seasons.climatic}</li>
+        <li><strong>${t('lbl_season')}:</strong> ${seasons.climatic} | ${seasons.liturgical}</li>
         <li><strong>${t('lbl_fasting')}:</strong> ${seasons.fasting} ${seasons.progress ? '<br><em>' + seasons.progress + '</em>' : ''}</li>
         <li><strong>${t('lbl_wengelawi')}:</strong> ዘመነ ${bh.wengelawi}</li>
     </ul>`;
@@ -1219,8 +1236,7 @@ function setupConverter() {
     });
 }
 
-// ... (rest of the existing functions: setupSynaxarium, setupPeriodic, setupAgeCalc, setupPregnancyCalc, initFooter, setupClipboardCopy) remain unchanged as they are not affected.
-// For completeness, they are included below but with no changes.
+// ---- The following functions (setupSynaxarium, setupPeriodic, setupAgeCalc, setupPregnancyCalc, initFooter, setupClipboardCopy) are unchanged from the original ----
 
 function setupSynaxarium() {
     const btn = document.getElementById('btn-search-synax');
