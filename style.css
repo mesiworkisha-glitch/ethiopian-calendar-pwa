@@ -5,6 +5,19 @@
     --card-bg: #ffffff;
     --text-color: #333333;
     --border-color: #cccccc;
+    --nav-bg: #e2e8f0;
+    --intro-bg: #eaf2fc;
+    --intro-text: #5a6b85;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --border-color: #383838;
+    --nav-bg: #2d3748;
+    --intro-bg: #1a2635;
+    --intro-text: #a0aec0;
 }
 
 body {
@@ -14,6 +27,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 header {
@@ -21,6 +35,38 @@ header {
     color: white;
     padding: 1rem;
     text-align: center;
+    position: relative;
+}
+
+.settings-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-control-toggle {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0;
+    width: auto;
+}
+
+/* Ensure the language dropdown options appear correctly on light/dark mode */
+select.btn-control-toggle option {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+.btn-control-toggle:hover, .btn-control-toggle:focus-visible {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 #local-time-bar {
@@ -32,9 +78,9 @@ header {
 nav {
     display: flex;
     overflow-x: auto;
-    background: #e2e8f0;
+    background: var(--nav-bg);
     border-bottom: 1px solid var(--border-color);
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 .nav-btn {
@@ -46,7 +92,8 @@ nav {
     cursor: pointer;
     font-weight: bold;
     font-size: 1rem;
-    color: #4a5568;
+    color: var(--text-color);
+    opacity: 0.8;
     white-space: nowrap;
 }
 
@@ -54,6 +101,7 @@ nav {
     background: var(--card-bg);
     color: var(--primary-color);
     border-top: 4px solid var(--primary-color);
+    opacity: 1;
 }
 
 main {
@@ -76,7 +124,7 @@ main {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     margin-bottom: 20px;
-    overflow-wrap: break-word; /* Prevents long outputs from breaking out of the card */
+    overflow-wrap: break-word;
 }
 
 .form-group {
@@ -85,7 +133,6 @@ main {
     margin-bottom: 15px;
 }
 
-/* IMPROVED: Added flex-wrap and responsive gaps */
 .form-row {
     display: flex;
     flex-wrap: wrap; 
@@ -93,19 +140,19 @@ main {
     margin-bottom: 15px;
 }
 
-/* IMPROVED: Ensure form groups inside a row scale correctly */
 .form-row > .form-group {
     flex: 1 1 calc(33.333% - 15px);
-    min-width: 120px; /* Forces wrapping if the screen is too small */
+    min-width: 120px;
     margin-bottom: 0;
 }
 
-/* IMPROVED: Added box-sizing and 100% width for stability */
 .form-group input, 
 .form-group select {
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
@@ -123,13 +170,13 @@ button {
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    margin-right: 10px; /* Space between inline buttons */
+    margin-right: 10px;
     margin-bottom: 10px;
 }
 
 .btn-primary { background: var(--primary-color); color: white; }
 .btn-danger { background: var(--danger-color); color: white; }
-.btn-secondary { background: #e2e8f0; color: var(--text-color); border: 1px solid var(--border-color); margin-bottom: 12px; }
+.btn-secondary { background: var(--nav-bg); color: var(--text-color); border: 1px solid var(--border-color); margin-bottom: 12px; }
 .margin-top { margin-top: 15px; }
 
 .sr-only {
@@ -160,22 +207,27 @@ select:focus-visible {
     margin-bottom: 8px;
 }
 
-/* MOBILE OPTIMIZATIONS */
 @media (max-width: 480px) {
     .form-row > .form-group {
-        flex: 1 1 100%; /* Make inputs take full width on very small screens */
+        flex: 1 1 100%;
     }
     
     button {
-        width: 100%; /* Make buttons easily tappable on mobile */
+        width: 100%;
         margin-right: 0;
+    }
+    .settings-controls {
+        position: static;
+        margin-top: 8px;
+        justify-content: center;
     }
 }
 
 footer {
     text-align: center;
     padding: 1rem;
-    color: #4a5568;
+    color: var(--text-color);
+    opacity: 0.8;
     font-size: 0.9rem;
 }
 
@@ -204,13 +256,6 @@ footer {
     padding: 14px 20px;
     text-align: center;
     color: var(--text-color);
-    background: #eaf2fc;
+    background: var(--intro-bg);
     border-bottom: 1px solid var(--border-color);
-}
-
-.intro-en {
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 0.85rem;
-    color: #5a6b85;
 }

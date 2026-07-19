@@ -18,134 +18,138 @@
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="am_ET">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ">
-    <meta name="twitter:description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ እና የሂጅሪ ቀን መቀየሪያ።">
-    <meta name="twitter:image" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/og-image.png">
-
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <header>
-        <h1>የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ</h1>
+        <h1 data-i18n="app_title">የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ</h1>
         <div id="local-time-bar" aria-live="off">የኢትዮጵያ ሰዓት በመጫን ላይ...</div>
+        <div class="settings-controls">
+            <select id="lang-selector" class="btn-control-toggle" aria-label="ቋንቋ / Language">
+                <option value="am">አማርኛ</option>
+                <option value="en">English</option>
+                <option value="om">Afaan Oromoo</option>
+                <option value="ti">ትግርኛ</option>
+            </select>
+            <button id="btn-toggle-geez" class="btn-control-toggle" aria-label="የግዕዝ ቁጥሮች መቀያየሪያ (Toggle Ge'ez Numerals)">፪፲፪</button>
+            <button id="btn-toggle-dark" class="btn-control-toggle" aria-label="የገጽታ ቀለም መቀያየሪያ (Toggle Dark Mode)">🌙</button>
+        </div>
     </header>
 
-    <p class="intro">
+    <p class="intro" data-i18n="intro_desc">
         ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የስንክሳር ፍለጋ፣ የግሪጎሪያን፣ የጁሊያን፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ፣ እንዲሁም ሁሉንም ብሔራዊ በዓላት በአንድ ቦታ ያገኙበታል። ለዓይነ ስውራንና ለስክሪን አንባቢ ተጠቃሚዎች ምቹ ሆኖ የተዘጋጀ ነው።
-        <br><span class="intro-en">Free, fully offline-capable Ethiopian calendar &amp; Bahire Hasab — built accessible from the ground up.</span>
     </p>
 
     <div id="status-announcer" class="sr-only" role="status" aria-live="assertive"></div>
 
     <nav aria-label="የመተግበሪያው ክፍሎች" role="tablist">
-        <button class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-today" id="navbtn-today" data-target="tab-today">ዛሬ</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-holidays" id="navbtn-holidays" data-target="tab-holidays">ብሔራዊ በዓላት</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-islamic" id="navbtn-islamic" data-target="tab-islamic">ሂጅሪ አቆጣጠር</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-converter" id="navbtn-converter" data-target="tab-converter">ቀን መቀየሪያ</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium">ስንክሳር ፍለጋ</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-periodic" id="navbtn-periodic" data-target="tab-periodic">የወር አበባ ዑደት</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-age" id="navbtn-age" data-target="tab-age">ዕድሜ ማስያ</button>
+        <button class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-today" id="navbtn-today" data-target="tab-today" data-i18n="nav_today">ዛሬ</button>
+        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-holidays" id="navbtn-holidays" data-target="tab-holidays" data-i18n="nav_holidays">ብሔራዊ በዓላት</button>
+        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-islamic" id="navbtn-islamic" data-target="tab-islamic" data-i18n="nav_hijri">ሂጅሪ አቆጣጠር</button>
+        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-converter" id="navbtn-converter" data-target="tab-converter" data-i18n="nav_converter">ቀን መቀየሪያ</button>
+        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium" data-i18n="nav_synaxarium">ስንክሳር ፍለጋ</button>
+        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-periodic" id="navbtn-periodic" data-target="tab-periodic" data-i18n="nav_period">የወር አበባ ዑደት</button>
+        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-age" id="navbtn-age" data-target="tab-age" data-i18n="nav_age">ዕድሜ ማስያ</button>
     </nav>
 
     <main>
         <section id="tab-today" class="tab-content active" role="tabpanel" aria-labelledby="navbtn-today">
             <div class="card">
-                <h2>የዕለቱ ሙሉ መረጃ</h2>
-                <button id="btn-copy-date" class="btn-secondary">ቀኑን ኮፒ አድርግ</button>
+                <h2 data-i18n="today_title">የዕለቱ ሙሉ መረጃ</h2>
+                <button id="btn-copy-date" class="btn-secondary" data-i18n="btn_copy_date">ቀኑን ኮፒ አድርግ</button>
                 <div id="today-summary" class="info-output" aria-live="polite"></div>
             </div>
         </section>
 
         <section id="tab-holidays" class="tab-content" role="tabpanel" aria-labelledby="navbtn-holidays" hidden>
             <div class="card">
-                <h2>የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት</h2>
+                <h2 data-i18n="holidays_title">የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት</h2>
                 <div id="holidays-output" class="info-output" aria-live="polite"></div>
             </div>
         </section>
 
         <section id="tab-islamic" class="tab-content" role="tabpanel" aria-labelledby="navbtn-islamic" hidden>
             <div class="card">
-                <h2>የእስልምና (ሂጅሪ) ቀን አቆጣጠር</h2>
-                <button id="btn-copy-hijri" class="btn-secondary">ሂጅሪ ቀን ኮፒ አድርግ</button>
+                <h2 data-i18n="hijri_title">የእስልምና (ሂጅሪ) ቀን አቆጣጠር</h2>
+                <button id="btn-copy-hijri" class="btn-secondary" data-i18n="btn_copy_hijri">ሂጅሪ ቀን ኮፒ አድርግ</button>
                 <div id="islamic-summary" class="info-output" aria-live="polite"></div>
             </div>
         </section>
 
         <section id="tab-converter" class="tab-content" role="tabpanel" aria-labelledby="navbtn-converter" hidden>
             <div class="card">
-                <h2>ቀን መፈለጊያና መቀየሪያ</h2>
+                <h2 data-i18n="conv_title">ቀን መፈለጊያና መቀየሪያ</h2>
                 <div class="form-group">
-                    <label for="conv-type">የቀን ዓይነት</label>
+                    <label for="conv-type" data-i18n="conv_label_type">የቀን ዓይነት</label>
                     <select id="conv-type">
-                        <option value="eth">የኢትዮጵያ ቀን</option>
-                        <option value="greg">የግሪጎሪያን (ፈረንጅ) ቀን</option>
-                        <option value="julian">የጁሊያን (Julian) ቀን</option>
-                        <option value="hebrew">የዕብራውያን (Hebrew) ቀን</option>
-                        <option value="hijri">የሂጅሪ (እስላማዊ) ቀን</option>
+                        <option value="eth" data-i18n="opt_eth">የኢትዮጵያ ቀን</option>
+                        <option value="greg" data-i18n="opt_greg">የግሪጎሪያን (ፈረንጅ) ቀን</option>
+                        <option value="julian" data-i18n="opt_jul">የጁሊያን (Julian) ቀን</option>
+                        <option value="hebrew" data-i18n="opt_heb">የዕብራውያን (Hebrew) ቀን</option>
+                        <option value="hijri" data-i18n="opt_hij">የሂጅሪ (እስላማዊ) ቀን</option>
                     </select>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="conv-year">ዓመት (አማራጭ - Optional)</label>
-                        <input type="number" id="conv-year" placeholder="ዓመት">
+                        <label for="conv-year" data-i18n="conv_label_year">ዓመት (አማራጭ - Optional)</label>
+                        <input type="number" id="conv-year" placeholder="ዓመት" data-i18n="ph_year">
                     </div>
                     <div class="form-group">
-                        <label for="conv-month">ወር (አማራጭ - Optional፣ ቁጥር ወይም ስም)</label>
-                        <input type="text" id="conv-month" placeholder="ወር ለምሳሌ ኅዳር ወይም Hidar">
+                        <label for="conv-month" data-i18n="conv_label_month">ወር (አማራጭ - Optional፣ ቁጥር ወይም ስም)</label>
+                        <input type="text" id="conv-month" placeholder="ወር (ምሳሌ: ኅዳር)" data-i18n="ph_month">
                     </div>
                     <div class="form-group">
-                        <label for="conv-day">ቀን (አማራጭ - Optional)</label>
-                        <input type="number" id="conv-day" placeholder="ቀን">
+                        <label for="conv-day" data-i18n="conv_label_day">ቀን (አማራጭ - Optional)</label>
+                        <input type="number" id="conv-day" placeholder="ቀን" data-i18n="ph_day">
                     </div>
                 </div>
-                <button id="btn-convert" class="btn-primary">ቀይር / ፈልግ</button>
+                <button id="btn-convert" class="btn-primary" data-i18n="btn_convert">ቀይር / ፈልግ</button>
                 <div id="converter-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
         </section>
 
         <section id="tab-synaxarium" class="tab-content" role="tabpanel" aria-labelledby="navbtn-synaxarium" hidden>
             <div class="card">
-                <h2>በስንክሳር ውስጥ ፍለጋ</h2>
+                <h2 data-i18n="synax_title">በስንክሳር ውስጥ ፍለጋ</h2>
                 <div class="form-group">
-                    <label for="synax-query">የቅዱስ ወይም የበዓል ስም ያስገቡ</label>
-                    <input type="text" id="synax-query" placeholder="ለምሳሌ፡ ሚካኤል ወይም ተክለ ሃይማኖት">
+                    <label for="synax-query" data-i18n="synax_label">የቅዱስ ወይም የበዓል ስም ያስገቡ</label>
+                    <input type="text" id="synax-query" placeholder="ለምሳሌ፡ ሚካኤል" data-i18n="ph_synax">
                 </div>
-                <button id="btn-search-synax" class="btn-primary">ፈልግ</button>
+                <button id="btn-search-synax" class="btn-primary" data-i18n="btn_search">ፈልግ</button>
                 <div id="synax-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
         </section>
 
         <section id="tab-periodic" class="tab-content" role="tabpanel" aria-labelledby="navbtn-periodic" hidden>
             <div class="card">
-                <h2>የወር አበባ ዑደት ማቀናበሪያና መከታተያ</h2>
+                <h2 data-i18n="per_title">የወር አበባ ዑደት ማቀናበሪያና መከታተያ</h2>
                 <form id="periodic-form">
-                    <p>የመጨረሻው የወር አበባ የታየበትን ቀን በኢትዮጵያ አቆጣጠር ያስገቡ፦</p>
+                    <p data-i18n="per_desc">የመጨረሻው የወር አበባ የታየበትን ቀን በኢትዮጵያ አቆጣጠር ያስገቡ፦</p>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="per-year">ዓመት (ዓ.ም)</label>
+                            <label for="per-year" data-i18n="per_year">ዓመት (ዓ.ም)</label>
                             <input type="number" id="per-year" placeholder="ዓመት" required>
                         </div>
                         <div class="form-group">
-                            <label for="per-month">ወር (1-13)</label>
+                            <label for="per-month" data-i18n="per_month">ወር (1-13)</label>
                             <input type="number" id="per-month" placeholder="ወር" min="1" max="13" required>
                         </div>
                         <div class="form-group">
-                            <label for="per-day">ቀን</label>
+                            <label for="per-day" data-i18n="per_day">ቀን</label>
                             <input type="number" id="per-day" placeholder="ቀን" min="1" max="30" required>
                         </div>
                     </div>
                     <div class="form-group margin-top">
-                        <label for="per-cycle">የዑደት ርዝመት (በቀናት፣ አብዛኛውን ጊዜ 28)</label>
+                        <label for="per-cycle" data-i18n="per_cycle_len">የዑደት ርዝመት (በቀናት፣ አብዛኛውን ጊዜ 28)</label>
                         <input type="number" id="per-cycle" value="28" min="15" max="60" required>
                     </div>
                     <div class="form-group">
-                        <label for="per-len">የወር አበባ የሚቆይበት ጊዜ (በቀናት፣ አብዛኛውን ጊዜ 5)</label>
+                        <label for="per-len" data-i18n="per_period_len">የወር አበባ የሚቆይበት ጊዜ (በቀናት፣ አብዛኛውን ጊዜ 5)</label>
                         <input type="number" id="per-len" value="5" min="1" max="15" required>
                     </div>
-                    <button type="submit" class="btn-primary">አስቀምጥ</button>
-                    <button type="button" id="btn-clear-periodic" class="btn-danger">መረጃ አጥፋ</button>
+                    <button type="submit" class="btn-primary" data-i18n="btn_save">አስቀምጥ</button>
+                    <button type="button" id="btn-clear-periodic" class="btn-danger" data-i18n="btn_clear">መረጃ አጥፋ</button>
                 </form>
                 <div id="periodic-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
@@ -153,33 +157,33 @@
 
         <section id="tab-age" class="tab-content" role="tabpanel" aria-labelledby="navbtn-age" hidden>
             <div class="card">
-                <h2>ትክክለኛ ዕድሜ ማስያ (በኢትዮጵያ አቆጣጠር)</h2>
-                <p>የትውልድ ቀንዎን በኢትዮጵያ አቆጣጠር ያስገቡ፦</p>
+                <h2 data-i18n="age_title">ትክክለኛ ዕድሜ ማስያ (በኢትዮጵያ አቆጣጠር)</h2>
+                <p data-i18n="age_desc">የትውልድ ቀንዎን በኢትዮጵያ አቆጣጠር ያስገቡ፦</p>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="age-year">ዓ.ም</label>
+                        <label for="age-year" data-i18n="per_year">ዓ.ም</label>
                         <input type="number" id="age-year" placeholder="ዓመት" required>
                     </div>
                     <div class="form-group">
-                        <label for="age-month">ወር (1-13)</label>
+                        <label for="age-month" data-i18n="per_month">ወር (1-13)</label>
                         <input type="number" id="age-month" placeholder="ወር" min="1" max="13" required>
                     </div>
                     <div class="form-group">
-                        <label for="age-day">ቀን</label>
+                        <label for="age-day" data-i18n="per_day">ቀን</label>
                         <input type="number" id="age-day" placeholder="ቀን" min="1" max="30" required>
                     </div>
                 </div>
-                <button id="btn-calc-age" class="btn-primary">ዕድሜዬን አስላ</button>
+                <button id="btn-calc-age" class="btn-primary" data-i18n="btn_calc_age">ዕድሜዬን አስላ</button>
                 <div id="age-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>የተዘጋጀው በ<strong>መሠረት ወርቁ አለሙ</strong> (Meseret Worku Alemu) | © <span id="footer-year"></span></p>
+        <p><span data-i18n="footer_credit">የተዘጋጀው በ</span><strong>መሠረት ወርቁ አለሙ</strong> (Meseret Worku Alemu) | © <span id="footer-year"></span></p>
         <a href="https://t.me/meseret199" class="btn-telegram" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.9 4.3 18.7 19.6c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9L18 6.2c.4-.4-.1-.6-.6-.2L7.5 12.6l-4.8-1.5c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3Z"/></svg>
-            በቴሌግራም እንገናኝ
+            <span data-i18n="footer_telegram">በቴሌግራም እንገናኝ</span>
         </a>
     </footer>
 
