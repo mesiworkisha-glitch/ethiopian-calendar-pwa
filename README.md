@@ -7,8 +7,8 @@
 
 A comprehensive, fully offline-capable Progressive Web App (PWA) designed to provide accurate Ethiopian calendar calculations, Bahire Hasab (computus), holiday tracking, and complex date conversions. Built with a strong focus on accessibility and multi-language support.
 
-**[🚀 View Live Demo Here]([](https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/))*
-
+**[🚀 View Live Demo Here](https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/)*
+   
 ---
 
 ## 🌟 Key Features
