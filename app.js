@@ -25,7 +25,12 @@ const i18n = {
         err_invalid_day: "የተሳሳተ ቀን ገብቷል።", err_full_date_required: "እባክዎ ሙሉ ቀን (ዓመት፣ ወር፣ ቀን) ያስገቡ።",
         err_cycle_range: "የዑደት ርዝመት ከ15 እስከ 60 ቀናት መካከል መሆን አለበት።", err_period_range: "የወር አበባ ቆይታ ከ1 እስከ 15 ቀናት መካከል መሆን አለበት።",
         err_future_date: "የገባው ቀን ወደፊት ስለሆነ እባክዎ ያለፈ ቀን ያስገቡ።", err_generic: "የተከሰተ ችግር አለ፤ እባክዎ የገቡት መረጃ ትክክል መሆኑን ያረጋግጡ።",
-        no_data: "ምንም መረጃ አልተመዘገበም።",
+        no_data: "ምንም መረጃ አልተመዘገበም።", isl_year_events: "የዓመቱ የእስልምና በዓላት",
+        lbl_day_num: "ቀን", lbl_weekday: "ዕለት", lbl_fasting_season: "የአጽዋም ዘመን", lbl_liturgical_season: "የቤተክርስቲያን ዘመን",
+        lbl_events_memorials: "በዓላት / መታሰቢያ", lbl_month_events: "በዚህ ወር ያሉ በዓላትና አጽዋማት", lbl_year_movable_events: "የዓመቱ ተንቀሳቃሽ በዓላትና አጽዋማት",
+        txt_sunrise: "መውጫ", txt_sunset: "መግቢያ", lbl_upcoming: "ቀጣይ በዓላትና አጽዋማት", lbl_today_synax: "የዕለቱ ስንክሳር በዓላት",
+        lbl_annual_feasts: "ዓመታዊ በዓላት", lbl_monthly_feasts: "ወርኃዊ በዓላት", lbl_national_short: "ብሔራዊ በዓላት", lbl_movable_short: "ተንቀሳቃሽ በዓላት", lbl_synax_short: "የስንክሳር በዓላት",
+        txt_morning: "ጠዋት", txt_evening: "ማታ", bh_tewsak: "ተውሳክ", no_synax: "ለዕለቱ የተመዘገበ የስንክሳር በዓል የለም።",
         months: ["", "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜ"],
         weekdays: ["እሁድ", "ሰኞ", "ማክሰኞ", "ረቡዕ", "ሐሙስ", "ዓርብ", "ቅዳሜ"],
         islamic_months: ["", "ሙሐረም", "ሰፈር", "ረቢዑል አወል", "ረቢዑል ሳኒ", "ጀማደል አወል", "ጀማደል ሳኒ", "ረጀብ", "ሻእባን", "ረመዳን", "ሸዋል", "ዙልቂዳህ", "ዙልሒጃህ"],
@@ -64,7 +69,12 @@ const i18n = {
         err_invalid_day: "Invalid day entered.", err_full_date_required: "Please enter a full date (year, month, day).",
         err_cycle_range: "Cycle length must be between 15 and 60 days.", err_period_range: "Period length must be between 1 and 15 days.",
         err_future_date: "That date is in the future; please enter a past date.", err_generic: "Something went wrong; please check your input.",
-        no_data: "No data recorded yet.",
+        no_data: "No data recorded yet.", isl_year_events: "Islamic Events This Year",
+        lbl_day_num: "Day", lbl_weekday: "Weekday", lbl_fasting_season: "Fasting Season", lbl_liturgical_season: "Church Season",
+        lbl_events_memorials: "Holidays / Memorials", lbl_month_events: "Holidays & Fasts This Month", lbl_year_movable_events: "Movable Feasts & Fasts This Year",
+        txt_sunrise: "Rise", txt_sunset: "Set", lbl_upcoming: "Upcoming Feasts & Fasts", lbl_today_synax: "Today's Synaxarium Feasts",
+        lbl_annual_feasts: "Annual Feasts", lbl_monthly_feasts: "Monthly Feasts", lbl_national_short: "National Holidays", lbl_movable_short: "Movable Feasts", lbl_synax_short: "Synaxarium Feasts",
+        txt_morning: "Morning", txt_evening: "Evening", bh_tewsak: "Tewesak", no_synax: "No synaxarium feast recorded for today.",
         months: ["", "Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", "Miazia", "Ginbot", "Sene", "Hamle", "Nehase", "Pagume"],
         weekdays: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         islamic_months: ["", "Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani", "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"],
@@ -103,7 +113,12 @@ const i18n = {
         err_invalid_day: "Guyyaan galfame dogoggora.", err_full_date_required: "Maaloo guyyaa guutuu (bara, ji'a, guyyaa) galchi.",
         err_cycle_range: "Dheerinni marsaa guyyaa 15 hanga 60 gidduu ta'uu qaba.", err_period_range: "Turtiin laguu guyyaa 1 hanga 15 gidduu ta'uu qaba.",
         err_future_date: "Guyyaan kun kan fuulduraati; maaloo guyyaa darbe galchi.", err_generic: "Rakkoon uumameera; maaloo galtee kee mirkaneessi.",
-        no_data: "Hanga ammaatti odeeffannoon hin galmoofne.",
+        no_data: "Hanga ammaatti odeeffannoon hin galmoofne.", isl_year_events: "Ayyaanota Islaamaa Bara Kana",
+        lbl_day_num: "Guyyaa", lbl_weekday: "Guyyaa Torbee", lbl_fasting_season: "Yeroo Soomaa", lbl_liturgical_season: "Waqtii Kanisaa",
+        lbl_events_memorials: "Ayyaanota / Yaadannoo", lbl_month_events: "Ayyaanotaa fi Soomawwan Ji'a Kanaa", lbl_year_movable_events: "Ayyaanota Sochoʼan Bara Kanaa",
+        txt_sunrise: "Ba'a", txt_sunset: "Lixa", lbl_upcoming: "Ayyaanota fi Soomawwan Itti Aanan", lbl_today_synax: "Ayyaanota Sinkisaariyeemii Har'aa",
+        lbl_annual_feasts: "Ayyaanota Waggaa", lbl_monthly_feasts: "Ayyaanota Ji'aa", lbl_national_short: "Ayyaanota Biyyaalessaa", lbl_movable_short: "Ayyaanota Sochoʼan", lbl_synax_short: "Ayyaanota Sinkisaariyeemii",
+        txt_morning: "Ganama", txt_evening: "Galgal", bh_tewsak: "Tewesak", no_synax: "Ayyaanni Sinksisariyeemii har'aa hin jiru.",
         months: ["", "Fulbaana", "Onkololeessa", "Sadaasa", "Muddee", "Amajjii", "Guraandhala", "Bitooteessa", "Caamsaa", "Waxabajjii", "Adooleessa", "Hagayya", "Qaammee"],
         weekdays: ["Dilbata", "Wiixata", "Kibxata", "Roobii", "Kamisa", "Jimaata", "Sanbata"],
         islamic_months: ["", "Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani", "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"],
@@ -142,7 +157,12 @@ const i18n = {
         err_invalid_day: "ግጉይ መዓልቲ ኣቲኹም።", err_full_date_required: "በጃኹም ምሉእ ዕለት (ዓመት፣ ወርሒ፣ መዓልቲ) ኣእትዉ።",
         err_cycle_range: "ንውሓት ዑደት ካብ 15 ክሳብ 60 መዓልታት ክኸውን ኣለዎ።", err_period_range: "ግዜ ወርሓዊ ጽግያት ካብ 1 ክሳብ 15 መዓልታት ክኸውን ኣለዎ።",
         err_future_date: "እዚ ዕለት እዚ ናይ መጻኢ ስለዝኾነ በጃኹም ዝሓለፈ ዕለት ኣእትዉ።", err_generic: "ጸገም ተፈጢሩ፤ በጃኹም ዘእቶኹምዎ መረጃ ኣረጋግጹ።",
-        no_data: "ክሳብ ሕጂ ዝተመዝገበ መረጃ የለን።",
+        no_data: "ክሳብ ሕጂ ዝተመዝገበ መረጃ የለን።", isl_year_events: "በዓላት ምስልምና ናይዚ ዓመት",
+        lbl_day_num: "መዓልቲ", lbl_weekday: "መዓልቲ ሰሙን", lbl_fasting_season: "ግዜ ጾም", lbl_liturgical_season: "ወቅቲ ቤተክርስትያን",
+        lbl_events_memorials: "በዓላት / መዘከርታ", lbl_month_events: "በዚ ወርሒ ዘለዉ በዓላትን ጾማትን", lbl_year_movable_events: "ተንቀሳቐስቲ በዓላትን ጾማትን ናይዚ ዓመት",
+        txt_sunrise: "ምብራቕ", txt_sunset: "ምዕራብ", lbl_upcoming: "ዝቕጽሉ በዓላትን ጾማትን", lbl_today_synax: "በዓላት ስንክሳር ናይ ሎሚ መዓልቲ",
+        lbl_annual_feasts: "ዓመታዊ በዓላት", lbl_monthly_feasts: "ወርሓዊ በዓላት", lbl_national_short: "ብሄራዊ በዓላት", lbl_movable_short: "ተንቀሳቐስቲ በዓላት", lbl_synax_short: "በዓላት ስንክሳር",
+        txt_morning: "ጠዋት", txt_evening: "ምሸት", bh_tewsak: "ተውሳክ", no_synax: "በዓል ስንክሳር ናይ ሎሚ መዓልቲ የለን።",
         months: ["", "መስከረም", "ጥቅምቲ", "ሕዳር", "ታሕሳስ", "ጥሪ", "ለካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰነ", "ሓምለ", "ነሓሰ", "ጳጉሜን"],
         weekdays: ["ሰንበት", "ሰኑይ", "ሠሉስ", "ረቡዕ", "ኃሙስ", "ዓርቢ", "ቀዳም"],
         islamic_months: ["", "ሙሓረም", "ሰፈር", "ረቢዑል ኣወል", "ረቢዑል ሳኒ", "ጀማደል ኣወል", "ጀማደል ሳኒ", "ረጀብ", "ሻእባን", "ረመዳን", "ሸዋል", "ዙልቂዳህ", "ዙልሒጃህ"],
@@ -319,8 +339,8 @@ function getAddisSunTimes(gDate) {
     if (setMin < 0) { setHr--; setMin += 60; }
 
     return {
-        rise: `${fNum(riseHr)}:${String(riseMin).padStart(2,'0')} ጠዋት`,
-        set: `${fNum(setHr - 12)}:${String(setMin).padStart(2,'0')} ማታ`
+        rise: `${fNum(riseHr)}:${String(riseMin).padStart(2,'0')} ${t('txt_morning')}`,
+        set: `${fNum(setHr - 12)}:${String(setMin).padStart(2,'0')} ${t('txt_evening')}`
     };
 }
 
@@ -483,7 +503,6 @@ function calculateBahreHasab(ey) {
     return { aa, wengelawi: {1:'ማቴዎስ', 2:'ማርቆስ', 3:'ሉቃስ', 0:'ዮሐንስ'}[mod(aa, 4)], medeb, wenber, metqe, abekte, tinteQemer, mebajaHamer, mebajaHamerTewsak, feasts };
 }
 
-// ---- New liturgical season function ----
 function getLiturgicalSeason(ey, em, ed, bh) {
     let current_day = ethiopianDayOfYear(em, ed);
     let nenewe_day = (bh.feasts.nenewe.m - 1) * 30 + bh.feasts.nenewe.d;
@@ -580,8 +599,6 @@ function getUpcomingEvents(ey, em, ed, bh) {
     return "";
 }
 
-// ---- Enhanced functions from Python integration ----
-
 function ethiopianDayOfYear(em, ed) {
     return (em - 1) * 30 + ed;
 }
@@ -596,7 +613,6 @@ function getNamedEventsForYear(ey) {
     let bh = calculateBahreHasab(ey);
     let events = [];
 
-    // Fixed feasts
     let fixed = [
         [1, "hol_enkutatash"],
         [17, "hol_meskel"],
@@ -608,9 +624,8 @@ function getNamedEventsForYear(ey) {
     ];
     fixed.forEach(e => events.push(e));
     let gennaDay = (ey % 4 === 0) ? 28 : 29;
-    events.push([90 + gennaDay, "hol_genna"]); // Genna is on Tahsas 28/29
+    events.push([90 + gennaDay, "hol_genna"]);
 
-    // Movable feasts
     for (const [internalKey, dateObj] of Object.entries(bh.feasts)) {
         let i18nKey = ["nenewe", "abiy", "hawaryat", "dihnet"].includes(internalKey) ? `fast_${internalKey}` : `fest_${internalKey}`;
         let dayNum = (dateObj.m - 1) * 30 + dateObj.d;
@@ -653,7 +668,6 @@ function getFdreHolidays(ey) {
     return h.sort((a,b) => a.g - b.g);
 }
 
-// Build a map of national holidays for a given year, keyed by Ethiopian day number (1-365/366)
 function getNationalHolidaysMap(ey) {
     let holidays = getFdreHolidays(ey);
     let map = {};
@@ -668,15 +682,12 @@ function getNationalHolidaysMap(ey) {
 }
 
 function getYearlyEvents(ey) {
-    // Returns array of { dayNum, label, type: 'fixed'|'movable'|'national' }
     let events = [];
-    // Movable & fixed from getNamedEventsForYear
     let named = getNamedEventsForYear(ey);
     named.forEach(([dayNum, key]) => {
         events.push({ dayNum, label: t(key), type: 'movable' });
     });
 
-    // National holidays
     let natMap = getNationalHolidaysMap(ey);
     for (let dayNum in natMap) {
         natMap[dayNum].forEach(label => {
@@ -721,8 +732,6 @@ function getMonthDays(ey, em) {
     return days;
 }
 
-// ---- Override render functions with enhanced versions ----
-
 async function renderYearSearch(ey, out) {
     let bh = calculateBahreHasab(ey);
     let events = getYearlyEvents(ey);
@@ -745,7 +754,7 @@ async function renderYearSearch(ey, out) {
     if (holidays.length > 10) html += `<li>... (${holidays.length - 10} more)</li>`;
     html += `</ul>`;
 
-    html += `<h4>የዓመቱ ተንቀሳቃሽ በዓላትና አጽዋማት</h4><ul>`;
+    html += `<h4>${t('lbl_year_movable_events')}</h4><ul>`;
     let shown = new Set();
     events.forEach(ev => {
         let key = ev.label;
@@ -772,17 +781,14 @@ async function renderMonthSearch(ey, em, out) {
     let html = `<h3>${mList[em]} ${fNum(ey)} ${t('txt_year')}</h3>`;
     html += `<p>${formatDate(startG)} - ${formatDate(endG)} (${fNum(monthLen)} ${t('txt_days')})</p>`;
 
-    // Get all holidays and events for the month
     let yearlyEvents = getYearlyEvents(ey);
     let holidaysMap = getNationalHolidaysMap(ey);
 
-    // Preload synaxarium data once for the month
     let synaxData = await loadSynaxarium();
     let monthName = mList[em];
 
-    // Build a calendar grid
     html += `<table border="1" style="border-collapse:collapse; width:100%;">`;
-    html += `<tr><th>ቀን</th><th>ዕለት</th><th>የአጽዋም ዘመን</th><th>የቤተክርስቲያን ዘመን</th><th>በዓላት / መታሰቢያ</th></tr>`;
+    html += `<tr><th>${t('lbl_day_num')}</th><th>${t('lbl_weekday')}</th><th>${t('lbl_fasting_season')}</th><th>${t('lbl_liturgical_season')}</th><th>${t('lbl_events_memorials')}</th></tr>`;
     for (let ed = 1; ed <= monthLen; ed++) {
         let dayNum = ethiopianDayOfYear(em, ed);
         let gDate = ethToGregorian(ey, em, ed);
@@ -792,7 +798,6 @@ async function renderMonthSearch(ey, em, out) {
         let liturgical = seasons.liturgical;
         let fasting = seasons.fasting;
 
-        // Collect events for this day
         let dayEvents = [];
         yearlyEvents.forEach(ev => {
             if (ev.dayNum === dayNum) dayEvents.push(ev.label);
@@ -800,7 +805,6 @@ async function renderMonthSearch(ey, em, out) {
         if (holidaysMap[dayNum]) {
             dayEvents = dayEvents.concat(holidaysMap[dayNum]);
         }
-        // Synaxarium entries
         let synaxEntries = (synaxData[monthName] && synaxData[monthName][ed]) || [];
         if (synaxEntries.length) {
             dayEvents = dayEvents.concat(synaxEntries);
@@ -811,7 +815,6 @@ async function renderMonthSearch(ey, em, out) {
     }
     html += `</table>`;
 
-    // Also show movable feasts and national holidays in the month summary
     let monthEvents = yearlyEvents.filter(ev => {
         let { em: evEm } = dayOfYearToMonthDay(ev.dayNum);
         return evEm === em;
@@ -825,7 +828,7 @@ async function renderMonthSearch(ey, em, out) {
     }
 
     if (monthEvents.length || monthHolidays.length) {
-        html += `<h4>በዚህ ወር ያሉ በዓላትና አጽዋማት</h4><ul>`;
+        html += `<h4>${t('lbl_month_events')}</h4><ul>`;
         monthEvents.forEach(ev => {
             let { em: evEm, ed: evEd } = dayOfYearToMonthDay(ev.dayNum);
             let gDate = ethToGregorian(ey, evEm, evEd);
@@ -844,6 +847,51 @@ async function renderMonthSearch(ey, em, out) {
     out.innerHTML = html;
 }
 
+async function renderIslamicYearSearch(iy, out) {
+    let islMonths = t('islamic_months');
+    let wList = getWeekdays();
+    let html = `<h3>${fNum(iy)} ${t('lbl_hijri')}</h3><h4>${t('isl_year_events')}</h4><ul>`;
+    let any = false;
+    for (let im = 1; im <= 12; im++) {
+        let monthLen = getIslamicMonthLength(iy, im);
+        for (let id = 1; id <= monthLen; id++) {
+            let evs = getIslamicEvents(im, id);
+            if (evs.length) {
+                any = true;
+                let jdn = islamicToJdn(iy, im, id);
+                let gDate = jdnToGregorian(jdn);
+                html += `<li>${evs.join('፣ ')} — ${islMonths[im]} ${fNum(id)}፣ ${wList[gDate.getDay()]} (${formatDate(gDate)})</li>`;
+            }
+        }
+    }
+    if (!any) html += `<li>${t('no_data')}</li>`;
+    html += `</ul>`;
+    out.innerHTML = html;
+}
+
+async function renderIslamicMonthSearch(iy, im, out) {
+    let monthLen = getIslamicMonthLength(iy, im);
+    let islMonths = t('islamic_months');
+    let wList = getWeekdays();
+    let startG = jdnToGregorian(islamicToJdn(iy, im, 1));
+    let endG = jdnToGregorian(islamicToJdn(iy, im, monthLen));
+
+    let html = `<h3>${islMonths[im]} ${fNum(iy)} ${t('lbl_hijri')}</h3>`;
+    html += `<p>${formatDate(startG)} - ${formatDate(endG)} (${fNum(monthLen)} ${t('txt_days')})</p>`;
+    html += `<table border="1" style="border-collapse:collapse; width:100%;">`;
+    html += `<tr><th>${t('lbl_day_num')}</th><th>${t('lbl_weekday')}</th><th>${t('lbl_gregorian')}</th><th>${t('lbl_ethiopian')}</th><th>${t('holidays_title')}</th></tr>`;
+    for (let id = 1; id <= monthLen; id++) {
+        let jdn = islamicToJdn(iy, im, id);
+        let gDate = jdnToGregorian(jdn);
+        let eDate = jdnToEthiopian(jdn);
+        let mList = getMonths();
+        let evs = getIslamicEvents(im, id);
+        html += `<tr><td>${fNum(id)}</td><td>${wList[gDate.getDay()]}</td><td>${formatDate(gDate)}</td><td>${mList[eDate.em]} ${fNum(eDate.ed)}</td><td>${evs.join('፣ ')}</td></tr>`;
+    }
+    html += `</table>`;
+    out.innerHTML = html;
+}
+
 async function renderFullDateSearch(ey, em, ed, out) {
     let gDate = ethToGregorian(ey, em, ed);
     let jdn = gregorianToJdn(gDate.getFullYear(), gDate.getMonth()+1, gDate.getDate());
@@ -856,22 +904,18 @@ async function renderFullDateSearch(ey, em, ed, out) {
     let chereka = (bh.abekte + (em - 1) + ed) % 30 || 30;
     let mList = getMonths(), wList = getWeekdays(), islMonths = t('islamic_months');
     
-    // Enhanced details
     let seasons = getSeasons(ey, em, ed, bh);
     let moonPhase = getMoonPhaseText(chereka);
     let zodiac = getZodiacSign(gDate.getMonth()+1, gDate.getDate());
     let awde = getAwdeNegestSign(gDate.getMonth()+1, gDate.getDate());
 
-    // Check if this day is a national holiday
     let holidaysMap = getNationalHolidaysMap(ey);
     let dayNum = ethiopianDayOfYear(em, ed);
     let nationalHolidays = holidaysMap[dayNum] || [];
 
-    // Movable feasts that fall on this day
     let yearlyEvents = getYearlyEvents(ey);
     let dayEvents = yearlyEvents.filter(ev => ev.dayNum === dayNum).map(ev => ev.label);
 
-    // Synaxarium entries
     let synaxData = await loadSynaxarium();
     let monthName = mList[em];
     let synaxEntries = (synaxData[monthName] && synaxData[monthName][ed]) || [];
@@ -891,16 +935,15 @@ async function renderFullDateSearch(ey, em, ed, out) {
     </ul>`;
 
     if (nationalHolidays.length) {
-        html += `<p><strong>ብሔራዊ በዓላት:</strong> ${nationalHolidays.join('; ')}</p>`;
+        html += `<p><strong>${t('lbl_national_short')}:</strong> ${nationalHolidays.join('; ')}</p>`;
     }
     if (dayEvents.length) {
-        html += `<p><strong>ተንቀሳቃሽ በዓላት:</strong> ${dayEvents.join('; ')}</p>`;
+        html += `<p><strong>${t('lbl_movable_short')}:</strong> ${dayEvents.join('; ')}</p>`;
     }
     if (synaxEntries.length) {
-        html += `<p><strong>የስንክሳር በዓላት:</strong> ${synaxEntries.join('; ')}</p>`;
+        html += `<p><strong>${t('lbl_synax_short')}:</strong> ${synaxEntries.join('; ')}</p>`;
     }
 
-    // Also show BH metrics
     html += `<h4>${t('lbl_bahire')}</h4><ul>
         <li>${t('bh_medeb')}: ${fNum(bh.medeb)} | ${t('bh_wenber')}: ${fNum(bh.wenber)} | ${t('bh_tinte')}: ${bh.tinteQemer}</li>
         <li>${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
@@ -908,8 +951,6 @@ async function renderFullDateSearch(ey, em, ed, out) {
     
     out.innerHTML = html;
 }
-
-// ---- End of enhanced functions ----
 
 let synaxariumData = null;
 async function loadSynaxarium() {
@@ -1090,24 +1131,29 @@ async function renderToday() {
     let moonPhase = getMoonPhaseText(cherekaAge);
     let sunTimes = getAddisSunTimes(now);
     
-    let html = `<p class="large-date"><strong>ዛሬ ${wList[now.getDay()]}፣ ${mList[eth.em]} ${fNum(eth.ed)} ቀን ${fNum(eth.ey)} ዓ.ም</strong></p>
+    let html = `<p class="large-date"><strong>${t('txt_today')} ${wList[now.getDay()]}፣ ${mList[eth.em]} ${fNum(eth.ed)} ${t('txt_day')} ${fNum(eth.ey)} ${t('txt_year')}</strong></p>
     <ul>
-        <li><strong>የግሪጎሪያን ቀን፦</strong> ${formatDate(now)}</li>
-        <li><strong>የጁሊያን (Julian) ቀን፦</strong> ${fNum(julian.jy)}-${String(julian.jm).padStart(2,'0')}-${String(julian.jd).padStart(2,'0')}</li>
-        <li><strong>የዕብራውያን (Hebrew) ቀን፦</strong> ${hebrewMonthStr} ${fNum(hebrew.hd)} ቀን ${fNum(hebrew.hy)}</li>
-        <li><strong>ዘመነ ወንጌላዊ፦</strong> ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${fNum(bh.aa)})</li>
-        <li><strong>የባሕረ ሐሳብ መረጃ፦</strong> መደብ: ${fNum(bh.medeb)} | ወንበር: ${fNum(bh.wenber)} | ጥንተ ቀመር: ${bh.tinteQemer} | ተውሳክ: ${fNum(bh.mebajaHamerTewsak)}</li>
-        <li><strong>የአጽዋም መለኪያ፦</strong> መጥቅዕ: ${fNum(bh.metqe)} | አበቅቴ: ${fNum(bh.abekte)} | መባጃ ሐመር: ${fNum(bh.mebajaHamer)}</li>
-        <li><strong>ወቅትና ቤተክርስቲያን፦</strong> ${seasons.climatic} | ${seasons.liturgical}</li>
-        <li><strong>የአጽዋም ዘመን፦</strong> ${seasons.fasting} ${seasons.progress ? "<br><em>" + seasons.progress + "</em>" : ""}</li>
-        <li><strong>ሰርቀ ጨረቃ (Moon Phase)፦</strong> ${moonPhase} (ቀን ${fNum(cherekaAge)})</li>
-        <li><strong>ፀሐይ መውጫ/መግቢያ (አዲስ አበባ)፦</strong> መውጫ ${sunTimes.rise} | መግቢያ ${sunTimes.set}</li>
-        <li><strong>ኮከብ (Zodiac)፦</strong> ${getZodiacSign(now.getMonth()+1, now.getDate())}</li>
-        <li><strong>ዓውደ ነገሥት፦</strong> ${getAwdeNegestSign(now.getMonth()+1, now.getDate())}</li>
+        <li><strong>${t('lbl_greg')}:</strong> ${formatDate(now)}</li>
+        <li><strong>${t('lbl_jul')}:</strong> ${fNum(julian.jy)}-${String(julian.jm).padStart(2,'0')}-${String(julian.jd).padStart(2,'0')}</li>
+        <li><strong>${t('lbl_heb')}:</strong> ${hebrewMonthStr} ${fNum(hebrew.hd)} ${t('txt_day')} ${fNum(hebrew.hy)}</li>
+        <li><strong>${t('lbl_wengelawi')}:</strong> ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${fNum(bh.aa)})</li>
+        <li><strong>${t('lbl_bahire')}:</strong> ${t('bh_medeb')}: ${fNum(bh.medeb)} | ${t('bh_wenber')}: ${fNum(bh.wenber)} | ${t('bh_tinte')}: ${bh.tinteQemer} | ${t('bh_tewsak')}: ${fNum(bh.mebajaHamerTewsak)}</li>
+        <li><strong>${t('lbl_fast_metric')}:</strong> ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
+        <li><strong>${t('lbl_season')}:</strong> ${seasons.climatic} | ${seasons.liturgical}</li>
+        <li><strong>${t('lbl_fasting')}:</strong> ${seasons.fasting} ${seasons.progress ? "<br><em>" + seasons.progress + "</em>" : ""}</li>
+        <li><strong>${t('lbl_moon')}:</strong> ${moonPhase} (${t('txt_day')} ${fNum(cherekaAge)})</li>
+        <li><strong>${t('lbl_sun')}:</strong> ${t('txt_sunrise')} ${sunTimes.rise} | ${t('txt_sunset')} ${sunTimes.set}</li>
+        <li><strong>${t('lbl_zodiac')}:</strong> ${getZodiacSign(now.getMonth()+1, now.getDate())}</li>
+        <li><strong>${t('lbl_awde')}:</strong> ${getAwdeNegestSign(now.getMonth()+1, now.getDate())}</li>
     </ul>`;
 
-    html += `<h3>ቀጣይ በዓላትና አጽዋማት</h3>`;
+    html += `<h3>${t('lbl_upcoming')}</h3>`;
     html += `<p style="background:rgba(0,102,204,0.1); padding:10px; border-left:4px solid #0066cc;"><strong>${upcoming}</strong></p>`;
+
+    let todayHolidays = (getNationalHolidaysMap(eth.ey)[ethiopianDayOfYear(eth.em, eth.ed)]) || [];
+    if (todayHolidays.length) {
+        html += `<p style="background:rgba(240,180,41,0.15); padding:10px; border-left:4px solid #f0b429;"><strong>${t('holidays_title')}፦</strong> ${todayHolidays.join('፣ ')}</p>`;
+    }
 
     let data = await loadSynaxarium();
     let amharicMonths = ["", "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜ"];
@@ -1117,15 +1163,15 @@ async function renderToday() {
         let annualFeasts = entries.filter(e => !e.startsWith("ወርኃዊ በዓል፦ "));
         let monthlyFeasts = entries.filter(e => e.startsWith("ወርኃዊ በዓል፦ ")).map(e => e.replace("ወርኃዊ በዓል፦ ", ""));
 
-        html += `<h3>የዕለቱ ስንክሳር በዓላት</h3>`;
+        html += `<h3>${t('lbl_today_synax')}</h3>`;
         if (annualFeasts.length > 0) {
-            html += `<h4>ዓመታዊ በዓላት</h4><ul>` + annualFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
+            html += `<h4>${t('lbl_annual_feasts')}</h4><ul>` + annualFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
         }
         if (monthlyFeasts.length > 0) {
-            html += `<h4>ወርኃዊ በዓላት</h4><ul>` + monthlyFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
+            html += `<h4>${t('lbl_monthly_feasts')}</h4><ul>` + monthlyFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
         }
     } else {
-        html += `<p>ለዕለቱ የተመዘገበ የስንክሳር በዓል የለም።</p>`;
+        html += `<p>${t('no_synax')}</p>`;
     }
 
     container.innerHTML = html;
@@ -1152,7 +1198,7 @@ function renderIslamic() {
     let isl = jdnToIslamic(jdn), ev = getIslamicEvents(isl.im, isl.id);
     let wList = getWeekdays();
     let islMonths = t('islamic_months');
-    let html = `<p class="large-date"><strong>${t('txt_today')} ${wList[now.getDay()]}፣ ${islMonths[isl.im]} ${fNum(isl.id)} ቀን ${fNum(isl.iy)} ${t('lbl_tabular_hijri')}</strong></p>
+    let html = `<p class="large-date"><strong>${t('txt_today')} ${wList[now.getDay()]}፣ ${islMonths[isl.im]} ${fNum(isl.id)} ${t('txt_day')} ${fNum(isl.iy)} ${t('lbl_tabular_hijri')}</strong></p>
     <p>${ev.length ? ev.join('፣ '): '-'}</p>`;
     container.innerHTML = html;
 }
@@ -1217,17 +1263,34 @@ function setupConverter() {
                 } else {
                     out.innerHTML = `<p style="color:red;">${t('err_full_date_required')}</p>`;
                 }
-            } else if (type === 'julian' || type === 'hebrew' || type === 'hijri') {
+            } else if (type === 'julian' || type === 'hebrew') {
                 m = mStr ? parseInt(mStr) : null;
                 if (y === null || m === null || d === null) {
                     out.innerHTML = `<p style="color:red;">${t('err_full_date_required')}</p>`; return;
                 }
-                let jdn = (type === 'julian') ? julianToJdn(y, m, d) :
-                          (type === 'hebrew') ? hebrewToJdn(y, m, d) :
-                          islamicToJdn(y, m, d);
-
+                let jdn = (type === 'julian') ? julianToJdn(y, m, d) : hebrewToJdn(y, m, d);
                 let eDate = jdnToEthiopian(jdn);
                 await renderFullDateSearch(eDate.ey, eDate.em, eDate.ed, out);
+            } else if (type === 'hijri') {
+                m = mStr ? parseInt(mStr) : null;
+                if (m !== null && (m < 1 || m > 12)) {
+                    out.innerHTML = `<p style="color:red;">${t('err_invalid_month_greg')}</p>`; return;
+                }
+                if (y === null) {
+                    out.innerHTML = `<p style="color:red;">${t('err_enter_date')}</p>`; return;
+                }
+                if (d !== null && m !== null) {
+                    if (d < 1 || d > getIslamicMonthLength(y, m)) {
+                        out.innerHTML = `<p style="color:red;">${t('err_invalid_day')}</p>`; return;
+                    }
+                    let jdn = islamicToJdn(y, m, d);
+                    let eDate = jdnToEthiopian(jdn);
+                    await renderFullDateSearch(eDate.ey, eDate.em, eDate.ed, out);
+                } else if (m !== null) {
+                    await renderIslamicMonthSearch(y, m, out);
+                } else {
+                    await renderIslamicYearSearch(y, out);
+                }
             }
         } catch (err) {
             console.error('Converter error:', err);
@@ -1235,8 +1298,6 @@ function setupConverter() {
         }
     });
 }
-
-// ---- The following functions (setupSynaxarium, setupPeriodic, setupAgeCalc, setupPregnancyCalc, initFooter, setupClipboardCopy) are unchanged from the original ----
 
 function setupSynaxarium() {
     const btn = document.getElementById('btn-search-synax');
@@ -1421,49 +1482,26 @@ function setupAgeCalc() {
             }
 
             let years = cY - bY;
-            let months = cM - bM;
-            let days = cD - bD;
-
-            while (days < 0) {
-                months--;
-                let effYear = bY + years;
-                let effMonth = bM + months;
-                while (effMonth < 1) {
-                    effMonth += 13;
-                    effYear--;
-                }
-                while (effMonth > 13) {
-                    effMonth -= 13;
-                    effYear++;
-                }
-                days += getMonthLength(effYear, effMonth);
-            }
-
-            while (months < 1) {
-                months += 13;
+            let annivDay = Math.min(bD, getMonthLength(bY + years, bM));
+            let annivJdn = ethiopianToJdn(bY + years, bM, annivDay);
+            if (annivJdn > cJdn) {
                 years--;
-            }
-            while (months > 13) {
-                months -= 13;
-                years++;
+                annivDay = Math.min(bD, getMonthLength(bY + years, bM));
+                annivJdn = ethiopianToJdn(bY + years, bM, annivDay);
             }
 
-            let effYear = bY + years;
-            let effMonth = bM + months;
-            while (effMonth < 1) { effMonth += 13; effYear--; }
-            while (effMonth > 13) { effMonth -= 13; effYear++; }
-            while (days >= getMonthLength(effYear, effMonth)) {
-                days -= getMonthLength(effYear, effMonth);
+            let months = 0, curY = bY + years, curM = bM, curJdn = annivJdn;
+            for (let i = 0; i < 13; i++) {
+                let nextM = curM + 1, nextY = curY;
+                if (nextM > 13) { nextM = 1; nextY++; }
+                let nextDay = Math.min(bD, getMonthLength(nextY, nextM));
+                let nextJdn = ethiopianToJdn(nextY, nextM, nextDay);
+                if (nextJdn > cJdn) break;
                 months++;
-                while (months > 13) {
-                    months -= 13;
-                    years++;
-                }
-                effYear = bY + years;
-                effMonth = bM + months;
-                while (effMonth < 1) { effMonth += 13; effYear--; }
-                while (effMonth > 13) { effMonth -= 13; effYear++; }
+                curY = nextY; curM = nextM; curJdn = nextJdn;
             }
+
+            let days = cJdn - curJdn;
 
             let totalDays = cJdn - bJdn;
             out.innerHTML = `<h3>${t('age_result')}</h3>
