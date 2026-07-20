@@ -119,7 +119,7 @@ const i18n = {
         txt_sunrise: "Ba'a", txt_sunset: "Lixa", lbl_upcoming: "Ayyaanota fi Soomawwan Itti Aanan", lbl_today_synax: "Ayyaanota Sinkisaariyeemii Har'aa",
         lbl_annual_feasts: "Ayyaanota Waggaa", lbl_monthly_feasts: "Ayyaanota Ji'aa", lbl_national_short: "Ayyaanota Biyyaalessaa", lbl_movable_short: "Ayyaanota Sochoʼan", lbl_synax_short: "Ayyaanota Sinkisaariyeemii",
         txt_morning: "Ganama", txt_evening: "Galgal", bh_tewsak: "Tewesak", no_synax: "Ayyaanni Sinksisariyeemii har'aa hin jiru.",
-        months: ["", "Fulbaana", "Onkololeessa", "Sadaasa", "Muddee", "Amajjii", "Guraandhala", "Bitooteessa", "Caamsaa", "Waxabajjii", "Adooleessa", "Hagayya", "Qaammee"],
+        months: ["", "Fulbaana", "Onkololeessa", "Sadaasa", "Muddee", "Amajjii", "Guraandhala", "Bitooteessa", "Ebla", "Caamsaa", "Waxabajjii", "Adooleessa", "Hagayya", "Qaammee"],
         weekdays: ["Dilbata", "Wiixata", "Kibxata", "Roobii", "Kamisa", "Jimaata", "Sanbata"],
         islamic_months: ["", "Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani", "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"],
         season_autumn: "Arfaasaa (Autumn)", season_summer: "Bona (Summer)", season_spring: "Birraa (Spring)", season_winter: "Ganna (Winter)",
@@ -180,15 +180,15 @@ const i18n = {
 let currentLang = localStorage.getItem('lang') || 'am';
 
 function t(key) {
-    if (i18n[currentLang] && i18n[currentLang][key]) return i18n[currentLang][key];
-    if (i18n['am'] && i18n['am'][key]) return i18n['am'][key];
+    if (i18n[currentLang] && i18n[currentLang][key] !== undefined) return i18n[currentLang][key];
+    if (i18n['am'] && i18n['am'][key] !== undefined) return i18n['am'][key];
     return key;
 }
 
 function updateStaticTranslations() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         let key = el.getAttribute('data-i18n');
-        if (i18n[currentLang] && i18n[currentLang][key]) {
+        if (i18n[currentLang] && i18n[currentLang][key] !== undefined) {
             if (el.tagName === 'INPUT' && el.hasAttribute('placeholder')) {
                 el.placeholder = i18n[currentLang][key];
             } else {
