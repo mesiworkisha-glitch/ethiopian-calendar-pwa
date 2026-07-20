@@ -504,27 +504,39 @@ function calculateBahreHasab(ey) {
 }
 
 function getLiturgicalSeason(ey, em, ed, bh) {
-    let current_day = ethiopianDayOfYear(em, ed);
+    let d = ethiopianDayOfYear(em, ed);
     let nenewe_day = (bh.feasts.nenewe.m - 1) * 30 + bh.feasts.nenewe.d;
     let abiy_day = (bh.feasts.abiy.m - 1) * 30 + bh.feasts.abiy.d;
-    let hosanna_day = (bh.feasts.hosanna.m - 1) * 30 + bh.feasts.hosanna.d;
     let tensae_day = (bh.feasts.tensae.m - 1) * 30 + bh.feasts.tensae.d;
+    let erget_day = (bh.feasts.erget.m - 1) * 30 + bh.feasts.erget.d;
     let pentecost_day = (bh.feasts.parakletos.m - 1) * 30 + bh.feasts.parakletos.d;
 
-    if (current_day >= 1 && current_day <= 16) return "ዘመነ ዮሐንስ";
-    else if (current_day >= 17 && current_day <= 25) return "ዘመነ መስቀል";
-    else if (current_day >= 26 && current_day <= 65) return "ዘመነ ጽጌ";
-    else if (current_day >= 66 && current_day <= 74) return "ዘመነ አስተምህሮ";
-    else if (current_day >= 75 && current_day <= 118) return "ዘመነ ስብከት (የነቢያት ጾም)";
-    else if (current_day >= 119 && current_day <= 130) return "ዘመነ አሥተርእዮ (ልደት)";
-    else if (current_day >= 131 && current_day < nenewe_day) return "ዘመነ ጥምቀት";
-    else if (current_day >= nenewe_day && current_day < abiy_day) return "ዘመነ ነነዌ";
-    else if (current_day >= abiy_day && current_day < hosanna_day) return "ዘመነ ዐቢይ ጾም";
-    else if (current_day >= hosanna_day && current_day < tensae_day) return "ሰሙነ ሕማማት";
-    else if (current_day >= tensae_day && current_day <= pentecost_day) return "ዘመነ ትንሣኤ (ኀምሳ ዕለት)";
-    else if (current_day > pentecost_day && current_day <= 305) return "ዘመነ ሐዋርያት / ጰራቅሊጦስ";
-    else if (current_day >= 306 && current_day <= 345) return "ዘመነ ክረምት (ፍልሰታ)";
-    else return "ዘመነ ክረምት";
+    if (d >= 1 && d <= 7) return "ዘመነ ዮሐንስ";
+    if (d === 8) return "ዘካርያስ";
+    if (d >= 9 && d <= 15) return "ዘመነ ፍሬ";
+    if (d >= 16 && d <= 25) return "ዘመነ መስቀል";
+    if (d >= 26 && d <= 65) return "ዘመነ ጽጌ";
+    if (d >= 66 && d <= 96) return "ዘመነ አስተምሕሮ";
+    if (d >= 97 && d <= 103) return "ዘመነ ስብከት";
+    if (d >= 104 && d <= 110) return "ዘመነ ብርሃን";
+    if (d >= 111 && d <= 116) return "ዘመነ ኖላዊ";
+    if (d === 117) return "ዘመነ መርዓዊ";
+    if (d === 118) return "አማኑኤል";
+    if (d >= 119 && d <= 126) return "ዘመነ ልደት";
+    if (d >= 127 && d <= 129) return "ናዝሬት";
+    if (d === 130) return "ገሐድ";
+    if (d >= 131 && d < nenewe_day) return "ዘመነ ጥምቀት";
+    if (d >= nenewe_day && d < nenewe_day + 3) return "ዘመነ ነነዌ";
+    if (d >= nenewe_day + 3 && d < abiy_day) return "ዘመነ መርዓዊ";
+    if (d >= abiy_day && d < tensae_day) return "ዘመነ ጾም";
+    if (d >= tensae_day && d < erget_day) return "ዘመነ ትንሣኤ";
+    if (d >= erget_day && d < pentecost_day) return "ዘመነ ዕርገት";
+    if (d >= pentecost_day && d <= 286) return "ዘመነ ጰራቅሊጦስ";
+    if (d >= 287 && d <= 295) return "ዘመነ አስተምሕሮ";
+    if (d >= 296 && d <= 318) return "ደመና፣ ዘርዕ፣ ዝናም";
+    if (d >= 319 && d <= 339) return "መብረቅ፣ ባሕር";
+    if (d >= 340 && d <= 357) return "ዐይነ ኵሉ፣ ዕጕለ ቋዓት";
+    return "ጎሕ፣ ነግሕ";
 }
 
 function getSeasons(ey, em, ed, bh) {
