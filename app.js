@@ -8,7 +8,7 @@ const i18n = {
         hijri_title: "የእስልምና (ሂጅሪ) ቀን አቆጣጠር", btn_copy_hijri: "ሂጅሪ ቀን ኮፒ አድርግ",
         heb_title: "የዕብራውያን (Hebrew) ቀን አቆጣጠር", heb_year_events: "የዓመቱ የዕብራውያን በዓላት",
         heb_rosh_hashanah: "ሮሽ ሃሻና (Rosh Hashanah)", heb_yom_kippur: "ዮም ኪፑር (Yom Kippur)", heb_sukkot: "የዳስ በዓል (Sukkot)", heb_shemini_atzeret: "ሸሚኒ አጼሬት (Shemini Atzeret)", heb_hanukkah: "ሃኑካ (Hanukkah)", heb_tu_bishvat: "ቱ ቢሽቫት (Tu BiShvat)", heb_purim: "ፉሪም (Purim)", heb_purim_katan: "ፉሪም ካታን (Purim Katan)", heb_passover: "ፋሲካ (Passover)", heb_lag_baomer: "ላግ ባኦሜር (Lag BaOmer)", heb_shavuot: "ሻቩኦት (Shavuot)", heb_tisha_bav: "ቲሻ ባአቭ (Tisha B'Av)",
-        lbl_location: "አካባቢ / Location", lbl_timezone: "የሰዓት ሰቅ / Timezone", lbl_difference: "ከኢትዮጵያ ሰዓት ጋር ያለው ልዩነት", tz_same: "ተመሳሳይ የሰዓት ሰቅ (UTC+3)", tz_ahead: "ወደፊት (Ahead of EAT)", tz_behind: "ወደኋላ (Behind EAT)", txt_hours: "ሰዓት", txt_minutes: "ደቂቃ",
+        lbl_location: "Time zone", lbl_timezone: "የሰዓት ሰቅ / Timezone", lbl_difference: "ከኢትዮጵያ ሰዓት ጋር ያለው ልዩነት", tz_same: "ተመሳሳይ የሰዓት ሰቅ (UTC+3)", tz_ahead: "ወደፊት (Ahead of EAT)", tz_behind: "ወደኋላ (Behind EAT)", txt_hours: "ሰዓት", txt_minutes: "ደቂቃ",
         conv_title: "ቀን መፈለጊያና መቀየሪያ", conv_label_type: "የቀን ዓይነት", opt_eth: "የኢትዮጵያ ቀን", opt_greg: "የግሪጎሪያን (ፈረንጅ) ቀን", opt_jul: "የጁሊያን (Julian) ቀን", opt_heb: "የዕብራውያን (Hebrew) ቀን", opt_hij: "የሂጅሪ (እስላማዊ) ቀን",
         conv_label_year: "ዓመት (አማራጭ)", conv_label_month: "ወር (አማራጭ)", conv_label_day: "ቀን (አማራጭ)", ph_year: "ዓመት", ph_month: "ወር", ph_day: "ቀን", btn_convert: "ቀይር / ፈልግ",
         synax_title: "በስንክሳር ውስጥ ፍለጋ", synax_label: "የቅዱስ ወይም የበዓል ስም ያስገቡ", ph_synax: "ለምሳሌ፡ ሚካኤል", btn_search: "ፈልግ",
@@ -29,6 +29,7 @@ const i18n = {
         err_cycle_range: "የዑደት ርዝመት ከ15 እስከ 60 ቀናት መካከል መሆን አለበት።", err_period_range: "የወር አበባ ቆይታ ከ1 እስከ 15 ቀናት መካከል መሆን አለበት።",
         err_future_date: "የገባው ቀን ወደፊት ስለሆነ እባክዎ ያለፈ ቀን ያስገቡ።", err_generic: "የተከሰተ ችግር አለ፤ እባክዎ የገቡት መረጃ ትክክል መሆኑን ያረጋግጡ።",
         no_data: "ምንም መረጃ አልተመዘገበም።", isl_year_events: "የዓመቱ የእስልምና በዓላት",
+        zodiac_names: ["", "ካፕሪኮርን", "አኳሪየስ", "ፒሲስ", "አሪየስ", "ታውረስ", "ጀሚናይ", "ካንሰር", "ሊዮ", "ቨርጎ", "ሊብራ", "ስኮርፒዮ", "ሳጅታሪየስ"],
         lbl_day_num: "ቀን", lbl_weekday: "ዕለት", lbl_fasting_season: "የአጽዋም ዘመን", lbl_liturgical_season: "የቤተክርስቲያን ዘመን",
         lbl_events_memorials: "በዓላት / መታሰቢያ", lbl_month_events: "በዚህ ወር ያሉ በዓላትና አጽዋማት", lbl_year_movable_events: "የዓመቱ ተንቀሳቃሽ በዓላትና አጽዋማት",
         txt_sunrise: "መውጫ", txt_sunset: "መግቢያ", lbl_upcoming: "ቀጣይ በዓላትና አጽዋማት", lbl_today_synax: "የዕለቱ ስንክሳር በዓላት",
@@ -56,7 +57,7 @@ const i18n = {
         hijri_title: "Islamic (Hijri) Calendar", btn_copy_hijri: "Copy Hijri Date",
         heb_title: "Hebrew Calendar", heb_year_events: "Hebrew Events This Year",
         heb_rosh_hashanah: "Rosh Hashanah", heb_yom_kippur: "Yom Kippur", heb_sukkot: "Sukkot", heb_shemini_atzeret: "Shemini Atzeret", heb_hanukkah: "Hanukkah", heb_tu_bishvat: "Tu BiShvat", heb_purim: "Purim", heb_purim_katan: "Purim Katan", heb_passover: "Passover", heb_lag_baomer: "Lag BaOmer", heb_shavuot: "Shavuot", heb_tisha_bav: "Tisha B'Av",
-        lbl_location: "Location", lbl_timezone: "Timezone", lbl_difference: "Difference from EAT", tz_same: "Same as EAT (UTC+3)", tz_ahead: "Ahead of EAT", tz_behind: "Behind EAT", txt_hours: "hours", txt_minutes: "mins",
+        lbl_location: "Time zone", lbl_timezone: "Timezone", lbl_difference: "Difference from EAT", tz_same: "Same as EAT (UTC+3)", tz_ahead: "Ahead of EAT", tz_behind: "Behind EAT", txt_hours: "hours", txt_minutes: "mins",
         conv_title: "Search & Convert Dates", conv_label_type: "Calendar Type", opt_eth: "Ethiopian", opt_greg: "Gregorian", opt_jul: "Julian", opt_heb: "Hebrew", opt_hij: "Hijri (Islamic)",
         conv_label_year: "Year (Optional)", conv_label_month: "Month (Optional)", conv_label_day: "Day (Optional)", ph_year: "Year", ph_month: "Month", ph_day: "Day", btn_convert: "Convert / Search",
         synax_title: "Synaxarium Search", synax_label: "Enter Saint or Feast Name (Amharic)", ph_synax: "e.g., ሚካኤል", btn_search: "Search",
@@ -77,6 +78,7 @@ const i18n = {
         err_cycle_range: "Cycle length must be between 15 and 60 days.", err_period_range: "Period length must be between 1 and 15 days.",
         err_future_date: "That date is in the future; please enter a past date.", err_generic: "Something went wrong; please check your input.",
         no_data: "No data recorded yet.", isl_year_events: "Islamic Events This Year",
+        zodiac_names: ["", "Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius"],
         lbl_day_num: "Day", lbl_weekday: "Weekday", lbl_fasting_season: "Fasting Season", lbl_liturgical_season: "Church Season",
         lbl_events_memorials: "Holidays / Memorials", lbl_month_events: "Holidays & Fasts This Month", lbl_year_movable_events: "Movable Feasts & Fasts This Year",
         txt_sunrise: "Rise", txt_sunset: "Set", lbl_upcoming: "Upcoming Feasts & Fasts", lbl_today_synax: "Today's Synaxarium Feasts",
@@ -104,7 +106,7 @@ const i18n = {
         hijri_title: "Kalaandarii Islaamaa (Hijiraa)", btn_copy_hijri: "Guyyaa Hijiraa Garagalchi",
         heb_title: "Kalaandarii Hebrew", heb_year_events: "Ayyaanota Hebrew Bara Kanaa",
         heb_rosh_hashanah: "Rosh Hashanah", heb_yom_kippur: "Yom Kippur", heb_sukkot: "Sukkot", heb_shemini_atzeret: "Shemini Atzeret", heb_hanukkah: "Hanukkah", heb_tu_bishvat: "Tu BiShvat", heb_purim: "Purim", heb_purim_katan: "Purim Katan", heb_passover: "Passover", heb_lag_baomer: "Lag BaOmer", heb_shavuot: "Shavuot", heb_tisha_bav: "Tisha B'Av",
-        lbl_location: "Iddoo", lbl_timezone: "Sarara Sa'aatii", lbl_difference: "Garaagarummaa Sa'aatii EAT irraa", tz_same: "Walqixa EAT (UTC+3)", tz_ahead: "EAT Dura", tz_behind: "EAT Booda", txt_hours: "sa'aatii", txt_minutes: "daqiiqaa",
+        lbl_location: "Time zone", lbl_timezone: "Sarara Sa'aatii", lbl_difference: "Garaagarummaa Sa'aatii EAT irraa", tz_same: "Walqixa EAT (UTC+3)", tz_ahead: "EAT Dura", tz_behind: "EAT Booda", txt_hours: "sa'aatii", txt_minutes: "daqiiqaa",
         conv_title: "Guyyaa Barbaadi & Jijjiiri", conv_label_type: "Gosa Kalaandarii", opt_eth: "Itoophiyaa", opt_greg: "Gregorian (Awurooppaa)", opt_jul: "Julian", opt_heb: "Hebrew", opt_hij: "Hijiraa (Islaamaa)",
         conv_label_year: "Bara", conv_label_month: "Ji'a", conv_label_day: "Guyyaa", ph_year: "Bara", ph_month: "Ji'a", ph_day: "Guyyaa", btn_convert: "Jijjiiri / Barbaadi",
         synax_title: "Sinksikara Barbaadi", synax_label: "Maqaa Qulqulluu (Afaan Amaaraatiin)", ph_synax: "Fkn: ሚካኤል", btn_search: "Barbaadi",
@@ -125,6 +127,7 @@ const i18n = {
         err_cycle_range: "Dheerinni marsaa guyyaa 15 hanga 60 gidduu ta'uu qaba.", err_period_range: "Turtiin laguu guyyaa 1 hanga 15 gidduu ta'uu qaba.",
         err_future_date: "Guyyaan kun kan fuulduraati; maaloo guyyaa darbe galchi.", err_generic: "Rakkoon uumameera; maaloo galtee kee mirkaneessi.",
         no_data: "Hanga ammaatti odeeffannoon hin galmoofne.", isl_year_events: "Odeeffannoo Bara Guutuu",
+        zodiac_names: ["", "Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius"],
         lbl_day_num: "Guyyaa", lbl_weekday: "Guyyaa Torbee", lbl_fasting_season: "Yeroo Soomaa", lbl_liturgical_season: "Waqtii Kanisaa",
         lbl_events_memorials: "Ayyaanota / Yaadannoo", lbl_month_events: "Ayyaanotaa fi Soomawwan Ji'a Kanaa", lbl_year_movable_events: "Ayyaanota Sochoʼan Bara Kanaa",
         txt_sunrise: "Ba'a", txt_sunset: "Lixa", lbl_upcoming: "Ayyaanota fi Soomawwan Itti Aanan", lbl_today_synax: "Ayyaanota Sinkisaariyeemii Har'aa",
@@ -151,8 +154,8 @@ const i18n = {
         holidays_title: "ናይ ሎምዘመን ሃገራዊ በዓላት",
         hijri_title: "ኣቆጻጽራ እስልምና (ሂጅራ)", btn_copy_hijri: "ዕለት ሂጅራ ኮፒ ግበር",
         heb_title: "ኣቆጻጽራ እብራውያን (Hebrew)", heb_year_events: "በዓላት እብራውያን ናይዚ ዓመት",
-        heb_rosh_hashanah: "ሮሽ ሃሻና (Rosh Hashanah)", heb_yom_kippur: "ዮም ኪፑር (Yom Kippur)", heb_sukkot: "በዓል ዳስ (Sukkot)", heb_shemini_atzeret: "ሸሚኒ ኣጼሬት (Shemini Atzeret)", heb_hanukkah: "ሃኑካ (Hanukkah)", heb_tu_bishvat: "ቱ ቢሽቫት (Tu BiShvat)", heb_purim: "ፉሪም (Purim)", heb_purim_katan: "ፉሪም ካታን (Purim Katan)", heb_passover: "ፋሲካ (Passover)", heb_lag_baomer: "ላግ ባኦሜር (Lag BaOmer)", heb_shavuot: "ሻቩኦት (Shavuot)", heb_tisha_bav: "ቲሻ ባኣቭ (Tisha B'Av)",
-        lbl_location: "ቦታ", lbl_timezone: "ግዜ ዞባ", lbl_difference: "ካብ ግዜ ኢትዮጵያ ዘለዎ ፍልልይ", tz_same: "ማዕረ ግዜ ኢትዮጵያ (UTC+3)", tz_ahead: "ቅድሚ ግዜ ኢትዮጵያ", tz_behind: "ድሕሪ ግዜ ኢትዮጵያ", txt_hours: "ሰዓት", txt_minutes: "ደቒቓ",
+        heb_rosh_hashanah: "ሮሽ ሃሻና (Rosh ሃሻና)", heb_yom_kippur: "ዮም ኪፑር (Yom Kippur)", heb_sukkot: "በዓል ዳስ (Sukkot)", heb_shemini_atzeret: "ሸሚኒ ኣጼሬት (Shemini Atzeret)", heb_hanukkah: "ሃኑካ (Hanukkah)", heb_tu_bishvat: "ቱ ቢሽቫት (Tu BiShvat)", heb_purim: "ፉሪም (Purim)", heb_purim_katan: "ፉሪም ካታን (Purim Katan)", heb_passover: "ፋሲካ (Passover)", heb_lag_baomer: "ላግ ባኦሜር (Lag BaOmer)", heb_shavuot: "ሻቩኦት (Shavuot)", heb_tisha_bav: "ቲሻ ባኣቭ (Tisha B'Av)",
+        lbl_location: "Time zone", lbl_timezone: "ግዜ ዞባ", lbl_difference: "ካብ ግዜ ኢትዮጵያ ዘለዎ ፍልልይ", tz_same: "ማዕረ ግዜ ኢትዮጵያ (UTC+3)", tz_ahead: "ቅድሚ ግዜ ኢትዮጵያ", tz_behind: "ድሕሪ ግዜ ኢትዮጵያ", txt_hours: "ሰዓት", txt_minutes: "ደቒቓ",
         conv_title: "መድለዪን መቐየሪን ዕለት", conv_label_type: "ዓይነት ዕለት", opt_eth: "ናይ ኢትዮጵያ ዕለት", opt_greg: "ግሪጎሪያን (ፈረንጂ)", opt_jul: "ጁልያን", opt_heb: "እብራውያን", opt_hij: "ሂጅራ (እስልምና)",
         conv_label_year: "ዓመት", conv_label_month: "ወርሒ", conv_label_day: "መዓልቲ", ph_year: "ዓመት", ph_month: "ወርሒ", ph_day: "መዓልቲ", btn_convert: "ቀይር / ድለ",
         synax_title: "ኣብ ስንክሳር ድለ", synax_label: "ስም ቅዱስ ወይ በዓል ኣእቱ (ብኣምሓርኛ)", ph_synax: "ንኣብነት፡ ሚካኤል", btn_search: "ድለ",
@@ -173,6 +176,7 @@ const i18n = {
         err_cycle_range: "ንውሓት ዑደት ካብ 15 ክሳብ 60 መዓልታት ክኸውን ኣለዎ።", err_period_range: "ግዜ ወርሓዊ ጽግያት ካብ 1 ክሳብ 15 መዓልታት ክኸውን ኣለዎ።",
         err_future_date: "እዚ ዕለት እዚ ናይ መጻኢ ስለዝኾነ በጃኹም ዝሓለፈ ዕለት ኣእትዉ።", err_generic: "ጸገም ተፈጢሩ፤ በጃኹም ዘእቶኹምዎ መረጃ ኣረጋግጹ።",
         no_data: "ክሳብ ሕጂ ዝተመዝገበ መረጃ የለን።", isl_year_events: "ምሉእ ዓመት መረጃ",
+        zodiac_names: ["", "ካፕሪኮርን", "አኳሪየስ", "ፒሲስ", "ኣሪየስ", "ታውረስ", "ጀሚናይ", "ካንሰር", "ሊዮ", "ቨርጎ", "ሊብራ", "ስኮርፒዮ", "ሳጅታሪየስ"],
         lbl_day_num: "መዓልቲ", lbl_weekday: "መዓልቲ ሰሙን", lbl_fasting_season: "ግዜ ጾም", lbl_liturgical_season: "ወቅቲ ቤተክርስትያን",
         lbl_events_memorials: "በዓላት / መዘከርታ", lbl_month_events: "በዚ ወርሒ ዘለዉ በዓላትን ጾማትን", lbl_year_movable_events: "ተንቀሳቐስቲ በዓላትን ጾማትን ናይዚ ዓመት",
         txt_sunrise: "ምብራቕ", txt_sunset: "ምዕራብ", lbl_upcoming: "ዝቕጽሉ በዓላትን ጾማትን", lbl_today_synax: "በዓላት ስንክሳር ናይ ሎሚ መዓልቲ",
@@ -411,9 +415,13 @@ function getIslamicEvents(im, id) {
     return ev;
 }
 
+const ZODIAC_EMOJI_TO_INDEX = {"♑":1, "♒":2, "♓":3, "♈":4, "♉":5, "♊":6, "♋":7, "♌":8, "♍":9, "♎":10, "♏":11, "♐":12};
 function getZodiacSign(m, d) {
     const signs = [[1,20,"♑","♒"],[2,19,"♒","♓"],[3,21,"♓","♈"],[4,20,"♈","♉"],[5,21,"♉","♊"],[6,21,"♊","♋"],[7,23,"♋","♌"],[8,23,"♌","♍"],[9,23,"♍","♎"],[10,23,"♎","♏"],[11,22,"♏","♐"],[12,22,"♐","♑"]];
-    return d < signs[m-1][1] ? signs[m-1][2] : signs[m-1][3];
+    let emoji = d < signs[m-1][1] ? signs[m-1][2] : signs[m-1][3];
+    let idx = ZODIAC_EMOJI_TO_INDEX[emoji];
+    let names = t('zodiac_names');
+    return `${emoji} ${names[idx]}`;
 }
 function getAwdeNegestSign(m, d) {
     const signs = [[1,20,"ጀዲ (መሬት) — ንስር","ደለዊ (ነፋስ) — በሬ"],[2,19,"ደለዊ (ነፋስ) — በሬ","ሑት (ውሃ) — ከይሲ"],[3,21,"ሑት (ውሃ) — ከይሲ","ሐመል (እሳት) — ድብ"],[4,20,"ሐመል (እሳት) — ድብ","ሠውር (መሬት) — ዝንጀሮ"],[5,21,"ሠውር (መሬት) — ዝንጀሮ","ገውዝ (ነፋስ) — ዓጋዘን"],[6,21,"ገውዝ (ነፋስ) — ዓጋዘን","ሸርጣን (ውሃ) — ቀበሮ"],[7,23,"ሸርጣን (ውሃ) — ቀበሮ","አሰድ (እሳት) — አንበሳ"],[8,23,"አሰድ (እሳት) — አንበሳ","ሰንቡላ (መሬት) — ጉጉት"],[9,23,"ሰንቡላ (መሬት) — ጉጉት","ሚዛን (ነፋስ) — ተኩላ"],[10,23,"ሚዛን (ነፋስ) — ተኩላ","ዓቅራብ (ውሃ) — ነብር"],[11,22,"ዓቅራብ (ውሃ) — ነብር","ቀውስ (እሳት) — ጅብ"],[12,22,"ቀውስ (እሳት) — ጅብ","ጀዲ (መሬት) — ንስር"]];
@@ -710,6 +718,27 @@ function announceStatus(msg) {
 function initClock() {
     const timeBar = document.getElementById('local-time-bar');
     const tzBar = document.getElementById('timezone-info-bar');
+    
+    // Render the timezone info ONCE so it remains perfectly stable for screen readers
+    if (tzBar) {
+      try {
+        let now = new Date();
+        let tzName = Intl.DateTimeFormat().resolvedOptions().timeZone || "Unknown", userOffsetMin = -now.getTimezoneOffset();
+        let ethOffsetMin = 180, diffMinutes = userOffsetMin - ethOffsetMin, diffStr = "";
+        
+        if (diffMinutes === 0) diffStr = t('tz_same');
+        else if (diffMinutes > 0) diffStr = `${fNum(Math.floor(diffMinutes/60))} ${t('txt_hours')} ${diffMinutes%60 ? fNum(diffMinutes%60) + ' ' + t('txt_minutes') + ' ' : ''}${t('tz_ahead')}`;
+        else diffStr = `${fNum(Math.floor(Math.abs(diffMinutes)/60))} ${t('txt_hours')} ${Math.abs(diffMinutes)%60 ? fNum(Math.abs(diffMinutes)%60) + ' ' + t('txt_minutes') + ' ' : ''}${t('tz_behind')}`;
+        
+        let utcOffsetStr = userOffsetMin >= 0 ? `+${userOffsetMin/60}` : `${userOffsetMin/60}`;
+        tzBar.innerHTML = `<div style="font-size:0.85em; opacity:0.85; margin-top:5px; padding:5px; background:rgba(0,0,0,0.2); border-radius:4px;">
+            🌍 <strong>${t('lbl_location')}</strong>: ${tzName} (UTC${utcOffsetStr}) | ⏱️ <strong>${t('lbl_difference')}</strong>: ${diffStr}
+        </div>`;
+      } catch (err) {
+        console.error('Timezone info error:', err);
+      }
+    }
+
     if (!timeBar) return;
     
     setInterval(() => {
@@ -727,19 +756,6 @@ function initClock() {
         let elapsed = Math.floor((ethTimeDate - dayStart) / 1000), kekros = Math.floor(elapsed / 1440), kaelit = Math.floor((elapsed % 1440) / 24);
 
         timeBar.innerHTML = `<strong>${t('txt_time')} (UTC+3)</strong>፦ ${fNum(ethHr)}:${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')} ${period} | ኬክሮስ፦ ${fNum(kekros)} ከ${fNum(kaelit)} ካልዒት`;
-
-        if (tzBar) {
-            let tzName = Intl.DateTimeFormat().resolvedOptions().timeZone || "Unknown", userOffsetMin = -now.getTimezoneOffset();
-            let ethOffsetMin = 180, diffMinutes = userOffsetMin - ethOffsetMin, diffStr = "";
-            if (diffMinutes === 0) diffStr = t('tz_same');
-            else if (diffMinutes > 0) diffStr = `${fNum(Math.floor(diffMinutes/60))} ${t('txt_hours')} ${diffMinutes%60 ? fNum(diffMinutes%60) + ' ' + t('txt_minutes') + ' ' : ''}${t('tz_ahead')}`;
-            else diffStr = `${fNum(Math.floor(Math.abs(diffMinutes)/60))} ${t('txt_hours')} ${Math.abs(diffMinutes)%60 ? fNum(Math.abs(diffMinutes)%60) + ' ' + t('txt_minutes') + ' ' : ''}${t('tz_behind')}`;
-            
-            let utcOffsetStr = userOffsetMin >= 0 ? `+${userOffsetMin/60}` : `${userOffsetMin/60}`;
-            tzBar.innerHTML = `<div style="font-size:0.85em; opacity:0.85; margin-top:5px; padding:5px; background:rgba(0,0,0,0.2); border-radius:4px;">
-                🌍 <strong>${t('lbl_location')}</strong>: ${tzName} (UTC${utcOffsetStr}) | ⏱️ <strong>${t('lbl_difference')}</strong>: ${diffStr} <br>⌚ <strong>Local Time</strong>: ${now.toLocaleTimeString()}
-            </div>`;
-        }
     }, 1000);
 }
 
