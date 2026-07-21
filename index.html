@@ -72,6 +72,9 @@
     <header>
         <h1 data-i18n="app_title">የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ</h1>
         <div id="local-time-bar" aria-live="off">የኢትዮጵያ ሰዓት በመጫን ላይ...</div>
+        <!-- Timezone Info Bar Integration -->
+        <div id="timezone-info-bar" aria-live="polite"></div>
+        
         <div class="settings-controls">
             <select id="lang-selector" class="btn-control-toggle" aria-label="ቋንቋ / Language">
                 <option value="am">አማርኛ</option>
@@ -94,6 +97,8 @@
         <button class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-today" id="navbtn-today" data-target="tab-today" data-i18n="nav_today">ዛሬ</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-holidays" id="navbtn-holidays" data-target="tab-holidays" data-i18n="nav_holidays">ብሔራዊ በዓላት</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-islamic" id="navbtn-islamic" data-target="tab-islamic" data-i18n="nav_hijri">ሂጅሪ አቆጣጠር</button>
+        <!-- Hebrew Calendar Button -->
+        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-hebrew" id="navbtn-hebrew" data-target="tab-hebrew" data-i18n="nav_hebrew">ዕብራውያን አቆጣጠር</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-converter" id="navbtn-converter" data-target="tab-converter" data-i18n="nav_converter">ቀን መቀየሪያ</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium" data-i18n="nav_synaxarium">ስንክሳር ፍለጋ</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-periodic" id="navbtn-periodic" data-target="tab-periodic" data-i18n="nav_period">የወር አበባ ዑደት</button>
@@ -122,6 +127,14 @@
                 <h2 data-i18n="hijri_title">የእስልምና (ሂጅሪ) ቀን አቆጣጠር</h2>
                 <button id="btn-copy-hijri" class="btn-secondary" data-i18n="btn_copy_hijri">ሂጅሪ ቀን ኮፒ አድርግ</button>
                 <div id="islamic-summary" class="info-output" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- Hebrew Calendar Section -->
+        <section id="tab-hebrew" class="tab-content" role="tabpanel" aria-labelledby="navbtn-hebrew" hidden>
+            <div class="card">
+                <h2 data-i18n="heb_title">የዕብራውያን (Hebrew) ቀን አቆጣጠር</h2>
+                <div id="hebrew-summary" class="info-output" aria-live="polite"></div>
             </div>
         </section>
 
