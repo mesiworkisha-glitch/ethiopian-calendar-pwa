@@ -309,9 +309,22 @@ function getAddisSunTimes(gDate) {
     let start = makeDate(gDate.getFullYear(), 1, 0), dayOfYear = Math.floor((gDate - start) / 86400000);
     let offsetMinutes = 25 * Math.sin(2 * Math.PI * (dayOfYear - 80) / 365);
     let riseMin = Math.round(15 - offsetMinutes), setMin = Math.round(15 + offsetMinutes), riseHr = 6, setHr = 18;
+    
+    // Standard EAT calculations
     if (riseMin >= 60) { riseHr++; riseMin -= 60; } if (riseMin < 0) { riseHr--; riseMin += 60; }
     if (setMin >= 60) { setHr++; setMin -= 60; } if (setMin < 0) { setHr--; setMin += 60; }
-    return { rise: `${fNum(riseHr)}:${String(riseMin).padStart(2,'0')} ${t('txt_morning')}`, set: `${fNum(setHr - 12)}:${String(setMin).padStart(2,'0')} ${t('txt_evening')}` };
+    
+    // Convert to Ethiopian local time (6:00 AM -> 12:00 ጠዋት | 6:00 PM -> 12:00 ማታ)
+    let ethRiseHr = riseHr - 6; 
+    if (ethRiseHr <= 0) ethRiseHr += 12;
+    
+    let ethSetHr = setHr - 18; 
+    if (ethSetHr <= 0) ethSetHr += 12;
+    
+    return { 
+        rise: `${fNum(ethRiseHr)}:${String(riseMin).padStart(2,'0')} ${t('txt_morning')}`, 
+        set: `${fNum(ethSetHr)}:${String(setMin).padStart(2,'0')} ${t('txt_evening')}` 
+    };
 }
 
 function hebrewLeap(year) { return mod((7 * year + 1), 19) < 7; }
