@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ethio-calendar-v20';
+const CACHE_NAME = 'ethio-calendar-v21';
 const ASSETS = [
     './',
     './index.html',

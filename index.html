@@ -4,69 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Core SEO -->
+    <!-- ==========================================
+         CORE SEO & BROWSER METADATA
+         ========================================== -->
     <title>የኢትዮጵያ ካላንደር PWA | Ethiopian Calendar & Bahire Hasab</title>
-    <meta name="description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ እና የሂጅሪ ቀን መቀየሪያ - ከመስመር ውጭም ጭምር የሚሠራ መተግበሪያ።">
-    <meta name="keywords" content="የኢትዮጵያ ካላንደር, Ethiopian Calendar, ባሕረ ሐሳብ, Bahire Hasab, ስንክሳር, Synaxarium, ቀን መቀየሪያ, Date Converter, PWA">
+    <meta name="description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ፣ የዕብራውያን እና የሂጅሪ ቀን መቀየሪያ - ከመስመር ውጭም ጭምር የሚሠራ መተግበሪያ።">
+    <meta name="keywords" content="የኢትዮጵያ ካላንደር, Ethiopian Calendar, ባሕረ ሐሳብ, Bahire Hasab, ስንክሳር, Synaxarium, Age Calculator, Pregnancy Calculator, Date Converter, PWA, Ethiopia">
     <meta name="author" content="Meseret Worku Alemu">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/">
-    <meta name="theme-color" content="#0066cc">
+    
+    <!-- Multi-Language SEO / Hreflang Tags -->
+    <link rel="alternate" hreflang="am" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/?lang=am">
+    <link rel="alternate" hreflang="en" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/?lang=en">
+    <link rel="alternate" hreflang="om" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/?lang=om">
+    <link rel="alternate" hreflang="ti" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/?lang=ti">
+    <link rel="alternate" hreflang="x-default" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/">
 
-    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <!-- ==========================================
+         PWA & MOBILE OPTIMIZATION
+         ========================================== -->
+    <meta name="theme-color" content="#0066cc">
+    <meta name="application-name" content="Ethio Calendar PWA">
+    <meta name="apple-mobile-web-app-title" content="Ethio Calendar">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+
+    <!-- ==========================================
+         OPEN GRAPH (FACEBOOK, LINKEDIN, WHATSAPP)
+         ========================================== -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="የኢትዮጵያ ካላንደር PWA">
     <meta property="og:title" content="የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ | Ethiopian Calendar">
-    <meta property="og:description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ፣ የጁሊያን አቆጣጠር፣ የእብራውያን አቆጣጠር እና የሂጅሪ ቀን መቀየሪያ - ከመስመር ውጭም ጭምር የሚሠራ መተግበሪያ።">
+    <meta property="og:description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ፣ የጁሊያን፣ የዕብራውያን እና የሂጅሪ ቀን መቀየሪያ - ከመስመር ውጭም ጭምር የሚሠራ መተግበሪያ።">
     <meta property="og:url" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/">
     <meta property="og:image" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/og-image.png">
+    <meta property="og:image:secure_url" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/og-image.png">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="የኢትዮጵያ ካላንደር PWA ቅድመ ዕይታ">
+    <meta property="og:image:alt" content="የኢትዮጵያ ካላንደር PWA ቅድመ ዕይታ - የዕለቱ መረጃ፣ የቀን መቀየሪያ፣ እና ብሔራዊ በዓላት">
+    <!-- Locales -->
     <meta property="og:locale" content="am_ET">
     <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="om_ET">
+    <meta property="og:locale:alternate" content="ti_ET">
 
-    <!-- Twitter Card -->
+    <!-- ==========================================
+         TWITTER CARD
+         ========================================== -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="mesiworkisha-glitch.github.io">
+    <meta name="twitter:url" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/">
     <meta name="twitter:title" content="የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ | Ethiopian Calendar">
-    <meta name="twitter:description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ እና የሂጅሪ ቀን መቀየሪያ።">
+    <meta name="twitter:description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የስንክሳር ፍለጋ እና የዕብራውያን/ሂጅሪ ቀን መቀየሪያ። ነጻ እና ከመስመር ውጭ የሚሠራ መተግበሪያ።">
     <meta name="twitter:image" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/og-image.png">
     <meta name="twitter:image:alt" content="የኢትዮጵያ ካላንደር PWA ቅድመ ዕይታ">
-    
-    <!-- PWA / Apple iOS Support -->
-    <link rel="apple-touch-icon" href="icon-192x192.png">
 
-    <!-- Structured Data (JSON-LD) -->
+    <!-- ==========================================
+         STRUCTURED DATA (JSON-LD SCHEMA)
+         ========================================== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ",
+      "name": "የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ | Ethiopian Calendar",
       "alternateName": "Ethiopian Calendar PWA",
       "url": "https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/",
-      "description": "የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ እና የሂጅሪ ቀን መቀየሪያ - ከመስመር ውጭም ጭምር የሚሠራ መተግበሪያ።",
+      "description": "የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ የሂጅሪ ዘመን አቆጣጠር፣ የግሪጎሪያን ዘመን አቆጣጠር፣ የእብራውያን ዘመን አቆጣጠር፣ የጁሊያን ካላንደር፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ፣ ዕድሜ, የወሊድ እና እርግዝና፣ እና የወር አበባ ዑደት ማስያ፣ እንዲሁም የቀን መቀየሪያ - ከመስመር ውጭም ጭምር የሚሠራ መተግበሪያ።",
       "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Any",
+      "operatingSystem": "All, iOS, Android, Windows, macOS, Linux",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "softwareVersion": "3.0.0",
+      "inLanguage": ["am", "en", "om", "ti"],
       "author": {
         "@type": "Person",
-        "name": "Meseret Worku Alemu"
+        "name": "Meseret Worku Alemu",
+        "url": "https://t.me/meseret199"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Meseret Worku Alemu",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/icon-192x192.png"
+        }
       },
       "offers": {
         "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "ETB"
+        "price": "0.00",
+        "priceCurrency": "ETB",
+        "availability": "https://schema.org/InStock"
       },
       "featureList": [
-        "Offline capability",
-        "Bahire Hasab calculations",
-        "Synaxarium search",
-        "Calendar conversion (Gregorian, Julian, Hebrew, Hijri)"
-      ]
+        "Offline Progressive Web App (PWA) capability",
+        "Ethiopian Bahire Hasab & Movable Feasts calculation",
+        "Daily Synaxarium search",
+        "Date converter across Ethiopian, Gregorian, Julian, Hebrew, and Hijri calendars",
+        "Pregnancy and exact age calculator based on the Ethiopian calendar",
+        "Menstrual cycle tracker",
+        "Multi-language support (Amharic, English, Afaan Oromoo, Tigrinya)"
+      ],
+      "image": "https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/og-image.png"
     }
     </script>
 
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <header>
