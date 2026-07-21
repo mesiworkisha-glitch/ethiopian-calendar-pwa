@@ -990,7 +990,20 @@ function setupAgeCalc() {
                 let nextDay = Math.min(bD, getMonthLength(nextY, nextM)), nextJdn = ethiopianToJdn(nextY, nextM, nextDay);
                 if (nextJdn > cJdn) break; months++; curY = nextY; curM = nextM; curJdn = nextJdn;
             }
-            out.innerHTML = `<h3>${t('age_result')}</h3><p><strong>${fNum(years)} ${t('age_years')}, ${fNum(months)} ${t('age_months')}, ${fNum(cJdn - curJdn)} ${t('txt_days')}</strong></p><p>${t('total_life_days')}: ${fNum(cJdn - bJdn)}</p>`;
+            
+            // --- NEW: Calculate Zodiac and Awde Negest based on birth date ---
+            let bGreg = ethToGregorian(bY, bM, bD); // Convert Ethiopian birthdate to Gregorian
+            let gMonth = bGreg.getMonth() + 1;
+            let gDay = bGreg.getDate();
+            let zodiac = getZodiacSign(gMonth, gDay);
+            let awde = getAwdeNegestSign(gMonth, gDay);
+            // -----------------------------------------------------------------
+
+            out.innerHTML = `<h3>${t('age_result')}</h3>
+                             <p><strong>${fNum(years)} ${t('age_years')}, ${fNum(months)} ${t('age_months')}, ${fNum(cJdn - curJdn)} ${t('txt_days')}</strong></p>
+                             <p>${t('total_life_days')}: ${fNum(cJdn - bJdn)}</p>
+                             <p><strong>${t('lbl_zodiac')}:</strong> ${zodiac}</p>
+                             <p><strong>${t('lbl_awde')}:</strong> ${awde}</p>`;
         } catch (err) { out.innerHTML = `<p style="color:red;">${t('err_generic')}</p>`; }
     });
 }
