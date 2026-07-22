@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/sitemap.xml
