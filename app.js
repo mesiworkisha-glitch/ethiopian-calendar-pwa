@@ -428,7 +428,7 @@ function getIslamicEvents(im, id) {
     return ev;
 }
 
-const ZODIAC_EMOJI_TO_INDEX = {"♑":1, "♒":2, "♓":3, "♈":4, "♉":5, "♊":6, "♋":7, "♌":8, "♍":9, "♎":10, "♏":11, "♐":12};
+const ZODIAC_EMOJI_TO_INDEX = {"♑":1, "♒":2, "♓":3, "♈":4, "♉":5, "♊":6, "♋":7, "":8, "♍":9, "♎":10, "♏":11, "♐":12};
 function getZodiacSign(m, d) {
     const signs = [[1,20,"♑","♒"],[2,19,"♒","♓"],[3,21,"♓","♈"],[4,20,"♈","♉"],[5,21,"♉","♊"],[6,21,"♊","♋"],[7,23,"♋","♌"],[8,23,"♌","♍"],[9,23,"♍","♎"],[10,23,"♎","♏"],[11,22,"♏","♐"],[12,22,"♐","♑"]];
     let emoji = d < signs[m-1][1] ? signs[m-1][2] : signs[m-1][3];
@@ -582,8 +582,7 @@ async function renderYearSearch(ey, out) {
         <li>${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
         <li>${t('lbl_wengelawi')}: ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${fNum(bh.aa)})</li></ul>`;
     html += `<h4>${t('holidays_title')}</h4><ul>`;
-    holidays.slice(0, 10).forEach(h => { let eth = gregorianToEthiopian(h.g.getFullYear(), h.g.getMonth()+1, h.g.getDate()); html += `<li>${h.n} — ${wList[h.g.getDay()]}፣ ${mList[eth.em]} ${fNum(eth.ed)} (${formatDate(h.g)})</li>`; });
-    if (holidays.length > 10) html += `<li>... (${holidays.length - 10} more)</li>`;
+    holidays.forEach(h => { let eth = gregorianToEthiopian(h.g.getFullYear(), h.g.getMonth()+1, h.g.getDate()); html += `<li>${h.n} — ${wList[h.g.getDay()]}፣ ${mList[eth.em]} ${fNum(eth.ed)} (${formatDate(h.g)})</li>`; });
     html += `</ul><h4>${t('lbl_year_movable_events')}</h4><ul>`;
     let shown = new Set();
     events.forEach(ev => {
