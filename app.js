@@ -428,7 +428,7 @@ function getIslamicEvents(im, id) {
     return ev;
 }
 
-const ZODIAC_EMOJI_TO_INDEX = {"♑":1, "♒":2, "♓":3, "♈":4, "♉":5, "♊":6, "♋":7, "":8, "♍":9, "♎":10, "♏":11, "♐":12};
+const ZODIAC_EMOJI_TO_INDEX = {"♑":1, "♒":2, "♓":3, "♈":4, "♉":5, "♊":6, "♋":7, "♌":8, "♍":9, "♎":10, "♏":11, "♐":12};
 function getZodiacSign(m, d) {
     const signs = [[1,20,"♑","♒"],[2,19,"♒","♓"],[3,21,"♓","♈"],[4,20,"♈","♉"],[5,21,"♉","♊"],[6,21,"♊","♋"],[7,23,"♋","♌"],[8,23,"♌","♍"],[9,23,"♍","♎"],[10,23,"♎","♏"],[11,22,"♏","♐"],[12,22,"♐","♑"]];
     let emoji = d < signs[m-1][1] ? signs[m-1][2] : signs[m-1][3];
@@ -533,10 +533,14 @@ function getNamedEventsForYear(ey) {
 function getFdreHolidays(ey) {
     let startG = ethToGregorian(ey, 1, 1), yearG = startG.getFullYear(), bh = calculateBahreHasab(ey), gennaDay = mod(ey, 4) === 0 ? 28 : 29;
     let h = [
-        { n: t('hol_enkutatash'), g: startG }, { n: t('hol_meskel'), g: ethToGregorian(ey, 1, 17) },
-        { n: t('hol_genna'), g: ethToGregorian(ey, 4, gennaDay) }, { n: t('hol_timkat'), g: ethToGregorian(ey, 5, 11) },
-        { n: t('hol_adwa'), g: ethToGregorian(ey, 6, 23) }, { n: t('hol_patriots'), g: ethToGregorian(ey, 8, 27) },
-        { n: t('hol_labor'), g: makeDate(yearG + 1, 5, 1) }, { n: t('fest_siklet'), g: ethToGregorian(ey, bh.feasts.siklet.m, bh.feasts.siklet.d) },
+        { n: t('hol_enkutatash'), g: startG }, 
+        { n: t('hol_meskel'), g: ethToGregorian(ey, 1, 17) },
+        { n: t('hol_genna'), g: ethToGregorian(ey, 4, gennaDay) }, 
+        { n: t('hol_timkat'), g: ethToGregorian(ey, 5, 11) },
+        { n: t('hol_adwa'), g: ethToGregorian(ey, 6, 23) }, 
+        { n: t('hol_patriots'), g: ethToGregorian(ey, 8, 27) },
+        { n: t('hol_labor'), g: makeDate(yearG + 1, 5, 1) }, 
+        { n: t('fest_siklet'), g: ethToGregorian(ey, bh.feasts.siklet.m, bh.feasts.siklet.d) },
         { n: t('fest_tensae'), g: ethToGregorian(ey, bh.feasts.tensae.m, bh.feasts.tensae.d) }
     ];
     let endG = ethToGregorian(ey + 1, 1, 1), startJ = gregorianToJdn(startG.getFullYear(), startG.getMonth()+1, startG.getDate()), endJ = gregorianToJdn(endG.getFullYear(), endG.getMonth()+1, endG.getDate());
@@ -581,13 +585,22 @@ async function renderYearSearch(ey, out) {
         <li>${t('bh_medeb')}: ${fNum(bh.medeb)} | ${t('bh_wenber')}: ${fNum(bh.wenber)} | ${t('bh_tinte')}: ${bh.tinteQemer}</li>
         <li>${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
         <li>${t('lbl_wengelawi')}: ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${fNum(bh.aa)})</li></ul>`;
+    
+    // --- Render complete list of national holidays without any limit ---
     html += `<h4>${t('holidays_title')}</h4><ul>`;
-    holidays.forEach(h => { let eth = gregorianToEthiopian(h.g.getFullYear(), h.g.getMonth()+1, h.g.getDate()); html += `<li>${h.n} — ${wList[h.g.getDay()]}፣ ${mList[eth.em]} ${fNum(eth.ed)} (${formatDate(h.g)})</li>`; });
+    holidays.forEach(h => { 
+        let eth = gregorianToEthiopian(h.g.getFullYear(), h.g.getMonth()+1, h.g.getDate()); 
+        html += `<li><strong>${h.n}</strong> — ${wList[h.g.getDay()]}፣ ${mList[eth.em]} ${fNum(eth.ed)} (${formatDate(h.g)})</li>`; 
+    });
+    
+    // --- Render complete list of year movable events without any limit ---
     html += `</ul><h4>${t('lbl_year_movable_events')}</h4><ul>`;
     let shown = new Set();
     events.forEach(ev => {
         if (!shown.has(ev.label)) {
-            shown.add(ev.label); let { em, ed } = dayOfYearToMonthDay(ev.dayNum); let gDate = ethToGregorian(ey, em, ed);
+            shown.add(ev.label); 
+            let { em, ed } = dayOfYearToMonthDay(ev.dayNum); 
+            let gDate = ethToGregorian(ey, em, ed);
             html += `<li>${ev.label} — ${wList[gDate.getDay()]}፣ ${mList[em]} ${fNum(ed)} (${formatDate(gDate)})</li>`;
         }
     });
@@ -732,7 +745,6 @@ function initClock() {
     const timeBar = document.getElementById('local-time-bar');
     const tzBar = document.getElementById('timezone-info-bar');
     
-    // Render the timezone info ONCE so it remains perfectly stable for screen readers
     if (tzBar) {
       try {
         let now = new Date();
@@ -756,8 +768,6 @@ function initClock() {
     
     setInterval(() => {
         let now = new Date();
-        
-        // EAT (UTC+3) logic for absolute Ethiopian time, disconnected from user machine timezone
         let utcMs = now.getTime() + (now.getTimezoneOffset() * 60000);
         let ethTimeDate = new Date(utcMs + (180 * 60000));
         let hr = ethTimeDate.getHours(), min = ethTimeDate.getMinutes(), sec = ethTimeDate.getSeconds();
@@ -1012,13 +1022,11 @@ function setupAgeCalc() {
                 if (nextJdn > cJdn) break; months++; curY = nextY; curM = nextM; curJdn = nextJdn;
             }
             
-            // --- NEW: Calculate Zodiac and Awde Negest based on birth date ---
-            let bGreg = ethToGregorian(bY, bM, bD); // Convert Ethiopian birthdate to Gregorian
+            let bGreg = ethToGregorian(bY, bM, bD);
             let gMonth = bGreg.getMonth() + 1;
             let gDay = bGreg.getDate();
             let zodiac = getZodiacSign(gMonth, gDay);
             let awde = getAwdeNegestSign(gMonth, gDay);
-            // -----------------------------------------------------------------
 
             out.innerHTML = `<h3>${t('age_result')}</h3>
                              <p><strong>${fNum(years)} ${t('age_years')}, ${fNum(months)} ${t('age_months')}, ${fNum(cJdn - curJdn)} ${t('txt_days')}</strong></p>
