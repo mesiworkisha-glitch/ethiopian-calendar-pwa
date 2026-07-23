@@ -586,6 +586,16 @@ async function renderYearSearch(ey, out) {
         <li>${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
         <li>${t('lbl_wengelawi')}: ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${fNum(bh.aa)})</li></ul>`;
     
+    // --- NEW: Render list of months ---
+    html += `<h4>${t('lbl_months')}</h4><ul>`;
+    for (let em = 1; em <= 13; em++) {
+        let mLen = getMonthLength(ey, em);
+        let startG = ethToGregorian(ey, em, 1);
+        let endG = ethToGregorian(ey, em, mLen);
+        html += `<li><strong>${mList[em]}</strong>፦ ${wList[startG.getDay()]}፣ ${formatDate(startG)} - ${wList[endG.getDay()]}፣ ${formatDate(endG)} (${fNum(mLen)} ${t('txt_days')})</li>`;
+    }
+    html += `</ul>`;
+
     // --- Render complete list of national holidays without any limit ---
     html += `<h4>${t('holidays_title')}</h4><ul>`;
     holidays.forEach(h => { 
