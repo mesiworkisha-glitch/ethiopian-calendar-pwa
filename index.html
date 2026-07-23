@@ -146,6 +146,7 @@
 
     <nav aria-label="የመተግበሪያው ክፍሎች" role="tablist">
         <button class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-today" id="navbtn-today" data-target="tab-today" data-i18n="nav_today">ዛሬ</button>
+        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-thisyear" id="navbtn-thisyear" data-target="tab-thisyear" data-i18n="nav_this_year">ዘንድሮ</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-holidays" id="navbtn-holidays" data-target="tab-holidays" data-i18n="nav_holidays">ብሔራዊ በዓላት</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-islamic" id="navbtn-islamic" data-target="tab-islamic" data-i18n="nav_hijri">ሂጅሪ አቆጣጠር</button>
         <!-- Hebrew Calendar Button -->
@@ -163,6 +164,14 @@
                 <h2 data-i18n="today_title">የዕለቱ ሙሉ መረጃ</h2>
                 <button id="btn-copy-date" class="btn-secondary" data-i18n="btn_copy_date">ቀኑን ኮፒ አድርግ</button>
                 <div id="today-summary" class="info-output" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- New This Year Tab -->
+        <section id="tab-thisyear" class="tab-content" role="tabpanel" aria-labelledby="navbtn-thisyear" hidden>
+            <div class="card">
+                <h2 data-i18n="this_year_title">የዘንድሮ ሙሉ መረጃ</h2>
+                <div id="thisyear-output" class="info-output" aria-live="polite"></div>
             </div>
         </section>
 

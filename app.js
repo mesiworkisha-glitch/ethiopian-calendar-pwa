@@ -2,8 +2,8 @@ const i18n = {
     am: {
         app_title: "የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ",
         intro_desc: "ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የስንክሳር ፍለጋ፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ።",
-        nav_today: "ዛሬ", nav_holidays: "ብሔራዊ በዓላት", nav_hijri: "ሂጅሪ አቆጣጠር", nav_hebrew: "ዕብራውያን አቆጣጠር", nav_converter: "ቀን መቀየሪያ", nav_synaxarium: "ስንክሳር ፍለጋ", nav_period: "የወር አበባ ዑደት", nav_age: "ዕድሜ ማስያ", nav_pregnancy: "የእርግዝና እና የወሊድ ጊዜ መገመቻ",
-        today_title: "የዕለቱ ሙሉ መረጃ", btn_copy_date: "ቀኑን ኮፒ አድርግ",
+        nav_today: "ዛሬ", nav_this_year: "ዘንድሮ", nav_holidays: "ብሔራዊ በዓላት", nav_hijri: "ሂጅሪ አቆጣጠር", nav_hebrew: "ዕብራውያን አቆጣጠር", nav_converter: "ቀን መቀየሪያ", nav_synaxarium: "ስንክሳር ፍለጋ", nav_period: "የወር አበባ ዑደት", nav_age: "ዕድሜ ማስያ", nav_pregnancy: "የእርግዝና እና የወሊድ ጊዜ መገመቻ",
+        today_title: "የዕለቱ ሙሉ መረጃ", this_year_title: "የዘንድሮ ሙሉ መረጃ", btn_copy_date: "ቀኑን ኮፒ አድርግ",
         holidays_title: "የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት",
         hijri_title: "የእስልምና (ሂጅሪ) ቀን አቆጣጠር", btn_copy_hijri: "ሂጅሪ ቀን ኮፒ አድርግ",
         heb_title: "የዕብራውያን (Hebrew) ቀን አቆጣጠር", heb_year_events: "የዓመቱ የዕብራውያን በዓላት",
@@ -51,8 +51,8 @@ const i18n = {
     en: {
         app_title: "Ethiopian Calendar & Bahire Hasab",
         intro_desc: "Free, offline-capable app: Accurate Bahire Hasab, movable feasts, fasting seasons, Synaxarium search, and conversion for Gregorian, Julian, Hebrew, and Hijri dates.",
-        nav_today: "Today", nav_holidays: "National Holidays", nav_hijri: "Hijri Calendar", nav_hebrew: "Hebrew Calendar", nav_converter: "Date Converter", nav_synaxarium: "Synaxarium", nav_period: "Period Tracker", nav_age: "Age Calculator", nav_pregnancy: "Pregnancy Calc",
-        today_title: "Today's Full Details", btn_copy_date: "Copy Date",
+        nav_today: "Today", nav_this_year: "This Year", nav_holidays: "National Holidays", nav_hijri: "Hijri Calendar", nav_hebrew: "Hebrew Calendar", nav_converter: "Date Converter", nav_synaxarium: "Synaxarium", nav_period: "Period Tracker", nav_age: "Age Calculator", nav_pregnancy: "Pregnancy Calc",
+        today_title: "Today's Full Details", this_year_title: "This Year's Full Details", btn_copy_date: "Copy Date",
         holidays_title: "This Year's National Holidays",
         hijri_title: "Islamic (Hijri) Calendar", btn_copy_hijri: "Copy Hijri Date",
         heb_title: "Hebrew Calendar", heb_year_events: "Hebrew Events This Year",
@@ -100,8 +100,8 @@ const i18n = {
     om: {
         app_title: "Kalaandarii Itoophiyaa & Bahire Hasab",
         intro_desc: "Appii tolaa, sarara malee hojjetu: Herrega Bahire Hasab sirrii, ayyaanoota, yeroo soomaa, fi jijjiirraa guyyaa (Gregorian, Julian, Hebrew, Hijri).",
-        nav_today: "Har'a", nav_holidays: "Ayyaanoota", nav_hijri: "Kalaandarii Hijiraa", nav_hebrew: "Kalaandarii Hebrew", nav_converter: "Guyyaa Jijjiiri", nav_synaxarium: "Sinksikara", nav_period: "Hordoffii Marsaa", nav_age: "Umrii Herregi", nav_pregnancy: "Herrega Ulfaa",
-        today_title: "Odeeffannoo Har'aa Guutuu", btn_copy_date: "Guyyaa Garagalchi",
+        nav_today: "Har'a", nav_this_year: "Bara Kana", nav_holidays: "Ayyaanoota", nav_hijri: "Kalaandarii Hijiraa", nav_hebrew: "Kalaandarii Hebrew", nav_converter: "Guyyaa Jijjiiri", nav_synaxarium: "Sinksikara", nav_period: "Hordoffii Marsaa", nav_age: "Umrii Herregi", nav_pregnancy: "Herrega Ulfaa",
+        today_title: "Odeeffannoo Har'aa Guutuu", this_year_title: "Odeeffannoo Bara Kanaa Guutuu", btn_copy_date: "Guyyaa Garagalchi",
         holidays_title: "Ayyaanoota Biyyooleessa Bara Kanaa",
         hijri_title: "Kalaandarii Islaamaa (Hijiraa)", btn_copy_hijri: "Guyyaa Hijiraa Garagalchi",
         heb_title: "Kalaandarii Hebrew", heb_year_events: "Ayyaanota Hebrew Bara Kanaa",
@@ -149,8 +149,8 @@ const i18n = {
     ti: {
         app_title: "ካላንደር ኢትዮጵያን ባሕረ ሓሳብን",
         intro_desc: "ብነጻን ብዘይ ኢንተርነትን ዝሰርሕ ኣፕሊኬሽን፦ ቅኑዕ ስሌት ባሕረ ሓሳብ፣ ተንቀሳቐስቲ በዓላት፣ እዋናት ጾም፣ መርበብ ስንክሳርን መቐየሪ ዕለታትን።",
-        nav_today: "ሎሚ", nav_holidays: "ሃገራዊ በዓላት", nav_hijri: "ኣቆጻጽራ ሂጅራ", nav_hebrew: "ኣቆጻጽራ እብራውያን", nav_converter: "መቐየሪ ዕለት", nav_synaxarium: "ድለያ ስንክሳር", nav_period: "ዑደት ጽግያት", nav_age: "ዕድመ መሕሰቢ", nav_pregnancy: "ግምት መሕረሲ",
-        today_title: "ናይ ሎሚ ምሉእ ሓበሬታ", btn_copy_date: "ዕለት ኮፒ ግበር",
+        nav_today: "ሎሚ", nav_this_year: "ሎምዘመን", nav_holidays: "ሃገራዊ በዓላት", nav_hijri: "ኣቆጻጽራ ሂጅራ", nav_hebrew: "ኣቆጻጽራ እብራውያን", nav_converter: "መቐየሪ ዕለት", nav_synaxarium: "ድለያ ስንክሳር", nav_period: "ዑደት ጽግያት", nav_age: "ዕድመ መሕሰቢ", nav_pregnancy: "ግምት መሕረሲ",
+        today_title: "ናይ ሎሚ ምሉእ ሓበሬታ", this_year_title: "ናይ ሎምዘመን ምሉእ ሓበሬታ", btn_copy_date: "ዕለት ኮፒ ግበር",
         holidays_title: "ናይ ሎምዘመን ሃገራዊ በዓላት",
         hijri_title: "ኣቆጻጽራ እስልምና (ሂጅራ)", btn_copy_hijri: "ዕለት ሂጅራ ኮፒ ግበር",
         heb_title: "ኣቆጻጽራ እብራውያን (Hebrew)", heb_year_events: "በዓላት እብራውያን ናይዚ ዓመት",
@@ -682,6 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modules = [
         { name: "Tabs Control", func: setupTabs }, { name: "Preferences Toggles", func: setupPreferences },
         { name: "Live Clock", func: initClock }, { name: "Today View", func: renderToday },
+        { name: "This Year View", func: renderThisYear },
         { name: "Holidays View", func: renderHolidays }, { name: "Islamic View", func: renderIslamic },
         { name: "Hebrew View", func: renderHebrew }, { name: "Converter Form", func: setupConverter },
         { name: "Synaxarium Search", func: setupSynaxarium }, { name: "Menstrual Tracker", func: setupPeriodic },
@@ -704,7 +705,7 @@ function setupTabs() {
 }
 
 function refreshLiveOutputs() {
-    renderToday(); renderHolidays(); renderIslamic(); renderHebrew();
+    renderToday(); renderThisYear(); renderHolidays(); renderIslamic(); renderHebrew();
     const periodicOut = document.getElementById('periodic-output'); if (periodicOut && periodicOut.innerHTML !== "") { const form = document.getElementById('periodic-form'); if (form) form.dispatchEvent(new Event('submit')); }
     const converterOut = document.getElementById('converter-output'); if (converterOut && converterOut.innerHTML !== "") { const btnConvert = document.getElementById('btn-convert'); if (btnConvert) btnConvert.click(); }
     const ageOut = document.getElementById('age-output'); if (ageOut && ageOut.innerHTML !== "") { const btnAge = document.getElementById('btn-calc-age'); if (btnAge) btnAge.click(); }
@@ -844,6 +845,14 @@ function renderIslamic() {
         html += `<li>${ke[2]}፦ ${formatDate(evG)} (${wList[evG.getDay()]}) — ${mList[evEth.em]} ${fNum(evEth.ed)}</li>`;
     });
     container.innerHTML = html + `</ul>`;
+}
+
+async function renderThisYear() {
+    const out = document.getElementById('thisyear-output');
+    if (!out) return;
+    let now = new Date();
+    let eth = gregorianToEthiopian(now.getFullYear(), now.getMonth()+1, now.getDate());
+    await renderYearSearch(eth.ey, out);
 }
 
 async function renderToday() {
