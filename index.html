@@ -124,7 +124,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <!-- ==========================================
+         HEADER (now with class "main-header" for embed hiding)
+         ========================================== -->
+    <header class="main-header">
         <h1 data-i18n="app_title">የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ</h1>
         <div id="local-time-bar" aria-live="off">የኢትዮጵያ ሰዓት በመጫን ላይ...</div>
         <!-- Timezone Info Bar Integration -->
@@ -141,6 +144,8 @@
             </select>
             <button id="btn-toggle-geez" class="btn-control-toggle" aria-label="የግዕዝ ቁጥሮች መቀያየሪያ (Toggle Ge'ez Numerals)">፪፲፪</button>
             <button id="btn-toggle-dark" class="btn-control-toggle" aria-label="የገጽታ ቀለም መቀያየሪያ (Toggle Dark Mode)">🌙</button>
+            <!-- Embed/Share Button -->
+            <button id="openEmbedModalBtn" class="btn-control-toggle" data-i18n="embed_btn">🔗 አስገባ / Share</button>
         </div>
     </header>
 
@@ -150,7 +155,10 @@
 
     <div id="status-announcer" class="sr-only" role="status" aria-live="assertive"></div>
 
-    <nav aria-label="የመተግበሪያው ክፍሎች" role="tablist">
+    <!-- ==========================================
+         NAVIGATION (class "app-nav" for embed hiding)
+         ========================================== -->
+    <nav class="app-nav" aria-label="የመተግበሪያው ክፍሎች" role="tablist">
         <button class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-today" id="navbtn-today" data-target="tab-today" data-i18n="nav_today">ዛሬ</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-thisyear" id="navbtn-thisyear" data-target="tab-thisyear" data-i18n="nav_this_year">ዘንድሮ</button>
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-holidays" id="navbtn-holidays" data-target="tab-holidays" data-i18n="nav_holidays">ብሔራዊ በዓላት</button>
@@ -164,6 +172,9 @@
         <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-pregnancy" id="navbtn-pregnancy" data-target="tab-pregnancy" data-i18n="nav_pregnancy">የእርግዝና ጊዜ መከታተያ</button>
     </nav>
 
+    <!-- ==========================================
+         MAIN CONTENT
+         ========================================== -->
     <main>
         <section id="tab-today" class="tab-content active" role="tabpanel" aria-labelledby="navbtn-today">
             <div class="card">
@@ -329,7 +340,46 @@
         </section>
     </main>
 
-    <footer>
+    <!-- ==========================================
+         EMBED CONTENT CONTAINER (hidden by default)
+         ========================================== -->
+    <div id="embed-content" style="display:none;"></div>
+
+    <!-- ==========================================
+         EMBED CONFIGURATION MODAL
+         ========================================== -->
+    <div id="embedModal" class="modal-hidden" style="display: none;">
+        <div class="modal-content">
+            <h3 data-i18n="embed_modal_title">Create Embed Widget</h3>
+            
+            <label for="embedViewSelect" data-i18n="embed_select_view">Select View to Embed:</label>
+            <select id="embedViewSelect">
+                <option value="today-bahire" data-i18n="embed_option_today">Today's Date & Bahire Hasab</option>
+                <option value="holiday-list" data-i18n="embed_option_holidays">This Year's Holidays</option>
+                <option value="synaxarium" data-i18n="embed_option_synax">Today's Synaxarium</option>
+                <option value="hijri-converter" data-i18n="embed_option_hijri">Hijri Date Converter</option>
+            </select>
+
+            <div class="code-output-container">
+                <h4 data-i18n="embed_iframe_label">Standard IFrame (Best for most sites)</h4>
+                <textarea id="iframeCode" readonly rows="3"></textarea>
+                <button class="copy-btn" data-target="iframeCode" data-i18n="embed_copy_iframe">Copy IFrame</button>
+            </div>
+
+            <div class="code-output-container">
+                <h4 data-i18n="embed_js_label">JavaScript Snippet (Dynamic height)</h4>
+                <textarea id="jsCode" readonly rows="3"></textarea>
+                <button class="copy-btn" data-target="jsCode" data-i18n="embed_copy_js">Copy JS</button>
+            </div>
+
+            <button id="closeEmbedModalBtn" data-i18n="embed_close">Close</button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         FOOTER (class "main-footer" for embed hiding)
+         ========================================== -->
+    <footer class="main-footer">
         <p><span data-i18n="footer_credit">የተዘጋጀው በ</span><strong>መሠረት ወርቁ አለሙ</strong> (Meseret Worku Alemu) | © <span id="footer-year"></span></p>
         <a href="https://t.me/meseret199" class="btn-telegram" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.9 4.3 18.7 19.6c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9L18 6.2c.4-.4-.1-.6-.6-.2L7.5 12.6l-4.8-1.5c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3Z"/></svg>

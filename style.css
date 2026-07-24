@@ -263,3 +263,125 @@ footer {
     background: var(--intro-bg);
     border-bottom: 1px solid var(--border-color);
 }
+
+/* ==========================================
+   EMBED MODE STYLES
+   ========================================== */
+
+/* Hide main UI elements when in embed mode */
+body.embed-mode .main-header,
+body.embed-mode .app-nav,
+body.embed-mode .intro,
+body.embed-mode .main-footer,
+body.embed-mode #openEmbedModalBtn {
+    display: none !important;
+}
+
+body.embed-mode {
+    background-color: transparent;
+    padding: 10px;
+    margin: 0;
+}
+
+/* Embed content container */
+#embed-content {
+    max-width: 100%;
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Modal styles */
+#embedModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+}
+
+.modal-content label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+}
+
+.modal-content select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+.code-output-container {
+    margin: 20px 0;
+}
+
+.code-output-container h4 {
+    margin-bottom: 5px;
+}
+
+.code-output-container textarea {
+    width: 100%;
+    padding: 8px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.copy-btn {
+    margin-top: 8px;
+    padding: 6px 12px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    opacity: 0.8;
+}
+
+#closeEmbedModalBtn {
+    padding: 8px 20px;
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+/* ensure modal text colour respects theme */
+#embedModal .modal-content {
+    color: var(--text-color);
+}

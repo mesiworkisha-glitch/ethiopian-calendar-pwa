@@ -46,7 +46,20 @@ const i18n = {
         hol_enkutatash: "እንቁጣጣሽ", hol_meskel: "መስቀል", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ ለማርያም", hol_genna: "ገና (ልደት)", hol_adwa: "የዓድዋ ድል", hol_patriots: "የአርበኞች ድል", hol_labor: "የሠራተኞች ቀን",
         hol_ashura: "ዓሹራ (Ashura)", hol_mawlid: "መውሊድ (Mawlid)", hol_isra: "እስራ ወሚዕራጅ (Isra and Mi'raj)", hol_ramadan: "ረመዳን (Ramadan)", hol_laylat: "Laylat al‑Qadr", hol_eid_fitr: "ዒድ አልፊጥር (Eid al-Fitr)", hol_arafah: "የዐረፋ ቀን (Day of Arafah)", hol_eid_adha: "ዒድ አልአድሐ (Eid al-Adha)", hol_hajj: "Hajj",
         bh_medeb: "መደብ", bh_wenber: "ወንበር", bh_tinte: "ጥንተ ቀመር", bh_metqe: "መጥቅዕ", bh_abekte: "አበቅቴ", bh_hamer: "መባጃ ሐመር",
-        isl_leap_year: "ዓመቱ ሰበቅ (ልዩ) ዓመት ነው።", isl_reg_year: "ዓመቱ መደበኛ ዓመት ነው።", isl_no_events: "ምንም የተመዘገበ በዓል የለም።", isl_disclaimer: "ማሳሰቢያ፦ ይህ በሒሳብ ስሌት (tabular calendar) ላይ የተመሠረተ ሂሳባዊ ቀን ሲሆን ከትክክለኛ ምልከታ ጋር በ1-2 ቀናት ሊለያይ ይችላል።", isl_ramadan_start: "የረመዳን መጀመሪያ", isl_ramadan_last_10: "የረመዳን መጨረሻዎቹ 10 ቀናት ይጀምራሉ", lbl_equiv_greg: "ተመጣጣኝ የግሪጎሪያን ቀን", lbl_equiv_eth: "ተመጣጣኝ የኢትዮጵያ ቀን", lbl_current_info: "ወቅታዊ መረጃ", lbl_months: "ወራት", lbl_key_dates: "ዋና ዋና ዕለታት"
+        isl_leap_year: "ዓመቱ ሰበቅ (ልዩ) ዓመት ነው።", isl_reg_year: "ዓመቱ መደበኛ ዓመት ነው።", isl_no_events: "ምንም የተመዘገበ በዓል የለም።", isl_disclaimer: "ማሳሰቢያ፦ ይህ በሒሳብ ስሌት (tabular calendar) ላይ የተመሠረተ ሂሳባዊ ቀን ሲሆን ከትክክለኛ ምልከታ ጋር በ1-2 ቀናት ሊለያይ ይችላል።", isl_ramadan_start: "የረመዳን መጀመሪያ", isl_ramadan_last_10: "የረመዳን መጨረሻዎቹ 10 ቀናት ይጀምራሉ", lbl_equiv_greg: "ተመጣጣኝ የግሪጎሪያን ቀን", lbl_equiv_eth: "ተመጣጣኝ የኢትዮጵያ ቀን", lbl_current_info: "ወቅታዊ መረጃ", lbl_months: "ወራት", lbl_key_dates: "ዋና ዋና ዕለታት",
+        // Embed translations
+        embed_btn: "🔗 አስገባ / Share",
+        embed_modal_title: "Create Embed Widget",
+        embed_select_view: "Select View to Embed:",
+        embed_option_today: "Today's Date & Bahire Hasab",
+        embed_option_holidays: "This Year's Holidays",
+        embed_option_synax: "Today's Synaxarium",
+        embed_option_hijri: "Hijri Date Converter",
+        embed_iframe_label: "Standard IFrame (Best for most sites)",
+        embed_js_label: "JavaScript Snippet (Dynamic height)",
+        embed_copy_iframe: "Copy IFrame",
+        embed_copy_js: "Copy JS",
+        embed_close: "Close"
     },
     en: {
         app_title: "Ethiopian Calendar & Bahire Hasab",
@@ -95,7 +108,19 @@ const i18n = {
         hol_enkutatash: "New Year (Enkutatash)", hol_meskel: "Finding of the True Cross (Meskel)", hol_timkat: "Epiphany (Timkat)", hol_filseta_maryam: "Assumption of Mary", hol_genna: "Christmas (Genna)", hol_adwa: "Victory of Adwa", hol_patriots: "Patriots' Victory Day", hol_labor: "Labor Day",
         hol_ashura: "Ashura", hol_mawlid: "Mawlid", hol_isra: "Isra and Mi'raj", hol_ramadan: "Ramadan", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Eid al-Fitr", hol_arafah: "Day of Arafah", hol_eid_adha: "Eid al-Adha", hol_hajj: "Hajj",
         bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
-        isl_leap_year: "This is a Leap Year.", isl_reg_year: "This is a Regular Year.", isl_no_events: "No specific events.", isl_disclaimer: "Note: This is based on a tabular calendar and may differ from actual sightings by 1-2 days.", isl_ramadan_start: "Start of Ramadan", isl_ramadan_last_10: "Last 10 days of Ramadan begin", lbl_equiv_greg: "Equivalent Gregorian Date", lbl_equiv_eth: "Equivalent Ethiopian Date", lbl_current_info: "Current Information", lbl_months: "Months", lbl_key_dates: "Key Dates"
+        isl_leap_year: "This is a Leap Year.", isl_reg_year: "This is a Regular Year.", isl_no_events: "No specific events.", isl_disclaimer: "Note: This is based on a tabular calendar and may differ from actual sightings by 1-2 days.", isl_ramadan_start: "Start of Ramadan", isl_ramadan_last_10: "Last 10 days of Ramadan begin", lbl_equiv_greg: "Equivalent Gregorian Date", lbl_equiv_eth: "Equivalent Ethiopian Date", lbl_current_info: "Current Information", lbl_months: "Months", lbl_key_dates: "Key Dates",
+        embed_btn: "🔗 Embed / Share",
+        embed_modal_title: "Create Embed Widget",
+        embed_select_view: "Select View to Embed:",
+        embed_option_today: "Today's Date & Bahire Hasab",
+        embed_option_holidays: "This Year's Holidays",
+        embed_option_synax: "Today's Synaxarium",
+        embed_option_hijri: "Hijri Date Converter",
+        embed_iframe_label: "Standard IFrame (Best for most sites)",
+        embed_js_label: "JavaScript Snippet (Dynamic height)",
+        embed_copy_iframe: "Copy IFrame",
+        embed_copy_js: "Copy JS",
+        embed_close: "Close"
     },
     om: {
         app_title: "Kalaandarii Itoophiyaa & Bahire Hasab",
@@ -144,7 +169,19 @@ const i18n = {
         hol_enkutatash: "Ayyaana Haaraa (Enkutatash)", hol_meskel: "Masqala", hol_timkat: "Cuuphaa", hol_filseta_maryam: "Filsetaa", hol_genna: "Ayyaana Dhalootaa (Genna)", hol_adwa: "Injiifannoo Adwaa", hol_patriots: "Guyyaa Arbegnootaa", hol_labor: "Guyyaa Hojjettootaa",
         hol_ashura: "Aashuraa", hol_mawlid: "Mawliid", hol_isra: "Isra fi Mi'raaj", hol_ramadan: "Ramadaana", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Iid Al-Faxir", hol_arafah: "Arafa", hol_eid_adha: "Iid Al-Adhaa", hol_hajj: "Hajjii",
         bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
-        isl_leap_year: "Bara Utaalchaati.", isl_reg_year: "Bara Idileeti.", isl_no_events: "Ayyaanota hin jiru.", isl_disclaimer: "Hubachiisa: Kun herrega irratti kan hundaa'eedha, ji'a arguu irraa guyyaa 1-2 garaagarummaa qabaachuu danda'a.", isl_ramadan_start: "Jalqaba Ramadaanaa", isl_ramadan_last_10: "Guyyoota 10 dhumaa Ramadaanaa", lbl_equiv_greg: "Guyyaa Gregorian Walgitu", lbl_equiv_eth: "Guyyaa Itoophiyaa Walgitu", lbl_current_info: "Odeeffannoo Yeroo", lbl_months: "Ji'oota", lbl_key_dates: "Guyyoota Ijoo"
+        isl_leap_year: "Bara Utaalchaati.", isl_reg_year: "Bara Idileeti.", isl_no_events: "Ayyaanota hin jiru.", isl_disclaimer: "Hubachiisa: Kun herrega irratti kan hundaa'eedha, ji'a arguu irraa guyyaa 1-2 garaagarummaa qabaachuu danda'a.", isl_ramadan_start: "Jalqaba Ramadaanaa", isl_ramadan_last_10: "Guyyoota 10 dhumaa Ramadaanaa", lbl_equiv_greg: "Guyyaa Gregorian Walgitu", lbl_equiv_eth: "Guyyaa Itoophiyaa Walgitu", lbl_current_info: "Odeeffannoo Yeroo", lbl_months: "Ji'oota", lbl_key_dates: "Guyyoota Ijoo",
+        embed_btn: "🔗 Galchi / Share",
+        embed_modal_title: "Create Embed Widget",
+        embed_select_view: "Select View to Embed:",
+        embed_option_today: "Today's Date & Bahire Hasab",
+        embed_option_holidays: "This Year's Holidays",
+        embed_option_synax: "Today's Synaxarium",
+        embed_option_hijri: "Hijri Date Converter",
+        embed_iframe_label: "Standard IFrame (Best for most sites)",
+        embed_js_label: "JavaScript Snippet (Dynamic height)",
+        embed_copy_iframe: "Copy IFrame",
+        embed_copy_js: "Copy JS",
+        embed_close: "Close"
     },
     ti: {
         app_title: "ካላንደር ኢትዮጵያን ባሕረ ሓሳብን",
@@ -193,7 +230,19 @@ const i18n = {
         hol_enkutatash: "ሓዱሽ ዓመት", hol_meskel: "መስቀል", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ", hol_genna: "ልደት", hol_adwa: "ዓወት ዓድዋ", hol_patriots: "ዓወት ሓርበኛታት", hol_labor: "መዓልቲ ሰራሕተኛታት",
         hol_ashura: "ዓሹራ", hol_mawlid: "መውሊድ", hol_isra: "እስራ ወሚዕራጅ", hol_ramadan: "ረመዳን", hol_laylat: "ለይለተል ቀድር", hol_eid_fitr: "ዒድ ኣልፈጥር", hol_arafah: "መዓልቲ ዓረፋ", hol_eid_adha: "ዒድ ኣልኣድሓ", hol_hajj: "ሓጅ",
         bh_medeb: "መደብ", bh_wenber: "ወንበር", bh_tinte: "ጥንተ ቀመር", bh_metqe: "መጥቅዕ", bh_abekte: "ኣበቅቴ", bh_hamer: "መባጃ ሓመር",
-        isl_leap_year: "ዓመቱ ዘመነ ሰበቅ (ፍሉይ) እዩ።", isl_reg_year: "ዓመቱ ስሩዕ ዓመት እዩ።", isl_no_events: "ምንም የተመዘገበ በዓል የለም።", isl_disclaimer: "መተሓሳሰቢ፦ እዚ ኣብ ስሌት ዝተመርኮሰ ኮይኑ፡ ምስ ርእየት ወርሒ ብ1-2 መዓልታት ክፈላለ ይኽእል እዩ።", isl_ramadan_start: "መጀመርታ ረመዳን", isl_ramadan_last_10: "ናይ መወዳእታ 10 መዓልታት ረመዳን ይጅምሩ", lbl_equiv_greg: "መዘና ዕለት ግሪጎሪያን", lbl_equiv_eth: "መዘና ዕለት ኢትዮጵያ", lbl_current_info: "እዋናዊ ሓበሬታ", lbl_months: "ኣዋርሕ", lbl_key_dates: "ዓበይቲ ዕለታት"
+        isl_leap_year: "ዓመቱ ዘመነ ሰበቅ (ፍሉይ) እዩ።", isl_reg_year: "ዓመቱ ስሩዕ ዓመት እዩ።", isl_no_events: "ምንም የተመዘገበ በዓል የለም።", isl_disclaimer: "መተሓሳሰቢ፦ እዚ ኣብ ስሌት ዝተመርኮሰ ኮይኑ፡ ምስ ርእየት ወርሒ ብ1-2 መዓልታት ክፈላለ ይኽእል እዩ።", isl_ramadan_start: "መጀመርታ ረመዳን", isl_ramadan_last_10: "ናይ መወዳእታ 10 መዓልታት ረመዳን ይጅምሩ", lbl_equiv_greg: "መዘና ዕለት ግሪጎሪያን", lbl_equiv_eth: "መዘና ዕለት ኢትዮጵያ", lbl_current_info: "እዋናዊ ሓበሬታ", lbl_months: "ኣዋርሕ", lbl_key_dates: "ዓበይቲ ዕለታት",
+        embed_btn: "🔗 ኣስግብ / Share",
+        embed_modal_title: "Create Embed Widget",
+        embed_select_view: "Select View to Embed:",
+        embed_option_today: "Today's Date & Bahire Hasab",
+        embed_option_holidays: "This Year's Holidays",
+        embed_option_synax: "Today's Synaxarium",
+        embed_option_hijri: "Hijri Date Converter",
+        embed_iframe_label: "Standard IFrame (Best for most sites)",
+        embed_js_label: "JavaScript Snippet (Dynamic height)",
+        embed_copy_iframe: "Copy IFrame",
+        embed_copy_js: "Copy JS",
+        embed_close: "Close"
     },
     so: {
         app_title: "Kalandarka Itoobiya & Bahire Hasab",
@@ -242,7 +291,19 @@ const i18n = {
         hol_enkutatash: "Sanad Cusub (Enkutatash)", hol_meskel: "Meskel", hol_timkat: "Timkat", hol_filseta_maryam: "Filseta Maryam", hol_genna: "Genna (Dhalashada)", hol_adwa: "Guushii Adwa", hol_patriots: "Maalinta Guusha Wadaniyiinta", hol_labor: "Maalinta Shaqaalaha",
         hol_ashura: "Ashuura", hol_mawlid: "Mawliid", hol_isra: "Israa iyo Micraaj", hol_ramadan: "Ramadaan", hol_laylat: "Laylatul Qadar", hol_eid_fitr: "Ciidul Fitr", hol_arafah: "Maalinta Arafah", hol_eid_adha: "Ciidul Adxa", hol_hajj: "Xajka",
         bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
-        isl_leap_year: "Sanadkani waa sanad boobsaday (gaar ah).", isl_reg_year: "Sanadkani waa sanad caadi ah.", isl_no_events: "Dhacdo lama qeexin.", isl_disclaimer: "Ogeysiis: Kani waxa uu ku salaysan yahay kalandarka jadwalka, waxaana laga yaabaa inuu 1-2 maalmood kaga duwan yahay aragista dayaxa dhabta ah.", isl_ramadan_start: "Bilawga Ramadaan", isl_ramadan_last_10: "10-kii maalmood ee ugu dambeeya ee Ramadaan bilaabmayaan", lbl_equiv_greg: "Taariikhda Gregorian ee la mid ah", lbl_equiv_eth: "Taariikhda Itoobiya ee la mid ah", lbl_current_info: "Macluumaadka Hadda", lbl_months: "Bilood", lbl_key_dates: "Taariikhaha Muhiimka ah"
+        isl_leap_year: "Sanadkani waa sanad boobsaday (gaar ah).", isl_reg_year: "Sanadkani waa sanad caadi ah.", isl_no_events: "Dhacdo lama qeexin.", isl_disclaimer: "Ogeysiis: Kani waxa uu ku salaysan yahay kalandarka jadwalka, waxaana laga yaabaa inuu 1-2 maalmood kaga duwan yahay aragista dayaxa dhabta ah.", isl_ramadan_start: "Bilawga Ramadaan", isl_ramadan_last_10: "10-kii maalmood ee ugu dambeeya ee Ramadaan bilaabmayaan", lbl_equiv_greg: "Taariikhda Gregorian ee la mid ah", lbl_equiv_eth: "Taariikhda Itoobiya ee la mid ah", lbl_current_info: "Macluumaadka Hadda", lbl_months: "Bilood", lbl_key_dates: "Taariikhaha Muhiimka ah",
+        embed_btn: "🔗 Dhexgal / Share",
+        embed_modal_title: "Create Embed Widget",
+        embed_select_view: "Select View to Embed:",
+        embed_option_today: "Today's Date & Bahire Hasab",
+        embed_option_holidays: "This Year's Holidays",
+        embed_option_synax: "Today's Synaxarium",
+        embed_option_hijri: "Hijri Date Converter",
+        embed_iframe_label: "Standard IFrame (Best for most sites)",
+        embed_js_label: "JavaScript Snippet (Dynamic height)",
+        embed_copy_iframe: "Copy IFrame",
+        embed_copy_js: "Copy JS",
+        embed_close: "Close"
     },
     gur: {
         app_title: "Ityoophya Zemen Qetera & Bahire Hasab",
@@ -291,7 +352,19 @@ const i18n = {
         hol_enkutatash: "Enkutatash", hol_meskel: "Meskel", hol_timkat: "Timket", hol_filseta_maryam: "Filseta Lämariyam", hol_genna: "Genna (Lidet)", hol_adwa: "Yä Adwa Dil", hol_patriots: "Yä Arbegnoch Dil", hol_labor: "Yä Serategnoch Qen",
         hol_ashura: "Ashura", hol_mawlid: "Mawlid", hol_isra: "Isra Wä Mi'raj", hol_ramadan: "Ramadan", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Iid Al-Fitr", hol_arafah: "Yä Arefa Qen", hol_eid_adha: "Iid Al-Adha", hol_hajj: "Hajji",
         bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
-        isl_leap_year: "Yeh amet yä sebeq (lele) ametu.", isl_reg_year: "Yeh amet metekelegna ametu.", isl_no_events: "Yeteመzegebe beal yellem.", isl_disclaimer: "Malet: Yehe behesab lay yeteser sinehon, käwastu chereqa mayet gara bä 1-2 qenat lyileyeyet yechilal.", isl_ramadan_start: "Yä Ramadan Metekeriya", isl_ramadan_last_10: "Yä Ramadan Yewechila 10 Qenat Yijemeral", lbl_equiv_greg: "Käwastu Gregorian Qen", lbl_equiv_eth: "Käwastu Ityoophya Qen", lbl_current_info: "Yahunu Woriya", lbl_months: "Werochi", lbl_key_dates: "Wanna Qenat"
+        isl_leap_year: "Yeh amet yä sebeq (lele) ametu.", isl_reg_year: "Yeh amet metekelegna ametu.", isl_no_events: "Yeteመzegebe beal yellem.", isl_disclaimer: "Malet: Yehe behesab lay yeteser sinehon, käwastu chereqa mayet gara bä 1-2 qenat lyileyeyet yechilal.", isl_ramadan_start: "Yä Ramadan Metekeriya", isl_ramadan_last_10: "Yä Ramadan Yewechila 10 Qenat Yijemeral", lbl_equiv_greg: "Käwastu Gregorian Qen", lbl_equiv_eth: "Käwastu Ityoophya Qen", lbl_current_info: "Yahunu Woriya", lbl_months: "Werochi", lbl_key_dates: "Wanna Qenat",
+        embed_btn: "🔗 Agib / Share",
+        embed_modal_title: "Create Embed Widget",
+        embed_select_view: "Select View to Embed:",
+        embed_option_today: "Today's Date & Bahire Hasab",
+        embed_option_holidays: "This Year's Holidays",
+        embed_option_synax: "Today's Synaxarium",
+        embed_option_hijri: "Hijri Date Converter",
+        embed_iframe_label: "Standard IFrame (Best for most sites)",
+        embed_js_label: "JavaScript Snippet (Dynamic height)",
+        embed_copy_iframe: "Copy IFrame",
+        embed_copy_js: "Copy JS",
+        embed_close: "Close"
     }
 };
 
@@ -795,24 +868,176 @@ async function loadSynaxarium() {
     return synaxariumData;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-    const langSelect = document.getElementById('lang-selector'); if (langSelect) langSelect.value = currentLang;
-    updateStaticTranslations();
-    const modules = [
-        { name: "Tabs Control", func: setupTabs }, { name: "Preferences Toggles", func: setupPreferences },
-        { name: "Live Clock", func: initClock }, { name: "Today View", func: renderToday },
-        { name: "This Year View", func: renderThisYear },
-        { name: "Holidays View", func: renderHolidays }, { name: "Islamic View", func: renderIslamic },
-        { name: "Hebrew View", func: renderHebrew }, { name: "Converter Form", func: setupConverter },
-        { name: "Synaxarium Search", func: setupSynaxarium }, { name: "Menstrual Tracker", func: setupPeriodic },
-        { name: "Age Calculator", func: setupAgeCalc }, { name: "Pregnancy Calculator", func: setupPregnancyCalc },
-        { name: "Clipboard Copy", func: setupClipboardCopy }, { name: "Footer", func: initFooter }
-    ];
-    modules.forEach(m => { try { m.func(); } catch (err) { console.error(`Error loading module [${m.name}]:`, err); } });
-});
+// ==========================================
+// EMBED ROUTING & RENDER FUNCTIONS
+// ==========================================
+
+async function handleEmbedRouting() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const isEmbed = urlParams.get('embed') === 'true';
+    const embedView = urlParams.get('view');
+
+    if (isEmbed) {
+        // Add embed class to body
+        document.body.classList.add('embed-mode');
+
+        // Hide all main sections (tabs)
+        document.querySelectorAll('.tab-content').forEach(el => {
+            el.classList.remove('active');
+            el.hidden = true;
+        });
+
+        // Show embed container
+        const embedContainer = document.getElementById('embed-content');
+        if (embedContainer) {
+            embedContainer.style.display = 'block';
+
+            // Render requested view
+            switch (embedView) {
+                case 'today-bahire':
+                    await renderTodayEmbed(embedContainer);
+                    break;
+                case 'holiday-list':
+                    await renderHolidaysEmbed(embedContainer);
+                    break;
+                case 'synaxarium':
+                    await renderTodaySynaxariumEmbed(embedContainer);
+                    break;
+                case 'hijri-converter':
+                    await renderIslamicEmbed(embedContainer);
+                    break;
+                default:
+                    await renderTodayEmbed(embedContainer);
+            }
+        }
+        return true; // embed mode active
+    }
+    return false;
+}
+
+// Embed render functions (reuse existing logic but output to given container)
+
+async function renderTodayEmbed(container) {
+    await renderToday(); // writes to #today-summary
+    const todaySummary = document.getElementById('today-summary');
+    if (todaySummary) container.innerHTML = todaySummary.innerHTML;
+}
+
+async function renderHolidaysEmbed(container) {
+    renderHolidays(); // synchronous
+    const holidaysOutput = document.getElementById('holidays-output');
+    if (holidaysOutput) container.innerHTML = holidaysOutput.innerHTML;
+}
+
+async function renderTodaySynaxariumEmbed(container) {
+    await buildTodaySynaxariumHTML(container);
+}
+
+async function renderIslamicEmbed(container) {
+    renderIslamic(); // synchronous
+    const islamicSummary = document.getElementById('islamic-summary');
+    if (islamicSummary) container.innerHTML = islamicSummary.innerHTML;
+}
+
+// New function to render just today's synaxarium
+async function buildTodaySynaxariumHTML(container) {
+    let now = new Date();
+    let eth = gregorianToEthiopian(now.getFullYear(), now.getMonth()+1, now.getDate());
+    let data = await loadSynaxarium();
+    let amharicMonths = ["", "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት", "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜ"];
+    let entries = (data[amharicMonths[eth.em]] && data[amharicMonths[eth.em]][eth.ed]) || [];
+    let html = `<h3>${t('lbl_today_synax')}</h3>`;
+    if (entries.length > 0) {
+        let annualFeasts = entries.filter(e => !e.startsWith("ወርኃዊ በዓል፦ "));
+        let monthlyFeasts = entries.filter(e => e.startsWith("ወርኃዊ በዓል፦ ")).map(e => e.replace("ወርኃዊ በዓል፦ ", ""));
+        if (annualFeasts.length > 0) html += `<h4>${t('lbl_annual_feasts')}</h4><ul>` + annualFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
+        if (monthlyFeasts.length > 0) html += `<h4>${t('lbl_monthly_feasts')}</h4><ul>` + monthlyFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`;
+    } else {
+        html += `<p>${t('no_synax')}</p>`;
+    }
+    container.innerHTML = html;
+}
+
+// ==========================================
+// EMBED MODAL & GENERATOR
+// ==========================================
+
+function setupEmbedModal() {
+    const modal = document.getElementById('embedModal');
+    const openBtn = document.getElementById('openEmbedModalBtn');
+    const closeBtn = document.getElementById('closeEmbedModalBtn');
+    const viewSelect = document.getElementById('embedViewSelect');
+    const iframeCode = document.getElementById('iframeCode');
+    const jsCode = document.getElementById('jsCode');
+
+    if (!modal || !openBtn || !closeBtn || !viewSelect) return;
+
+    // Get the base URL (current page URL without query)
+    const baseUrl = window.location.origin + window.location.pathname;
+
+    function generateEmbedCodes() {
+        const selectedView = viewSelect.value;
+        const embedUrl = `${baseUrl}?embed=true&view=${selectedView}`;
+
+        // IFrame
+        const iframeString = `<iframe src="${embedUrl}" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden;" title="Ethiopian Calendar Widget"></iframe>`;
+        iframeCode.value = iframeString;
+
+        // JS snippet
+        const jsString = `<div id="eth-cal-widget"></div>\n<script>\n  (function() {\n    var iframe = document.createElement('iframe');\n    iframe.src = '${embedUrl}';\n    iframe.style.width = '100%';\n    iframe.style.height = '400px';\n    iframe.style.border = '1px solid #ddd';\n    iframe.style.borderRadius = '8px';\n    document.getElementById('eth-cal-widget').appendChild(iframe);\n  })();\n<\/script>`;
+        jsCode.value = jsString;
+    }
+
+    openBtn.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        generateEmbedCodes();
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    viewSelect.addEventListener('change', generateEmbedCodes);
+
+    // Copy to clipboard
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const targetId = e.target.getAttribute('data-target');
+            const copyText = document.getElementById(targetId);
+            if (!copyText) return;
+            copyText.select();
+            try {
+                document.execCommand("copy");
+                e.target.innerText = t('txt_copied');
+                setTimeout(() => {
+                    // Restore original text (use data-i18n to re-translate)
+                    const key = e.target.getAttribute('data-i18n');
+                    if (key) e.target.innerText = t(key);
+                    else e.target.innerText = "Copy";
+                }, 2000);
+            } catch(err) {
+                e.target.innerText = t('txt_fail');
+            }
+        });
+    });
+
+    // Close modal on background click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+}
+
+// ==========================================
+// ORIGINAL MODULE FUNCTIONS
+// (unchanged, except setupTabs now skips if embed mode)
+// ==========================================
 
 function setupTabs() {
+    // If in embed mode, don't set up navigation (hidden)
+    if (document.body.classList.contains('embed-mode')) return;
+    
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             let targetId = btn.getAttribute('data-target') || btn.dataset.target; if (!targetId) return;
@@ -1180,3 +1405,48 @@ function setupClipboardCopy() {
         try { await navigator.clipboard.writeText(`${getWeekdays()[now.getDay()]}፣ ${getMonths()[eth.em]} ${fNum(eth.ed)} ${t('txt_day')} ${fNum(eth.ey)} ${t('txt_year')}`); announceStatus(t('txt_copied')); } catch (e) { announceStatus(t('txt_fail')); }
     });
 }
+
+// ==========================================
+// DOMContentLoaded MAIN INITIALIZATION
+// ==========================================
+document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Handle embed routing first (this may set embed mode)
+    const isEmbed = await handleEmbedRouting();
+
+    // 2. Set language and initial translations
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    const langSelect = document.getElementById('lang-selector'); if (langSelect) langSelect.value = currentLang;
+    updateStaticTranslations();
+
+    // 3. Setup embed modal (will not interfere with embed mode)
+    setupEmbedModal();
+
+    // 4. If not in embed mode, initialize all UI modules
+    //    If in embed mode, still run clock and other non‑UI modules? 
+    //    We'll run everything except tabs (which we skip inside setupTabs if embed mode).
+    const modules = [
+        { name: "Tabs Control", func: setupTabs },
+        { name: "Preferences Toggles", func: setupPreferences },
+        { name: "Live Clock", func: initClock },
+        { name: "Today View", func: renderToday },
+        { name: "This Year View", func: renderThisYear },
+        { name: "Holidays View", func: renderHolidays },
+        { name: "Islamic View", func: renderIslamic },
+        { name: "Hebrew View", func: renderHebrew },
+        { name: "Converter Form", func: setupConverter },
+        { name: "Synaxarium Search", func: setupSynaxarium },
+        { name: "Menstrual Tracker", func: setupPeriodic },
+        { name: "Age Calculator", func: setupAgeCalc },
+        { name: "Pregnancy Calculator", func: setupPregnancyCalc },
+        { name: "Clipboard Copy", func: setupClipboardCopy },
+        { name: "Footer", func: initFooter }
+    ];
+    modules.forEach(m => { 
+        try { 
+            // Skip Tabs if embed mode (already handled inside setupTabs)
+            m.func(); 
+        } catch (err) { 
+            console.error(`Error loading module [${m.name}]:`, err); 
+        } 
+    });
+});
