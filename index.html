@@ -120,12 +120,14 @@
     }
     </script>
 
-    <!-- Stylesheets -->
+    <!-- ==========================================
+         STYLESHEETS
+         ========================================== -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- ==========================================
-         HEADER (now with class "main-header" for embed hiding)
+         HEADER (hidden in embed mode via CSS)
          ========================================== -->
     <header class="main-header">
         <h1 data-i18n="app_title">የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ</h1>
@@ -149,6 +151,9 @@
         </div>
     </header>
 
+    <!-- ==========================================
+         INTRO (hidden in embed mode)
+         ========================================== -->
     <p class="intro" data-i18n="intro_desc">
         ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የስንክሳር ፍለጋ፣ የግሪጎሪያን፣ የጁሊያን፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ፣ እንዲሁም ሁሉንም ብሔራዊ በዓላት በአንድ ቦታ ያገኙበታል። ለዓይነ ስውራንና ለስክሪን አንባቢ ተጠቃሚዎች ምቹ ሆኖ የተዘጋጀ ነው።
     </p>
@@ -156,7 +161,7 @@
     <div id="status-announcer" class="sr-only" role="status" aria-live="assertive"></div>
 
     <!-- ==========================================
-         NAVIGATION (class "app-nav" for embed hiding)
+         NAVIGATION (hidden in embed mode)
          ========================================== -->
     <nav class="app-nav" aria-label="የመተግበሪያው ክፍሎች" role="tablist">
         <button class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-today" id="navbtn-today" data-target="tab-today" data-i18n="nav_today">ዛሬ</button>
@@ -184,7 +189,7 @@
             </div>
         </section>
 
-        <!-- New This Year Tab -->
+        <!-- This Year Tab -->
         <section id="tab-thisyear" class="tab-content" role="tabpanel" aria-labelledby="navbtn-thisyear" hidden>
             <div class="card">
                 <h2 data-i18n="this_year_title">የዘንድሮ ሙሉ መረጃ</h2>
@@ -341,7 +346,7 @@
     </main>
 
     <!-- ==========================================
-         EMBED CONTENT CONTAINER (hidden by default)
+         EMBED CONTENT CONTAINER (hidden by default, shown in embed mode)
          ========================================== -->
     <div id="embed-content" style="display:none;"></div>
 
@@ -350,15 +355,18 @@
          ========================================== -->
     <div id="embedModal" class="modal-hidden" style="display: none;">
         <div class="modal-content">
+            <button id="closeEmbedModalBtn" class="modal-close" data-i18n="embed_close" aria-label="Close">&times;</button>
             <h3 data-i18n="embed_modal_title">Create Embed Widget</h3>
             
-            <label for="embedViewSelect" data-i18n="embed_select_view">Select View to Embed:</label>
-            <select id="embedViewSelect">
-                <option value="today-bahire" data-i18n="embed_option_today">Today's Date & Bahire Hasab</option>
-                <option value="holiday-list" data-i18n="embed_option_holidays">This Year's Holidays</option>
-                <option value="synaxarium" data-i18n="embed_option_synax">Today's Synaxarium</option>
-                <option value="hijri-converter" data-i18n="embed_option_hijri">Hijri Date Converter</option>
-            </select>
+            <div class="embed-form-group">
+                <label for="embedViewSelect" data-i18n="embed_select_view">Select View to Embed:</label>
+                <select id="embedViewSelect">
+                    <option value="today-bahire" data-i18n="embed_option_today">Today's Date & Bahire Hasab</option>
+                    <option value="holiday-list" data-i18n="embed_option_holidays">This Year's Holidays</option>
+                    <option value="synaxarium" data-i18n="embed_option_synax">Today's Synaxarium</option>
+                    <option value="hijri-converter" data-i18n="embed_option_hijri">Hijri Date Converter</option>
+                </select>
+            </div>
 
             <div class="code-output-container">
                 <h4 data-i18n="embed_iframe_label">Standard IFrame (Best for most sites)</h4>
@@ -371,13 +379,11 @@
                 <textarea id="jsCode" readonly rows="3"></textarea>
                 <button class="copy-btn" data-target="jsCode" data-i18n="embed_copy_js">Copy JS</button>
             </div>
-
-            <button id="closeEmbedModalBtn" data-i18n="embed_close">Close</button>
         </div>
     </div>
 
     <!-- ==========================================
-         FOOTER (class "main-footer" for embed hiding)
+         FOOTER (hidden in embed mode)
          ========================================== -->
     <footer class="main-footer">
         <p><span data-i18n="footer_credit">የተዘጋጀው በ</span><strong>መሠረት ወርቁ አለሙ</strong> (Meseret Worku Alemu) | © <span id="footer-year"></span></p>
@@ -387,11 +393,9 @@
         </a>
     </footer>
 
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
     <script src="app.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(console.error);
-        }
-    </script>
 </body>
 </html>

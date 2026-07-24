@@ -47,7 +47,6 @@ const i18n = {
         hol_ashura: "ዓሹራ (Ashura)", hol_mawlid: "መውሊድ (Mawlid)", hol_isra: "እስራ ወሚዕራጅ (Isra and Mi'raj)", hol_ramadan: "ረመዳን (Ramadan)", hol_laylat: "Laylat al‑Qadr", hol_eid_fitr: "ዒድ አልፊጥር (Eid al-Fitr)", hol_arafah: "የዐረፋ ቀን (Day of Arafah)", hol_eid_adha: "ዒድ አልአድሐ (Eid al-Adha)", hol_hajj: "Hajj",
         bh_medeb: "መደብ", bh_wenber: "ወንበር", bh_tinte: "ጥንተ ቀመር", bh_metqe: "መጥቅዕ", bh_abekte: "አበቅቴ", bh_hamer: "መባጃ ሐመር",
         isl_leap_year: "ዓመቱ ሰበቅ (ልዩ) ዓመት ነው።", isl_reg_year: "ዓመቱ መደበኛ ዓመት ነው።", isl_no_events: "ምንም የተመዘገበ በዓል የለም።", isl_disclaimer: "ማሳሰቢያ፦ ይህ በሒሳብ ስሌት (tabular calendar) ላይ የተመሠረተ ሂሳባዊ ቀን ሲሆን ከትክክለኛ ምልከታ ጋር በ1-2 ቀናት ሊለያይ ይችላል።", isl_ramadan_start: "የረመዳን መጀመሪያ", isl_ramadan_last_10: "የረመዳን መጨረሻዎቹ 10 ቀናት ይጀምራሉ", lbl_equiv_greg: "ተመጣጣኝ የግሪጎሪያን ቀን", lbl_equiv_eth: "ተመጣጣኝ የኢትዮጵያ ቀን", lbl_current_info: "ወቅታዊ መረጃ", lbl_months: "ወራት", lbl_key_dates: "ዋና ዋና ዕለታት",
-        // Embed translations
         embed_btn: "🔗 አስገባ / Share",
         embed_modal_title: "Create Embed Widget",
         embed_select_view: "Select View to Embed:",
@@ -445,6 +444,11 @@ function matchMonthName(text) {
     let raw = (text || "").trim();
     if (raw.length < 2) return null;
     let normAm = normalizeAmharic(raw), normEn = raw.toLowerCase(), matches = new Set(), MONTHS_REF = getMonths();
+    // Try numeric first
+    let num = parseInt(raw);
+    if (!isNaN(num) && num >= 1 && num <= 13) {
+        return num;
+    }
     for (let idx = 1; idx <= 13; idx++) {
         let amCandidates = [MONTHS_REF[idx]].concat(MONTH_ALIASES_AM[idx] || []);
         for (let c of amCandidates) {
@@ -481,11 +485,9 @@ function getAddisSunTimes(gDate) {
     let offsetMinutes = 25 * Math.sin(2 * Math.PI * (dayOfYear - 80) / 365);
     let riseMin = Math.round(15 - offsetMinutes), setMin = Math.round(15 + offsetMinutes), riseHr = 6, setHr = 18;
     
-    // Standard EAT calculations
     if (riseMin >= 60) { riseHr++; riseMin -= 60; } if (riseMin < 0) { riseHr--; riseMin += 60; }
     if (setMin >= 60) { setHr++; setMin -= 60; } if (setMin < 0) { setHr--; setMin += 60; }
     
-    // Convert to Ethiopian local time (6:00 AM -> 12:00 ጠዋት | 6:00 PM -> 12:00 ማታ)
     let ethRiseHr = riseHr - 6; 
     if (ethRiseHr <= 0) ethRiseHr += 12;
     
@@ -529,15 +531,42 @@ function jdnToHebrew(jdn) {
     while (true) { let len = hebrewMonthLength(y, m); if (dayOfYear <= len) break; dayOfYear -= len; m++; }
     return { hy: y, hm: m, hd: dayOfYear };
 }
+
+// ==========================================
+// IMPROVED: Hebrew Month Names with Full Translation
+// ==========================================
 function getHebrewMonthNamesList(lang, isLeap) {
-    if (lang === 'en' || lang === 'om') {
-        if (isLeap) return ["", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar I", "Adar II", "Nisan", "Iyar", "Sivan", "Tammuz", "Av", "Elul"];
-        return ["", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar", "Nisan", "Iyar", "Sivan", "Tammuz", "Av", "Elul"];
-    } else {
-        if (isLeap) return ["", "ቲሽሪ (Tishrei)", "ቼሽቫን (Cheshvan)", "ኪስሌቭ (Kislev)", "ቴቤት (Tevet)", "ሼቫት (Shevat)", "አዳር 1 (Adar I)", "አዳር 2 (Adar II)", "ኒሳን (Nisan)", "ኢያር (Iyar)", "ሲቫን (Sivan)", "ታሙዝ (Tammuz)", "አቭ (Av)", "ኤሉል (Elul)"];
-        return ["", "ቲሽሪ (Tishrei)", "ቼሽቫን (Cheshvan)", "ኪስሌቭ (Kislev)", "ቴቤት (Tevet)", "ሼቫት (Shevat)", "አዳር (Adar)", "ኒሳን (Nisan)", "ኢያር (Iyar)", "ሲቫን (Sivan)", "ታሙዝ (Tammuz)", "አቭ (Av)", "ኤሉል (Elul)"];
-    }
+    const names = {
+        am: {
+            normal: ["", "ቲሽሪ (Tishrei)", "ሄሽቫን (Cheshvan)", "ኪስሌቭ (Kislev)", "ቴቤት (Tevet)", "ሼቫት (Shevat)", "አዳር (Adar)", "ኒሳን (Nisan)", "ኢያር (Iyar)", "ሲቫን (Sivan)", "ታሙዝ (Tammuz)", "አቭ (Av)", "ኤሉል (Elul)"],
+            leap: ["", "ቲሽሪ (Tishrei)", "ሄሽቫን (Cheshvan)", "ኪስሌቭ (Kislev)", "ቴቤት (Tevet)", "ሼቫት (Shevat)", "አዳር ፩ (Adar I)", "አዳር ፪ (Adar II)", "ኒሳን (Nisan)", "ኢያር (Iyar)", "ሲቫን (Sivan)", "ታሙዝ (Tammuz)", "አቭ (Av)", "ኤሉል (Elul)"]
+        },
+        ti: {
+            normal: ["", "ቲሽሪ (Tishrei)", "ሄሽቫን (Cheshvan)", "ኪስሌቭ (Kislev)", "ቴቤት (Tevet)", "ሼቫት (Shevat)", "ኣዳር (Adar)", "ኒሳን (Nisan)", "ኢያር (Iyar)", "ሲቫን (Sivan)", "ታሙዝ (Tammuz)", "ኣቭ (Av)", "ኤሉል (Elul)"],
+            leap: ["", "ቲሽሪ (Tishrei)", "ሄሽቫን (Cheshvan)", "ኪስሌቭ (Kislev)", "ቴቤት (Tevet)", "ሼቫት (Shevat)", "ኣዳር ፩ (Adar I)", "ኣዳር ፪ (Adar II)", "ኒሳን (Nisan)", "ኢያር (Iyar)", "ሲቫን (Sivan)", "ታሙዝ (Tammuz)", "ኣቭ (Av)", "ኤሉል (Elul)"]
+        },
+        en: {
+            normal: ["", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar", "Nisan", "Iyar", "Sivan", "Tammuz", "Av", "Elul"],
+            leap: ["", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar I", "Adar II", "Nisan", "Iyar", "Sivan", "Tammuz", "Av", "Elul"]
+        },
+        om: {
+            normal: ["", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar", "Nisan", "Iyar", "Sivan", "Tammuz", "Av", "Elul"],
+            leap: ["", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar I", "Adar II", "Nisan", "Iyar", "Sivan", "Tammuz", "Av", "Elul"]
+        },
+        so: {
+            normal: ["", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar", "Nisan", "Iyar", "Sivan", "Tammuz", "Av", "Elul"],
+            leap: ["", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar I", "Adar II", "Nisan", "Iyar", "Sivan", "Tammuz", "Av", "Elul"]
+        },
+        gur: {
+            normal: ["", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar", "Nisan", "Iyar", "Sivan", "Tammuz", "Av", "Elul"],
+            leap: ["", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar I", "Adar II", "Nisan", "Iyar", "Sivan", "Tammuz", "Av", "Elul"]
+        }
+    };
+    
+    const langMap = names[lang] || names.en;
+    return isLeap ? langMap.leap : langMap.normal;
 }
+
 function getHebrewEvents(hy, hm, hd, isLeap) {
     let ev = [];
     if (hm === 1 && hd === 1) ev.push(t('heb_rosh_hashanah'));
@@ -591,11 +620,19 @@ function isIslamicLeap(iy) { return mod(11 * iy + 14, 30) < 11; }
 function getIslamicMonthLength(iy, im) { return im === 12 ? (isIslamicLeap(iy) ? 30 : 29) : (im % 2 === 1 ? 30 : 29); }
 function getIslamicEvents(im, id) {
     let ev = [];
-    if (im === 1 && id === 10) ev.push(t('hol_ashura')); if (im === 3 && id === 12) ev.push(t('hol_mawlid'));
+    if (im === 1 && id === 10) ev.push(t('hol_ashura')); 
+    if (im === 3 && id === 12) ev.push(t('hol_mawlid'));
     if (im === 7 && id === 27) ev.push(t('hol_isra'));
-    if (im === 9) { ev.push(t('isl_ramadan_start') || t('hol_ramadan')); if (id >= 21) ev.push(t('isl_ramadan_last_10') || t('hol_laylat')); }
+    if (im === 9) { 
+        ev.push(t('isl_ramadan_start') || t('hol_ramadan')); 
+        if (id >= 21) ev.push(t('isl_ramadan_last_10') || t('hol_laylat')); 
+    }
     if (im === 10 && id === 1) ev.push(t('hol_eid_fitr'));
-    if (im === 12) { if (id === 9) ev.push(t('hol_arafah')); if (id === 10) ev.push(t('hol_eid_adha')); if (id <= 10) ev.push(t('hol_hajj')); }
+    if (im === 12) { 
+        if (id === 9) ev.push(t('hol_arafah')); 
+        if (id === 10) ev.push(t('hol_eid_adha')); 
+        if (id <= 10) ev.push(t('hol_hajj')); 
+    }
     return ev;
 }
 
@@ -757,7 +794,6 @@ async function renderYearSearch(ey, out) {
         <li>${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
         <li>${t('lbl_wengelawi')}: ዘመነ ${bh.wengelawi} (ዓመተ ዓለም ${fNum(bh.aa)})</li></ul>`;
     
-    // --- NEW: Render list of months ---
     html += `<h4>${t('lbl_months')}</h4><ul>`;
     for (let em = 1; em <= 13; em++) {
         let mLen = getMonthLength(ey, em);
@@ -767,14 +803,12 @@ async function renderYearSearch(ey, out) {
     }
     html += `</ul>`;
 
-    // --- Render complete list of national holidays without any limit ---
     html += `<h4>${t('holidays_title')}</h4><ul>`;
     holidays.forEach(h => { 
         let eth = gregorianToEthiopian(h.g.getFullYear(), h.g.getMonth()+1, h.g.getDate()); 
         html += `<li><strong>${h.n}</strong> — ${wList[h.g.getDay()]}፣ ${mList[eth.em]} ${fNum(eth.ed)} (${formatDate(h.g)})</li>`; 
     });
     
-    // --- Render complete list of year movable events without any limit ---
     html += `</ul><h4>${t('lbl_year_movable_events')}</h4><ul>`;
     let shown = new Set();
     events.forEach(ev => {
@@ -878,21 +912,14 @@ async function handleEmbedRouting() {
     const embedView = urlParams.get('view');
 
     if (isEmbed) {
-        // Add embed class to body
         document.body.classList.add('embed-mode');
-
-        // Hide all main sections (tabs)
         document.querySelectorAll('.tab-content').forEach(el => {
             el.classList.remove('active');
             el.hidden = true;
         });
-
-        // Show embed container
         const embedContainer = document.getElementById('embed-content');
         if (embedContainer) {
             embedContainer.style.display = 'block';
-
-            // Render requested view
             switch (embedView) {
                 case 'today-bahire':
                     await renderTodayEmbed(embedContainer);
@@ -910,21 +937,19 @@ async function handleEmbedRouting() {
                     await renderTodayEmbed(embedContainer);
             }
         }
-        return true; // embed mode active
+        return true;
     }
     return false;
 }
 
-// Embed render functions (reuse existing logic but output to given container)
-
 async function renderTodayEmbed(container) {
-    await renderToday(); // writes to #today-summary
+    await renderToday();
     const todaySummary = document.getElementById('today-summary');
     if (todaySummary) container.innerHTML = todaySummary.innerHTML;
 }
 
 async function renderHolidaysEmbed(container) {
-    renderHolidays(); // synchronous
+    renderHolidays();
     const holidaysOutput = document.getElementById('holidays-output');
     if (holidaysOutput) container.innerHTML = holidaysOutput.innerHTML;
 }
@@ -934,12 +959,11 @@ async function renderTodaySynaxariumEmbed(container) {
 }
 
 async function renderIslamicEmbed(container) {
-    renderIslamic(); // synchronous
+    renderIslamic();
     const islamicSummary = document.getElementById('islamic-summary');
     if (islamicSummary) container.innerHTML = islamicSummary.innerHTML;
 }
 
-// New function to render just today's synaxarium
 async function buildTodaySynaxariumHTML(container) {
     let now = new Date();
     let eth = gregorianToEthiopian(now.getFullYear(), now.getMonth()+1, now.getDate());
@@ -967,25 +991,24 @@ function setupEmbedModal() {
     const openBtn = document.getElementById('openEmbedModalBtn');
     const closeBtn = document.getElementById('closeEmbedModalBtn');
     const viewSelect = document.getElementById('embedViewSelect');
-    const iframeCode = document.getElementById('iframeCode');
-    const jsCode = document.getElementById('jsCode');
 
     if (!modal || !openBtn || !closeBtn || !viewSelect) return;
 
-    // Get the base URL (current page URL without query)
     const baseUrl = window.location.origin + window.location.pathname;
 
     function generateEmbedCodes() {
         const selectedView = viewSelect.value;
-        const embedUrl = `${baseUrl}?embed=true&view=${selectedView}`;
+        const embedUrl = `${baseUrl}?embed=true&view=${selectedView}&lang=${currentLang}`;
 
-        // IFrame
-        const iframeString = `<iframe src="${embedUrl}" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden;" title="Ethiopian Calendar Widget"></iframe>`;
-        iframeCode.value = iframeString;
-
-        // JS snippet
-        const jsString = `<div id="eth-cal-widget"></div>\n<script>\n  (function() {\n    var iframe = document.createElement('iframe');\n    iframe.src = '${embedUrl}';\n    iframe.style.width = '100%';\n    iframe.style.height = '400px';\n    iframe.style.border = '1px solid #ddd';\n    iframe.style.borderRadius = '8px';\n    document.getElementById('eth-cal-widget').appendChild(iframe);\n  })();\n<\/script>`;
-        jsCode.value = jsString;
+        const iframeCode = document.getElementById('iframeCode');
+        const jsCode = document.getElementById('jsCode');
+        
+        if (iframeCode) {
+            iframeCode.value = `<iframe src="${embedUrl}" width="100%" height="500" style="border:none; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);" title="Ethiopian Calendar Widget"></iframe>`;
+        }
+        if (jsCode) {
+            jsCode.value = `<div id="eth-cal-widget"></div>\n<script>\n  (function() {\n    var el = document.getElementById('eth-cal-widget');\n    if (!el) return;\n    var iframe = document.createElement('iframe');\n    iframe.src = '${embedUrl}';\n    iframe.style.width = '100%';\n    iframe.style.height = '500px';\n    iframe.style.border = 'none';\n    iframe.style.borderRadius = '12px';\n    iframe.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';\n    el.appendChild(iframe);\n  })();\n<\/script>`;
+        }
     }
 
     openBtn.addEventListener('click', () => {
@@ -999,52 +1022,93 @@ function setupEmbedModal() {
 
     viewSelect.addEventListener('change', generateEmbedCodes);
 
-    // Copy to clipboard
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            modal.style.display = 'none';
+        }
+    });
+
     document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const targetId = e.target.getAttribute('data-target');
             const copyText = document.getElementById(targetId);
             if (!copyText) return;
-            copyText.select();
-            try {
-                document.execCommand("copy");
-                e.target.innerText = t('txt_copied');
-                setTimeout(() => {
-                    // Restore original text (use data-i18n to re-translate)
-                    const key = e.target.getAttribute('data-i18n');
-                    if (key) e.target.innerText = t(key);
-                    else e.target.innerText = "Copy";
-                }, 2000);
-            } catch(err) {
-                e.target.innerText = t('txt_fail');
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(copyText.value)
+                    .then(() => {
+                        const originalText = e.target.textContent;
+                        e.target.textContent = '✅ ' + t('txt_copied');
+                        setTimeout(() => { e.target.textContent = originalText; }, 2000);
+                    })
+                    .catch(() => fallbackCopy(copyText.value, e.target));
+            } else {
+                fallbackCopy(copyText.value, e.target);
             }
         });
     });
 
-    // Close modal on background click
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
+    function fallbackCopy(text, btn) {
+        try {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            const originalText = btn.textContent;
+            btn.textContent = '✅ ' + t('txt_copied');
+            setTimeout(() => { btn.textContent = originalText; }, 2000);
+        } catch (err) {
+            btn.textContent = '❌ ' + t('txt_fail');
+            setTimeout(() => { 
+                const key = btn.getAttribute('data-i18n');
+                if (key) btn.textContent = t(key); 
+            }, 2000);
         }
-    });
+    }
 }
 
 // ==========================================
 // ORIGINAL MODULE FUNCTIONS
-// (unchanged, except setupTabs now skips if embed mode)
 // ==========================================
 
 function setupTabs() {
-    // If in embed mode, don't set up navigation (hidden)
     if (document.body.classList.contains('embed-mode')) return;
     
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            let targetId = btn.getAttribute('data-target') || btn.dataset.target; if (!targetId) return;
+            let targetId = btn.getAttribute('data-target') || btn.dataset.target;
+            if (!targetId) return;
             document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
             document.querySelectorAll('.tab-content').forEach(t => { t.classList.remove('active'); t.hidden = true; });
             btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
             let contentTab = document.getElementById(targetId); if (contentTab) { contentTab.classList.add('active'); contentTab.hidden = false; }
+        });
+    });
+    
+    // Keyboard navigation
+    document.querySelectorAll('.nav-btn').forEach((btn, index) => {
+        btn.addEventListener('keydown', (e) => {
+            const buttons = document.querySelectorAll('.nav-btn');
+            let targetIndex = index;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                targetIndex = (index + 1) % buttons.length;
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                targetIndex = (index - 1 + buttons.length) % buttons.length;
+            }
+            if (targetIndex !== index) {
+                buttons[targetIndex].focus();
+                buttons[targetIndex].click();
+            }
         });
     });
 }
@@ -1115,6 +1179,9 @@ function initClock() {
     }, 1000);
 }
 
+// ==========================================
+// IMPROVED: Render Hebrew with Full Translations
+// ==========================================
 function renderHebrew() {
     const container = document.getElementById('hebrew-summary');
     if (!container) return;
@@ -1161,6 +1228,9 @@ function renderHebrew() {
     container.innerHTML = html + `</ul>`;
 }
 
+// ==========================================
+// IMPROVED: Render Islamic with Disclaimer
+// ==========================================
 function renderIslamic() {
     const container = document.getElementById('islamic-summary');
     if (!container) return;
@@ -1168,14 +1238,22 @@ function renderIslamic() {
     let isl = jdnToIslamic(jdn), ev = getIslamicEvents(isl.im, isl.id), wList = getWeekdays(), islMonths = t('islamic_months'), mList = getMonths(), eth = jdnToEthiopian(jdn);
     let isLeap = isIslamicLeap(isl.iy), leapText = isLeap ? t('isl_leap_year') : t('isl_reg_year');
 
-    let html = `<h3>${wList[now.getDay()]}፣ ${islMonths[isl.im]} ${fNum(isl.id)} ${t('txt_day')} ${fNum(isl.iy)} ${t('lbl_hijri')}</h3><p>${t('lbl_equiv_greg')}፦ ${formatDate(now)}</p><p>${t('lbl_equiv_eth')}፦ ${mList[eth.em]} ${fNum(eth.ed)} ${t('txt_day')} ${fNum(eth.ey)} ${t('txt_year')}</p><h4>${t('lbl_current_info')}</h4><ul>`;
+    let html = `<h3>${wList[now.getDay()]}፣ ${islMonths[isl.im]} ${fNum(isl.id)} ${t('txt_day')} ${fNum(isl.iy)} ${t('lbl_hijri')}</h3>
+                <p>${t('lbl_equiv_greg')}፦ ${formatDate(now)}</p>
+                <p>${t('lbl_equiv_eth')}፦ ${mList[eth.em]} ${fNum(eth.ed)} ${t('txt_day')} ${fNum(eth.ey)} ${t('txt_year')}</p>
+                <h4>${t('lbl_current_info')}</h4><ul>`;
     if (ev.length > 0) ev.forEach(e => { html += `<li>${e}</li>`; }); else html += `<li>${t('isl_no_events')}</li>`;
-    html += `<li>${leapText}</li></ul><p><em>${t('isl_disclaimer')}</em></p>`;
+    html += `<li>${leapText}</li></ul>
+            <div style="background:#fef3c7; padding:10px; border-radius:8px; border-left:4px solid #f59e0b; margin:10px 0;">
+                <em>${t('isl_disclaimer')}</em>
+            </div>`;
 
     let yearStartJdn = islamicToJdn(isl.iy, 1, 1), yearEndJdn = islamicToJdn(isl.iy, 12, getIslamicMonthLength(isl.iy, 12));
     let yearStartG = jdnToGregorian(yearStartJdn), yearEndG = jdnToGregorian(yearEndJdn), startEth = jdnToEthiopian(yearStartJdn), endEth = jdnToEthiopian(yearEndJdn);
 
-    html += `<h3>${fNum(isl.iy)} ${t('lbl_hijri')} - ${t('isl_year_events')}</h3><p>ከ${formatDate(yearStartG)} (${mList[startEth.em]} ${fNum(startEth.ed)}) እስከ ${formatDate(yearEndG)} (${mList[endEth.em]} ${fNum(endEth.ed)}) (${leapText})</p><h4>${t('lbl_months')}</h4><ul>`;
+    html += `<h3>${fNum(isl.iy)} ${t('lbl_hijri')} - ${t('isl_year_events')}</h3>
+             <p>ከ${formatDate(yearStartG)} (${mList[startEth.em]} ${fNum(startEth.ed)}) እስከ ${formatDate(yearEndG)} (${mList[endEth.em]} ${fNum(endEth.ed)}) (${leapText})</p>
+             <h4>${t('lbl_months')}</h4><ul>`;
     for (let i = 1; i <= 12; i++) {
         let mLen = getIslamicMonthLength(isl.iy, i), mStartJdn = islamicToJdn(isl.iy, i, 1), mEndJdn = islamicToJdn(isl.iy, i, mLen);
         let mStartG = jdnToGregorian(mStartJdn), mEndG = jdnToGregorian(mEndJdn), mStartEth = jdnToEthiopian(mStartJdn), mEndEth = jdnToEthiopian(mEndJdn);
@@ -1407,23 +1485,56 @@ function setupClipboardCopy() {
 }
 
 // ==========================================
+// PWA Support (Service Worker Registration)
+// ==========================================
+function setupPWA() {
+    if ('serviceWorker' in navigator && !document.body.classList.contains('embed-mode')) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => {
+                console.log('Service Worker registered:', reg);
+            })
+            .catch(err => {
+                console.log('Service Worker registration failed:', err);
+            });
+    }
+    
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        const installBtn = document.getElementById('install-app-btn');
+        if (installBtn) {
+            installBtn.style.display = 'inline-block';
+            installBtn.addEventListener('click', () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted the install prompt');
+                        } else {
+                            console.log('User dismissed the install prompt');
+                        }
+                        deferredPrompt = null;
+                    });
+                }
+            });
+        }
+    });
+}
+
+// ==========================================
 // DOMContentLoaded MAIN INITIALIZATION
 // ==========================================
 document.addEventListener('DOMContentLoaded', async () => {
-    // 1. Handle embed routing first (this may set embed mode)
     const isEmbed = await handleEmbedRouting();
 
-    // 2. Set language and initial translations
     if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     const langSelect = document.getElementById('lang-selector'); if (langSelect) langSelect.value = currentLang;
     updateStaticTranslations();
 
-    // 3. Setup embed modal (will not interfere with embed mode)
     setupEmbedModal();
+    setupPWA();
 
-    // 4. If not in embed mode, initialize all UI modules
-    //    If in embed mode, still run clock and other non‑UI modules? 
-    //    We'll run everything except tabs (which we skip inside setupTabs if embed mode).
     const modules = [
         { name: "Tabs Control", func: setupTabs },
         { name: "Preferences Toggles", func: setupPreferences },
@@ -1443,7 +1554,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     ];
     modules.forEach(m => { 
         try { 
-            // Skip Tabs if embed mode (already handled inside setupTabs)
             m.func(); 
         } catch (err) { 
             console.error(`Error loading module [${m.name}]:`, err); 
