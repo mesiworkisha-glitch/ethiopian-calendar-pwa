@@ -1,0 +1,10 @@
+{
+    "type": "rich",
+    "version": "1.0",
+    "provider_name": "Ethiopian Calendar & Bahire Hasab",
+    "provider_url": "https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/",
+    "title": "This Month's Full Ethiopian Calendar Details",
+    "width": 460,
+    "height": 640,
+    "html": "<iframe src=\"https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/embed-month.html\" width=\"460\" height=\"640\" style=\"border:1px solid #ccc;border-radius:8px;max-width:100%;\" loading=\"lazy\" title=\"Ethiopian Calendar Widget\"></iframe>"
+}

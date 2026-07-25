@@ -121,6 +121,7 @@
         const numerals = getParam('numerals', 'arabic');
         const style = getParam('style', 'full');
         const holidayId = getParam('id', null);
+        const yearParam = getParam('y', null), monthParam = getParam('m', null);
 
         if (typeof i18n !== 'undefined' && i18n[lang]) currentLang = lang;
         useGeezNumerals = numerals === 'geez';
@@ -138,7 +139,7 @@
 
         try {
             if (style === 'badge') {
-                const content = await getEmbedWidgetContent(widget === 'holiday' ? 'holiday' : (EMBED_WIDGET_TYPES.includes(widget) ? widget : 'today'), { id: holidayId });
+                const content = await getEmbedWidgetContent(EMBED_WIDGET_TYPES.includes(widget) ? widget : 'today', { id: holidayId, year: yearParam, month: monthParam });
                 const siteUrl = new URL('.', window.location.href).href;
                 container.innerHTML = `<a class="embed-badge" href="${siteUrl}" target="_blank" rel="noopener noreferrer">📅 ${content.title}</a>`;
             } else if (widget === 'converter') {
@@ -149,6 +150,12 @@
             } else if (widget === 'holiday') {
                 const content = await getEmbedWidgetContent('holiday', { id: holidayId });
                 container.innerHTML = content.html;
+            } else if (widget === 'year' || widget === 'month') {
+                const content = await getEmbedWidgetContent(widget, { year: yearParam, month: monthParam });
+                container.innerHTML = content.html;
+                // The 🔗 embed-icon rendered inside this HTML only does something on the main
+                // site (it opens the Embed modal there); inside the widget itself it's inert, so drop it.
+                container.querySelectorAll('.btn-embed-icon').forEach(el => el.remove());
             } else {
                 const content = await getEmbedWidgetContent(EMBED_WIDGET_TYPES.includes(widget) ? widget : 'today');
                 container.innerHTML = content.html;

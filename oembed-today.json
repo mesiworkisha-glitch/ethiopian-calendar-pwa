@@ -5,6 +5,6 @@
     "provider_url": "https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/",
     "title": "Today's Ethiopian Date & Bahire Hasab",
     "width": 380,
-    "height": 420,
-    "html": "<iframe src=\"https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/embed-today.html\" width=\"380\" height=\"420\" style=\"border:1px solid #ccc;border-radius:8px;max-width:100%;\" loading=\"lazy\" title=\"Ethiopian Calendar Widget\"></iframe>"
+    "height": 760,
+    "html": "<iframe src=\"https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/embed-today.html\" width=\"380\" height=\"760\" style=\"border:1px solid #ccc;border-radius:8px;max-width:100%;\" loading=\"lazy\" title=\"Ethiopian Calendar Widget\"></iframe>"
 }
