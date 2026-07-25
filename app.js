@@ -1058,7 +1058,7 @@ async function buildTodayFullDetails() {
         if (monthlyFeasts.length > 0) { html += `<h4>${t('lbl_monthly_feasts')}</h4><ul>` + monthlyFeasts.map(e => `<li>${e}</li>`).join('') + `</ul>`; lines.push(`${t('lbl_monthly_feasts')}: ${monthlyFeasts.join(', ')}`); }
     } else { html += `<p>${t('no_synax')}</p>`; }
 
-    return { title: dateStr, html, lines };
+    return { title: dateStr, html, lines, calendarPage: { day: fNum(eth.ed), month: mList[eth.em], year: `${fNum(eth.ey)} ${t('txt_year')}`, weekday: wList[now.getDay()], sub: seasons.fasting } };
 }
 
 async function renderToday() {
@@ -1280,7 +1280,8 @@ async function getEmbedWidgetContent(widgetType, extra) {
         return {
             title: occ.name,
             html: `<h3 class="embed-heading">${occ.name}</h3><p class="embed-date">${dateStr}</p><p class="embed-line">${statusLine}</p>`,
-            lines: [occ.name, dateStr, statusLine]
+            lines: [occ.name, dateStr, statusLine],
+            calendarPage: { day: fNum(occ.ed), month: mList[occ.em], year: `${fNum(eth.ey)} ${t('txt_year')}`, weekday: wList[occ.g.getDay()], sub: occ.name }
         };
     }
 
@@ -1316,7 +1317,8 @@ async function getEmbedWidgetContent(widgetType, extra) {
         return {
             title: t('hijri_title'),
             html: `<h3 class="embed-heading">${t('hijri_title')}</h3><p class="embed-date">${dateStr}</p>`,
-            lines: [t('hijri_title'), dateStr]
+            lines: [t('hijri_title'), dateStr],
+            calendarPage: { day: fNum(isl.id), month: islMonths[isl.im], year: `${fNum(isl.iy)} ${t('lbl_hijri')}`, weekday: wList[now.getDay()], sub: t('hijri_title') }
         };
     }
 
@@ -1346,36 +1348,140 @@ function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
     return y + lineHeight;
 }
 
+function canvasRoundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+}
+
+function getSiteHost() {
+    try { return new URL('.', window.location.href).host; } catch (e) { return 'Ethiopian Calendar'; }
+}
+
 function drawEmbedCanvas(content, isDark) {
     const canvas = document.getElementById('embed-canvas');
     if (!canvas) return null;
     const ctx = canvas.getContext('2d'), W = canvas.width, H = canvas.height;
+    if (content.calendarPage) { drawCalendarPageCanvas(ctx, W, H, content, isDark); }
+    else { drawInfoCardCanvas(ctx, W, H, content, isDark); }
+    return canvas.toDataURL('image/png');
+}
 
-    ctx.fillStyle = isDark ? '#121212' : '#ffffff';
+// Renders a single date (Today / a specific Holiday / Hijri) as a "tear-off"
+// printed calendar page: month band, perforation dots, a large day number,
+// the year, and a short subtitle — like the wall calendars this app is modeled on.
+function drawCalendarPageCanvas(ctx, W, H, content, isDark) {
+    const cp = content.calendarPage;
+    const bg = isDark ? '#1e1e1e' : '#ffffff', panelBg = isDark ? '#121212' : '#f4f6f9';
+    const textColor = isDark ? '#e0e0e0' : '#222222', subText = isDark ? '#a0aec0' : '#5a6b85';
+    const accent = '#0066cc', gold = '#f0b429';
+
+    ctx.fillStyle = bg;
     ctx.fillRect(0, 0, W, H);
-    ctx.fillStyle = '#0066cc';
-    ctx.fillRect(0, 0, W, 16);
 
-    ctx.fillStyle = isDark ? '#e0e0e0' : '#222222';
-    ctx.textBaseline = 'top';
-    ctx.font = 'bold 44px "Nyala","Kefa","Abyssinica SIL",sans-serif';
-    let y = wrapCanvasText(ctx, content.title, 60, 90, W - 120, 56, 3) + 20;
+    // Double frame border, evoking a printed page
+    ctx.strokeStyle = accent; ctx.lineWidth = 6; ctx.strokeRect(18, 18, W - 36, H - 36);
+    ctx.strokeStyle = gold; ctx.lineWidth = 2; ctx.strokeRect(30, 30, W - 60, H - 60);
 
-    ctx.font = '30px "Nyala","Kefa","Abyssinica SIL",sans-serif';
-    ctx.fillStyle = isDark ? '#c8c8c8' : '#444444';
-    const bodyLines = content.lines.slice(1, 6);
-    for (const line of bodyLines) {
-        if (y > H - 180) break;
-        y = wrapCanvasText(ctx, line, 60, y, W - 120, 40, 2) + 14;
+    // Month + brand ribbon
+    const ribbonH = 110;
+    ctx.fillStyle = accent;
+    ctx.fillRect(30, 30, W - 60, ribbonH);
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = 'bold 46px "Nyala","Kefa","Abyssinica SIL",sans-serif';
+    ctx.fillText(cp.month, W / 2, 30 + ribbonH / 2 - 14);
+    ctx.font = '22px sans-serif';
+    ctx.fillText('📅 ' + t('app_title'), W / 2, 30 + ribbonH / 2 + 26);
+
+    // Perforation dots — the "tear-off" line
+    ctx.fillStyle = isDark ? '#3a3a3a' : '#dcdcdc';
+    for (let x = 60; x < W - 60; x += 26) { ctx.beginPath(); ctx.arc(x, 30 + ribbonH + 16, 4, 0, Math.PI * 2); ctx.fill(); }
+
+    // Weekday
+    ctx.fillStyle = subText;
+    ctx.font = 'bold 32px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(String(cp.weekday).toUpperCase(), W / 2, 30 + ribbonH + 96);
+
+    // Huge day number — the centerpiece
+    ctx.fillStyle = textColor;
+    ctx.font = 'bold 340px "Nyala","Kefa","Abyssinica SIL",sans-serif';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(cp.day, W / 2, H / 2 + 20);
+
+    // Year
+    ctx.font = 'bold 40px "Nyala","Kefa","Abyssinica SIL",sans-serif';
+    ctx.fillStyle = accent;
+    ctx.fillText(cp.year, W / 2, H / 2 + 250);
+
+    // Subtitle pill (fasting season / holiday name / "Hijri Calendar")
+    if (cp.sub) {
+        ctx.font = '28px "Nyala","Kefa","Abyssinica SIL",sans-serif';
+        const maxPillWidth = W - 140, textWidth = Math.min(ctx.measureText(cp.sub).width, maxPillWidth - 48);
+        const pillW = textWidth + 48, pillY = H / 2 + 300, pillH = 58;
+        ctx.fillStyle = panelBg;
+        canvasRoundRect(ctx, W / 2 - pillW / 2, pillY, pillW, pillH, pillH / 2);
+        ctx.fill();
+        ctx.fillStyle = textColor;
+        ctx.textBaseline = 'middle';
+        wrapCanvasText(ctx, cp.sub, W / 2, pillY + pillH / 2, maxPillWidth - 48, 34, 1);
     }
 
-    ctx.fillStyle = isDark ? '#2d3748' : '#eaf2fc';
-    ctx.fillRect(0, H - 100, W, 100);
-    ctx.font = 'bold 30px sans-serif';
-    ctx.fillStyle = '#0066cc';
-    ctx.fillText('📅 ' + t('app_title'), 60, H - 66);
+    // Footer divider + site attribution
+    ctx.strokeStyle = isDark ? '#333333' : '#eeeeee';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(60, H - 90); ctx.lineTo(W - 60, H - 90); ctx.stroke();
+    ctx.fillStyle = subText;
+    ctx.font = '22px sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(getSiteHost(), W / 2, H - 55);
+}
 
-    return canvas.toDataURL('image/png');
+// Renders list-style content (Holidays / Synaxarium / Year / Month / Converter)
+// as a bordered card matching the calendar-page frame, with title + detail lines.
+function drawInfoCardCanvas(ctx, W, H, content, isDark) {
+    const bg = isDark ? '#1e1e1e' : '#ffffff';
+    const textColor = isDark ? '#e0e0e0' : '#222222', subText = isDark ? '#c8c8c8' : '#444444';
+    const accent = '#0066cc', gold = '#f0b429';
+
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = accent; ctx.lineWidth = 6; ctx.strokeRect(18, 18, W - 36, H - 36);
+    ctx.strokeStyle = gold; ctx.lineWidth = 2; ctx.strokeRect(30, 30, W - 60, H - 60);
+
+    const ribbonH = 90;
+    ctx.fillStyle = accent;
+    ctx.fillRect(30, 30, W - 60, ribbonH);
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = 'bold 26px sans-serif';
+    ctx.fillText('📅 ' + t('app_title'), W / 2, 30 + ribbonH / 2);
+
+    ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    ctx.fillStyle = textColor;
+    ctx.font = 'bold 44px "Nyala","Kefa","Abyssinica SIL",sans-serif';
+    let y = wrapCanvasText(ctx, content.title, 64, 30 + ribbonH + 44, W - 128, 54, 3) + 16;
+
+    ctx.font = '28px "Nyala","Kefa","Abyssinica SIL",sans-serif';
+    ctx.fillStyle = subText;
+    const bodyLines = content.lines.slice(1, 8);
+    for (const line of bodyLines) {
+        if (y > H - 140) break;
+        y = wrapCanvasText(ctx, line, 64, y, W - 128, 38, 2) + 12;
+    }
+
+    ctx.strokeStyle = isDark ? '#333333' : '#eeeeee';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(60, H - 80); ctx.lineTo(W - 60, H - 80); ctx.stroke();
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = subText;
+    ctx.font = '20px sans-serif';
+    ctx.fillText(getSiteHost(), W / 2, H - 50);
 }
 
 function setupEmbedShare() {
