@@ -53,6 +53,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="የኢትዮጵያ ካላንደር PWA ቅድመ ዕይታ - የዕለቱ መረጃ፣ የቀን መቀየሪያ፣ እና ብሔራዊ በዓላት">
+    <link rel="alternate" type="application/json+oembed" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/oembed.json" title="Ethiopian Calendar & Bahire Hasab">
     <!-- Locales -->
     <meta property="og:locale" content="am_ET">
     <meta property="og:locale:alternate" content="en_US">
@@ -364,10 +365,32 @@
                         <input type="text" id="embed-height" value="420">
                     </div>
                     <div class="form-group">
+                        <label for="embed-format" data-i18n="embed_lbl_format">ቅርጸት (Format)</label>
+                        <select id="embed-format">
+                            <option value="full" data-i18n="embed_opt_full">ሙሉ ዊጄት (Full Widget)</option>
+                            <option value="badge" data-i18n="embed_opt_badge">አነስተኛ ባጅ (Compact Badge)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
                         <label for="embed-theme" data-i18n="embed_lbl_theme">ገጽታ (Theme)</label>
                         <select id="embed-theme">
+                            <option value="" data-i18n="embed_opt_auto">ራስ-ሰር (Auto)</option>
                             <option value="light" data-i18n="embed_opt_light">ብሩህ (Light)</option>
                             <option value="dark" data-i18n="embed_opt_dark">ጨለማ (Dark)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="embed-lang" data-i18n="embed_lbl_lang">ቋንቋ (Language)</label>
+                        <select id="embed-lang">
+                            <option value="" data-i18n="embed_opt_auto">ራስ-ሰር (Auto)</option>
+                            <option value="am">አማርኛ</option>
+                            <option value="en">English</option>
+                            <option value="om">Afaan Oromoo</option>
+                            <option value="ti">ትግርኛ</option>
+                            <option value="so">Soomaali</option>
+                            <option value="gur">ጉራግኛ</option>
                         </select>
                     </div>
                 </div>

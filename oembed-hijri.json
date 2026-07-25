@@ -1,0 +1,10 @@
+{
+    "type": "rich",
+    "version": "1.0",
+    "provider_name": "Ethiopian Calendar & Bahire Hasab",
+    "provider_url": "https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/",
+    "title": "Islamic (Hijri) Date Converter",
+    "width": 380,
+    "height": 300,
+    "html": "<iframe src=\"https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/embed-hijri.html\" width=\"380\" height=\"300\" style=\"border:1px solid #ccc;border-radius:8px;max-width:100%;\" loading=\"lazy\" title=\"Ethiopian Calendar Widget\"></iframe>"
+}

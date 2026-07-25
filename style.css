@@ -459,3 +459,56 @@ body.embed-body {
     text-decoration: none;
     text-align: right;
 }
+
+/* Per-row "embed this holiday" icon inside the holidays list */
+.btn-embed-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0 0 0 6px;
+    margin: 0;
+    opacity: 0.65;
+    vertical-align: middle;
+}
+
+.btn-embed-icon:hover, .btn-embed-icon:focus-visible {
+    opacity: 1;
+}
+
+/* Compact badge format — a tiny pill link for sidebars/footers on other sites */
+body.embed-body.badge-mode {
+    padding: 0;
+    background: transparent;
+}
+
+body.embed-body.badge-mode .embed-widget.card {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+.embed-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.embed-badge:hover, .embed-badge:focus-visible {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}

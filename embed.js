@@ -9,10 +9,30 @@
    ========================================================================== */
 
 (function () {
+    var SUPPORTED_LANGS = ["am", "en", "om", "ti", "so", "gur"];
+
     function getParam(name, fallback) {
         const params = new URLSearchParams(window.location.search);
         const val = params.get(name);
         return val === null || val === "" ? fallback : val;
+    }
+
+    // Auto-detect theme from the visitor's OS/browser preference when no explicit ?theme= is given.
+    function detectPreferredTheme() {
+        try { return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+        catch (e) { return 'light'; }
+    }
+
+    // Auto-detect language from the visitor's browser settings when no explicit ?lang= is given.
+    function detectPreferredLang() {
+        try {
+            const langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'am'];
+            for (const l of langs) {
+                const base = String(l).toLowerCase().split('-')[0];
+                if (SUPPORTED_LANGS.includes(base)) return base;
+            }
+        } catch (e) { /* ignore */ }
+        return 'am';
     }
 
     function notifyResize() {
@@ -92,24 +112,43 @@
     }
 
     async function render() {
-        const widget = getParam('widget', 'today');
-        const lang = getParam('lang', 'am');
-        const theme = getParam('theme', 'light');
+        // A dedicated wrapper page (e.g. embed-holidays.html, used for oEmbed discovery)
+        // can pin the widget type via window.EMBED_WIDGET_DEFAULT before this script runs,
+        // while still letting ?lang=/?theme=/?id= etc. be customized per query string.
+        const widget = getParam('widget', typeof window.EMBED_WIDGET_DEFAULT !== 'undefined' ? window.EMBED_WIDGET_DEFAULT : 'today');
+        const lang = getParam('lang', null) || detectPreferredLang();
+        const theme = getParam('theme', null) || detectPreferredTheme();
         const numerals = getParam('numerals', 'arabic');
+        const style = getParam('style', 'full');
+        const holidayId = getParam('id', null);
 
         if (typeof i18n !== 'undefined' && i18n[lang]) currentLang = lang;
         useGeezNumerals = numerals === 'geez';
         if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
 
         const container = document.getElementById('embed-widget');
+        const footerLink = document.querySelector('.embed-footer-link');
+
+        if (style === 'badge') {
+            document.body.classList.add('badge-mode');
+            if (footerLink) footerLink.hidden = true;
+        }
+
         if (!container) return;
 
         try {
-            if (widget === 'converter') {
+            if (style === 'badge') {
+                const content = await getEmbedWidgetContent(widget === 'holiday' ? 'holiday' : (EMBED_WIDGET_TYPES.includes(widget) ? widget : 'today'), { id: holidayId });
+                const siteUrl = new URL('.', window.location.href).href;
+                container.innerHTML = `<a class="embed-badge" href="${siteUrl}" target="_blank" rel="noopener noreferrer">📅 ${content.title}</a>`;
+            } else if (widget === 'converter') {
                 await renderConverterWidget(container);
             } else if (widget === 'hijri') {
                 const content = await getEmbedWidgetContent('hijri');
                 renderHijriWidget(container, content);
+            } else if (widget === 'holiday') {
+                const content = await getEmbedWidgetContent('holiday', { id: holidayId });
+                container.innerHTML = content.html;
             } else {
                 const content = await getEmbedWidgetContent(EMBED_WIDGET_TYPES.includes(widget) ? widget : 'today');
                 container.innerHTML = content.html;
