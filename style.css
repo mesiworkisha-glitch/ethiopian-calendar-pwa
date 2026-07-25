@@ -30,6 +30,24 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+.skip-link {
+    position: absolute;
+    top: -80px;
+    left: 8px;
+    background: var(--primary-color);
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 4px;
+    z-index: 2000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: top 0.15s ease-in-out;
+}
+
+.skip-link:focus {
+    top: 8px;
+}
+
 header {
     background-color: var(--primary-color);
     color: white;
@@ -203,7 +221,10 @@ button {
 .nav-btn:focus-visible,
 button:focus-visible,
 input:focus-visible,
-select:focus-visible {
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
+#main-content:focus-visible {
     outline: 3px solid var(--primary-color);
     outline-offset: 2px;
 }
@@ -241,7 +262,7 @@ footer {
     gap: 8px;
     margin-top: 10px;
     padding: 8px 18px;
-    background: #229ed9;
+    background: #0f76a8;
     color: #ffffff;
     border-radius: 20px;
     text-decoration: none;
@@ -251,7 +272,7 @@ footer {
 
 .btn-telegram:hover,
 .btn-telegram:focus-visible {
-    background: #1c87ba;
+    background: #0b5f88;
 }
 
 .intro {
@@ -293,10 +314,14 @@ footer {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+.modal-box:focus {
+    outline: none;
+}
+
 .modal-close {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 8px;
+    right: 8px;
     background: none;
     border: none;
     font-size: 1.1rem;
@@ -304,6 +329,11 @@ footer {
     color: var(--text-color);
     padding: 4px 8px;
     margin: 0;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-tabs {
@@ -402,9 +432,13 @@ footer {
     color: #ffffff;
 }
 
-.btn-whatsapp { background: #25d366; }
+.btn-whatsapp { background: #0b7a3b; }
 .btn-twitter { background: #14171a; }
-.btn-facebook { background: #1877f2; }
+.btn-facebook { background: #145dbf; }
+
+.btn-whatsapp:hover, .btn-whatsapp:focus-visible { background: #095f2f; }
+.btn-twitter:hover, .btn-twitter:focus-visible { background: #000000; }
+.btn-facebook:hover, .btn-facebook:focus-visible { background: #0f4996; }
 
 .btn-share:hover, .btn-share:focus-visible { filter: brightness(0.92); }
 
@@ -460,16 +494,23 @@ body.embed-body {
     text-align: right;
 }
 
-/* Per-row "embed this holiday" icon inside the holidays list */
+/* Per-row "embed this holiday/year/month" icon inside list/heading output.
+   Visual glyph stays small, but the clickable/tappable area meets the
+   WCAG 2.5.8 minimum target size (24x24 CSS px). */
 .btn-embed-icon {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 0.85rem;
-    padding: 0 0 0 6px;
-    margin: 0;
+    padding: 4px 6px;
+    margin: 0 0 0 2px;
+    min-width: 24px;
+    min-height: 24px;
     opacity: 0.65;
     vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-embed-icon:hover, .btn-embed-icon:focus-visible {

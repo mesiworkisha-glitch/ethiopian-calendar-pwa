@@ -124,6 +124,7 @@
         const yearParam = getParam('y', null), monthParam = getParam('m', null);
 
         if (typeof i18n !== 'undefined' && i18n[lang]) currentLang = lang;
+        document.documentElement.lang = currentLang;
         useGeezNumerals = numerals === 'geez';
         if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
 
