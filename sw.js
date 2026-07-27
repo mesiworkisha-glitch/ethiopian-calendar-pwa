@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ethio-calendar-v33';
+const CACHE_NAME = 'ethio-calendar-v34';
 const ASSETS = [
     './',
     './index.html',
@@ -7,10 +7,9 @@ const ASSETS = [
     './manifest.json',
     './synaxarium_feasts.json',
     './icon.svg',
-    './icon-192.png',
+    './icon-192x192.png',
     './icon-512.png',
     './og-image.png',
-    './favicon.ico',
     './icon-192x192.png'
 ];
 
@@ -91,6 +90,16 @@ self.addEventListener('fetch', (event) => {
             return fetchPromise.then((networkResponse) => {
                 if (networkResponse) return networkResponse;
                 
+                if (event.request.destination === 'image') {
+                    return new Response(
+                        `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+                            <rect width="200" height="200" fill="#e2e8f0"/>
+                            <text x="100" y="100" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#718096">Image unavailable</text>
+                        </svg>`,
+                        { headers: { 'Content-Type': 'image/svg+xml' } }
+                    );
+                }
+
                 // If both cache and network fail, try to return the offline page
                 if (event.request.mode === 'navigate') {
                     return caches.match('./index.html');
@@ -109,25 +118,5 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
         self.skipWaiting();
-    }
-});
-
-// Handle offline fallback for images
-self.addEventListener('fetch', (event) => {
-    if (event.request.destination === 'image') {
-        event.respondWith(
-            caches.match(event.request).then((response) => {
-                return response || fetch(event.request).catch(() => {
-                    // Return a simple SVG placeholder for missing images
-                    return new Response(
-                        `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-                            <rect width="200" height="200" fill="#e2e8f0"/>
-                            <text x="100" y="100" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#718096">Image unavailable</text>
-                        </svg>`,
-                        { headers: { 'Content-Type': 'image/svg+xml' } }
-                    );
-                });
-            })
-        );
     }
 });

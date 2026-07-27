@@ -584,6 +584,12 @@ function getLiturgicalSeason(ey, em, ed, bh) {
     return "ጎሕ፣ ነግሕ";
 }
 
+function getGreatLentWeek(dayNum, abiyStartDay, tensaeDay) {
+    if (dayNum < abiyStartDay || dayNum >= tensaeDay) return "";
+    const weeks = ["ዘወረደ", "ቅድስት", "ምኩራብ", "መጻጉዕ", "ደብረ ዘይት", "ገብርሄር", "ኒቆዲሞስ", "ሆሳዕና"];
+    return weeks[Math.min(Math.floor((dayNum - abiyStartDay) / 7), weeks.length - 1)];
+}
+
 function getSeasons(ey, em, ed, bh) {
     let dayNum = (em - 1) * 30 + ed, climatic = dayNum >= 26 && dayNum <= 115 ? t('season_autumn') : dayNum >= 116 && dayNum <= 205 ? t('season_summer') : dayNum >= 206 && dayNum <= 295 ? t('season_spring') : t('season_winter');
     let fNenewe = (bh.feasts.nenewe.m - 1) * 30 + bh.feasts.nenewe.d, fAbiy = (bh.feasts.abiy.m - 1) * 30 + bh.feasts.abiy.d;
@@ -602,7 +608,8 @@ function getSeasons(ey, em, ed, bh) {
 
     let progress = "", ranges = [ {n: t('fast_nenewe'), s: fNenewe, l: 3}, {n: t('fast_abiy'), s: fAbiy, l: fTensae - fAbiy}, {n: t('fast_nebiyat'), s: 75, l: 44}, {n: t('fast_hawaryat'), s: fHawariat, l: 305 - fHawariat + 1}, {n: t('fast_filseta'), s: 331, l: 15} ];
     for (let r of ranges) { if (dayNum >= r.s && dayNum < r.s + r.l) { progress = `(${r.n}: ${fNum(dayNum - r.s + 1)} / ${fNum(r.l)})`; break; } }
-    return { climatic, liturgical: getLiturgicalSeason(ey, em, ed, bh), fasting, progress };
+    const greatLentWeek = getGreatLentWeek(dayNum, fAbiy, fTensae);
+    return { climatic, liturgical: getLiturgicalSeason(ey, em, ed, bh), fasting, progress, greatLentWeek };
 }
 
 function getUpcomingEvents(ey, em, ed, bh) {
@@ -636,6 +643,14 @@ function getNamedEventsForYear(ey) {
         events.push([(dateObj.m - 1) * 30 + dateObj.d, i18nKey]);
     }
     return events.sort((a,b) => a[0] - b[0]);
+}
+
+function getMovableEventsForYear(ey) {
+    const bh = calculateBahreHasab(ey);
+    return Object.entries(bh.feasts).map(([internalKey, dateObj]) => {
+        const key = ["nenewe", "abiy", "hawaryat", "dihnet"].includes(internalKey) ? `fast_${internalKey}` : `fest_${internalKey}`;
+        return { dayNum: ethiopianDayOfYear(dateObj.m, dateObj.d), label: t(key) };
+    }).sort((a, b) => a.dayNum - b.dayNum);
 }
 
 function getFdreHolidays(ey) {
@@ -705,7 +720,7 @@ function getDayDetails(ey, em, ed) {
 }
 
 async function buildYearFullDetails(ey) {
-    let bh = calculateBahreHasab(ey), events = getYearlyEvents(ey), holidays = getFdreHolidays(ey), mList = getMonths(), wList = getWeekdays();
+    let bh = calculateBahreHasab(ey), movableEvents = getMovableEventsForYear(ey), holidays = getFdreHolidays(ey), mList = getMonths(), wList = getWeekdays();
     let title = `${fNum(ey)} ${t('txt_year')}`;
     let html = `<h3>${title} <button type="button" class="btn-embed-icon" data-embed-widget="year" data-year="${ey}" title="${t('btn_embed_year')}" aria-label="${t('btn_embed_year')}">🔗</button></h3><h4>${t('lbl_bahire')}</h4><ul>
         <li>${t('bh_medeb')}: ${fNum(bh.medeb)} | ${t('bh_wenber')}: ${fNum(bh.wenber)} | ${t('bh_tinte')}: ${bh.tinteQemer}</li>
@@ -736,7 +751,7 @@ async function buildYearFullDetails(ey) {
     // --- Render complete list of year movable events without any limit ---
     html += `</ul><h4>${t('lbl_year_movable_events')}</h4><ul>`;
     let shown = new Set(), movableLines = [];
-    events.forEach(ev => {
+    movableEvents.forEach(ev => {
         if (!shown.has(ev.label)) {
             shown.add(ev.label);
             let { em, ed } = dayOfYearToMonthDay(ev.dayNum);
@@ -1106,6 +1121,7 @@ async function buildTodayFullDetails() {
         <li><strong>${t('lbl_fast_metric')}:</strong> ${t('bh_metqe')}: ${fNum(bh.metqe)} | ${t('bh_abekte')}: ${fNum(bh.abekte)} | ${t('bh_hamer')}: ${fNum(bh.mebajaHamer)}</li>
         <li><strong>${t('lbl_season')}:</strong> ${seasons.climatic} | ${seasons.liturgical}</li>
         <li><strong>${t('lbl_fasting')}:</strong> ${seasons.fasting} ${seasons.progress ? "<br><em>" + seasons.progress + "</em>" : ""}</li>
+        ${seasons.greatLentWeek ? `<li><strong>የዓቢይ ጾም ሳምንት:</strong> ${seasons.greatLentWeek}</li>` : ""}
         <li><strong>${t('lbl_moon')}:</strong> ${getMoonPhaseText(cherekaAge)} (${t('txt_day')} ${fNum(cherekaAge)})</li>
         <li><strong>${t('lbl_sun')}:</strong> ${t('txt_sunrise')} ${sunTimes.rise} | ${t('txt_sunset')} ${sunTimes.set}</li>
         <li><strong>${t('lbl_zodiac')}:</strong> ${getZodiacSign(now.getMonth()+1, now.getDate())}</li>

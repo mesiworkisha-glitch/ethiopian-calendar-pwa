@@ -5,7 +5,7 @@
   "description": "Ethiopian Calendar & Bahire Hasab — an accessibility-first PWA for the EOTC community.",
   "scripts": {
     "test": "node --test",
-    "lint:i18n": "node scripts/check-i18n.js",
+    "lint:i18n": "node check-i18n.js app.js",
     "lint:html": "npx --yes html-validate index.html embed.html embed-today.html embed-holidays.html embed-synaxarium.html embed-hijri.html embed-converter.html embed-year.html embed-month.html"
   },
   "engines": {
