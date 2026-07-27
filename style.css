@@ -233,6 +233,11 @@ a:focus-visible,
     padding-left: 20px;
 }
 
+.load-error {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
 .info-output li {
     margin-bottom: 8px;
 }
@@ -492,6 +497,68 @@ body.embed-body {
     color: var(--primary-color);
     text-decoration: none;
     text-align: right;
+}
+
+/* ==========================================
+   PRINT STYLESHEET
+   Geared toward printing the "This Year" / "This Month" / "Holidays"
+   views — the content someone would actually want a paper copy of.
+   ========================================== */
+
+@media print {
+    header .settings-controls,
+    #local-time-bar,
+    nav,
+    .btn-embed-icon,
+    footer,
+    .skip-link,
+    #embed-modal,
+    #status-announcer {
+        display: none !important;
+    }
+
+    body {
+        background: #ffffff;
+        color: #000000;
+    }
+
+    header {
+        background: none;
+        color: #000000;
+        padding: 0 0 10px;
+    }
+
+    main {
+        padding: 0;
+        max-width: 100%;
+    }
+
+    .tab-content {
+        display: none !important;
+    }
+
+    .tab-content.active {
+        display: block !important;
+    }
+
+    .card {
+        box-shadow: none;
+        border: 1px solid #999999;
+        break-inside: avoid;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table, th, td {
+        border: 1px solid #999999;
+    }
+
+    a[href]::after {
+        content: "";
+    }
 }
 
 /* Per-row "embed this holiday/year/month" icon inside list/heading output.

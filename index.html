@@ -2,18 +2,19 @@
 <html lang="am">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- ==========================================
          CORE SEO & BROWSER METADATA
          ========================================== -->
-    <title>የኢትዮጵያ ካላንደር PWA | Ethiopian Calendar & Bahire Hasab</title>
+    <title>የኢትዮጵያ ካላንደር PWA | Ethiopian Calendar &amp; Bahire Hasab</title>
     <meta name="description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ፣ የዕብራውያን እና የሂጅሪ ቀን መቀየሪያ - ከመስመር ውጭም ጭምር የሚሠራ መተግበሪያ።">
     <meta name="keywords" content="የኢትዮጵያ ካላንደር, Ethiopian Calendar, ባሕረ ሐሳብ, Bahire Hasab, ስንክሳር, Synaxarium, Age Calculator, Pregnancy Calculator, Date Converter, PWA, Ethiopia">
     <meta name="author" content="Meseret Worku Alemu">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/">
-    
+
     <!-- Multi-Language SEO / Hreflang Tags -->
     <link rel="alternate" hreflang="am" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/?lang=am">
     <link rel="alternate" hreflang="en" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/?lang=en">
@@ -33,7 +34,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
-    
+
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
@@ -132,7 +133,7 @@
         <div id="local-time-bar" aria-live="off">የኢትዮጵያ ሰዓት በመጫን ላይ...</div>
         <!-- Timezone Info Bar Integration -->
         <div id="timezone-info-bar" aria-live="polite"></div>
-        
+
         <div class="settings-controls">
             <select id="lang-selector" class="btn-control-toggle" aria-label="ቋንቋ / Language">
                 <option value="am">አማርኛ</option>
@@ -142,8 +143,8 @@
                 <option value="so">Soomaali</option>
                 <option value="gur">ጉራግኛ (Guragigna)</option>
             </select>
-            <button id="btn-toggle-geez" class="btn-control-toggle" aria-pressed="false" aria-label="የግዕዝ ቁጥሮች መቀያየሪያ (Toggle Ge'ez Numerals)">፪፲፪</button>
-            <button id="btn-toggle-dark" class="btn-control-toggle" aria-pressed="false" aria-label="የገጽታ ቀለም መቀያየሪያ (Toggle Dark Mode)">🌙</button>
+            <button type="button" id="btn-toggle-geez" class="btn-control-toggle" aria-pressed="false" aria-label="የግዕዝ ቁጥሮች መቀያየሪያ (Toggle Ge'ez Numerals)">፪፲፪</button>
+            <button type="button" id="btn-toggle-dark" class="btn-control-toggle" aria-pressed="false" aria-label="የገጽታ ቀለም መቀያየሪያ (Toggle Dark Mode)">🌙</button>
         </div>
     </header>
 
@@ -154,25 +155,25 @@
     <div id="status-announcer" class="sr-only" role="status" aria-live="assertive"></div>
 
     <nav aria-label="የመተግበሪያው ክፍሎች" role="tablist">
-        <button class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-today" id="navbtn-today" data-target="tab-today" data-i18n="nav_today">ዛሬ</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-thisyear" id="navbtn-thisyear" data-target="tab-thisyear" data-i18n="nav_this_year">ዘንድሮ</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-holidays" id="navbtn-holidays" data-target="tab-holidays" data-i18n="nav_holidays">ብሔራዊ በዓላት</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-islamic" id="navbtn-islamic" data-target="tab-islamic" data-i18n="nav_hijri">ሂጅሪ አቆጣጠር</button>
+        <button type="button" class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-today" id="navbtn-today" data-target="tab-today" data-i18n="nav_today">ዛሬ</button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-thisyear" id="navbtn-thisyear" data-target="tab-thisyear" data-i18n="nav_this_year">ዘንድሮ</button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-holidays" id="navbtn-holidays" data-target="tab-holidays" data-i18n="nav_holidays">ብሔራዊ በዓላት</button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-islamic" id="navbtn-islamic" data-target="tab-islamic" data-i18n="nav_hijri">ሂጅሪ አቆጣጠር</button>
         <!-- Hebrew Calendar Button -->
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-hebrew" id="navbtn-hebrew" data-target="tab-hebrew" data-i18n="nav_hebrew">ዕብራውያን አቆጣጠር</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-converter" id="navbtn-converter" data-target="tab-converter" data-i18n="nav_converter">ቀን መቀየሪያ</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium" data-i18n="nav_synaxarium">ስንክሳር ፍለጋ</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-periodic" id="navbtn-periodic" data-target="tab-periodic" data-i18n="nav_period">የወር አበባ ዑደት</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-age" id="navbtn-age" data-target="tab-age" data-i18n="nav_age">ዕድሜ ማስያ</button>
-        <button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-pregnancy" id="navbtn-pregnancy" data-target="tab-pregnancy" data-i18n="nav_pregnancy">የእርግዝና ጊዜ መከታተያ</button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-hebrew" id="navbtn-hebrew" data-target="tab-hebrew" data-i18n="nav_hebrew">ዕብራውያን አቆጣጠር</button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-converter" id="navbtn-converter" data-target="tab-converter" data-i18n="nav_converter">ቀን መቀየሪያ</button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium" data-i18n="nav_synaxarium">ስንክሳር ፍለጋ</button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-periodic" id="navbtn-periodic" data-target="tab-periodic" data-i18n="nav_period">የወር አበባ ዑደት</button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-age" id="navbtn-age" data-target="tab-age" data-i18n="nav_age">ዕድሜ ማስያ</button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-pregnancy" id="navbtn-pregnancy" data-target="tab-pregnancy" data-i18n="nav_pregnancy">የእርግዝና ጊዜ መከታተያ</button>
     </nav>
 
     <main id="main-content" tabindex="-1">
         <section id="tab-today" class="tab-content active" role="tabpanel" aria-labelledby="navbtn-today">
             <div class="card">
                 <h2 data-i18n="today_title">የዕለቱ ሙሉ መረጃ</h2>
-                <button id="btn-copy-date" class="btn-secondary" data-i18n="btn_copy_date">ቀኑን ኮፒ አድርግ</button>
-                <button class="btn-secondary" data-embed-widget="today" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
+                <button type="button" id="btn-copy-date" class="btn-secondary" data-i18n="btn_copy_date">ቀኑን ኮፒ አድርግ</button>
+                <button type="button" class="btn-secondary" data-embed-widget="today" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
                 <div id="today-summary" class="info-output" aria-live="polite"></div>
             </div>
         </section>
@@ -188,7 +189,7 @@
         <section id="tab-holidays" class="tab-content" role="tabpanel" aria-labelledby="navbtn-holidays" hidden>
             <div class="card">
                 <h2 data-i18n="holidays_title">የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት</h2>
-                <button class="btn-secondary" data-embed-widget="holidays" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
+                <button type="button" class="btn-secondary" data-embed-widget="holidays" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
                 <div id="holidays-output" class="info-output" aria-live="polite"></div>
             </div>
         </section>
@@ -196,8 +197,8 @@
         <section id="tab-islamic" class="tab-content" role="tabpanel" aria-labelledby="navbtn-islamic" hidden>
             <div class="card">
                 <h2 data-i18n="hijri_title">የእስልምና (ሂጅሪ) ቀን አቆጣጠር</h2>
-                <button id="btn-copy-hijri" class="btn-secondary" data-i18n="btn_copy_hijri">ሂጅሪ ቀን ኮፒ አድርግ</button>
-                <button class="btn-secondary" data-embed-widget="hijri" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
+                <button type="button" id="btn-copy-hijri" class="btn-secondary" data-i18n="btn_copy_hijri">ሂጅሪ ቀን ኮፒ አድርግ</button>
+                <button type="button" class="btn-secondary" data-embed-widget="hijri" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
                 <div id="islamic-summary" class="info-output" aria-live="polite"></div>
             </div>
         </section>
@@ -213,7 +214,7 @@
         <section id="tab-converter" class="tab-content" role="tabpanel" aria-labelledby="navbtn-converter" hidden>
             <div class="card">
                 <h2 data-i18n="conv_title">ቀን መፈለጊያና መቀየሪያ</h2>
-                <button class="btn-secondary" data-embed-widget="converter" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
+                <button type="button" class="btn-secondary" data-embed-widget="converter" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
                 <div class="form-group">
                     <label for="conv-type" data-i18n="conv_label_type">የቀን ዓይነት</label>
                     <select id="conv-type">
@@ -238,7 +239,7 @@
                         <input type="number" id="conv-day" placeholder="ቀን" data-i18n="ph_day">
                     </div>
                 </div>
-                <button id="btn-convert" class="btn-primary" data-i18n="btn_convert">ቀይር / ፈልግ</button>
+                <button type="button" id="btn-convert" class="btn-primary" data-i18n="btn_convert">ቀይር / ፈልግ</button>
                 <div id="converter-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
         </section>
@@ -246,12 +247,12 @@
         <section id="tab-synaxarium" class="tab-content" role="tabpanel" aria-labelledby="navbtn-synaxarium" hidden>
             <div class="card">
                 <h2 data-i18n="synax_title">በስንክሳር ውስጥ ፍለጋ</h2>
-                <button class="btn-secondary" data-embed-widget="synaxarium" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
+                <button type="button" class="btn-secondary" data-embed-widget="synaxarium" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
                 <div class="form-group">
                     <label for="synax-query" data-i18n="synax_label">የቅዱስ ወይም የበዓል ስም ያስገቡ</label>
                     <input type="text" id="synax-query" placeholder="ለምሳሌ፡ ሚካኤል" data-i18n="ph_synax">
                 </div>
-                <button id="btn-search-synax" class="btn-primary" data-i18n="btn_search">ፈልግ</button>
+                <button type="button" id="btn-search-synax" class="btn-primary" data-i18n="btn_search">ፈልግ</button>
                 <div id="synax-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
         </section>
@@ -308,7 +309,7 @@
                         <input type="number" id="age-day" placeholder="ቀን" min="1" max="30" required>
                     </div>
                 </div>
-                <button id="btn-calc-age" class="btn-primary" data-i18n="btn_calc_age">ዕድሜዬን አስላ</button>
+                <button type="button" id="btn-calc-age" class="btn-primary" data-i18n="btn_calc_age">ዕድሜዬን አስላ</button>
                 <div id="age-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
         </section>
@@ -331,7 +332,7 @@
                         <input type="number" id="preg-day" placeholder="ቀን" min="1" max="30" required>
                     </div>
                 </div>
-                <button id="btn-calc-preg" class="btn-primary" data-i18n="btn_calc_preg">አስላ</button>
+                <button type="button" id="btn-calc-preg" class="btn-primary" data-i18n="btn_calc_preg">አስላ</button>
                 <div id="preg-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
         </section>
@@ -347,8 +348,8 @@
 
     <div id="embed-modal" class="modal-overlay" hidden>
         <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="embed-modal-title" tabindex="-1">
-            <button id="embed-modal-close" class="modal-close" data-i18n-aria-label="btn_close" aria-label="Close">✕</button>
-            <h2 id="embed-modal-title" data-i18n="embed_title">አጋራ እና አስገባ (Embed & Share)</h2>
+            <button type="button" id="embed-modal-close" class="modal-close" data-i18n-aria-label="btn_close" aria-label="Close">✕</button>
+            <h2 id="embed-modal-title" data-i18n="embed_title">አጋራ እና አስገባ (Embed &amp; Share)</h2>
 
             <div class="modal-tabs" role="tablist" aria-label="Embed format">
                 <button type="button" id="embed-tab-btn-code" class="modal-tab-btn active" role="tab" aria-selected="true" aria-controls="embed-panel-code" data-modal-tab="code" data-i18n="embed_tab_code">የማስገቢያ ኮድ (Embed Code)</button>
@@ -396,7 +397,7 @@
                     </div>
                 </div>
                 <textarea id="embed-code-output" class="embed-code-box" rows="4" readonly data-i18n-aria-label="embed_tab_code" aria-label="Embed code"></textarea>
-                <button id="embed-copy-code" class="btn-primary" data-i18n="embed_btn_copy">ኮድ ኮፒ አድርግ</button>
+                <button type="button" id="embed-copy-code" class="btn-primary" data-i18n="embed_btn_copy">ኮድ ኮፒ አድርግ</button>
                 <p class="embed-preview-label" data-i18n="embed_lbl_preview">ቅድመ ዕይታ (Preview)</p>
                 <div class="embed-preview-wrap">
                     <iframe id="embed-preview-frame" title="Embed preview" loading="lazy"></iframe>
@@ -405,30 +406,26 @@
 
             <div id="embed-panel-image" class="modal-panel" role="tabpanel" aria-labelledby="embed-tab-btn-image" tabindex="0">
                 <canvas id="embed-canvas" width="1080" height="1080" style="display:none;" aria-hidden="true"></canvas>
-                <img id="embed-image-preview" class="embed-image-preview" alt="">
+                <img id="embed-image-preview" class="embed-image-preview" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="">
                 <div class="modal-actions">
-                    <button id="embed-download-image" class="btn-primary" data-i18n="embed_btn_download">ምስል አውርድ</button>
-                    <button id="embed-copy-image" class="btn-secondary" data-i18n="embed_btn_copy_image">ምስል ኮፒ አድርግ</button>
+                    <button type="button" id="embed-download-image" class="btn-primary" data-i18n="embed_btn_download">ምስል አውርድ</button>
+                    <button type="button" id="embed-copy-image" class="btn-secondary" data-i18n="embed_btn_copy_image">ምስል ኮፒ አድርግ</button>
                 </div>
                 <p class="embed-preview-label" data-i18n="embed_share_via">በዚህ በኩል አጋራ</p>
                 <div class="share-buttons">
-                    <a id="share-telegram" target="_blank" rel="noopener noreferrer" class="btn-telegram">
+                    <a id="share-telegram" href="#" target="_blank" rel="noopener noreferrer" class="btn-telegram">
                         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.9 4.3 18.7 19.6c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9L18 6.2c.4-.4-.1-.6-.6-.2L7.5 12.6l-4.8-1.5c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3Z"/></svg>
                         Telegram
                     </a>
-                    <a id="share-whatsapp" target="_blank" rel="noopener noreferrer" class="btn-share btn-whatsapp">WhatsApp</a>
-                    <a id="share-twitter" target="_blank" rel="noopener noreferrer" class="btn-share btn-twitter">X</a>
-                    <a id="share-facebook" target="_blank" rel="noopener noreferrer" class="btn-share btn-facebook">Facebook</a>
+                    <a id="share-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="btn-share btn-whatsapp">WhatsApp</a>
+                    <a id="share-twitter" href="#" target="_blank" rel="noopener noreferrer" class="btn-share btn-twitter">X</a>
+                    <a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer" class="btn-share btn-facebook">Facebook</a>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="app.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(console.error);
-        }
-    </script>
+    <script src="sw-register.js"></script>
 </body>
 </html>

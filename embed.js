@@ -113,9 +113,9 @@
 
     async function render() {
         // A dedicated wrapper page (e.g. embed-holidays.html, used for oEmbed discovery)
-        // can pin the widget type via window.EMBED_WIDGET_DEFAULT before this script runs,
+        // can pin the widget type via a data-default-widget attribute on <body>,
         // while still letting ?lang=/?theme=/?id= etc. be customized per query string.
-        const widget = getParam('widget', typeof window.EMBED_WIDGET_DEFAULT !== 'undefined' ? window.EMBED_WIDGET_DEFAULT : 'today');
+        const widget = getParam('widget', document.body.dataset.defaultWidget || 'today');
         const lang = getParam('lang', null) || detectPreferredLang();
         const theme = getParam('theme', null) || detectPreferredTheme();
         const numerals = getParam('numerals', 'arabic');

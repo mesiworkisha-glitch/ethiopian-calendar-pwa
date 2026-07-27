@@ -1,0 +1,47 @@
+name: Lint
+
+# Runs quality checks on every push and pull request. Nothing here needs a
+# build step — this is a static site, so these are all direct checks against
+# the source files as they'll actually be deployed.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check JavaScript syntax (app.js, embed.js)
+        run: |
+          node --check app.js
+          node --check embed.js
+
+      - name: Validate JSON files (manifest + oEmbed responses)
+        run: |
+          for f in manifest.json oembed*.json; do
+            node -e "JSON.parse(require('fs').readFileSync('$f','utf8')); console.log('$f OK')"
+          done
+
+      - name: Check i18n key parity across all languages
+        run: node scripts/check-i18n.js
+
+      - name: Run calendar/Bahire Hasab test suite
+        run: node --test
+
+      - name: Validate HTML (index + all embed wrapper pages)
+        run: >
+          npx --yes html-validate
+          index.html embed.html
+          embed-today.html embed-holidays.html embed-synaxarium.html
+          embed-hijri.html embed-converter.html embed-year.html embed-month.html
