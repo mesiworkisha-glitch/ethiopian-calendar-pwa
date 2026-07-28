@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="am"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offline • Ethiopian Calendar</title>
+<meta name="theme-color" content="#0066cc">
+<style>
+body{font-family:system-ui;max-width:42rem;margin:auto;padding:2rem;text-align:center;line-height:1.6}
+button{padding:.8rem 1.2rem;font-size:1rem}
+small{display:block;margin-top:1rem;color:#555}
+</style></head><body>
+<h1>📅 Offline</h1>
+<p>The application is offline. Previously cached calendar data, Bahire Hasab and Synaxarium pages remain available.</p>
+<p>If this is your first visit, reconnect once so all resources can be cached.</p>
+<button onclick="location.reload()">Try Again</button>
+<small id="s">Checking connection…</small>
+<script>
+function u(){s.textContent=navigator.onLine?"Connection detected.":"Still offline.";}
+addEventListener("online",()=>{u();location.reload();});
+addEventListener("offline",u);u();
+</script>
+</body></html>

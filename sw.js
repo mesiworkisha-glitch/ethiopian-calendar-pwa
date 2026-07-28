@@ -1,133 +1,320 @@
-const CACHE_NAME = 'ethio-calendar-v34';
-const ASSETS = [
-    './',
-    './index.html',
-    './style.css',
-    './app.js',
-    './manifest.json',
-    './synaxarium_feasts.json',
-    './icon.svg',
-    './icon-192.png',
-    './icon-512.png',
-    './og-image.png',
-    './favicon.ico',
-    './icon-192x192.png'
+const VERSION = "36";
+
+const STATIC_CACHE = `ethio-static-${VERSION}`;
+const RUNTIME_CACHE = `ethio-runtime-${VERSION}`;
+const IMAGE_CACHE = `ethio-images-${VERSION}`;
+const DATA_CACHE = `ethio-data-${VERSION}`;
+
+const STATIC_ASSETS = [
+    "./",
+    "./index.html",
+    "./offline.html",
+    "./style.css",
+    "./app.js",
+    "./helpers.js",
+    "./manifest.json",
+    "./sw-register.js",
+    "./icon.svg",
+    "./icon-192x192.png",
+    "./icon-512.png",
+    "./og-image.png"
 ];
 
-// Install event - cache all assets
-self.addEventListener('install', (event) => {
+const DATA_FILES = [
+    "./synaxarium_feasts.json"
+];
+
+async function trimCache(cacheName, maxEntries) {
+    const cache = await caches.open(cacheName);
+    const keys = await cache.keys();
+
+    while (keys.length > maxEntries) {
+        await cache.delete(keys.shift());
+    }
+}
+
+self.addEventListener("install", event => {
     self.skipWaiting();
-    event.waitUntil(
-        caches.open(CACHE_NAME).then(async (cache) => {
-            console.log('[SW] Caching assets...');
-            const results = await Promise.allSettled(
-                ASSETS.map((url) => cache.add(url).catch((err) => {
-                    console.warn('[SW] Failed to cache:', url, err);
-                    // Return null on failure to continue caching other assets
-                    return null;
-                }))
-            );
-            const failed = results.filter(r => r.status === 'rejected');
-            if (failed.length > 0) {
-                console.warn(`[SW] ${failed.length} assets failed to cache`);
-            } else {
-                console.log('[SW] All assets cached successfully');
-            }
-        })
-    );
+
+    event.waitUntil((async () => {
+        const staticCache = await caches.open(STATIC_CACHE);
+        const dataCache = await caches.open(DATA_CACHE);
+
+        await Promise.allSettled(
+            STATIC_ASSETS.map(asset => staticCache.add(asset))
+        );
+
+        await Promise.allSettled(
+            DATA_FILES.map(asset => dataCache.add(asset))
+        );
+    })());
 });
 
-// Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
-    event.waitUntil(
-        Promise.all([
-            caches.keys().then((cacheNames) => {
-                return Promise.all(
-                    cacheNames.map((cacheName) => {
-                        if (cacheName !== CACHE_NAME) {
-                            console.log('[SW] Removing old cache:', cacheName);
-                            return caches.delete(cacheName);
-                        }
-                    })
-                );
-            }),
-            // Take control of all clients immediately
-            self.clients.claim()
-        ])
-    );
+self.addEventListener("activate", event => {
+    event.waitUntil((async () => {
+
+        if (self.registration.navigationPreload) {
+            await self.registration.navigationPreload.enable();
+        }
+
+        const expected = [
+            STATIC_CACHE,
+            RUNTIME_CACHE,
+            IMAGE_CACHE,
+            DATA_CACHE
+        ];
+
+        const keys = await caches.keys();
+
+        await Promise.all(
+            keys.map(key => {
+                if (!expected.includes(key)) {
+                    return caches.delete(key);
+                }
+            })
+        );
+
+        await self.clients.claim();
+
+        const clients = await self.clients.matchAll();
+
+clients.forEach(client => {
+    client.postMessage({
+        type: "SW_ACTIVATED",
+        version: VERSION
+    });
 });
 
-// Fetch event - serve from cache, fallback to network
-self.addEventListener('fetch', (event) => {
-    // Skip non-GET requests and chrome-extension requests
-    if (event.request.method !== 'GET' || 
-        event.request.url.startsWith('chrome-extension://')) {
+    })());
+});
+
+self.addEventListener("fetch", event => {
+
+    const request = event.request;
+
+    if (request.method !== "GET") return;
+
+    const url = new URL(request.url);
+
+    if (
+        url.protocol !== "http:" &&
+        url.protocol !== "https:"
+    ) {
         return;
     }
 
-    event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            // If found in cache, return it (stale-while-revalidate)
-            const fetchPromise = fetch(event.request).then((networkResponse) => {
-                // Update cache with fresh response
-                if (networkResponse && networkResponse.status === 200) {
-                    caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(event.request, networkResponse.clone());
-                    });
-                }
-                return networkResponse;
-            }).catch((error) => {
-                console.warn('[SW] Network request failed:', event.request.url, error);
-                return null;
-            });
-
-            // Return cached response immediately, then update in background
-            if (cachedResponse) {
-                // Return cached response, but don't wait for network
-                return cachedResponse;
-            }
-
-            // If not in cache, try network
-            return fetchPromise.then((networkResponse) => {
-                if (networkResponse) return networkResponse;
-                
-                // If both cache and network fail, try to return the offline page
-                if (event.request.mode === 'navigate') {
-                    return caches.match('./index.html');
-                }
-                
-                return new Response('', { 
-                    status: 503, 
-                    statusText: 'Offline - Please check your internet connection' 
-                });
-            });
-        })
-    );
-});
-
-// Message event - handle skip waiting
-self.addEventListener('message', (event) => {
-    if (event.data && event.data.type === 'SKIP_WAITING') {
-        self.skipWaiting();
+    if (
+        url.protocol.startsWith("chrome-extension") ||
+        url.protocol.startsWith("moz-extension") ||
+        url.protocol.startsWith("edge-extension")
+    ) {
+        return;
     }
+
+    if (request.mode === "navigate") {
+        event.respondWith(networkFirstNavigation(request));
+        return;
+    }
+
+    if (request.destination === "image") {
+        event.respondWith(cacheFirstImage(request));
+        return;
+    }
+
+    if (
+        request.url.endsWith(".json") ||
+        request.url.includes("synaxarium")
+    ) {
+        event.respondWith(networkFirstData(request));
+        return;
+    }
+
+    if (
+        request.destination === "style" ||
+        request.destination === "script" ||
+        request.destination === "font" ||
+        request.destination === "manifest"
+    ) {
+        event.respondWith(staleWhileRevalidate(request));
+        return;
+    }
+
+    event.respondWith(runtimeCache(request));
 });
 
-// Handle offline fallback for images
-self.addEventListener('fetch', (event) => {
-    if (event.request.destination === 'image') {
-        event.respondWith(
-            caches.match(event.request).then((response) => {
-                return response || fetch(event.request).catch(() => {
-                    // Return a simple SVG placeholder for missing images
-                    return new Response(
-                        `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-                            <rect width="200" height="200" fill="#e2e8f0"/>
-                            <text x="100" y="100" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#718096">Image unavailable</text>
-                        </svg>`,
-                        { headers: { 'Content-Type': 'image/svg+xml' } }
-                    );
-                });
-            })
+async function networkFirstNavigation(request) {
+
+    try {
+
+        const preload = await event?.preloadResponse;
+
+        if (preload) {
+            return preload;
+        }
+
+    } catch {}
+
+    try {
+
+        const response = await fetch(request);
+
+        if (
+            response &&
+            response.ok &&
+            response.type === "basic"
+        ) {
+            const cache = await caches.open(RUNTIME_CACHE);
+            cache.put(request, response.clone());
+            trimCache(RUNTIME_CACHE, 50);
+        }
+
+        return response;
+
+    } catch {
+
+        const cached = await caches.match(request);
+
+        if (cached) return cached;
+
+        return (
+            await caches.match("./offline.html")
+        ) || (
+            await caches.match("./index.html")
         );
     }
+}
+
+async function staleWhileRevalidate(request) {
+
+    const cache = await caches.open(STATIC_CACHE);
+
+    const cached = await cache.match(request);
+
+    const network = fetch(request)
+        .then(response => {
+
+            if (
+                response &&
+                response.ok &&
+                response.type === "basic"
+            ) {
+                cache.put(request, response.clone());
+            }
+
+            return response;
+
+        })
+        .catch(() => null);
+
+    return cached || network;
+}
+
+async function networkFirstData(request) {
+
+    const cache = await caches.open(DATA_CACHE);
+
+    try {
+
+        const response = await fetch(request);
+
+        if (
+            response &&
+            response.ok
+        ) {
+            cache.put(request, response.clone());
+            trimCache(DATA_CACHE, 25);
+        }
+
+        return response;
+
+    } catch {
+
+        const cached = await cache.match(request);
+
+        if (cached) return cached;
+
+        return new Response("{}", {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+    }
+}
+
+async function cacheFirstImage(request) {
+
+    const cache = await caches.open(IMAGE_CACHE);
+
+    const cached = await cache.match(request);
+
+    if (cached) return cached;
+
+    try {
+
+        const response = await fetch(request);
+
+        if (
+            response &&
+            response.ok
+        ) {
+            cache.put(request, response.clone());
+            trimCache(IMAGE_CACHE, 100);
+        }
+
+        return response;
+
+    } catch {
+
+        return (
+            await caches.match("./icon.svg")
+        ) || (
+            await caches.match("./icon-192x192.png")
+        );
+
+    }
+}
+
+async function runtimeCache(request) {
+
+    const cache = await caches.open(RUNTIME_CACHE);
+
+    const cached = await cache.match(request);
+
+    if (cached) return cached;
+
+    try {
+
+        const response = await fetch(request);
+
+        if (
+            response &&
+            response.ok &&
+            response.type === "basic"
+        ) {
+            cache.put(request, response.clone());
+            trimCache(RUNTIME_CACHE, 50);
+        }
+
+        return response;
+
+    } catch {
+
+        return cached || Response.error();
+
+    }
+}
+
+self.addEventListener("message", event => {
+
+    if (!event.data) return;
+
+    switch (event.data.type) {
+
+        case "SKIP_WAITING":
+            self.skipWaiting();
+            break;
+
+    }
+
 });

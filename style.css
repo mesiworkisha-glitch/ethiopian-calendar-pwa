@@ -620,3 +620,130 @@ body.embed-body.badge-mode .embed-widget.card {
     border-color: var(--primary-color);
     color: var(--primary-color);
 }
+
+.pwa-update-banner{
+    position:fixed;
+    left:1rem;
+    right:1rem;
+    bottom:1rem;
+    z-index:99999;
+
+    display:flex;
+    justify-content:center;
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+
+    opacity:1;
+}
+
+.pwa-update-banner[hidden]{
+    display:flex;
+    opacity:0;
+    transform:translateY(20px);
+    pointer-events:none;
+}
+
+.pwa-update-content{
+
+    width:min(700px,100%);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:1rem;
+
+    padding:1rem 1.25rem;
+
+    border-radius:14px;
+
+    background:var(--surface,#1f2937);
+    color:var(--on-surface,#ffffff);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.25);
+
+}
+
+.pwa-update-text{
+
+    display:flex;
+    flex-direction:column;
+    gap:.25rem;
+
+}
+
+.pwa-update-text strong{
+
+    font-size:1rem;
+
+}
+
+.pwa-update-text span{
+
+    opacity:.85;
+    font-size:.9rem;
+
+}
+
+.pwa-update-actions{
+
+    display:flex;
+    gap:.75rem;
+
+}
+
+.primary-button,
+.secondary-button{
+
+    font:inherit;
+    cursor:pointer;
+
+    padding:.65rem 1.1rem;
+
+    border-radius:10px;
+
+}
+
+.primary-button{
+
+    border:none;
+
+    background:#2563eb;
+    color:white;
+
+}
+
+.primary-button:hover{
+
+    background:#1d4ed8;
+
+}
+
+.secondary-button{
+
+    background:transparent;
+
+    color:inherit;
+
+    border:1px solid currentColor;
+
+}
+
+@media(max-width:640px){
+
+    .pwa-update-content{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+    }
+
+    .pwa-update-actions{
+
+        width:100%;
+        justify-content:flex-end;
+
+    }
+
+}
