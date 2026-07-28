@@ -1,4 +1,18 @@
 User-agent: *
 Allow: /
 
+# Disallow test files
+Disallow: /*.test.js$
+Disallow: /lint.yml
+
+# Disallow internal config and package files
+Disallow: /package.json
+Disallow: /manifest.json
+Disallow: /pages.yml
+Disallow: /sw.js
+Disallow: /sw-register.js
+
+# Disallow Google verification file
+Disallow: /google87cb19ab6174c55f.html
+
 Sitemap: https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/sitemap.xml

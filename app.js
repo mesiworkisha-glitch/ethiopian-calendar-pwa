@@ -802,7 +802,7 @@ async function renderFullDateSearch(ey, em, ed, out) {
     let iDate = jdnToIslamic(jdn), hebrew = jdnToHebrew(jdn), hebrewMonthStr = getHebrewMonthNamesList(currentLang, hebrewLeap(hebrew.hy))[hebrew.hm];
     let bh = calculateBahreHasab(ey), chereka = (bh.abekte + (em - 1) + ed) % 30 || 30, mList = getMonths(), wList = getWeekdays(), islMonths = t('islamic_months');
     let seasons = getSeasons(ey, em, ed, bh), dayNum = ethiopianDayOfYear(em, ed);
-    let holidaysMap = getNationalHolidaysMap(ey), nationalHolidays = holidaysMap[dayNum] || [], dayEvents = getYearlyEvents(ey).filter(ev => ev.dayNum === dayNum).map(ev => ev.label);
+    let holidaysMap = getNationalHolidaysMap(ey), nationalHolidays = holidaysMap[dayNum] || [], dayEvents = getYearlyEvents(ey).filter(ev => ev.dayNum === dayNum && ev.type === 'movable').map(ev => ev.label);
     let synaxData = await loadSynaxarium(), synaxEntries = (synaxData[mList[em]] && synaxData[mList[em]][ed]) || [];
     
     let html = `<h3>${t('result_title')}</h3><ul>

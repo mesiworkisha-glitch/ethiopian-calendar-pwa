@@ -152,6 +152,25 @@ test('buildYearFullDetails never lists a fixed-date holiday under "Movable Feast
     }
 });
 
+test('renderFullDateSearch never lists a national-only holiday under "Movable Feasts"', async () => {
+    // Regression test for a real bug found in production: the exact same
+    // root cause as buildYearFullDetails's bug (an unfiltered event list
+    // dumped under a "Movable" label), but in a different function.
+    // Adwa Victory Day (Yekatit 23, a fixed date) is genuinely 'national'
+    // type only — it must never also appear under lbl_movable_short.
+    function makeOutputCapture() {
+        let html = '';
+        return { set innerHTML(v) { html = v; }, get innerHTML() { return html; }, get captured() { return html; } };
+    }
+    for (const ey of [1888, 2010, 2016, 2018]) {
+        const out = makeOutputCapture();
+        await app.renderFullDateSearch(ey, 6, 23, out); // Yekatit 23 = Adwa Victory Day
+        const movableSection = out.captured.split(app.t('lbl_movable_short'))[1] || '';
+        const adwaLabel = app.t('hol_adwa');
+        assert.ok(!movableSection.startsWith(`:</strong> ${adwaLabel}`) && !movableSection.includes(`>${adwaLabel}<`),
+            `year ${ey}: "${adwaLabel}" leaked into the Movable Feasts line of a single-date search result`);
+    }
+});
 test('Great Lent week boundaries: 8 weeks, week 5 lands exactly on Debre Zeyit', () => {
     for (const ey of sampleYears().filter((_, i) => i % 15 === 0)) {
         const bh = app.calculateBahreHasab(ey);
