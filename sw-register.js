@@ -1,3 +1,6 @@
+// Flag to prevent infinite reload loops during controller change
+let refreshing = false;
+
 if (!("serviceWorker" in navigator)) {
     console.warn("Service Workers are not supported.");
 } else {
@@ -9,39 +12,36 @@ if (!("serviceWorker" in navigator)) {
 
             console.log("Service Worker registered.");
 
+            // 1. Check if a service worker is already waiting to activate
             if (registration.waiting) {
-                notifyUpdate(registration);
+                notifyUpdate(registration.waiting);
             }
 
+            // 2. Listen for new service worker installations
             registration.addEventListener("updatefound", () => {
-                const worker = registration.installing;
+                const newWorker = registration.installing;
 
-                if (!worker) return;
+                if (!newWorker) return;
 
-                worker.addEventListener("statechange", () => {
+                newWorker.addEventListener("statechange", () => {
+                    // Only notify if there's an existing controller (meaning it's an update, not a fresh install)
                     if (
-                        worker.state === "installed" &&
+                        newWorker.state === "installed" &&
                         navigator.serviceWorker.controller
                     ) {
-                        notifyUpdate(registration);
+                        notifyUpdate(newWorker);
                     }
                 });
             });
 
-            navigator.serviceWorker.addEventListener("message", event => {
-                if (!event.data) return;
-
-                switch (event.data.type) {
-                    case "NEW_VERSION_AVAILABLE":
-                        console.log("New version:", event.data.version);
-                        break;
-                }
-            });
-
+            // 3. Listen for the new service worker taking control
             navigator.serviceWorker.addEventListener("controllerchange", () => {
+                if (refreshing) return;
+                refreshing = true;
                 window.location.reload();
             });
 
+            // Clean up UI on page restore/show
             window.addEventListener("pageshow", () => {
                 document
                     .getElementById("pwa-update-banner")
@@ -54,7 +54,11 @@ if (!("serviceWorker" in navigator)) {
     });
 }
 
-function notifyUpdate(registration) {
+/**
+ * Triggers the UI banner for a pending update and handles interactions.
+ * @param {ServiceWorker} worker - The specific service worker waiting to activate.
+ */
+function notifyUpdate(worker) {
     const banner = document.getElementById("pwa-update-banner");
     const refresh = document.getElementById("pwa-update-button");
     const dismiss = document.getElementById("pwa-dismiss-button");
@@ -63,11 +67,13 @@ function notifyUpdate(registration) {
 
     banner.hidden = false;
 
+    // Remove existing event listeners by cloning if necessary, or just overwrite
     refresh.onclick = () => {
         refresh.disabled = true;
         refresh.textContent = "Updating...";
 
-        registration.waiting?.postMessage({
+        // Send the skip waiting message directly to the specific worker
+        worker.postMessage({
             type: "SKIP_WAITING"
         });
     };
