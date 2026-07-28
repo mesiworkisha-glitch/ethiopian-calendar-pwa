@@ -1,29 +1,97 @@
 {
-  "id":"./",
-  "name":"Ethiopian Calendar, Bahire Hasab & Synaxarium",
-  "short_name":"EthioCalendar",
-  "description":"Accessibility-first Ethiopian Calendar PWA with Bahire Hasab, Synaxarium, holidays, Hijri/Hebrew/Julian/Gregorian conversion and offline support.",
-  "lang":"am",
-  "dir":"ltr",
-  "start_url":"./",
-  "scope":"./",
-  "display":"standalone",
-  "display_override":["window-controls-overlay","standalone","minimal-ui"],
-  "orientation":"any",
-  "background_color":"#ffffff",
-  "theme_color":"#0066cc",
-  "categories":["utilities","productivity","education","reference"],
-  "screenshots":[],
-  "icons":[
-    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"},
-    {"src":"icon-192x192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  "id": "./",
+  "name": "Ethiopian Calendar, Bahire Hasab & Synaxarium",
+  "short_name": "EthioCalendar",
+  "description": "Accessibility-first Ethiopian Calendar PWA with Bahire Hasab, Synaxarium, holidays, Hijri/Hebrew/Julian/Gregorian conversion and offline support.",
+  "lang": "am",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
   ],
-  "shortcuts":[
-    {"name":"Today","url":"./?tab=today","icons":[{"src":"icon-192x192.png","sizes":"192x192"}]},
-    {"name":"Converter","url":"./?tab=converter","icons":[{"src":"icon-192x192.png","sizes":"192x192"}]},
-    {"name":"Synaxarium","url":"./?tab=synaxarium","icons":[{"src":"icon-192x192.png","sizes":"192x192"}]},
-    {"name":"Holidays","url":"./?tab=holidays","icons":[{"src":"icon-192x192.png","sizes":"192x192"}]}
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#0066cc",
+  "categories": [
+    "utilities",
+    "productivity",
+    "education",
+    "reference"
   ],
-  "share_target":{"action":"./","method":"GET","params":{"title":"title","text":"text","url":"url"}}
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Today",
+      "url": "./?tab=today",
+      "icons": [
+        {
+          "src": "icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Converter",
+      "url": "./?tab=converter",
+      "icons": [
+        {
+          "src": "icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Synaxarium",
+      "url": "./?tab=synaxarium",
+      "icons": [
+        {
+          "src": "icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Holidays",
+      "url": "./?tab=holidays",
+      "icons": [
+        {
+          "src": "icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "./",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }

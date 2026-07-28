@@ -32,27 +32,21 @@ if (!("serviceWorker" in navigator)) {
                 if (!event.data) return;
 
                 switch (event.data.type) {
-
                     case "NEW_VERSION_AVAILABLE":
-                        console.log(
-                            "New version:",
-                            event.data.version
-                        );
+                        console.log("New version:", event.data.version);
                         break;
-
                 }
             });
 
             navigator.serviceWorker.addEventListener("controllerchange", () => {
                 window.location.reload();
             });
-window.addEventListener("pageshow",()=>{
 
-    document
-        .getElementById("pwa-update-banner")
-        ?.setAttribute("hidden","");
-
-});
+            window.addEventListener("pageshow", () => {
+                document
+                    .getElementById("pwa-update-banner")
+                    ?.setAttribute("hidden", "");
+            });
 
         } catch (error) {
             console.error("Service Worker registration failed:", error);
@@ -60,31 +54,25 @@ window.addEventListener("pageshow",()=>{
     });
 }
 
-function notifyUpdate(registration){
+function notifyUpdate(registration) {
+    const banner = document.getElementById("pwa-update-banner");
+    const refresh = document.getElementById("pwa-update-button");
+    const dismiss = document.getElementById("pwa-dismiss-button");
 
-    const banner=document.getElementById("pwa-update-banner");
-    const refresh=document.getElementById("pwa-update-button");
-    const dismiss=document.getElementById("pwa-dismiss-button");
+    if (!banner || !refresh || !dismiss) return;
 
-    if(!banner||!refresh||!dismiss)return;
+    banner.hidden = false;
 
-    banner.hidden=false;
-
-    refresh.onclick=()=>{
-
-        refresh.disabled=true;
-        refresh.textContent="Updating...";
+    refresh.onclick = () => {
+        refresh.disabled = true;
+        refresh.textContent = "Updating...";
 
         registration.waiting?.postMessage({
-            type:"SKIP_WAITING"
+            type: "SKIP_WAITING"
         });
-
     };
 
-    dismiss.onclick=()=>{
-
-        banner.hidden=true;
-
+    dismiss.onclick = () => {
+        banner.hidden = true;
     };
-
 }

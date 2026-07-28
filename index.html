@@ -5,9 +5,6 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ==========================================
-         CORE SEO & BROWSER METADATA
-         ========================================== -->
     <title>የኢትዮጵያ ካላንደር PWA | Ethiopian Calendar &amp; Bahire Hasab</title>
     <meta name="description" content="የኢትዮጵያ ቀን አቆጣጠርና ባሕረ ሐሳብ፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ ብሔራዊ በዓላት፣ የስንክሳር ፍለጋ፣ የዕብራውያን እና የሂጅሪ ቀን መቀየሪያ - ከመስመር ውጭም ጭምር የሚሠራ መተግበሪያ።">
     <meta name="keywords" content="የኢትዮጵያ ካላንደር, Ethiopian Calendar, ባሕረ ሐሳብ, Bahire Hasab, ስንክሳር, Synaxarium, Age Calculator, Pregnancy Calculator, Date Converter, PWA, Ethiopia">
@@ -15,7 +12,6 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/">
 
-    <!-- Multi-Language SEO / Hreflang Tags -->
     <link rel="alternate" hreflang="am" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/?lang=am">
     <link rel="alternate" hreflang="en" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/?lang=en">
     <link rel="alternate" hreflang="om" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/?lang=om">
@@ -23,9 +19,6 @@
     <link rel="alternate" hreflang="so" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/?lang=so">
     <link rel="alternate" hreflang="x-default" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/">
 
-    <!-- ==========================================
-         PWA & MOBILE OPTIMIZATION
-         ========================================== -->
     <meta name="theme-color" content="#0066cc">
     <meta name="application-name" content="Ethio Calendar PWA">
     <meta name="apple-mobile-web-app-title" content="Ethio Calendar">
@@ -39,9 +32,6 @@
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
     <link rel="apple-touch-icon" href="icon-192x192.png">
 
-    <!-- ==========================================
-         OPEN GRAPH (FACEBOOK, LINKEDIN, WHATSAPP)
-         ========================================== -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="የኢትዮጵያ ካላንደር PWA">
     <meta property="og:title" content="የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ | Ethiopian Calendar">
@@ -54,16 +44,13 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="የኢትዮጵያ ካላንደር PWA ቅድመ ዕይታ - የዕለቱ መረጃ፣ የቀን መቀየሪያ፣ እና ብሔራዊ በዓላት">
     <link rel="alternate" type="application/json+oembed" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/oembed.json" title="Ethiopian Calendar & Bahire Hasab">
-    <!-- Locales -->
+    
     <meta property="og:locale" content="am_ET">
     <meta property="og:locale:alternate" content="en_US">
     <meta property="og:locale:alternate" content="om_ET">
     <meta property="og:locale:alternate" content="ti_ET">
     <meta property="og:locale:alternate" content="so_ET">
 
-    <!-- ==========================================
-         TWITTER CARD
-         ========================================== -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:domain" content="mesiworkisha-glitch.github.io">
     <meta name="twitter:url" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/">
@@ -72,9 +59,6 @@
     <meta name="twitter:image" content="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/og-image.png">
     <meta name="twitter:image:alt" content="የኢትዮጵያ ካላንደር PWA ቅድመ ዕይታ">
 
-    <!-- ==========================================
-         STRUCTURED DATA (JSON-LD SCHEMA)
-         ========================================== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -121,15 +105,14 @@
     }
     </script>
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <a href="#main-content" class="skip-link" data-i18n="skip_to_content">ወደ ዋናው ይዘት ዝለል (Skip to main content)</a>
+    
     <header>
         <h1 data-i18n="app_title">የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ</h1>
         <div id="local-time-bar" aria-live="off">የኢትዮጵያ ሰዓት በመጫን ላይ...</div>
-        <!-- Timezone Info Bar Integration -->
         <div id="timezone-info-bar" aria-live="polite"></div>
 
         <div class="settings-controls">
@@ -156,7 +139,6 @@
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-thisyear" id="navbtn-thisyear" data-target="tab-thisyear" data-i18n="nav_this_year">ዘንድሮ</button>
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-holidays" id="navbtn-holidays" data-target="tab-holidays" data-i18n="nav_holidays">ብሔራዊ በዓላት</button>
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-islamic" id="navbtn-islamic" data-target="tab-islamic" data-i18n="nav_hijri">ሂጅሪ አቆጣጠር</button>
-        <!-- Hebrew Calendar Button -->
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-hebrew" id="navbtn-hebrew" data-target="tab-hebrew" data-i18n="nav_hebrew">ዕብራውያን አቆጣጠር</button>
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-converter" id="navbtn-converter" data-target="tab-converter" data-i18n="nav_converter">ቀን መቀየሪያ</button>
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium" data-i18n="nav_synaxarium">ስንክሳር ፍለጋ</button>
@@ -175,7 +157,6 @@
             </div>
         </section>
 
-        <!-- New This Year Tab -->
         <section id="tab-thisyear" class="tab-content" role="tabpanel" aria-labelledby="navbtn-thisyear" hidden>
             <div class="card">
                 <h2 data-i18n="this_year_title">የዘንድሮ ሙሉ መረጃ</h2>
@@ -200,7 +181,6 @@
             </div>
         </section>
 
-        <!-- Hebrew Calendar Section -->
         <section id="tab-hebrew" class="tab-content" role="tabpanel" aria-labelledby="navbtn-hebrew" hidden>
             <div class="card">
                 <h2 data-i18n="heb_title">የዕብራውያን (Hebrew) ቀን አቆጣጠር</h2>
@@ -224,15 +204,15 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="conv-year" data-i18n="conv_label_year">ዓመት (አማራጭ - Optional)</label>
+                        <label for="conv-year" data-i18n="conv_label_year">ዓመት (አማራጭ)</label>
                         <input type="number" id="conv-year" placeholder="ዓመት" data-i18n="ph_year">
                     </div>
                     <div class="form-group">
-                        <label for="conv-month" data-i18n="conv_label_month">ወር (አማራጭ - Optional፣ ቁጥር ወይም ስም)</label>
+                        <label for="conv-month" data-i18n="conv_label_month">ወር (አማራጭ፣ ቁጥር ወይም ስም)</label>
                         <input type="text" id="conv-month" placeholder="ወር (ምሳሌ: ኅዳር)" data-i18n="ph_month">
                     </div>
                     <div class="form-group">
-                        <label for="conv-day" data-i18n="conv_label_day">ቀን (አማራጭ - Optional)</label>
+                        <label for="conv-day" data-i18n="conv_label_day">ቀን (አማራጭ)</label>
                         <input type="number" id="conv-day" placeholder="ቀን" data-i18n="ph_day">
                     </div>
                 </div>
@@ -343,6 +323,7 @@
         </a>
     </footer>
 
+    <!-- Embed Modal Container -->
     <div id="embed-modal" class="modal-overlay" hidden>
         <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="embed-modal-title" tabindex="-1">
             <button type="button" id="embed-modal-close" class="modal-close" data-i18n-aria-label="btn_close" aria-label="Close">✕</button>
@@ -421,45 +402,19 @@
         </div>
     </div>
 
-<div
-    id="pwa-update-banner"
-    class="pwa-update-banner"
-    role="status"
-    aria-live="polite"
-    aria-atomic="true"
-    hidden
->
-    <div class="pwa-update-content">
-
-        <div class="pwa-update-text">
-            <strong>Update Available</strong>
-            <span>
-                A new version of Ethiopian Calendar is ready.
-            </span>
+    <!-- PWA Update Banner -->
+    <div id="pwa-update-banner" class="pwa-update-banner" role="status" aria-live="polite" aria-atomic="true" hidden>
+        <div class="pwa-update-content">
+            <div class="pwa-update-text">
+                <strong>Update Available</strong>
+                <span>A new version of Ethiopian Calendar is ready.</span>
+            </div>
+            <div class="pwa-update-actions">
+                <button id="pwa-update-button" class="primary-button" type="button">Refresh</button>
+                <button id="pwa-dismiss-button" class="secondary-button" type="button">Later</button>
+            </div>
         </div>
-
-        <div class="pwa-update-actions">
-
-            <button
-                id="pwa-update-button"
-                class="primary-button"
-                type="button"
-            >
-                Refresh
-            </button>
-
-            <button
-                id="pwa-dismiss-button"
-                class="secondary-button"
-                type="button"
-            >
-                Later
-            </button>
-
-        </div>
-
     </div>
-</div>
 
     <script src="app.js"></script>
     <script src="sw-register.js"></script>

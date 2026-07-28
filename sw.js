@@ -1,4 +1,4 @@
-const VERSION = "36";
+const VERSION = "37";
 
 const STATIC_CACHE = `ethio-static-${VERSION}`;
 const RUNTIME_CACHE = `ethio-runtime-${VERSION}`;
@@ -78,30 +78,24 @@ self.addEventListener("activate", event => {
 
         const clients = await self.clients.matchAll();
 
-clients.forEach(client => {
-    client.postMessage({
-        type: "SW_ACTIVATED",
-        version: VERSION
-    });
-});
+        clients.forEach(client => {
+            client.postMessage({
+                type: "SW_ACTIVATED",
+                version: VERSION
+            });
+        });
 
     })());
 });
 
 self.addEventListener("fetch", event => {
-
     const request = event.request;
 
     if (request.method !== "GET") return;
 
     const url = new URL(request.url);
 
-    if (
-        url.protocol !== "http:" &&
-        url.protocol !== "https:"
-    ) {
-        return;
-    }
+    if (url.protocol !== "http:" && url.protocol !== "https:") return;
 
     if (
         url.protocol.startsWith("chrome-extension") ||
@@ -112,7 +106,7 @@ self.addEventListener("fetch", event => {
     }
 
     if (request.mode === "navigate") {
-        event.respondWith(networkFirstNavigation(request));
+        event.respondWith(networkFirstNavigation(event));
         return;
     }
 
@@ -121,10 +115,7 @@ self.addEventListener("fetch", event => {
         return;
     }
 
-    if (
-        request.url.endsWith(".json") ||
-        request.url.includes("synaxarium")
-    ) {
+    if (request.url.endsWith(".json") || request.url.includes("synaxarium")) {
         event.respondWith(networkFirstData(request));
         return;
     }
@@ -142,27 +133,18 @@ self.addEventListener("fetch", event => {
     event.respondWith(runtimeCache(request));
 });
 
-async function networkFirstNavigation(request) {
-
+async function networkFirstNavigation(event) {
+    const request = event.request;
+    
     try {
-
         const preload = await event?.preloadResponse;
-
-        if (preload) {
-            return preload;
-        }
-
+        if (preload) return preload;
     } catch {}
 
     try {
-
         const response = await fetch(request);
 
-        if (
-            response &&
-            response.ok &&
-            response.type === "basic"
-        ) {
+        if (response && response.ok && response.type === "basic") {
             const cache = await caches.open(RUNTIME_CACHE);
             cache.put(request, response.clone());
             trimCache(RUNTIME_CACHE, 50);
@@ -171,38 +153,22 @@ async function networkFirstNavigation(request) {
         return response;
 
     } catch {
-
         const cached = await caches.match(request);
-
         if (cached) return cached;
-
-        return (
-            await caches.match("./offline.html")
-        ) || (
-            await caches.match("./index.html")
-        );
+        return (await caches.match("./offline.html")) || (await caches.match("./index.html"));
     }
 }
 
 async function staleWhileRevalidate(request) {
-
     const cache = await caches.open(STATIC_CACHE);
-
     const cached = await cache.match(request);
-
+    
     const network = fetch(request)
         .then(response => {
-
-            if (
-                response &&
-                response.ok &&
-                response.type === "basic"
-            ) {
+            if (response && response.ok && response.type === "basic") {
                 cache.put(request, response.clone());
             }
-
             return response;
-
         })
         .catch(() => null);
 
@@ -210,111 +176,71 @@ async function staleWhileRevalidate(request) {
 }
 
 async function networkFirstData(request) {
-
     const cache = await caches.open(DATA_CACHE);
-
+    
     try {
-
         const response = await fetch(request);
 
-        if (
-            response &&
-            response.ok
-        ) {
+        if (response && response.ok) {
             cache.put(request, response.clone());
             trimCache(DATA_CACHE, 25);
         }
 
         return response;
-
     } catch {
-
         const cached = await cache.match(request);
-
         if (cached) return cached;
 
         return new Response("{}", {
-            headers: {
-                "Content-Type": "application/json"
-            }
+            headers: { "Content-Type": "application/json" }
         });
-
     }
 }
 
 async function cacheFirstImage(request) {
-
     const cache = await caches.open(IMAGE_CACHE);
-
     const cached = await cache.match(request);
-
     if (cached) return cached;
 
     try {
-
         const response = await fetch(request);
 
-        if (
-            response &&
-            response.ok
-        ) {
+        if (response && response.ok) {
             cache.put(request, response.clone());
             trimCache(IMAGE_CACHE, 100);
         }
 
         return response;
-
     } catch {
-
-        return (
-            await caches.match("./icon.svg")
-        ) || (
-            await caches.match("./icon-192x192.png")
-        );
-
+        return (await caches.match("./icon.svg")) || (await caches.match("./icon-192x192.png"));
     }
 }
 
 async function runtimeCache(request) {
-
     const cache = await caches.open(RUNTIME_CACHE);
-
     const cached = await cache.match(request);
-
     if (cached) return cached;
 
     try {
-
         const response = await fetch(request);
 
-        if (
-            response &&
-            response.ok &&
-            response.type === "basic"
-        ) {
+        if (response && response.ok && response.type === "basic") {
             cache.put(request, response.clone());
             trimCache(RUNTIME_CACHE, 50);
         }
 
         return response;
-
     } catch {
-
         return cached || Response.error();
-
     }
 }
 
 self.addEventListener("message", event => {
-
     if (!event.data) return;
 
     switch (event.data.type) {
-
         case "SKIP_WAITING":
             self.skipWaiting();
             break;
-
     }
-
 });

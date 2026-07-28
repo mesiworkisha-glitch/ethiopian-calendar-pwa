@@ -84,7 +84,6 @@ header h1 {
     width: auto;
 }
 
-/* Ensure the language dropdown options appear correctly on light/dark mode */
 select.btn-control-toggle option {
     background: var(--card-bg);
     color: var(--text-color);
@@ -290,10 +289,6 @@ footer {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* ==========================================
-   EMBED / SHARE MODAL
-   ========================================== */
-
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -447,10 +442,6 @@ footer {
 
 .btn-share:hover, .btn-share:focus-visible { filter: brightness(0.92); }
 
-/* ==========================================
-   EMBED WIDGET PAGE (embed.html)
-   ========================================== */
-
 body.embed-body {
     margin: 0;
     padding: 14px;
@@ -498,12 +489,6 @@ body.embed-body {
     text-decoration: none;
     text-align: right;
 }
-
-/* ==========================================
-   PRINT STYLESHEET
-   Geared toward printing the "This Year" / "This Month" / "Holidays"
-   views — the content someone would actually want a paper copy of.
-   ========================================== */
 
 @media print {
     header .settings-controls,
@@ -561,9 +546,6 @@ body.embed-body {
     }
 }
 
-/* Per-row "embed this holiday/year/month" icon inside list/heading output.
-   Visual glyph stays small, but the clickable/tappable area meets the
-   WCAG 2.5.8 minimum target size (24x24 CSS px). */
 .btn-embed-icon {
     background: none;
     border: none;
@@ -584,7 +566,6 @@ body.embed-body {
     opacity: 1;
 }
 
-/* Compact badge format — a tiny pill link for sidebars/footers on other sites */
 body.embed-body.badge-mode {
     padding: 0;
     background: transparent;
@@ -627,14 +608,9 @@ body.embed-body.badge-mode .embed-widget.card {
     right:1rem;
     bottom:1rem;
     z-index:99999;
-
     display:flex;
     justify-content:center;
-
-    transition:
-        opacity .3s ease,
-        transform .3s ease;
-
+    transition: opacity .3s ease, transform .3s ease;
     opacity:1;
 }
 
@@ -646,104 +622,69 @@ body.embed-body.badge-mode .embed-widget.card {
 }
 
 .pwa-update-content{
-
     width:min(700px,100%);
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:1rem;
-
     padding:1rem 1.25rem;
-
     border-radius:14px;
-
     background:var(--surface,#1f2937);
     color:var(--on-surface,#ffffff);
-
-    box-shadow:
-        0 8px 30px rgba(0,0,0,.25);
-
+    box-shadow: 0 8px 30px rgba(0,0,0,.25);
 }
 
 .pwa-update-text{
-
     display:flex;
     flex-direction:column;
     gap:.25rem;
-
 }
 
 .pwa-update-text strong{
-
     font-size:1rem;
-
 }
 
 .pwa-update-text span{
-
     opacity:.85;
     font-size:.9rem;
-
 }
 
 .pwa-update-actions{
-
     display:flex;
     gap:.75rem;
-
 }
 
 .primary-button,
 .secondary-button{
-
     font:inherit;
     cursor:pointer;
-
     padding:.65rem 1.1rem;
-
     border-radius:10px;
-
 }
 
 .primary-button{
-
     border:none;
-
     background:#2563eb;
     color:white;
-
 }
 
 .primary-button:hover{
-
     background:#1d4ed8;
-
 }
 
 .secondary-button{
-
     background:transparent;
-
     color:inherit;
-
     border:1px solid currentColor;
-
 }
 
 @media(max-width:640px){
-
     .pwa-update-content{
-
         flex-direction:column;
         align-items:flex-start;
-
     }
-
     .pwa-update-actions{
-
         width:100%;
         justify-content:flex-end;
-
     }
-
 }
