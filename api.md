@@ -28,7 +28,7 @@ without needing its own parallel state.
 **`localStorage` keys in use:**　
 | Key | Values | Set by |
 |---|---|---|
-| `lang` | `am` \| `en` \| `om` \| `ti` \| `so` \| `gur` | language `<select>` |
+| `lang` | `am` \| `en` \| `om` \| `ti` \| `so` | language `<select>` |
 | `theme` | `light` \| `dark` | dark-mode toggle button |
 | `use_geez_numerals` | `'true'` \| `'false'` (string) | Ge'ez numerals toggle button |
 | `periodic_tracker_data` | JSON: `{ periods: [], cycle_len, period_len }` | Period Tracker form (guarded with try/catch — falls back to an in-memory object if storage is blocked, e.g. private browsing) |

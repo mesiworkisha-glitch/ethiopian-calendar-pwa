@@ -9,7 +9,7 @@
    ========================================================================== */
 
 (function () {
-    var SUPPORTED_LANGS = ["am", "en", "om", "ti", "so", "gur"];
+    var SUPPORTED_LANGS = ["am", "en", "om", "ti", "so"];
 
     function getParam(name, fallback) {
         const params = new URLSearchParams(window.location.search);

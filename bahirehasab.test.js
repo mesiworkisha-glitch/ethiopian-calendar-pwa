@@ -123,3 +123,52 @@ test('getHolidayOccurrence finds both fixed holidays and movable feasts by id', 
     const bogus = app.getHolidayOccurrence('not_a_real_id', ey);
     assert.equal(bogus, null, 'expected an unknown id to resolve to null, not throw');
 });
+
+test('getNamedEventsForYear correctly tags fixed-date events as non-movable', () => {
+    // Regression test for a real bug: fixed-date holidays (New Year, Meskel,
+    // Timkat, Genna, etc.) were previously being displayed under "This
+    // Year's Movable Feasts" alongside genuinely Bahire-Hasab-computed ones.
+    for (const ey of sampleYears().filter((_, i) => i % 20 === 0)) {
+        const events = app.getNamedEventsForYear(ey);
+        const fixedKeys = ['hol_enkutatash', 'hol_meskel', 'hol_timkat', 'hol_genna', 'fast_nebiyat', 'fast_gehad', 'fast_filseta', 'hol_filseta_maryam'];
+        const movableKeys = ['fest_siklet', 'fest_tensae', 'fast_abiy', 'fest_hosanna'];
+        for (const [, key, movable] of events) {
+            if (fixedKeys.includes(key)) assert.equal(movable, false, `${key} should be tagged non-movable in year ${ey}`);
+            if (movableKeys.includes(key)) assert.equal(movable, true, `${key} should be tagged movable in year ${ey}`);
+        }
+    }
+});
+
+test('buildYearFullDetails never lists a fixed-date holiday under "Movable Feasts"', async () => {
+    for (const ey of [2015, 2016, 2017, 2018]) {
+        const details = await app.buildYearFullDetails(ey);
+        const section = details.html.split(app.t('lbl_year_movable_events'))[1] || '';
+        // None of the fixed-holiday translated labels should appear after
+        // the "Movable Feasts" heading.
+        for (const key of ['hol_enkutatash', 'hol_meskel', 'hol_timkat', 'hol_genna']) {
+            const label = app.t(key);
+            assert.ok(!section.includes(label), `fixed holiday "${label}" (${key}) leaked into the movable-feasts section for year ${ey}`);
+        }
+    }
+});
+
+test('Great Lent week boundaries: 8 weeks, week 5 lands exactly on Debre Zeyit', () => {
+    for (const ey of sampleYears().filter((_, i) => i % 15 === 0)) {
+        const bh = app.calculateBahreHasab(ey);
+        const abiyDay = (bh.feasts.abiy.m - 1) * 30 + bh.feasts.abiy.d;
+        const hosannaDay = (bh.feasts.hosanna.m - 1) * 30 + bh.feasts.hosanna.d;
+        const debreZeyitDay = (bh.feasts.debre_zeyit.m - 1) * 30 + bh.feasts.debre_zeyit.d;
+
+        // The day before Abiy Tsom's Monday start is outside Lent's 8 weeks.
+        assert.equal(app.getGreatLentWeek(abiyDay - 2, bh), null, `year ${ey}: day before week 1 should be null`);
+        // Abiy Tsom's own Monday start falls inside week 1 (started the day before, on ዘወረደ Sunday).
+        assert.equal(app.getGreatLentWeek(abiyDay, bh), 'lent_week_1', `year ${ey}: Abiy Tsom start should be in week 1`);
+        // Hosanna (Palm Sunday) is week 8, the last one.
+        assert.equal(app.getGreatLentWeek(hosannaDay, bh), 'lent_week_8', `year ${ey}: Hosanna should be week 8`);
+        // The day after Hosanna's week (i.e. Easter itself) is outside Lent's 8 weeks.
+        assert.equal(app.getGreatLentWeek(hosannaDay + 7, bh), null, `year ${ey}: Easter should be null (past week 8)`);
+        // Cross-check against the code's own independently-computed Debre
+        // Zeyit offset — it must land exactly on the week 5 boundary.
+        assert.equal(app.getGreatLentWeek(debreZeyitDay, bh), 'lent_week_5', `year ${ey}: Debre Zeyit should fall exactly on week 5`);
+    }
+});

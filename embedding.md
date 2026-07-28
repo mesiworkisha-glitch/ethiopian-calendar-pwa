@@ -48,7 +48,7 @@ don't exist, and silently no-ops.
 | Param | Values | Behavior when omitted |
 |---|---|---|
 | `widget` | any value from the table above | `today` |
-| `lang` | `am`, `en`, `om`, `ti`, `so`, `gur` | **Auto-detected** from the visitor's browser language (`navigator.languages`), falling back to `am` |
+| `lang` | `am`, `en`, `om`, `ti`, `so` | **Auto-detected** from the visitor's browser language (`navigator.languages`), falling back to `am` |
 | `theme` | `light`, `dark` | **Auto-detected** from `prefers-color-scheme` |
 | `numerals` | `geez`, `arabic` | `arabic` |
 | `style` | `badge` | Full widget (omit for the normal card layout) |

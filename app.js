@@ -47,7 +47,7 @@ const i18n = {
         hol_ashura: "ዓሹራ (Ashura)", hol_mawlid: "መውሊድ (Mawlid)", hol_isra: "እስራ ወሚዕራጅ (Isra and Mi'raj)", hol_ramadan: "ረመዳን (Ramadan)", hol_laylat: "Laylat al‑Qadr", hol_eid_fitr: "ዒድ አልፊጥር (Eid al-Fitr)", hol_arafah: "የዐረፋ ቀን (Day of Arafah)", hol_eid_adha: "ዒድ አልአድሐ (Eid al-Adha)", hol_hajj: "Hajj",
         bh_medeb: "መደብ", bh_wenber: "ወንበር", bh_tinte: "ጥንተ ቀመር", bh_metqe: "መጥቅዕ", bh_abekte: "አበቅቴ", bh_hamer: "መባጃ ሐመር",
         isl_leap_year: "ዓመቱ ሰበቅ (ልዩ) ዓመት ነው።", isl_reg_year: "ዓመቱ መደበኛ ዓመት ነው።", isl_no_events: "ምንም የተመዘገበ በዓል የለም።", isl_disclaimer: "ማሳሰቢያ፦ ይህ በሒሳብ ስሌት (tabular calendar) ላይ የተመሠረተ ሂሳባዊ ቀን ሲሆን ከትክክለኛ ምልከታ ጋር በ1-2 ቀናት ሊለያይ ይችላል።", isl_ramadan_start: "የረመዳን መጀመሪያ", isl_ramadan_last_10: "የረመዳን መጨረሻዎቹ 10 ቀናት ይጀምራሉ", lbl_equiv_greg: "ተመጣጣኝ የግሪጎሪያን ቀን", lbl_equiv_eth: "ተመጣጣኝ የኢትዮጵያ ቀን", lbl_current_info: "ወቅታዊ መረጃ", lbl_months: "ወራት", lbl_key_dates: "ዋና ዋና ዕለታት",
-        btn_embed: "🔗 አጋራ / አስገባ", embed_title: "አጋራ እና አስገባ (Embed & Share)", embed_tab_code: "የማስገቢያ ኮድ (Embed Code)", embed_tab_image: "ምስል አጋራ (Share Image)", embed_lbl_width: "ስፋት (Width)", embed_lbl_height: "ቁመት (Height)", embed_lbl_theme: "ገጽታ (Theme)", embed_opt_light: "ብሩህ (Light)", embed_opt_dark: "ጨለማ (Dark)", embed_btn_copy: "ኮድ ኮፒ አድርግ", embed_btn_copy_image: "ምስል ኮፒ አድርግ", embed_btn_download: "ምስል አውርድ", embed_share_via: "በዚህ በኩል አጋራ", embed_lbl_preview: "ቅድመ ዕይታ (Preview)", embed_lbl_lang: "ቋንቋ (Language)", embed_opt_auto: "ራስ-ሰር (Auto)", embed_lbl_format: "ቅርጸት (Format)", embed_opt_full: "ሙሉ ዊጄት (Full Widget)", embed_opt_badge: "አነስተኛ ባጅ (Compact Badge)", embed_days_since: "ካለፉ ቀናት", btn_embed_holiday: "🔗 ይህን በዓል አጋራ", btn_embed_year: "🔗 ይህን ዓመት አጋራ", btn_embed_month: "🔗 ይህን ወር አጋራ", btn_close: "ዝጋ (Close)", skip_to_content: "ወደ ዋናው ይዘት ዝለል (Skip to main content)", shared_content_received: "የተጋራ ይዘት ደርሷል፦", err_synax_load_failed: "የስንክሳር መረጃ መጫን አልተቻለም። ግንኙነትዎን ያረጋግጡና እንደገና ይሞክሩ።"
+        btn_embed: "🔗 አጋራ / አስገባ", embed_title: "አጋራ እና አስገባ (Embed & Share)", embed_tab_code: "የማስገቢያ ኮድ (Embed Code)", embed_tab_image: "ምስል አጋራ (Share Image)", embed_lbl_width: "ስፋት (Width)", embed_lbl_height: "ቁመት (Height)", embed_lbl_theme: "ገጽታ (Theme)", embed_opt_light: "ብሩህ (Light)", embed_opt_dark: "ጨለማ (Dark)", embed_btn_copy: "ኮድ ኮፒ አድርግ", embed_btn_copy_image: "ምስል ኮፒ አድርግ", embed_btn_download: "ምስል አውርድ", embed_share_via: "በዚህ በኩል አጋራ", embed_lbl_preview: "ቅድመ ዕይታ (Preview)", embed_lbl_lang: "ቋንቋ (Language)", embed_opt_auto: "ራስ-ሰር (Auto)", embed_lbl_format: "ቅርጸት (Format)", embed_opt_full: "ሙሉ ዊጄት (Full Widget)", embed_opt_badge: "አነስተኛ ባጅ (Compact Badge)", embed_days_since: "ካለፉ ቀናት", btn_embed_holiday: "🔗 ይህን በዓል አጋራ", btn_embed_year: "🔗 ይህን ዓመት አጋራ", btn_embed_month: "🔗 ይህን ወር አጋራ", btn_close: "ዝጋ (Close)", skip_to_content: "ወደ ዋናው ይዘት ዝለል (Skip to main content)", shared_content_received: "የተጋራ ይዘት ደርሷል፦", err_synax_load_failed: "የስንክሳር መረጃ መጫን አልተቻለም። ግንኙነትዎን ያረጋግጡና እንደገና ይሞክሩ።", lent_week_1: "የዘወረደ ሱባኤ", lent_week_2: "የቅድስት ሱባኤ", lent_week_3: "የምኵራብ ሱባኤ", lent_week_4: "የመጻጉዕ ሱባኤ", lent_week_5: "የደብረ ዘይት ሱባኤ", lent_week_6: "የገብር ኄር ሱባኤ", lent_week_7: "የኒቆዲሞስ ሱባኤ", lent_week_8: "የሆሳዕና ሱባኤ"
     },
     en: {
         app_title: "Ethiopian Calendar & Bahire Hasab",
@@ -97,7 +97,7 @@ const i18n = {
         hol_ashura: "Ashura", hol_mawlid: "Mawlid", hol_isra: "Isra and Mi'raj", hol_ramadan: "Ramadan", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Eid al-Fitr", hol_arafah: "Day of Arafah", hol_eid_adha: "Eid al-Adha", hol_hajj: "Hajj",
         bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
         isl_leap_year: "This is a Leap Year.", isl_reg_year: "This is a Regular Year.", isl_no_events: "No specific events.", isl_disclaimer: "Note: This is based on a tabular calendar and may differ from actual sightings by 1-2 days.", isl_ramadan_start: "Start of Ramadan", isl_ramadan_last_10: "Last 10 days of Ramadan begin", lbl_equiv_greg: "Equivalent Gregorian Date", lbl_equiv_eth: "Equivalent Ethiopian Date", lbl_current_info: "Current Information", lbl_months: "Months", lbl_key_dates: "Key Dates",
-        btn_embed: "🔗 Embed / Share", embed_title: "Embed & Share", embed_tab_code: "Embed Code", embed_tab_image: "Share Image", embed_lbl_width: "Width", embed_lbl_height: "Height", embed_lbl_theme: "Theme", embed_opt_light: "Light", embed_opt_dark: "Dark", embed_btn_copy: "Copy Code", embed_btn_copy_image: "Copy Image", embed_btn_download: "Download Image", embed_share_via: "Share via", embed_lbl_preview: "Preview", embed_lbl_lang: "Language", embed_opt_auto: "Auto (visitor's device)", embed_lbl_format: "Format", embed_opt_full: "Full Widget", embed_opt_badge: "Compact Badge", embed_days_since: "Days Since", btn_embed_holiday: "🔗 Embed this holiday", btn_embed_year: "🔗 Embed this year", btn_embed_month: "🔗 Embed this month", btn_close: "Close", skip_to_content: "Skip to main content", shared_content_received: "Shared content received:", err_synax_load_failed: "Couldn't load Synaxarium data. Check your connection and try again."
+        btn_embed: "🔗 Embed / Share", embed_title: "Embed & Share", embed_tab_code: "Embed Code", embed_tab_image: "Share Image", embed_lbl_width: "Width", embed_lbl_height: "Height", embed_lbl_theme: "Theme", embed_opt_light: "Light", embed_opt_dark: "Dark", embed_btn_copy: "Copy Code", embed_btn_copy_image: "Copy Image", embed_btn_download: "Download Image", embed_share_via: "Share via", embed_lbl_preview: "Preview", embed_lbl_lang: "Language", embed_opt_auto: "Auto (visitor's device)", embed_lbl_format: "Format", embed_opt_full: "Full Widget", embed_opt_badge: "Compact Badge", embed_days_since: "Days Since", btn_embed_holiday: "🔗 Embed this holiday", btn_embed_year: "🔗 Embed this year", btn_embed_month: "🔗 Embed this month", btn_close: "Close", skip_to_content: "Skip to main content", shared_content_received: "Shared content received:", err_synax_load_failed: "Couldn't load Synaxarium data. Check your connection and try again.", lent_week_1: "Zewerede Week", lent_week_2: "Qidist Week", lent_week_3: "Mikurab Week", lent_week_4: "Metsagu Week", lent_week_5: "Debre Zeyit Week", lent_week_6: "Gebre Hier Week", lent_week_7: "Nikodimos Week", lent_week_8: "Hosanna Week"
     },
     om: {
         app_title: "Kalaandarii Itoophiyaa & Bahire Hasab",
@@ -147,7 +147,7 @@ const i18n = {
         hol_ashura: "Aashuraa", hol_mawlid: "Mawliid", hol_isra: "Isra fi Mi'raaj", hol_ramadan: "Ramadaana", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Iid Al-Faxir", hol_arafah: "Arafa", hol_eid_adha: "Iid Al-Adhaa", hol_hajj: "Hajjii",
         bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
         isl_leap_year: "Bara Utaalchaati.", isl_reg_year: "Bara Idileeti.", isl_no_events: "Ayyaanota hin jiru.", isl_disclaimer: "Hubachiisa: Kun herrega irratti kan hundaa'eedha, ji'a arguu irraa guyyaa 1-2 garaagarummaa qabaachuu danda'a.", isl_ramadan_start: "Jalqaba Ramadaanaa", isl_ramadan_last_10: "Guyyoota 10 dhumaa Ramadaanaa", lbl_equiv_greg: "Guyyaa Gregorian Walgitu", lbl_equiv_eth: "Guyyaa Itoophiyaa Walgitu", lbl_current_info: "Odeeffannoo Yeroo", lbl_months: "Ji'oota", lbl_key_dates: "Guyyoota Ijoo",
-        btn_embed: "🔗 Kuusi / Qoodi", embed_title: "Kuusuu fi Qoodachuu (Embed & Share)", embed_tab_code: "Koodii Kuusaa (Embed Code)", embed_tab_image: "Suuraa Qoodi (Share Image)", embed_lbl_width: "Bal'ina (Width)", embed_lbl_height: "Dheerina (Height)", embed_lbl_theme: "Bifa (Theme)", embed_opt_light: "Ifaa (Light)", embed_opt_dark: "Dukkanaa'aa (Dark)", embed_btn_copy: "Koodii Garagalchi", embed_btn_copy_image: "Suuraa Garagalchi", embed_btn_download: "Suuraa Buufadhu", embed_share_via: "Karaa kanaan qoodi", embed_lbl_preview: "Mul'ata Duraa (Preview)", embed_lbl_lang: "Afaan (Language)", embed_opt_auto: "Ofumaan (Auto)", embed_lbl_format: "Bifa Kuusaa (Format)", embed_opt_full: "Widget Guutuu (Full Widget)", embed_opt_badge: "Baajii Xiqqaa (Compact Badge)", embed_days_since: "Guyyoota Darban", btn_embed_holiday: "🔗 Ayyaana Kana Qoodi", btn_embed_year: "🔗 Bara Kana Qoodi", btn_embed_month: "🔗 Ji'a Kana Qoodi", btn_close: "Cufi (Close)", skip_to_content: "Gara qabiyyee bu'uuraa darbi", shared_content_received: "Qabiyyee qoodame argameera:", err_synax_load_failed: "Ragaan Sankisaar (Synaxarium) fe'amuu hin dandeenye. Sirna interneetii keessan mirkaneessitanii irra deebi'aa yaalaa."
+        btn_embed: "🔗 Kuusi / Qoodi", embed_title: "Kuusuu fi Qoodachuu (Embed & Share)", embed_tab_code: "Koodii Kuusaa (Embed Code)", embed_tab_image: "Suuraa Qoodi (Share Image)", embed_lbl_width: "Bal'ina (Width)", embed_lbl_height: "Dheerina (Height)", embed_lbl_theme: "Bifa (Theme)", embed_opt_light: "Ifaa (Light)", embed_opt_dark: "Dukkanaa'aa (Dark)", embed_btn_copy: "Koodii Garagalchi", embed_btn_copy_image: "Suuraa Garagalchi", embed_btn_download: "Suuraa Buufadhu", embed_share_via: "Karaa kanaan qoodi", embed_lbl_preview: "Mul'ata Duraa (Preview)", embed_lbl_lang: "Afaan (Language)", embed_opt_auto: "Ofumaan (Auto)", embed_lbl_format: "Bifa Kuusaa (Format)", embed_opt_full: "Widget Guutuu (Full Widget)", embed_opt_badge: "Baajii Xiqqaa (Compact Badge)", embed_days_since: "Guyyoota Darban", btn_embed_holiday: "🔗 Ayyaana Kana Qoodi", btn_embed_year: "🔗 Bara Kana Qoodi", btn_embed_month: "🔗 Ji'a Kana Qoodi", btn_close: "Cufi (Close)", skip_to_content: "Gara qabiyyee bu'uuraa darbi", shared_content_received: "Qabiyyee qoodame argameera:", err_synax_load_failed: "Ragaan Sankisaar (Synaxarium) fe'amuu hin dandeenye. Sirna interneetii keessan mirkaneessitanii irra deebi'aa yaalaa.", lent_week_1: "Torban Zewerede", lent_week_2: "Torban Qidist", lent_week_3: "Torban Mikurab", lent_week_4: "Torban Metsagu", lent_week_5: "Torban Debre Zeyit", lent_week_6: "Torban Gebre Hier", lent_week_7: "Torban Nikodimos", lent_week_8: "Torban Hosaana"
     },
     ti: {
         app_title: "ካላንደር ኢትዮጵያን ባሕረ ሓሳብን",
@@ -197,7 +197,7 @@ const i18n = {
         hol_ashura: "ዓሹራ", hol_mawlid: "መውሊድ", hol_isra: "እስራ ወሚዕራጅ", hol_ramadan: "ረመዳን", hol_laylat: "ለይለተል ቀድር", hol_eid_fitr: "ዒድ ኣልፈጥር", hol_arafah: "መዓልቲ ዓረፋ", hol_eid_adha: "ዒድ ኣልኣድሓ", hol_hajj: "ሓጅ",
         bh_medeb: "መደብ", bh_wenber: "ወንበር", bh_tinte: "ጥንተ ቀመር", bh_metqe: "መጥቅዕ", bh_abekte: "ኣበቅቴ", bh_hamer: "መባጃ ሓመር",
         isl_leap_year: "ዓመቱ ዘመነ ሰበቅ (ፍሉይ) እዩ።", isl_reg_year: "ዓመቱ ስሩዕ ዓመት እዩ።", isl_no_events: "ምንም የተመዘገበ በዓል የለም።", isl_disclaimer: "መተሓሳሰቢ፦ እዚ ኣብ ስሌት ዝተመርኮሰ ኮይኑ፡ ምስ ርእየት ወርሒ ብ1-2 መዓልታት ክፈላለ ይኽእል እዩ።", isl_ramadan_start: "መጀመርታ ረመዳን", isl_ramadan_last_10: "ናይ መወዳእታ 10 መዓልታት ረመዳን ይጅምሩ", lbl_equiv_greg: "መዘና ዕለት ግሪጎሪያን", lbl_equiv_eth: "መዘና ዕለት ኢትዮጵያ", lbl_current_info: "እዋናዊ ሓበሬታ", lbl_months: "ኣዋርሕ", lbl_key_dates: "ዓበይቲ ዕለታት",
-        btn_embed: "🔗 ኣካፍል / ኣእቱ", embed_title: "ምክፋልን ምእታውን (Embed & Share)", embed_tab_code: "ኮድ ምእታው (Embed Code)", embed_tab_image: "ስእሊ ኣካፍል (Share Image)", embed_lbl_width: "ስፍሓት (Width)", embed_lbl_height: "ንውሓት (Height)", embed_lbl_theme: "ቅርጺ (Theme)", embed_opt_light: "ብሩህ (Light)", embed_opt_dark: "ጸልማት (Dark)", embed_btn_copy: "ኮድ ቅዳሕ", embed_btn_copy_image: "ስእሊ ቅዳሕ", embed_btn_download: "ስእሊ ኣውርድ", embed_share_via: "ብዚ ኣካፍል", embed_lbl_preview: "ቅድመ ትርኢት (Preview)", embed_lbl_lang: "ቋንቋ (Language)", embed_opt_auto: "ርእሰ-ገዝ (Auto)", embed_lbl_format: "ቅርጺ ኣቀራርባ (Format)", embed_opt_full: "ምሉእ ዊጅት (Full Widget)", embed_opt_badge: "ንእሽቶ ባጅ (Compact Badge)", embed_days_since: "ዝሓለፉ መዓልትታት", btn_embed_holiday: "🔗 ነዚ በዓል ኣካፍል", btn_embed_year: "🔗 ነዚ ዓመት ኣካፍል", btn_embed_month: "🔗 ነዚ ወርሒ ኣካፍል", btn_close: "ዕጸው (Close)", skip_to_content: "ናብ ቀንዲ ትሕዝቶ ዝለል", shared_content_received: "እተኻፈለ ትሕዝቶ በጺሑ፦", err_synax_load_failed: "ሓበሬታ ስንክሳር ክምጻእ ኣይከኣለን። ግንኙነትካ ኣረጋግጽ እሞ ደጊምካ ፈትን።"
+        btn_embed: "🔗 ኣካፍል / ኣእቱ", embed_title: "ምክፋልን ምእታውን (Embed & Share)", embed_tab_code: "ኮድ ምእታው (Embed Code)", embed_tab_image: "ስእሊ ኣካፍል (Share Image)", embed_lbl_width: "ስፍሓት (Width)", embed_lbl_height: "ንውሓት (Height)", embed_lbl_theme: "ቅርጺ (Theme)", embed_opt_light: "ብሩህ (Light)", embed_opt_dark: "ጸልማት (Dark)", embed_btn_copy: "ኮድ ቅዳሕ", embed_btn_copy_image: "ስእሊ ቅዳሕ", embed_btn_download: "ስእሊ ኣውርድ", embed_share_via: "ብዚ ኣካፍል", embed_lbl_preview: "ቅድመ ትርኢት (Preview)", embed_lbl_lang: "ቋንቋ (Language)", embed_opt_auto: "ርእሰ-ገዝ (Auto)", embed_lbl_format: "ቅርጺ ኣቀራርባ (Format)", embed_opt_full: "ምሉእ ዊጅት (Full Widget)", embed_opt_badge: "ንእሽቶ ባጅ (Compact Badge)", embed_days_since: "ዝሓለፉ መዓልትታት", btn_embed_holiday: "🔗 ነዚ በዓል ኣካፍል", btn_embed_year: "🔗 ነዚ ዓመት ኣካፍል", btn_embed_month: "🔗 ነዚ ወርሒ ኣካፍል", btn_close: "ዕጸው (Close)", skip_to_content: "ናብ ቀንዲ ትሕዝቶ ዝለል", shared_content_received: "እተኻፈለ ትሕዝቶ በጺሑ፦", err_synax_load_failed: "ሓበሬታ ስንክሳር ክምጻእ ኣይከኣለን። ግንኙነትካ ኣረጋግጽ እሞ ደጊምካ ፈትን።", lent_week_1: "ሱባኤ ዘወረደ", lent_week_2: "ሱባኤ ቅድስት", lent_week_3: "ሱባኤ ምኵራብ", lent_week_4: "ሱባኤ መጻጉዕ", lent_week_5: "ሱባኤ ደብረ ዘይት", lent_week_6: "ሱባኤ ገብር ኄር", lent_week_7: "ሱባኤ ኒቆዲሞስ", lent_week_8: "ሱባኤ ሆሳዕና"
     },
     so: {
         app_title: "Kalandarka Itoobiya & Bahire Hasab",
@@ -247,58 +247,8 @@ const i18n = {
         hol_ashura: "Ashuura", hol_mawlid: "Mawliid", hol_isra: "Israa iyo Micraaj", hol_ramadan: "Ramadaan", hol_laylat: "Laylatul Qadar", hol_eid_fitr: "Ciidul Fitr", hol_arafah: "Maalinta Arafah", hol_eid_adha: "Ciidul Adxa", hol_hajj: "Xajka",
         bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
         isl_leap_year: "Sanadkani waa sanad boobsaday (gaar ah).", isl_reg_year: "Sanadkani waa sanad caadi ah.", isl_no_events: "Dhacdo lama qeexin.", isl_disclaimer: "Ogeysiis: Kani waxa uu ku salaysan yahay kalandarka jadwalka, waxaana laga yaabaa inuu 1-2 maalmood kaga duwan yahay aragista dayaxa dhabta ah.", isl_ramadan_start: "Bilawga Ramadaan", isl_ramadan_last_10: "10-kii maalmood ee ugu dambeeya ee Ramadaan bilaabmayaan", lbl_equiv_greg: "Taariikhda Gregorian ee la mid ah", lbl_equiv_eth: "Taariikhda Itoobiya ee la mid ah", lbl_current_info: "Macluumaadka Hadda", lbl_months: "Bilood", lbl_key_dates: "Taariikhaha Muhiimka ah",
-        btn_embed: "🔗 Ku Dar / Wadaag", embed_title: "Ku Darid iyo Wadaagid (Embed & Share)", embed_tab_code: "Koodka Ku Darista (Embed Code)", embed_tab_image: "Sawir Wadaag (Share Image)", embed_lbl_width: "Ballaadhka (Width)", embed_lbl_height: "Dhererka (Height)", embed_lbl_theme: "Muuqaalka (Theme)", embed_opt_light: "Iftiin (Light)", embed_opt_dark: "Madow (Dark)", embed_btn_copy: "Koobi Koodka", embed_btn_copy_image: "Koobi Sawirka", embed_btn_download: "Soo Deji Sawirka", embed_share_via: "Ku Wadaag", embed_lbl_preview: "Horfiiris (Preview)", embed_lbl_lang: "Luqadda (Language)", embed_opt_auto: "Otomaatig (Auto)", embed_lbl_format: "Qaabka (Format)", embed_opt_full: "Widget Buuxa (Full Widget)", embed_opt_badge: "Baajo Yar (Compact Badge)", embed_days_since: "Maalmihii ka Dambeeyay", btn_embed_holiday: "🔗 Ku Dar Ciiddan", btn_embed_year: "🔗 Ku Wadaag Sanadkan", btn_embed_month: "🔗 Ku Wadaag Bishan", btn_close: "Xir (Close)", skip_to_content: "U gudub qoraalka ugu muhiimsan", shared_content_received: "Waxaad la wadaagtay:", err_synax_load_failed: "Xogta Synaxarium lama soo dejin karin. Hubi xiriirkaaga oo isku day mar kale."
+        btn_embed: "🔗 Ku Dar / Wadaag", embed_title: "Ku Darid iyo Wadaagid (Embed & Share)", embed_tab_code: "Koodka Ku Darista (Embed Code)", embed_tab_image: "Sawir Wadaag (Share Image)", embed_lbl_width: "Ballaadhka (Width)", embed_lbl_height: "Dhererka (Height)", embed_lbl_theme: "Muuqaalka (Theme)", embed_opt_light: "Iftiin (Light)", embed_opt_dark: "Madow (Dark)", embed_btn_copy: "Koobi Koodka", embed_btn_copy_image: "Koobi Sawirka", embed_btn_download: "Soo Deji Sawirka", embed_share_via: "Ku Wadaag", embed_lbl_preview: "Horfiiris (Preview)", embed_lbl_lang: "Luqadda (Language)", embed_opt_auto: "Otomaatig (Auto)", embed_lbl_format: "Qaabka (Format)", embed_opt_full: "Widget Buuxa (Full Widget)", embed_opt_badge: "Baajo Yar (Compact Badge)", embed_days_since: "Maalmihii ka Dambeeyay", btn_embed_holiday: "🔗 Ku Dar Ciiddan", btn_embed_year: "🔗 Ku Wadaag Sanadkan", btn_embed_month: "🔗 Ku Wadaag Bishan", btn_close: "Xir (Close)", skip_to_content: "U gudub qoraalka ugu muhiimsan", shared_content_received: "Waxaad la wadaagtay:", err_synax_load_failed: "Xogta Synaxarium lama soo dejin karin. Hubi xiriirkaaga oo isku day mar kale.", lent_week_1: "Toddobaadka Zewerede", lent_week_2: "Toddobaadka Qidist", lent_week_3: "Toddobaadka Mikurab", lent_week_4: "Toddobaadka Metsagu", lent_week_5: "Toddobaadka Debre Zeyit", lent_week_6: "Toddobaadka Gebre Hier", lent_week_7: "Toddobaadka Nikodimos", lent_week_8: "Toddobaadka Hosanna"
     },
-    gur: {
-        app_title: "Ityoophya Zemen Qetera & Bahire Hasab",
-        intro_desc: "Näk'ay offline yiseraw app: Tiru Bahire Hasab herega, yemizoru bealat, tsomu gizewoch, Synaxarium fenqi, ena Gregorian, Julian, Ebrayስt, Hijra qenat mekayeriya.",
-        nav_today: "Zare", nav_this_year: "Ya Zih Amet", nav_holidays: "Hagerawi Bealat", nav_hijri: "Hijra Qetera", nav_hebrew: "Ebrayስt Qetera", nav_converter: "Qen Mekayeriya", nav_synaxarium: "Senkesar Fenqi", nav_period: "Yewer Abeba Kataye", nav_age: "Edme Aweter", nav_pregnancy: "Ergizna Aweter",
-        today_title: "Ya Zare Mulu Woriya", this_year_title: "Ya Zih Amet Mulu Woriya", btn_copy_date: "Qenu Kopi Adirg",
-        holidays_title: "Ya Zih Amet Hagerawi Bealat",
-        hijri_title: "Islam (Hijra) Qetera", btn_copy_hijri: "Hijra Qen Kopi Adirg",
-        heb_title: "Ebrayስt Qetera", heb_year_events: "Ya Zih Amet Ebrayስt Bealat",
-        heb_rosh_hashanah: "Rosh Hashanah", heb_yom_kippur: "Yom Kippur", heb_sukkot: "Sukkot", heb_shemini_atzeret: "Shemini Atzeret", heb_hanukkah: "Hanukkah", heb_tu_bishvat: "Tu BiShvat", heb_purim: "Purim", heb_purim_katan: "Purim Katan", heb_passover: "Passover", heb_lag_baomer: "Lag BaOmer", heb_shavuot: "Shavuot", heb_tisha_bav: "Tisha B'Av",
-        lbl_location: "Gize Akababi", lbl_timezone: "Gize Akababi", lbl_difference: "Käityoophya Gize Yalle Lewt", tz_same: "Käityoophya Gizew Ekul (UTC+3)", tz_ahead: "Käityoophya Gizew Qedimo", tz_behind: "Käityoophya Gizew Ker", txt_hours: "Se'at", txt_minutes: "Deqiqa",
-        conv_title: "Qen Fenqiyanna Mekayeriya", conv_label_type: "Yä Qetera Ayneta", opt_eth: "Yä Ityoophya Qen", opt_greg: "Gregorian", opt_jul: "Julian", opt_heb: "Ebrayስt", opt_hij: "Hijra (Islam)",
-        conv_label_year: "Amet (Alteyaj)", conv_label_month: "War (Alteyaj)", conv_label_day: "Qen (Alteyaj)", ph_year: "Amet", ph_month: "War", ph_day: "Qen", btn_convert: "Qeyir / Fenqi",
-        synax_title: "Senkesar Fenqi", synax_label: "Yä Qidus weyim Beal Sim Agib (Amarigna)", ph_synax: "lelemisha: ሚካኤል", btn_search: "Fenqi",
-        per_title: "Yewer Abeba Kataye", per_desc: "Yä masresha wer abeba yeytebet qenu käityoophya qetera agib:", per_year: "Amet", per_month: "War (1-13)", per_day: "Qen", per_cycle_len: "Yä Aqefawe Erzem (biqenat)", per_period_len: "Yä Wer Abeba Gize (biqenat)", btn_save: "Aqemet", btn_clear: "Woriya Aftu",
-        age_title: "Tiru Edme Aweter", age_desc: "Yä tewlid qenih käityoophya qetera agib:", btn_calc_age: "Edmeye Asela",
-        preg_title: "Ergiznanna Elidet Gize Gemech", preg_desc: "Yä masresha wer abeba yeytebet meyajewi qen (LMP) agib:", btn_calc_preg: "Asela",
-        preg_result_title: "Wet'et", preg_edd: "Yä Tegebaw Elidet Qen (EDD)", preg_gestation: "Yä Ergizna Edme", preg_trimester: "Yä Ergizna Deraja",
-        trim_1: "1ñ", trim_2: "2ñ", trim_3: "3ñ", txt_weeks: "Semenat", txt_and: "ena", txt_delivered: "Alfwal / Teweldwal",
-        footer_credit: "Yä azegajew ", footer_telegram: "Betelegram Ninegana",
-        lbl_greg: "Gregorian Qen", lbl_jul: "Julian Qen", lbl_heb: "Ebrayስt Qen", lbl_wengelawi: "Zemene Wengelawi", lbl_bahire: "Yä Bahire Hasab Woriya", lbl_fast_metric: "Yä Tsom Melekiya", lbl_season: "Wektinna Betekrestyan", lbl_fasting: "Yä Tsom Gize", lbl_moon: "Yä Chereqa Deraja", lbl_sun: "Yä Tsehay Weta/Megebiya", lbl_zodiac: "Kokeb (Zodiac)", lbl_awde: "Awde Negest",
-        txt_today: "Zare", txt_year: "A.M", txt_day: "Qen", txt_time: "Käityoophya Se'at", txt_copied: "Kopi Tederegal", txt_fail: "Kopi Madireg Alteshalem",
-        result_title: "Wet'et", lbl_ethiopian: "Ityoophyawi", lbl_gregorian: "Gregorian", lbl_hebrew: "Ebraystu", lbl_hijri: "Hijra", txt_days: "Qenat", lbl_tabular_hijri: "(Sendeq Hijra)",
-        cycle_details: "Yä Aqefawe Zirzir", cycle_day_lbl: "Yä Aqefawe Qen", next_period_est: "Yeqetlaw Gemetawi Qen", days_left: "Yä Qeru Qenat",
-        age_result: "Wet'et", age_years: "Ametat", age_months: "Werochi", total_life_days: "Titelqu Yä Anor Qenat",
-        err_enter_date: "Ebakih amet, warna qen agib.", err_invalid_year: "Ebakih tiru amet agib.",
-        err_invalid_month_eth: "War käand eska asra sost bicha men allebet.", err_invalid_month_greg: "Yalefe war gebtwal; käand eska asrahulet agib.",
-        err_invalid_day: "Yalefe qen gebtwal.", err_full_date_required: "Ebakih mulu qen (amet, war, qen) agib.",
-        err_cycle_range: "Yä aqefawe erzem käasra ammist eska silsa qenat mekakel men allebet.", err_period_range: "Yä wer abeba gize käand eska asrahulet qenat mekakel men allebet.",
-        err_future_date: "Yehe qen kesinit slehone ebakih yalefe qen agib.", err_generic: "Chigir teferwal; ebakih yagebtew woriya asregagt.",
-        no_data: "Iske ahun woriya alteseferem.", isl_year_events: "Ya Zih Amet Islam Bealat",
-        zodiac_names: ["", "Kapirikorn", "Akwariyus", "Pises", "Ariyes", "Tawres", "Jeminay", "Kanser", "Liyo", "Virgo", "Libra", "Skorpiyo", "Sajitariyus"],
-        lbl_day_num: "Qen", lbl_weekday: "Elet", lbl_fasting_season: "Yä Tsom Gize", lbl_liturgical_season: "Yä Betekrestyan Zemen",
-        lbl_events_memorials: "Bealat / Mastawesha", lbl_month_events: "Bezih War Yalu Bealatna Tsomat", lbl_year_movable_events: "Yä Zih Amet Yemizoru Bealatna Tsomat",
-        txt_sunrise: "Weta", txt_sunset: "Megebiya", lbl_upcoming: "Yeqetlu Bealatna Tsomat", lbl_today_synax: "Ya Zare Senkesar Bealat",
-        lbl_annual_feasts: "Ametawi Bealat", lbl_monthly_feasts: "Werawi Bealat", lbl_national_short: "Hagerawi Bealat", lbl_movable_short: "Yemizoru Bealat", lbl_synax_short: "Yä Senkesar Bealat",
-        txt_morning: "Twat", txt_evening: "Mata", bh_tewsak: "Tewesak", no_synax: "Läzare yeteመzegebe Senkesar beal yellem.",
-        months: ["", "Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", "Miazia", "Ginbot", "Sene", "Hamle", "Nehase", "Pagume"],
-        weekdays: ["Ihud", "Segno", "Maksegno", "Erob", "Hamus", "Arb", "Kidame"],
-        islamic_months: ["", "Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani", "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"],
-        season_autumn: "Meswet (Autumn)", season_summer: "Bega (Summer)", season_spring: "Belg (Spring)", season_winter: "Kremt (Winter)",
-        liturgical_kremt: "Zemene Kremt",
-        moon_new: "🌑 Adis Chereqa", moon_wax_cresc: "🌒 Ejemola Yihed", moon_first_q: "🌓 Ekul Chereqa", moon_wax_gibb: "🌔 Ejemola Yihed", moon_full: "🌕 Mulu Chereqa", moon_wan_gibb: "🌖 Ejegoded Yihed", moon_last_q: "🌗 Yä Wichila Erub", moon_wan_cresc: "🌘 Ejegoded Yihed",
-        fast_none: "Yä Tsom Zemen Aydelem", fast_abiy: "Abiy Tsom", fast_nebiyat: "Tsome Nebiyat", fast_filseta: "Tsome Filseta", fast_hawaryat: "Tsome Hawaryat", fast_nenewe: "Tsome Nenewe", fast_gehad: "Tsome Gehad", fast_hamsa: "Hamsa Elet", fast_dihnet: "Tsome Dihnet",
-        fest_debre_zeyit: "Debre Zeyit", fest_hosanna: "Hosaena", fest_siklet: "Siklet", fest_tensae: "Tinsae", fest_rikbe_kahnat: "Rikbe Kahnat", fest_erget: "Erget", fest_parakletos: "Perakletos",
-        hol_enkutatash: "Enkutatash", hol_meskel: "Meskel", hol_timkat: "Timket", hol_filseta_maryam: "Filseta Lämariyam", hol_genna: "Genna (Lidet)", hol_adwa: "Yä Adwa Dil", hol_patriots: "Yä Arbegnoch Dil", hol_labor: "Yä Serategnoch Qen",
-        hol_ashura: "Ashura", hol_mawlid: "Mawlid", hol_isra: "Isra Wä Mi'raj", hol_ramadan: "Ramadan", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Iid Al-Fitr", hol_arafah: "Yä Arefa Qen", hol_eid_adha: "Iid Al-Adha", hol_hajj: "Hajji",
-        bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
-        isl_leap_year: "Yeh amet yä sebeq (lele) ametu.", isl_reg_year: "Yeh amet metekelegna ametu.", isl_no_events: "Yeteመzegebe beal yellem.", isl_disclaimer: "Malet: Yehe behesab lay yeteser sinehon, käwastu chereqa mayet gara bä 1-2 qenat lyileyeyet yechilal.", isl_ramadan_start: "Yä Ramadan Metekeriya", isl_ramadan_last_10: "Yä Ramadan Yewechila 10 Qenat Yijemeral", lbl_equiv_greg: "Käwastu Gregorian Qen", lbl_equiv_eth: "Käwastu Ityoophya Qen", lbl_current_info: "Yahunu Woriya", lbl_months: "Werochi", lbl_key_dates: "Wanna Qenat",
-        btn_embed: "🔗 Adirg / Anegagn", embed_title: "Ma'ariginna Anegagn (Embed & Share)", embed_tab_code: "Yä Embed Kodi", embed_tab_image: "Fanata Anegagn (Share Image)", embed_lbl_width: "Sifat (Width)", embed_lbl_height: "Qomat (Height)", embed_lbl_theme: "Aynet (Theme)", embed_opt_light: "Birhan (Light)", embed_opt_dark: "Ch'elema (Dark)", embed_btn_copy: "Kodun Kopi Adirg", embed_btn_copy_image: "Fanatun Kopi Adirg", embed_btn_download: "Fanatu Awerd", embed_share_via: "Bezih Anegagn", embed_lbl_preview: "Qedimi Woriya (Preview)", embed_lbl_lang: "Quanqua (Language)", embed_opt_auto: "Ras Yiseraw (Auto)", embed_lbl_format: "Aynet (Format)", embed_opt_full: "Mulu Widget (Full Widget)", embed_opt_badge: "Anichi Badge (Compact Badge)", embed_days_since: "Yalefu Qenat", btn_embed_holiday: "🔗 Yehen Beal Adirg", btn_embed_year: "🔗 Yehen Amet Adirg", btn_embed_month: "🔗 Yehen War Adirg", btn_close: "Zegi (Close)", skip_to_content: "Wede Waana Yizota Zurr", shared_content_received: "Yetä'agäbä Woriya:", err_synax_load_failed: "Yä Senkesar Woriya Fe'iso Alteshalem. Yä Internet Gietsiret Asregagt Ken Widoro Tesa."
-    }
 };
 
 let currentLang = localStorage.getItem('lang') || 'am';
@@ -565,6 +515,28 @@ function calculateBahreHasab(ey) {
     return { aa, wengelawi: {1:'ማቴዎስ', 2:'ማርቆስ', 3:'ሉቃስ', 0:'ዮሐንስ'}[mod(aa, 4)], medeb, wenber, metqe, abekte, tinteQemer, mebajaHamer, mebajaHamerTewsak, feasts };
 }
 
+const GREAT_LENT_WEEK_KEYS = ["lent_week_1", "lent_week_2", "lent_week_3", "lent_week_4", "lent_week_5", "lent_week_6", "lent_week_7", "lent_week_8"];
+
+// The 8 named Sundays of Great Lent (ዐቢይ ጾም): the 1st (ዘወረደ) falls on the
+// Sunday immediately before Abiy Tsom's Monday start; the 8th (ሆሳዕና) is
+// bh.feasts.hosanna itself, the Sunday that begins Holy Week. Each week
+// takes the name of the Sunday that most recently passed (so a Wednesday
+// is "in the week of" whichever named Sunday came before it, not the one
+// coming up) and runs through the following Saturday.
+//
+// Confirmed against this file's own bh.feasts.debre_zeyit (offset +41):
+// that's independently the 5th Sunday by this same weekly count, which is
+// exactly the traditional name for week 5 — a useful cross-check that this
+// week numbering lines up with the existing Bahire Hasab offsets.
+function getGreatLentWeek(dayNum, bh) {
+    let abiyDay = (bh.feasts.abiy.m - 1) * 30 + bh.feasts.abiy.d;
+    let firstSunday = abiyDay - 1;
+    if (dayNum < firstSunday) return null;
+    let weekIndex = Math.floor((dayNum - firstSunday) / 7);
+    if (weekIndex < 0 || weekIndex > 7) return null;
+    return GREAT_LENT_WEEK_KEYS[weekIndex];
+}
+
 function getLiturgicalSeason(ey, em, ed, bh) {
     let d = ethiopianDayOfYear(em, ed);
     let nenewe_day = (bh.feasts.nenewe.m - 1) * 30 + bh.feasts.nenewe.d, abiy_day = (bh.feasts.abiy.m - 1) * 30 + bh.feasts.abiy.d;
@@ -591,7 +563,11 @@ function getSeasons(ey, em, ed, bh) {
     let fPentecost = (bh.feasts.parakletos.m - 1) * 30 + bh.feasts.parakletos.d;
 
     let fasting = t('fast_none');
-    if (dayNum >= fAbiy && dayNum < fTensae) fasting = t('fast_abiy');
+    if (dayNum >= fAbiy && dayNum < fTensae) {
+        fasting = t('fast_abiy');
+        let weekKey = getGreatLentWeek(dayNum, bh);
+        if (weekKey) fasting += ` (${t(weekKey)})`;
+    }
     else if (dayNum >= 75 && dayNum <= 118) fasting = t('fast_nebiyat');
     else if (dayNum >= 331 && dayNum <= 345) fasting = t('fast_filseta');
     else if (dayNum >= fHawariat && dayNum <= 305) fasting = t('fast_hawaryat');
@@ -629,11 +605,15 @@ function dayOfYearToMonthDay(dayNum) { return { em: Math.floor((dayNum - 1) / 30
 
 function getNamedEventsForYear(ey) {
     let bh = calculateBahreHasab(ey), events = [];
-    [[1, "hol_enkutatash"], [17, "hol_meskel"], [75, "fast_nebiyat"], [130, "fast_gehad"], [131, "hol_timkat"], [331, "fast_filseta"], [345, "hol_filseta_maryam"]].forEach(e => events.push(e));
-    events.push([90 + (ey % 4 === 0 ? 28 : 29), "hol_genna"]);
+    // Fixed-date fasts/feasts — same Ethiopian day-of-year every year (Genna's
+    // day number is the one exception, but that's the ey%4 leap rule, not
+    // Bahire Hasab / Mebaja Hamer — it's still not a "movable feast").
+    [[1, "hol_enkutatash"], [17, "hol_meskel"], [75, "fast_nebiyat"], [130, "fast_gehad"], [131, "hol_timkat"], [331, "fast_filseta"], [345, "hol_filseta_maryam"]].forEach(([dayNum, key]) => events.push([dayNum, key, false]));
+    events.push([90 + (ey % 4 === 0 ? 28 : 29), "hol_genna", false]);
+    // Genuinely movable — computed from this year's Bahire Hasab (Mebaja Hamer).
     for (const [internalKey, dateObj] of Object.entries(bh.feasts)) {
         let i18nKey = ["nenewe", "abiy", "hawaryat", "dihnet"].includes(internalKey) ? `fast_${internalKey}` : `fest_${internalKey}`;
-        events.push([(dateObj.m - 1) * 30 + dateObj.d, i18nKey]);
+        events.push([(dateObj.m - 1) * 30 + dateObj.d, i18nKey, true]);
     }
     return events.sort((a,b) => a[0] - b[0]);
 }
@@ -689,7 +669,7 @@ function getNationalHolidaysMap(ey) {
 
 function getYearlyEvents(ey) {
     let events = [];
-    getNamedEventsForYear(ey).forEach(([dayNum, key]) => events.push({ dayNum, label: t(key), type: 'movable' }));
+    getNamedEventsForYear(ey).forEach(([dayNum, key, movable]) => events.push({ dayNum, label: t(key), type: movable ? 'movable' : 'fixed' }));
     let natMap = getNationalHolidaysMap(ey);
     for (let dayNum in natMap) natMap[dayNum].forEach(label => events.push({ dayNum: parseInt(dayNum), label, type: 'national' }));
     return events.sort((a,b) => a.dayNum - b.dayNum);
@@ -734,9 +714,14 @@ async function buildYearFullDetails(ey) {
     if (holidayLines.length) lines.push(`${t('holidays_title')}: ${holidayLines.join('; ')}`);
 
     // --- Render complete list of year movable events without any limit ---
+    // Only events actually computed from this year's Bahire Hasab belong
+    // here — fixed-date items (New Year, Meskel, Timkat, Genna, etc.) are
+    // already listed above under national holidays and must not be
+    // re-labeled as movable just because they came out of the same
+    // combined event list.
     html += `</ul><h4>${t('lbl_year_movable_events')}</h4><ul>`;
     let shown = new Set(), movableLines = [];
-    events.forEach(ev => {
+    events.filter(ev => ev.type === 'movable').forEach(ev => {
         if (!shown.has(ev.label)) {
             shown.add(ev.label);
             let { em, ed } = dayOfYearToMonthDay(ev.dayNum);
