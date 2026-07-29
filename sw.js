@@ -1,4 +1,4 @@
-const VERSION = "37";
+const VERSION = "38";
 
 const STATIC_CACHE = `ethio-static-${VERSION}`;
 const RUNTIME_CACHE = `ethio-runtime-${VERSION}`;
