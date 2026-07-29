@@ -44,7 +44,7 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="የኢትዮጵያ ካላንደር PWA ቅድመ ዕይታ - የዕለቱ መረጃ፣ የቀን መቀየሪያ፣ እና ብሔራዊ በዓላት">
     <link rel="alternate" type="application/json+oembed" href="https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/oembed.json" title="Ethiopian Calendar & Bahire Hasab">
-    
+
     <meta property="og:locale" content="am_ET">
     <meta property="og:locale:alternate" content="en_US">
     <meta property="og:locale:alternate" content="om_ET">
@@ -109,7 +109,7 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link" data-i18n="skip_to_content">ወደ ዋናው ይዘት ዝለል (Skip to main content)</a>
-    
+
     <header>
         <h1 data-i18n="app_title">የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ</h1>
         <div id="local-time-bar" aria-live="off">የኢትዮጵያ ሰዓት በመጫን ላይ...</div>
@@ -225,10 +225,31 @@
             <div class="card">
                 <h2 data-i18n="synax_title">በስንክሳር ውስጥ ፍለጋ</h2>
                 <button type="button" class="btn-secondary" data-embed-widget="synaxarium" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
+
                 <div class="form-group">
+                    <label for="synax-mode" data-i18n="synax_mode_label">የፍለጋ ዓይነት</label>
+                    <select id="synax-mode">
+                        <option value="name" data-i18n="synax_mode_name">በስም ፈልግ</option>
+                        <option value="date" data-i18n="synax_mode_date">በቀን ፈልግ</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="synax-name-group">
                     <label for="synax-query" data-i18n="synax_label">የቅዱስ ወይም የበዓል ስም ያስገቡ</label>
                     <input type="text" id="synax-query" placeholder="ለምሳሌ፡ ሚካኤል" data-i18n="ph_synax">
                 </div>
+
+                <div class="form-row" id="synax-date-group" hidden>
+                    <div class="form-group">
+                        <label for="synax-month" data-i18n="synax_label_month">ወር</label>
+                        <input type="text" id="synax-month" placeholder="ወር (ምሳሌ: ኅዳር)" data-i18n="ph_month">
+                    </div>
+                    <div class="form-group">
+                        <label for="synax-day" data-i18n="synax_label_day">ቀን</label>
+                        <input type="number" id="synax-day" min="1" max="30" placeholder="ቀን" data-i18n="ph_day">
+                    </div>
+                </div>
+
                 <button type="button" id="btn-search-synax" class="btn-primary" data-i18n="btn_search">ፈልግ</button>
                 <div id="synax-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
