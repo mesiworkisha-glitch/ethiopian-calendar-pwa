@@ -1182,11 +1182,14 @@ function setupSynaxarium() {
 
     const modeSelect = document.getElementById('synax-mode'), nameGroup = document.getElementById('synax-name-group'), dateGroup = document.getElementById('synax-date-group');
     if (modeSelect && nameGroup && dateGroup) {
-        modeSelect.addEventListener('change', () => {
+        const syncModeVisibility = () => {
             const byDate = modeSelect.value === 'date';
             nameGroup.hidden = byDate;
             dateGroup.hidden = !byDate;
-        });
+        };
+        modeSelect.addEventListener('change', syncModeVisibility);
+        modeSelect.addEventListener('input', syncModeVisibility);
+        syncModeVisibility(); // sync immediately in case the browser restored a non-default selection without firing an event
     }
 
     btn.addEventListener('click', async () => {
@@ -1197,9 +1200,9 @@ function setupSynaxarium() {
 
         if (mode === 'date') {
             const monthInput = document.getElementById('synax-month'), dayInput = document.getElementById('synax-day');
-            const em = matchMonthName(monthInput ? monthInput.value : '');
+            const em = parseInt(monthInput ? monthInput.value : '', 10) || matchMonthName(monthInput ? monthInput.value : '');
             const ed = parseInt(dayInput ? dayInput.value : '', 10);
-            if (!em) { out.innerHTML = `<p class="load-error">⚠️ ${t('err_invalid_month_eth')}</p>`; return; }
+            if (!em || em < 1 || em > 13) { out.innerHTML = `<p class="load-error">⚠️ ${t('err_invalid_month_eth')}</p>`; return; }
             if (isNaN(ed) || ed < 1 || ed > (em === 13 ? 6 : 30)) { out.innerHTML = `<p class="load-error">⚠️ ${t('err_invalid_day')}</p>`; return; }
 
             const monthNameAm = SYNAX_MONTH_NAMES_AM[em], mList = getMonths();
