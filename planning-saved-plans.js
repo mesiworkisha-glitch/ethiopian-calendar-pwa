@@ -1,16 +1,155 @@
-(function(){'use strict';
-const STORAGE_KEY='ethio-calendar-plans-v1';
-const LANG={am:{savedPlans:'የተቀመጡ ዕቅዶች',choose:'የተቀመጠ ዕቅድ ይምረጡ',load:'ዕቅዱን ጫን',remove:'ዕቅዱን ሰርዝ',empty:'የተቀመጠ ዕቅድ የለም።',loaded:'ዕቅዱ ተጭኗል።',deleted:'ዕቅዱ ተሰርዟል።',confirm:'ይህን ዕቅድ ሰርዘው?'},en:{savedPlans:'Saved plans',choose:'Select a saved plan',load:'Load plan',remove:'Delete plan',empty:'No saved plans.',loaded:'Plan loaded.',deleted:'Plan deleted.',confirm:'Delete this plan?'},om:{savedPlans:'Karoora olkaa’aman',choose:'Karoora olkaa’ame filadhu',load:'Karoora fe’i',remove:'Karoora haqi',empty:'Karoora olkaa’ame hin jiru.',loaded:'Karooraan fe’ame.',deleted:'Karooraan haqame.',confirm:'Karoora kana haqdaa?'},ti:{savedPlans:'ዝተቐመጡ መደባት',choose:'ዝተቐመጠ መደብ ምረጽ',load:'መደብ ኣልዕል',remove:'መደብ ሰርዝ',empty:'ዝተቐመጠ መደብ የለን።',loaded:'መደብ ተላዒሉ።',deleted:'መደብ ተሰሪዙ።',confirm:'ነዚ መደብ ሰሪዝካዮ?'},so:{savedPlans:'Qorshayaasha kaydsan',choose:'Dooro qorshe kaydsan',load:'Soo geli qorshaha',remove:'Tirtir qorshaha',empty:'Qorshe kaydsan ma jiro.',loaded:'Qorshaha waa la soo geliyay.',deleted:'Qorshaha waa la tirtiray.',confirm:'Ma tirtirtaa qorshahan?'}};
-function t(k){let l='am';try{l=localStorage.getItem('lang')||document.documentElement.lang||'am';}catch(_){}return (LANG[l]||LANG.en)[k]||LANG.en[k]||k;}
-function plans(){try{const v=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');return Array.isArray(v)?v:[];}catch(_){return[];}}
-function savePlans(v){localStorage.setItem(STORAGE_KEY,JSON.stringify(v));}
-function $(id){return document.getElementById(id);}
-function dateKey(d){return d&&Number.isInteger(Number(d.ey))?`${d.ey}-${String(d.em).padStart(2,'0')}-${String(d.ed).padStart(2,'0')}`:'';}
-function inject(){const section=$('tab-planning');if(!section||$('planning-saved-plans'))return false;const box=document.createElement('section');box.id='planning-saved-plans';box.className='planning-saved-plans card';box.setAttribute('aria-labelledby','planning-saved-title');box.innerHTML='<h3 id="planning-saved-title">'+t('savedPlans')+'</h3><div class="form-group"><label for="planning-saved-select">'+t('choose')+'</label><select id="planning-saved-select"><option value="">'+t('empty')+'</option></select></div><div class="planning-actions"><button type="button" id="planning-load-saved" class="btn-primary">'+t('load')+'</button><button type="button" id="planning-delete-saved" class="btn-secondary">'+t('remove')+'</button></div><div id="planning-saved-status" role="status" aria-live="polite"></div>';const anchor=$('planning-schedule-integrated')?.parentElement;section.insertBefore(box,anchor||null);refresh();$('planning-load-saved').addEventListener('click',loadSelected);$('planning-delete-saved').addEventListener('click',deleteSelected);return true;}
-function refresh(){const sel=$('planning-saved-select');if(!sel)return;const current=sel.value;sel.replaceChildren();const list=plans();if(!list.length){sel.add(new Option(t('empty'),''));return;}list.slice().sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''))).forEach(p=>{const label=p.name||'Ethiopian Plan';const date=p.start?dateKey(p.start):'';const count=Array.isArray(p.rows)?p.rows.length:0;sel.add(new Option(`${label}${date?' — '+date:''}${count?' ('+count+')':''}`,p.id||''));});if([...sel.options].some(o=>o.value===current))sel.value=current;}
-function setField(id,value){const el=$(id);if(el!==null&&el!==undefined){el.value=value;el.dispatchEvent(new Event('change',{bubbles:true}));return el;}return null;}
-function loadSelected(){const id=$('planning-saved-select')?.value;if(!id){$('planning-saved-status').textContent=t('empty');return;}const p=plans().find(x=>String(x.id)===String(id));if(!p)return;setField('planning-name',p.name||'Ethiopian Plan');if(p.start){setField('planning-year',p.start.ey);setField('planning-month',p.start.em);setField('planning-day',p.start.ed);}setField('planning-period-value',p.periodValue||1);setField('planning-period-unit',p.periodUnit||'month');setField('planning-interval-value',p.intervalValue||1);setField('planning-interval-unit',p.intervalUnit||'day');setField('planning-season-family',p.seasonCategory||'all');const season=$('planning-season');if(season&&p.seasonId){if(season.disabled===false||p.seasonCategory==='all'){season.value=p.seasonId;season.dispatchEvent(new Event('change',{bubbles:true}));}}const form=$('planning-form-integrated');if(form)form.requestSubmit();setTimeout(()=>{const rows=new Map((p.rows||[]).map(r=>[dateKey(r.date),r]));document.querySelectorAll('#planning-schedule-integrated tbody tr').forEach(tr=>{const date=tr.querySelector('th')?.textContent?.trim();const r=rows.get(date);if(!r)return;const inputs=tr.querySelectorAll('input,textarea,select');if(inputs[0]){inputs[0].value=r.title||'';inputs[0].dispatchEvent(new Event('input',{bubbles:true}));}if(inputs[1]){inputs[1].value=r.details||'';inputs[1].dispatchEvent(new Event('input',{bubbles:true}));}if(inputs[2]){inputs[2].value=r.status||'planned';inputs[2].dispatchEvent(new Event('change',{bubbles:true));}});},300);$('planning-saved-status').textContent=t('loaded');}
-function deleteSelected(){const sel=$('planning-saved-select');const id=sel?.value;if(!id){$('planning-saved-status').textContent=t('empty');return;}if(!window.confirm(t('confirm')))return;savePlans(plans().filter(p=>String(p.id)!==String(id)));refresh();$('planning-saved-status').textContent=t('deleted');}
-function start(){if(inject())return;setTimeout(start,100);}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+(function(){
+  'use strict';
+
+  const STORAGE_KEY = 'ethio-calendar-plans-v1';
+  const $ = id => document.getElementById(id);
+  const text = {
+    am: { title:'የተቀመጡ ዕቅዶች', choose:'የተቀመጠ ዕቅድ ይምረጡ', load:'ዕቅዱን ጫን', remove:'ዕቅዱን ሰርዝ', empty:'የተቀመጠ ዕቅድ የለም።', loaded:'ዕቅዱ ተጭኗል።', deleted:'ዕቅዱ ተሰርዟል።', confirm:'ይህን ዕቅድ ሰርዘው?' },
+    en: { title:'Saved plans', choose:'Select a saved plan', load:'Load plan', remove:'Delete plan', empty:'No saved plans.', loaded:'Plan loaded.', deleted:'Plan deleted.', confirm:'Delete this plan?' },
+    om: { title:'Karoora olkaa’aman', choose:'Karoora olkaa’ame filadhu', load:'Karoora fe’i', remove:'Karoora haqi', empty:'Karoora olkaa’ame hin jiru.', loaded:'Karooraan fe’ame.', deleted:'Karooraan haqame.', confirm:'Karoora kana haqdaa?' },
+    ti: { title:'ዝተቐመጡ መደባት', choose:'ዝተቐመጠ መደብ ምረጽ', load:'መደብ ኣልዕል', remove:'መደብ ሰርዝ', empty:'ዝተቐመጠ መደብ የለን።', loaded:'መደብ ተላዒሉ።', deleted:'መደብ ተሰሪዙ።', confirm:'ነዚ መደብ ሰሪዝካዮ?' },
+    so: { title:'Qorshayaasha kaydsan', choose:'Dooro qorshe kaydsan', load:'Soo geli qorshaha', remove:'Tirtir qorshaha', empty:'Qorshe kaydsan ma jiro.', loaded:'Qorshaha waa la soo geliyay.', deleted:'Qorshaha waa la tirtiray.', confirm:'Ma tirtirtaa qorshahan?' }
+  };
+
+  function lang(){
+    let value = 'en';
+    try { value = localStorage.getItem('lang') || document.documentElement.lang || 'en'; } catch (_) {}
+    return text[value] ? value : 'en';
+  }
+
+  function t(key){ return text[lang()][key] || text.en[key] || key; }
+
+  function getPlans(){
+    try {
+      const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      return Array.isArray(value) ? value : [];
+    } catch (_) { return []; }
+  }
+
+  function setPlans(value){ localStorage.setItem(STORAGE_KEY, JSON.stringify(value)); }
+
+  function dateKey(date){
+    if (!date) return '';
+    return String(date.ey) + '-' + String(date.em).padStart(2, '0') + '-' + String(date.ed).padStart(2, '0');
+  }
+
+  function inject(){
+    const planner = $('tab-planning');
+    if (!planner || $('planning-saved-plans')) return false;
+
+    const box = document.createElement('section');
+    box.id = 'planning-saved-plans';
+    box.className = 'planning-saved-plans card';
+    box.setAttribute('aria-labelledby', 'planning-saved-title');
+    box.innerHTML = '<h3 id="planning-saved-title"></h3>' +
+      '<div class="form-group"><label for="planning-saved-select"></label><select id="planning-saved-select"></select></div>' +
+      '<div class="planning-actions"><button type="button" id="planning-load-saved" class="btn-primary"></button><button type="button" id="planning-delete-saved" class="btn-secondary"></button></div>' +
+      '<div id="planning-saved-status" role="status" aria-live="polite"></div>';
+
+    const heading = box.querySelector('#planning-saved-title');
+    const label = box.querySelector('label');
+    heading.textContent = t('title');
+    label.textContent = t('choose');
+    $('planning-saved-plans');
+    const anchor = $('planning-schedule-integrated');
+    planner.insertBefore(box, anchor ? anchor.parentElement : null);
+
+    $('planning-load-saved').textContent = t('load');
+    $('planning-delete-saved').textContent = t('remove');
+    refresh();
+    $('planning-load-saved').addEventListener('click', loadSelected);
+    $('planning-delete-saved').addEventListener('click', deleteSelected);
+    return true;
+  }
+
+  function refresh(){
+    const select = $('planning-saved-select');
+    if (!select) return;
+    const current = select.value;
+    select.replaceChildren();
+    const list = getPlans().slice().sort((a,b) => String(a.name || '').localeCompare(String(b.name || '')));
+    if (!list.length) {
+      select.add(new Option(t('empty'), ''));
+      return;
+    }
+    list.forEach(plan => {
+      const name = plan.name || 'Ethiopian Plan';
+      const date = plan.start ? dateKey(plan.start) : '';
+      const count = Array.isArray(plan.rows) ? plan.rows.length : 0;
+      const suffix = date ? ' — ' + date : '';
+      const countText = count ? ' (' + count + ')' : '';
+      select.add(new Option(name + suffix + countText, plan.id || ''));
+    });
+    if ([...select.options].some(option => option.value === current)) select.value = current;
+  }
+
+  function setField(id, value){
+    const field = $(id);
+    if (!field) return;
+    field.value = value == null ? '' : value;
+    field.dispatchEvent(new Event('change', { bubbles:true }));
+  }
+
+  function loadSelected(){
+    const select = $('planning-saved-select');
+    const status = $('planning-saved-status');
+    const id = select ? select.value : '';
+    if (!id) { if (status) status.textContent = t('empty'); return; }
+    const plan = getPlans().find(item => String(item.id) === String(id));
+    if (!plan) return;
+
+    setField('planning-name', plan.name || 'Ethiopian Plan');
+    if (plan.start) {
+      setField('planning-year', plan.start.ey);
+      setField('planning-month', plan.start.em);
+      setField('planning-day', plan.start.ed);
+    }
+    setField('planning-period-value', plan.periodValue || 1);
+    setField('planning-period-unit', plan.periodUnit || 'month');
+    setField('planning-interval-value', plan.intervalValue || 1);
+    setField('planning-interval-unit', plan.intervalUnit || 'day');
+    setField('planning-season-family', plan.seasonCategory || 'all');
+
+    const season = $('planning-season');
+    if (season) {
+      season.value = plan.seasonId || 'all';
+      season.dispatchEvent(new Event('change', { bubbles:true }));
+    }
+
+    const form = $('planning-form-integrated');
+    if (form) form.requestSubmit();
+
+    setTimeout(function(){
+      const savedRows = Array.isArray(plan.rows) ? plan.rows : [];
+      const generatedRows = document.querySelectorAll('#planning-schedule-integrated tbody tr');
+      generatedRows.forEach(function(row, index){
+        const saved = savedRows[index];
+        if (!saved) return;
+        const inputs = row.querySelectorAll('input, textarea, select');
+        if (inputs[0]) inputs[0].value = saved.title || '';
+        if (inputs[1]) inputs[1].value = saved.details || '';
+        if (inputs[2]) inputs[2].value = saved.status || 'planned';
+      });
+    }, 350);
+
+    if (status) status.textContent = t('loaded');
+  }
+
+  function deleteSelected(){
+    const select = $('planning-saved-select');
+    const status = $('planning-saved-status');
+    const id = select ? select.value : '';
+    if (!id) { if (status) status.textContent = t('empty'); return; }
+    if (!window.confirm(t('confirm'))) return;
+    setPlans(getPlans().filter(plan => String(plan.id) !== String(id)));
+    refresh();
+    if (status) status.textContent = t('deleted');
+  }
+
+  function start(){
+    if (!inject()) setTimeout(start, 100);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
 })();
