@@ -17,7 +17,9 @@ test('planning UI generates and saves a season-filtered schedule', async ({ page
   await page.locator('#planning-period-unit').selectOption('month');
   await page.locator('#planning-interval-value').fill('1');
   await page.locator('#planning-interval-unit').selectOption('day');
-  await page.locator('#planning-season').selectOption({ index: 1 });
+  const winter = page.locator('#planning-season option').filter({ hasText: 'Winter' });
+  await expect(winter).toHaveCount(1);
+  await page.locator('#planning-season').selectOption(await winter.getAttribute('value'));
   await page.locator('#planning-form-integrated button[type="submit"]').click();
   await expect(page.locator('#planning-schedule-integrated table')).toBeVisible();
   await expect(page.locator('#planning-schedule-integrated tbody tr').first()).toBeVisible();
@@ -98,8 +100,8 @@ test('custom planning period generates an inclusive end-date schedule', async ({
   await page.locator('#planning-form-integrated button[type="submit"]').click();
   const rows = page.locator('#planning-schedule-integrated tbody tr');
   await expect(rows).toHaveCount(5);
-  await expect(rows.first()).toContainText('2018/1/1');
-  await expect(rows.last()).toContainText('2018/1/5');
+  await expect(rows.first()).toContainText('2018-01-01');
+  await expect(rows.last()).toContainText('2018-01-05');
   expect(errors).toEqual([]);
 });
 
