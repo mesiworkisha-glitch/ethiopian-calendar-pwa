@@ -50,3 +50,30 @@ test('planning UI exposes accessible controls and export actions', async ({ page
   expect(download.suggestedFilename()).toMatch(/\.csv$/);
   expect(errors).toEqual([]);
 });
+
+test('saved plans can be loaded and deleted', async ({ page }) => {
+  await page.goto('/index.html', { waitUntil: 'networkidle' });
+  await page.locator('#navbtn-planning').click();
+  await expect(page.locator('#planning-saved-plans')).toBeVisible();
+  await page.locator('#planning-name').fill('Browser Saved Plan');
+  await page.locator('#planning-year').fill('2018');
+  await page.locator('#planning-month').fill('1');
+  await page.locator('#planning-day').fill('1');
+  await page.locator('#planning-period-value').fill('1');
+  await page.locator('#planning-period-unit').selectOption('week');
+  await page.locator('#planning-interval-value').fill('1');
+  await page.locator('#planning-interval-unit').selectOption('day');
+  await page.locator('#planning-form-integrated button[type="submit"]').click();
+  await page.locator('#planning-schedule-integrated tbody tr').first().locator('input').fill('Saved task');
+  await page.locator('#planning-save').click();
+  await expect(page.locator('#planning-saved-select option')).toHaveCount(1);
+  await page.locator('#planning-clear').click();
+  await page.locator('#planning-saved-select').selectOption({ index: 0 });
+  await page.locator('#planning-load-saved').click();
+  await expect(page.locator('#planning-name')).toHaveValue('Browser Saved Plan');
+  await expect(page.locator('#planning-schedule-integrated tbody tr').first().locator('input')).toHaveValue('Saved task');
+  page.once('dialog', dialog => dialog.accept());
+  await page.locator('#planning-delete-saved').click();
+  await expect(page.locator('#planning-saved-select option')).toHaveCount(1);
+  await expect(page.locator('#planning-saved-select option').first()).toHaveValue('');
+});
