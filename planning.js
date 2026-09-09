@@ -5,6 +5,7 @@
 (function (global) {
     'use strict';
     const STORAGE_KEY = 'ethio-calendar-plans-v1';
+    const translate = key => typeof global.t === 'function' ? global.t(key) : key;
     function assertPositiveInteger(value, name) { const n = Number(value); if (!Number.isInteger(n) || n <= 0) throw new Error(`${name} must be a positive integer.`); return n; }
     function toJdn(date) { if (!date || !Number.isInteger(date.ey) || !Number.isInteger(date.em) || !Number.isInteger(date.ed)) throw new Error('Invalid Ethiopian date.'); return global.ethiopianToJdn(date.ey, date.em, date.ed); }
     function fromJdn(jdn) { const e = global.jdnToEthiopian(jdn); return { ey: e.ey, em: e.em, ed: e.ed }; }
@@ -41,17 +42,17 @@
     function seasonInfoForDate(date){
         const bh=global.calculateBahreHasab(date.ey), seasons=global.getSeasons(date.ey,date.em,date.ed,bh);
         const greatLentWeek=typeof global.getGreatLentWeek==='function'?global.getGreatLentWeek(global.ethiopianDayOfYear(date.em,date.ed),bh):null;
-        return {climatic:seasons.climatic,fasting:seasons.fasting,fastingProgress:seasons.progress||'',liturgical:seasons.liturgical,greatLentWeek:greatLentWeek?global.t(greatLentWeek):''};
+        return {climatic:seasons.climatic,fasting:seasons.fasting,fastingProgress:seasons.progress||'',liturgical:seasons.liturgical,greatLentWeek:greatLentWeek?translate(greatLentWeek):''};
     }
     function matchesSeason(info,category,seasonId){
         if(!category||!seasonId||seasonId==='all')return true;
-        if(category==='climatic'){const item=SEASON_CATALOG.climatic.find(x=>x.id===seasonId);return !!item&&info.climatic===global.t(item.labelKey);}
-        if(category==='fasting'){const item=SEASON_CATALOG.fasting.find(x=>x.id===seasonId);if(!item)return false;const label=global.t(item.labelKey);return item.id==='none'?info.fasting===label:info.fasting.includes(label);}
+        if(category==='climatic'){const item=SEASON_CATALOG.climatic.find(x=>x.id===seasonId);return !!item&&info.climatic===translate(item.labelKey);}
+        if(category==='fasting'){const item=SEASON_CATALOG.fasting.find(x=>x.id===seasonId);if(!item)return false;const label=translate(item.labelKey);return item.id==='none'?info.fasting===label:info.fasting.includes(label);}
         if(category==='liturgical'){const item=SEASON_CATALOG.liturgical.find(x=>x.id===seasonId||x.label===seasonId);return !!item&&info.liturgical===item.label;}
-        if(category==='lent-week'){const item=LENT_WEEK_KEYS.find(k=>k===seasonId);return !!item&&info.greatLentWeek===global.t(item);}
+        if(category==='lent-week'){const item=LENT_WEEK_KEYS.find(k=>k===seasonId);return !!item&&info.greatLentWeek===translate(item);}
         return false;
     }
-    function getSeasonCatalog(){return {climatic:SEASON_CATALOG.climatic.map(x=>({...x,label:global.t(x.labelKey)})),fasting:SEASON_CATALOG.fasting.map(x=>({...x,label:global.t(x.labelKey)})),liturgical:SEASON_CATALOG.liturgical.map(x=>({...x})), 'lent-week':LENT_WEEK_KEYS.map(k=>({id:k,labelKey:k,label:global.t(k)}))};}
+    function getSeasonCatalog(){return {climatic:SEASON_CATALOG.climatic.map(x=>({...x,label:translate(x.labelKey)})),fasting:SEASON_CATALOG.fasting.map(x=>({...x,label:translate(x.labelKey)})),liturgical:SEASON_CATALOG.liturgical.map(x=>({...x})), 'lent-week':LENT_WEEK_KEYS.map(k=>({id:k,labelKey:k,label:translate(k)}))};}
 
     function generateSchedule(options){
         const start={ey:Number(options.start.ey),em:Number(options.start.em),ed:Number(options.start.ed)},periodValue=assertPositiveInteger(options.periodValue,'Period'),intervalValue=assertPositiveInteger(options.intervalValue,'Interval'),periodUnit=options.periodUnit||'month',intervalUnit=options.intervalUnit||'day',endExclusive=calculateEndDate(start,periodValue,periodUnit),endJdn=toJdn(endExclusive),seasonCategory=options.seasonCategory||'all',seasonId=options.seasonId||'all',rows=[];
