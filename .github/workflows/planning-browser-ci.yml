@@ -16,11 +16,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22.x
-      - name: Install Playwright
+      - name: Install Playwright browsers
         run: npx --yes playwright@latest install --with-deps chromium
       - name: Start static server
         run: npx --yes http-server . -p 4173 > /tmp/ethio-calendar-server.log 2>&1 &
       - name: Wait for static server
         run: npx --yes wait-on http://127.0.0.1:4173/index.html
       - name: Run planning browser smoke tests
-        run: npx --yes playwright@latest test planning.browser.test.js --config=planning.playwright.config.js
+        run: npx --yes @playwright/test@latest test planning.browser.test.js --config=planning.playwright.config.js
