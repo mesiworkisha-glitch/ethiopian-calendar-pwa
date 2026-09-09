@@ -50,7 +50,6 @@
     const label = box.querySelector('label');
     heading.textContent = t('title');
     label.textContent = t('choose');
-    $('planning-saved-plans');
     const anchor = $('planning-schedule-integrated');
     planner.insertBefore(box, anchor ? anchor.parentElement : null);
 
@@ -147,7 +146,25 @@
   }
 
   function start(){
-    if (!inject()) setTimeout(start, 100);
+    if (!inject()) {
+      setTimeout(start, 100);
+      return;
+    }
+    let lastSnapshot = '';
+    const sync = function(){
+      let snapshot = '';
+      try { snapshot = localStorage.getItem(STORAGE_KEY) || ''; } catch (_) {}
+      if (snapshot !== lastSnapshot) {
+        lastSnapshot = snapshot;
+        refresh();
+      }
+    };
+    try { lastSnapshot = localStorage.getItem(STORAGE_KEY) || ''; } catch (_) {}
+    window.addEventListener('storage', function(event){
+      if (event.key === STORAGE_KEY) refresh();
+    });
+    window.addEventListener('planning-saved', refresh);
+    window.setInterval(sync, 250);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
