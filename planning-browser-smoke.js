@@ -77,3 +77,56 @@ test('saved plans can be loaded and deleted', async ({ page }) => {
   await expect(page.locator('#planning-saved-select option')).toHaveCount(1);
   await expect(page.locator('#planning-saved-select option').first()).toHaveValue('');
 });
+
+test('custom planning period generates an inclusive end-date schedule', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/index.html', { waitUntil: 'networkidle' });
+  await page.locator('#navbtn-planning').click();
+  const periodUnit = page.locator('#planning-period-unit');
+  await expect(periodUnit.locator('option[value="custom"]')).toHaveCount(1);
+  await page.locator('#planning-year').fill('2018');
+  await page.locator('#planning-month').fill('1');
+  await page.locator('#planning-day').fill('1');
+  await periodUnit.selectOption('custom');
+  await expect(page.locator('#planning-custom-end-date')).toBeVisible();
+  await page.locator('#planning-end-year').fill('2018');
+  await page.locator('#planning-end-month').fill('1');
+  await page.locator('#planning-end-day').fill('5');
+  await page.locator('#planning-interval-value').fill('1');
+  await page.locator('#planning-interval-unit').selectOption('day');
+  await page.locator('#planning-form-integrated button[type="submit"]').click();
+  const rows = page.locator('#planning-schedule-integrated tbody tr');
+  await expect(rows).toHaveCount(5);
+  await expect(rows.first()).toContainText('2018/1/1');
+  await expect(rows.last()).toContainText('2018/1/5');
+  const plan = await page.evaluate(() => window.EthioPlanner.getCurrentPlan && window.EthioPlanner.getCurrentPlan());
+  expect(plan.periodUnit).toBe('custom');
+  expect(plan.endDate).toEqual({ ey: 2018, em: 1, ed: 5 });
+  expect(errors).toEqual([]);
+});
+
+test('custom saved plans restore their end date', async ({ page }) => {
+  await page.goto('/index.html', { waitUntil: 'networkidle' });
+  await page.locator('#navbtn-planning').click();
+  await page.locator('#planning-name').fill('Browser Custom Plan');
+  await page.locator('#planning-year').fill('2018');
+  await page.locator('#planning-month').fill('1');
+  await page.locator('#planning-day').fill('1');
+  await page.locator('#planning-period-unit').selectOption('custom');
+  await page.locator('#planning-end-year').fill('2018');
+  await page.locator('#planning-end-month').fill('1');
+  await page.locator('#planning-end-day').fill('5');
+  await page.locator('#planning-interval-value').fill('1');
+  await page.locator('#planning-interval-unit').selectOption('day');
+  await page.locator('#planning-form-integrated button[type="submit"]').click();
+  await page.locator('#planning-save').click();
+  await expect(page.locator('#planning-saved-select option')).toHaveCount(2);
+  await page.locator('#planning-clear').click();
+  await page.locator('#planning-saved-select').selectOption({ index: 1 });
+  await page.locator('#planning-load-saved').click();
+  await expect(page.locator('#planning-period-unit')).toHaveValue('custom');
+  await expect(page.locator('#planning-end-year')).toHaveValue('2018');
+  await expect(page.locator('#planning-end-month')).toHaveValue('1');
+  await expect(page.locator('#planning-end-day')).toHaveValue('5');
+});
