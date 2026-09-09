@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ethiopian Calendar Planning</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="planning.css">
+</head>
+<body>
+<main id="planning-app">
+<h1>Ethiopian Calendar Planning</h1>
+<p class="planning-help">Choose a starting Ethiopian date, define the planning period, then choose how often a planning entry should occur. The schedule uses the Ethiopian calendar's actual month lengths, including Pagumē.</p>
+<form id="planning-form">
+<fieldset><legend>Plan definition</legend>
+<div class="planning-grid">
+<label class="planning-field">Plan name<input id="plan-name" required maxlength="120" value="My Ethiopian Plan"></label>
+<label class="planning-field">Start year<input id="start-year" type="number" min="1" required></label>
+<label class="planning-field">Start month<input id="start-month" type="number" min="1" max="13" required></label>
+<label class="planning-field">Start day<input id="start-day" type="number" min="1" max="30" required></label>
+<label class="planning-field">Period amount<input id="period-value" type="number" min="1" value="1" required></label>
+<label class="planning-field">Period unit<select id="period-unit"><option value="day">day(s)</option><option value="week">week(s)</option><option value="month" selected>month(s)</option><option value="year">year(s)</option></select></label>
+<label class="planning-field">Fill every<input id="interval-value" type="number" min="1" value="1" required></label>
+<label class="planning-field">Interval unit<select id="interval-unit"><option value="day" selected>day(s)</option><option value="week">week(s)</option><option value="month">month(s)</option><option value="year">year(s)</option></select></label>
+</div>
+<div class="planning-actions"><button type="submit">Generate schedule</button><button type="button" id="new-plan">Clear</button></div>
+</fieldset></form>
+<div id="planning-status" class="planning-status" role="status" aria-live="polite"></div>
+<section aria-labelledby="schedule-heading"><h2 id="schedule-heading">Schedule</h2><div id="schedule-wrap" class="planning-table-wrap"></div></section>
+<section aria-labelledby="export-heading"><h2 id="export-heading">Save and export</h2>
+<div class="planning-actions">
+<button type="button" data-export="csv">Export CSV</button><button type="button" data-export="tsv">Export TSV</button><button type="button" data-export="json">Export JSON</button><button type="button" data-export="md">Export Markdown</button><button type="button" data-export="html">Export HTML</button><button type="button" id="save-plan">Save plan</button>
+</div></section>
+<section aria-labelledby="saved-heading"><h2 id="saved-heading">Saved plans</h2><div id="saved-plans" class="planning-saved"></div></section>
+</main>
+<script src="app.js"></script>
+<script src="planning.js"></script>
+<script>
+'use strict';
+(function(){
+const $=id=>document.getElementById(id); let plan=null;
+function today(){const e=window.jdnToEthiopian(window.gregorianToJdn(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()));return e;}
+function setToday(){const e=today();$('start-year').value=e.ey;$('start-month').value=e.em;$('start-day').value=e.ed;}
+function render(){const wrap=$('schedule-wrap');if(!plan){wrap.textContent='No schedule generated yet.';return;} const table=document.createElement('table');table.className='planning-table';table.innerHTML='<caption class="visually-hidden">Planning schedule</caption><thead><tr><th scope="col">Ethiopian date</th><th scope="col">Planning item</th><th scope="col">Details</th><th scope="col">Status</th></tr></thead><tbody></tbody>';const body=table.querySelector('tbody');plan.rows.forEach((r,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<th scope="row">${EthioPlanner.dateLabel(r.date)}</th><td><input aria-label="Planning item for ${EthioPlanner.dateLabel(r.date)}" data-i="${i}" data-k="title"></td><td><textarea rows="2" aria-label="Details for ${EthioPlanner.dateLabel(r.date)}" data-i="${i}" data-k="details"></textarea></td><td><select aria-label="Status for ${EthioPlanner.dateLabel(r.date)}" data-i="${i}" data-k="status"><option value="planned">Planned</option><option value="in-progress">In progress</option><option value="done">Done</option><option value="skipped">Skipped</option></select></td>`;body.appendChild(tr);});wrap.replaceChildren(table);body.querySelectorAll('[data-k]').forEach(el=>{el.value=plan.rows[Number(el.dataset.i)][el.dataset.k]||'';el.addEventListener('input',()=>{plan.rows[Number(el.dataset.i)][el.dataset.k]=el.value;});});}
+function save(){if(!plan)return;plan.name=$('plan-name').value.trim()||'Ethiopian Plan';plan.id=plan.id||`${Date.now()}-${Math.random().toString(36).slice(2)}`;EthioPlanner.savePlan(plan);renderSaved();$('planning-status').textContent='Plan saved locally.';}
+function renderSaved(){const box=$('saved-plans');box.replaceChildren();EthioPlanner.loadPlans().forEach(p=>{const d=document.createElement('div');d.className='planning-saved-item';const b=document.createElement('strong');b.textContent=p.name||'Unnamed plan';const load=document.createElement('button');load.textContent='Load';load.onclick=()=>{plan=p;$('plan-name').value=p.name||'';$('period-value').value=p.periodValue;$('period-unit').value=p.periodUnit;$('interval-value').value=p.intervalValue;$('interval-unit').value=p.intervalUnit;$('start-year').value=p.start.ey;$('start-month').value=p.start.em;$('start-day').value=p.start.ed;render();};const del=document.createElement('button');del.textContent='Delete';del.onclick=()=>{EthioPlanner.deletePlan(p.id);renderSaved();};d.append(b,load,del);box.appendChild(d);});}
+$('planning-form').addEventListener('submit',e=>{e.preventDefault();try{plan=EthioPlanner.generateSchedule({start:{ey:+$('start-year').value,em:+$('start-month').value,ed:+$('start-day').value},periodValue:+$('period-value').value,periodUnit:$('period-unit').value,intervalValue:+$('interval-value').value,intervalUnit:$('interval-unit').value});plan.name=$('plan-name').value.trim()||'Ethiopian Plan';render();$('planning-status').textContent=`Generated ${plan.rows.length} planning dates.`;}catch(err){$('planning-status').textContent=err.message;}});
+$('save-plan').onclick=save;$('new-plan').onclick=()=>{plan=null;$('plan-name').value='My Ethiopian Plan';setToday();$('period-value').value=1;$('period-unit').value='month';$('interval-value').value=1;$('interval-unit').value='day';render();$('planning-status').textContent='';};document.querySelectorAll('[data-export]').forEach(b=>b.onclick=()=>{if(!plan){$('planning-status').textContent='Generate a plan first.';return;}save();EthioPlanner.downloadPlan(plan,b.dataset.export);});setToday();render();renderSaved();
+})();
+</script>
+</body></html>
