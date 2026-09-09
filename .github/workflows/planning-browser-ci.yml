@@ -23,4 +23,4 @@ jobs:
       - name: Wait for static server
         run: npx --yes wait-on http://127.0.0.1:4173/index.html
       - name: Run planning browser smoke tests
-        run: npx --yes @playwright/test@latest test planning-browser-smoke.js --config=planning.playwright.config.js
+        run: npx --yes @playwright/test@latest test planning-browser-smoke.js planning-custom-browser-smoke.js --config=planning.playwright.config.js
