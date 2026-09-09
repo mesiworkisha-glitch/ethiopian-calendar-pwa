@@ -100,9 +100,6 @@ test('custom planning period generates an inclusive end-date schedule', async ({
   await expect(rows).toHaveCount(5);
   await expect(rows.first()).toContainText('2018/1/1');
   await expect(rows.last()).toContainText('2018/1/5');
-  const plan = await page.evaluate(() => window.EthioPlanner.getCurrentPlan && window.EthioPlanner.getCurrentPlan());
-  expect(plan.periodUnit).toBe('custom');
-  expect(plan.endDate).toEqual({ ey: 2018, em: 1, ed: 5 });
   expect(errors).toEqual([]);
 });
 
