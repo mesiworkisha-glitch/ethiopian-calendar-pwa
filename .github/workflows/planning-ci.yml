@@ -1,15 +1,12 @@
 name: Planning Feature CI
-
 on:
   push:
     branches: ["planning-feature"]
   pull_request:
     branches: ["main"]
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -24,10 +21,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
       - name: Run unit tests
         run: npm test
       - name: Validate planning JavaScript syntax
         run: node --check planning.js
+      - name: Validate integrated planning JavaScript syntax
+        run: node --check planning-integrated.js
+      - name: Validate service worker registration syntax
+        run: node --check sw-register.js
       - name: Validate planning HTML
         run: npx --yes html-validate planning.html
