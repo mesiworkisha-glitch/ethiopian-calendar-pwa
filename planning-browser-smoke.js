@@ -1,8 +1,13 @@
 const { test, expect } = require('@playwright/test');
 
-test('planning UI generates and saves a season-filtered schedule', async ({ page }) => {
+function pageErrors(page) {
   const errors = [];
-  page.on('pageerror', error => errors.push(error.message));
+  page.on('pageerror', error => errors.push(`${error.message}\n${error.stack || ''}`));
+  return errors;
+}
+
+test('planning UI generates and saves a season-filtered schedule', async ({ page }) => {
+  const errors = pageErrors(page);
   await page.goto('/index.html', { waitUntil: 'networkidle' });
   const planningTab = page.locator('#navbtn-planning');
   await expect(planningTab).toBeVisible();
@@ -31,8 +36,7 @@ test('planning UI generates and saves a season-filtered schedule', async ({ page
 });
 
 test('planning UI exposes accessible controls and export actions', async ({ page }) => {
-  const errors = [];
-  page.on('pageerror', error => errors.push(error.message));
+  const errors = pageErrors(page);
   await page.goto('/index.html', { waitUntil: 'networkidle' });
   await page.locator('#navbtn-planning').click();
   for (const id of ['planning-name','planning-year','planning-month','planning-day','planning-period-value','planning-period-unit','planning-interval-value','planning-interval-unit','planning-season-family','planning-season']) {
@@ -81,8 +85,7 @@ test('saved plans can be loaded and deleted', async ({ page }) => {
 });
 
 test('custom planning period generates an inclusive end-date schedule', async ({ page }) => {
-  const errors = [];
-  page.on('pageerror', error => errors.push(error.message));
+  const errors = pageErrors(page);
   await page.goto('/index.html', { waitUntil: 'networkidle' });
   await page.locator('#navbtn-planning').click();
   const periodUnit = page.locator('#planning-period-unit');
