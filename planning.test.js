@@ -6,8 +6,11 @@ const fs=require('node:fs');
 const path=require('node:path');
 const {loadApp}=require('./helpers');
 const app=loadApp();
+// planning.js is a browser script that receives `window` as its global.
+// Point window at the VM sandbox so the planner can see app.js functions.
+app.window=app;
 const code=fs.readFileSync(path.join(__dirname,'planning.js'),'utf8');
-const sandbox={...app,window:app};vm.createContext(sandbox);vm.runInContext(code,sandbox,{filename:'planning.js'});const p=sandbox.EthioPlanner;
+vm.createContext(app);vm.runInContext(code,app,{filename:'planning.js'});const p=app.EthioPlanner;
 const date=(ey,em,ed)=>({ey,em,ed});
 const sameDate=(actual,expected)=>{assert.equal(actual.ey,expected.ey);assert.equal(actual.em,expected.em);assert.equal(actual.ed,expected.ed);};
 
