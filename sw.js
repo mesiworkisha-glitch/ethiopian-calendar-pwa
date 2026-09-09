@@ -1,4 +1,4 @@
-const VERSION = "42";
+const VERSION = "43";
 
 const STATIC_CACHE = `ethio-static-${VERSION}`;
 const RUNTIME_CACHE = `ethio-runtime-${VERSION}`;
@@ -14,6 +14,7 @@ const STATIC_ASSETS = [
     "./planning.js",
     "./planning-integrated.js",
     "./planning-saved-plans.js",
+    "./planning-custom-period.js",
     "./app.js",
     "./helpers.js",
     "./manifest.json",
