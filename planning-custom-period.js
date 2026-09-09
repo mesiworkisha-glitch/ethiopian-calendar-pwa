@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);
 const original=window.EthioPlanner&&window.EthioPlanner.generateSchedule;
 if(!original||window.__planningCustomPeriod)return;
 window.__planningCustomPeriod=true;
-function validDate(y,m,d){return Number.isInteger(y)&&Number.isInteger(m)&&Number.isInteger(d)&&y>0&&m>=1&&m<=13&&d>=1&&d<=30;}
+function validDate(y,m,d){if(!Number.isInteger(y)||!Number.isInteger(m)||!Number.isInteger(d)||y<1||m<1||m>13||d<1)return false;return d<=window.getMonthLength(y,m);}
 function endDate(){return {ey:+$('planning-end-year').value,em:+$('planning-end-month').value,ed:+$('planning-end-day').value};}
 function addDays(date,n){return window.EthioPlanner.addUnit(date,n,'day');}
 window.EthioPlanner.generateSchedule=function(options){
