@@ -54,6 +54,13 @@
       om: 'Guyyaan xumuraa karoora keessatti ni dabalama.',
       ti: 'እቲ መወዳእታ ዕለት ኣብ መደብ ይካተት።',
       so: 'Taariikhda dhammaadka waxaa lagu daraa jadwalka qorshaha.'
+    },
+    units: {
+      am: { day: 'ቀን', week: 'ሳምንት', month: 'ወር', year: 'ዓመት' },
+      en: { day: 'day(s)', week: 'week(s)', month: 'month(s)', year: 'year(s)' },
+      om: { day: 'guyyaa', week: 'torban', month: 'ji’a', year: 'waggaa' },
+      ti: { day: 'ዕለት', week: 'ሰሙን', month: 'ወርሒ', year: 'ዓመት' },
+      so: { day: 'maalin', week: 'toddobaad', month: 'bil', year: 'sannad' }
     }
   };
 
@@ -65,6 +72,45 @@
   function label(key){
     const lang = language();
     return labels[key]?.[lang] || labels[key]?.en || key;
+  }
+
+  function unitLabel(unit){
+    const lang = language();
+    return labels.units[lang]?.[unit] || labels.units.en[unit] || unit;
+  }
+
+  function updateUnitLabels(){
+    const units = $('planning-period-unit');
+    const intervals = $('planning-interval-unit');
+    [units, intervals].forEach(select => {
+      if (!select) return;
+      ['day', 'week', 'month', 'year'].forEach(value => {
+        const option = select.querySelector(`option[value="${value}"]`);
+        if (option) option.textContent = unitLabel(value);
+      });
+      const custom = select.querySelector('option[value="custom"]');
+      if (custom) custom.textContent = label('custom');
+    });
+  }
+
+  function updateCustomLabels(){
+    const box = $('planning-custom-end-date');
+    if (!box) return;
+    const legend = box.querySelector('legend');
+    const year = box.querySelector('label[for="planning-end-year"]');
+    const month = box.querySelector('label[for="planning-end-month"]');
+    const day = box.querySelector('label[for="planning-end-day"]');
+    const info = $('planning-end-date-info');
+    if (legend) legend.textContent = label('endDate');
+    if (year) year.textContent = label('endYear');
+    if (month) month.textContent = label('endMonth');
+    if (day) day.textContent = label('endDay');
+    if (info) info.textContent = label('included');
+  }
+
+  function refreshLocalizedControls(){
+    updateUnitLabels();
+    updateCustomLabels();
   }
 
   function validDate(y, m, d){
@@ -120,6 +166,7 @@
 
     const periodGroup = unit.closest('.form-group');
     if (!periodGroup || $('planning-custom-end-date')) {
+      refreshLocalizedControls();
       return !!$('planning-custom-end-date');
     }
 
@@ -154,6 +201,7 @@
     $('planning-day').addEventListener('input', syncDefaultEnd);
     syncDefaultEnd();
     toggle();
+    refreshLocalizedControls();
     return true;
   }
 
@@ -164,6 +212,13 @@
       $('planning-end-month').value = $('planning-month').value;
       $('planning-end-day').value = $('planning-day').value;
     }
+  }
+
+  function resetCustomEndToStart(){
+    if (!$('planning-end-year')) return;
+    $('planning-end-year').value = $('planning-year').value;
+    $('planning-end-month').value = $('planning-month').value;
+    $('planning-end-day').value = $('planning-day').value;
   }
 
   function toggle(){
@@ -205,6 +260,23 @@
     }, true);
   }
 
+  function bindClear(){
+    const clear = $('planning-clear');
+    if (!clear || clear.dataset.customPeriodClearBound) return;
+    clear.dataset.customPeriodClearBound = '1';
+    clear.addEventListener('click', resetCustomEndToStart, true);
+  }
+
+  function watchLanguage(){
+    let last = localStorage.getItem('lang');
+    setInterval(() => {
+      const current = localStorage.getItem('lang');
+      if (current === last) return;
+      last = current;
+      refreshLocalizedControls();
+    }, 250);
+  }
+
   function start(){
     if (!wrapGenerator()) return;
     if (!addCustomOption()) {
@@ -212,6 +284,8 @@
       return;
     }
     restoreSavedEnd();
+    bindClear();
+    watchLanguage();
   }
 
   if (document.readyState === 'loading') {
