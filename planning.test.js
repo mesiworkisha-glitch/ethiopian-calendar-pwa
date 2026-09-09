@@ -254,5 +254,5 @@ test('persistence saves, updates and deletes named plans', () => {
     p.savePlan(plan);
     assert.equal(p.loadPlans()[0].name, 'Updated plan');
     p.deletePlan(plan.id);
-    assert.deepEqual(p.loadPlans(), []);
+    assert.equal(p.loadPlans().length, 0);
 });
