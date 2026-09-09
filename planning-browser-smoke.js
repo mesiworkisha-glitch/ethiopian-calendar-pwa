@@ -66,9 +66,9 @@ test('saved plans can be loaded and deleted', async ({ page }) => {
   await page.locator('#planning-form-integrated button[type="submit"]').click();
   await page.locator('#planning-schedule-integrated tbody tr').first().locator('input').fill('Saved task');
   await page.locator('#planning-save').click();
-  await expect(page.locator('#planning-saved-select option')).toHaveCount(1);
+  await expect(page.locator('#planning-saved-select option')).toHaveCount(2);
   await page.locator('#planning-clear').click();
-  await page.locator('#planning-saved-select').selectOption({ index: 0 });
+  await page.locator('#planning-saved-select').selectOption({ index: 1 });
   await page.locator('#planning-load-saved').click();
   await expect(page.locator('#planning-name')).toHaveValue('Browser Saved Plan');
   await expect(page.locator('#planning-schedule-integrated tbody tr').first().locator('input')).toHaveValue('Saved task');
