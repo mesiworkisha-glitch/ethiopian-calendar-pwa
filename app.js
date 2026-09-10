@@ -258,6 +258,7 @@ function t(key) {
     if (i18n['am'] && i18n['am'][key] !== undefined) return i18n['am'][key];
     return key;
 }
+window.t = t;
 
 function updateStaticTranslations() {
     document.querySelectorAll('[data-i18n]').forEach(el => {

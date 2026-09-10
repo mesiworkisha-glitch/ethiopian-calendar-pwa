@@ -1,0 +1,210 @@
+/* ── Planning feature — integrates with the main app design system ───────── */
+
+/* Layout helpers already provided by style.css:                              */
+/*   .card, .form-group, .form-row, .btn-primary, .btn-secondary              */
+/* This file adds planning-specific components only.                          */
+
+.planning-card { width: 100%; box-sizing: border-box; }
+
+/* Grid for the planning form (used in planning.html standalone) */
+.planning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.planning-field {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+}
+
+.planning-field input,
+.planning-field select,
+.planning-field textarea {
+    font: inherit;
+    padding: .55rem;
+    border: 1px solid var(--border-color);
+    border-radius: .35rem;
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+/* Action rows */
+.planning-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin: 1rem 0;
+    align-items: center;
+}
+
+/* Season info strip */
+.planning-info {
+    padding: .6rem .8rem;
+    border-left: 3px solid var(--primary-color);
+    background: var(--intro-bg);
+    color: var(--intro-text);
+    border-radius: 0 .35rem .35rem 0;
+    font-size: .9rem;
+    margin-top: .5rem;
+}
+
+/* Scrollable table wrapper */
+.planning-table-wrap {
+    overflow-x: auto;
+    margin-top: .5rem;
+    border-radius: .35rem;
+}
+
+/* Planning schedule table */
+.planning-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .92rem;
+}
+
+.planning-table th,
+.planning-table td {
+    border: 1px solid var(--border-color);
+    padding: .45rem .55rem;
+    vertical-align: top;
+    text-align: left;
+}
+
+.planning-table thead th {
+    background: var(--nav-bg);
+    color: var(--text-color);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.planning-table tbody tr:nth-child(even) {
+    background: var(--intro-bg);
+}
+
+.planning-table tbody tr:hover {
+    background: var(--nav-bg);
+}
+
+.planning-table input,
+.planning-table textarea,
+.planning-table select {
+    width: 100%;
+    min-width: 100px;
+    box-sizing: border-box;
+    font: inherit;
+    font-size: .88rem;
+    padding: .35rem;
+    border: 1px solid var(--border-color);
+    border-radius: .25rem;
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+.planning-table textarea { resize: vertical; min-height: 3rem; }
+
+/* Status badge colouring inside the select */
+.planning-table select option[value="done"]        { color: #1a7a1a; }
+.planning-table select option[value="in-progress"] { color: #7a5a00; }
+.planning-table select option[value="skipped"]     { color: #888; }
+
+/* Status message / ARIA live region */
+.planning-status {
+    min-height: 1.5rem;
+    margin: .5rem 0;
+    font-size: .92rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Help / description paragraphs */
+.planning-help {
+    padding: .75rem;
+    border-left: .3rem solid var(--primary-color);
+    margin: .75rem 0;
+    background: var(--intro-bg);
+    color: var(--intro-text);
+    border-radius: 0 .35rem .35rem 0;
+    font-size: .92rem;
+}
+
+/* Saved plans card (injected by planning-saved-plans.js) */
+.planning-saved-plans {
+    margin-top: 1rem;
+}
+
+/* Standalone planning.html — saved-items list */
+.planning-saved {
+    display: grid;
+    gap: .5rem;
+    margin-top: 1rem;
+}
+
+.planning-saved-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem .75rem;
+    border: 1px solid var(--border-color);
+    border-radius: .35rem;
+    background: var(--card-bg);
+}
+
+.planning-saved-item button { font: inherit; }
+
+/* File-input label (standalone page) */
+.planning-file-input {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .5rem .9rem;
+    border: 1px solid var(--border-color);
+    border-radius: .35rem;
+    cursor: pointer;
+    background: var(--nav-bg);
+    color: var(--text-color);
+    font: inherit;
+    font-size: .9rem;
+}
+
+.planning-file-input input[type="file"] { display: none; }
+
+/* Season fieldset */
+.planning-season-fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: .4rem;
+    padding: .75rem 1rem;
+    margin: .75rem 0;
+}
+
+.planning-season-fieldset legend {
+    padding: 0 .4rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Visually hidden (accessibility) */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0,0,0,0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Responsive: stack table inputs on small screens */
+@media (max-width: 640px) {
+    .planning-table th[scope="row"] { white-space: nowrap; }
+    .planning-table input,
+    .planning-table textarea { min-width: 70px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; transition: none !important; }
+}

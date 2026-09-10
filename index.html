@@ -106,6 +106,7 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="planning.css">
 </head>
 <body>
     <a href="#main-content" class="skip-link" data-i18n="skip_to_content">ወደ ዋናው ይዘት ዝለል (Skip to main content)</a>
@@ -439,5 +440,10 @@
 
     <script src="app.js"></script>
     <script src="sw-register.js"></script>
+    <!-- Planning feature: load in dependency order -->
+    <script src="planning.js"></script>
+    <script src="planning-integrated.js"></script>
+    <script src="planning-saved-plans.js"></script>
+    <script src="planning-custom-period.js"></script>
 </body>
 </html>

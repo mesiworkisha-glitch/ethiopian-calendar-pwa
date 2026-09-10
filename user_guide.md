@@ -124,6 +124,29 @@ years, months, and total days lived.
 Enter the first day of your last menstrual period to get an estimated
 due date, current gestational age, and trimester.
 
+### Ethiopian Calendar Planning (ዕቅድ)
+
+A comprehensive Ethiopian calendar scheduling and event planner built directly
+into the app:
+
+- **Flexible Planning Periods:** Create a schedule starting from any Ethiopian
+  date for a set duration (in days, weeks, months, or years) or specify an exact
+  **Custom Date Range** with custom start and end dates.
+- **Filling Intervals:** Control how often planning entries are generated (e.g.
+  every 1 day, every 2 weeks, every 1 month, every 1 year).
+- **Season & Liturgical Filtering:** Filter generated planning dates to only
+  include days that fall within a specific climatic season (e.g. Summer/Kiremt,
+  Autumn/Meher), a fasting season (e.g. Great Lent/Abiy Tsom, Filseta, Fast of the
+  Prophets), an Orthodox liturgical season (e.g. Zemene Tsege, Zemene Astemhiro), or
+  a specific named week of Great Lent (e.g. Week of Mikurab, Week of Debre Zeyit).
+- **Interactive Schedule Editor:** Add titles, notes/details, and status tracking
+  (*Planned*, *In progress*, *Done*, *Skipped*) for each scheduled date.
+- **Export & Import:** Export your schedules into multiple formats (CSV, TSV,
+  JSON, Markdown, or HTML) as either filled plans or blank reusable forms. Re-import
+  saved JSON/CSV/TSV files anytime to restore your work.
+- **Saved Plans Manager:** Save multiple plans locally on your device to load,
+  update, or delete anytime without an internet connection.
+
 ---
 
 ## Embedding & sharing
