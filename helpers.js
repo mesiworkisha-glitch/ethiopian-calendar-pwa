@@ -32,6 +32,8 @@ function loadApp() {
         console,
         URL,
         URLSearchParams,
+        setTimeout,
+        clearTimeout,
     };
     sandbox.self = sandbox.window;
     vm.createContext(sandbox);
