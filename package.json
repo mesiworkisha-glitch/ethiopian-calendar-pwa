@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node --test",
     "lint:i18n": "node scripts/check-i18n.js",
-    "lint:html": "npx --yes html-validate index.html embed.html embed-today.html embed-holidays.html embed-synaxarium.html embed-hijri.html embed-converter.html embed-year.html embed-month.html"
+    "lint:html": "npx --yes html-validate index.html planning.html embed.html embed-today.html embed-holidays.html embed-synaxarium.html embed-hijri.html embed-converter.html embed-year.html embed-month.html"
   },
   "engines": {
     "node": ">=20"

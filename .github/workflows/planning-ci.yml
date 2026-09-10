@@ -1,0 +1,52 @@
+name: Planning Feature CI
+on:
+  push:
+    branches: ["planning-feature"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Run unit tests
+        id: unit-tests
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee planning-test-output.txt
+      - name: Upload unit test output on failure
+        if: steps.unit-tests.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: planning-test-output-node-${{ matrix.node-version }}
+          path: planning-test-output.txt
+          if-no-files-found: error
+      - name: Fail after preserving test output
+        if: steps.unit-tests.outcome == 'failure'
+        run: exit 1
+      - name: Validate planning JavaScript syntax
+        run: node --check planning.js
+      - name: Validate integrated planning JavaScript syntax
+        run: node --check planning-integrated.js
+      - name: Validate saved plans JavaScript syntax
+        run: node --check planning-saved-plans.js
+      - name: Validate custom period JavaScript syntax
+        run: node --check planning-custom-period.js
+      - name: Validate service worker registration syntax
+        run: node --check sw-register.js
+      - name: Validate planning HTML
+        run: npx --yes html-validate planning.html
