@@ -39,6 +39,11 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/embed-gitsawe.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/embed-today.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -71,8 +76,18 @@
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/user_guide.md</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/README.md</loc>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/CHANGELOG.md</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
     </url>
 </urlset>

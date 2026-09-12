@@ -12,7 +12,7 @@ and Slack via Open Graph tags; **not** Twitter/X — see the caveat below).
 embed.html                 ← generic widget page, reads everything from ?query params
 embed-today.html            embed-year.html
 embed-holidays.html         embed-month.html      ← thin wrapper pages, one per
-embed-synaxarium.html                                widget type, each pinning
+embed-synaxarium.html       embed-gitsawe.html      widget type, each pinning
 embed-hijri.html                                     a default via
 embed-converter.html                                 window.EMBED_WIDGET_DEFAULT,
                                                        for stable oEmbed URLs
@@ -30,6 +30,12 @@ defensively (`if (!container) return;` on every render function) — it runs
 unmodified on embed pages too, where most of its target elements simply
 don't exist, and silently no-ops.
 
+The `gitsawe` widget additionally needs `gitsawe.js` loaded before
+`embed.js` (it isn't bundled into `app.js`), since
+`getEmbedWidgetContent('gitsawe')` calls `EthioGitsawe.loadGitsawe()`
+directly. `embed.html` and `embed-gitsawe.html` both include it; a custom
+wrapper page for another widget doesn't need to.
+
 ## Widget types
 
 | `?widget=` value | Shows | Notes |
@@ -37,6 +43,7 @@ don't exist, and silently no-ops.
 | `today` (default) | Full "Today" detail — same content as the main app's Today tab | |
 | `holidays` | This Ethiopian year's national holidays | |
 | `synaxarium` | Today's Synaxarium entries (saints/feasts) | |
+| `gitsawe` | Today's Gitsawe (መጽሐፈ ግጻዌ) entry — commemoration plus the Morning Mesbak/Gospel citations | Requires `gitsawe.js` to also be loaded on the page (see below) |
 | `hijri` | Today's Hijri date + a small interactive Gregorian→Hijri/Ethiopian converter | The converter form only appears in the live widget, not in the Share Image |
 | `converter` | The full multi-calendar date converter, reusing `setupConverter()` as-is | |
 | `year` | Full "This Year" detail (Bahire Hasab figures, month spans, holidays, movable feasts) | `?y=` picks the Ethiopian year; defaults to the current one |
@@ -100,7 +107,7 @@ oEmbed request dynamically for an arbitrary URL — that's normally how
 oEmbed works (a consumer calls `your-oembed-endpoint?url=<page>&format=json`
 and expects a response tailored to that exact URL). Instead:
 
-- The 6 `embed-<widget>.html` wrapper pages each declare a
+- The 7 `embed-<widget>.html` wrapper pages each declare a
   `<link rel="alternate" type="application/json+oembed">` discovery tag
   pointing at their own **static** `oembed-<widget>.json` file.
 - `index.html` itself links to the root `oembed.json` (a "today" widget by

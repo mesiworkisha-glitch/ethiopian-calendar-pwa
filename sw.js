@@ -1,4 +1,4 @@
-const VERSION = "47";
+const VERSION = "48";
 
 const STATIC_CACHE = `ethio-static-${VERSION}`;
 const RUNTIME_CACHE = `ethio-runtime-${VERSION}`;
@@ -16,6 +16,8 @@ const STATIC_ASSETS = [
     "./planning-saved-plans.js",
     "./planning-custom-period.js",
     "./app.js",
+    "./gitsawe.js",
+    "./bible-lookup.js",
     "./helpers.js",
     "./manifest.json",
     "./sw-register.js",
@@ -25,7 +27,7 @@ const STATIC_ASSETS = [
     "./og-image.png"
 ];
 
-const DATA_FILES = ["./synaxarium_feasts.json"];
+const DATA_FILES = ["./synaxarium_feasts.json", "./gitsawe-structure.json", "./gitsawe-corrections.json"];
 
 async function trimCache(cacheName,maxEntries){const cache=await caches.open(cacheName),keys=await cache.keys();while(keys.length>maxEntries)await cache.delete(keys.shift());}
 self.addEventListener("install",event=>{self.skipWaiting();event.waitUntil((async()=>{const staticCache=await caches.open(STATIC_CACHE),dataCache=await caches.open(DATA_CACHE);await Promise.allSettled(STATIC_ASSETS.map(asset=>staticCache.add(asset)));await Promise.allSettled(DATA_FILES.map(asset=>dataCache.add(asset)));})());});

@@ -112,7 +112,10 @@
     <a href="#main-content" class="skip-link" data-i18n="skip_to_content">ወደ ዋናው ይዘት ዝለል (Skip to main content)</a>
 
     <header>
-        <h1 data-i18n="app_title">የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ</h1>
+        <div class="header-brand">
+            <img src="icon.svg" alt="የቀን መቁጠሪያ ምልክት በኢትዮጵያ ሰንደቅ ዓላማ ቀለማት" data-i18n-alt="logo_alt" class="header-logo" width="56" height="56">
+            <h1 data-i18n="app_title">የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ</h1>
+        </div>
         <div id="local-time-bar" aria-live="off">የኢትዮጵያ ሰዓት በመጫን ላይ...</div>
         <div id="timezone-info-bar" aria-live="polite"></div>
 
@@ -143,6 +146,7 @@
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-hebrew" id="navbtn-hebrew" data-target="tab-hebrew" data-i18n="nav_hebrew">ዕብራውያን አቆጣጠር</button>
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-converter" id="navbtn-converter" data-target="tab-converter" data-i18n="nav_converter">ቀን መቀየሪያ</button>
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium" data-i18n="nav_synaxarium">ስንክሳር ፍለጋ</button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-gitsawe" id="navbtn-gitsawe" data-target="tab-gitsawe" data-i18n="nav_gitsawe">መጽሐፈ ግጻዌ</button>
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-periodic" id="navbtn-periodic" data-target="tab-periodic" data-i18n="nav_period">የወር አበባ ዑደት</button>
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-age" id="navbtn-age" data-target="tab-age" data-i18n="nav_age">ዕድሜ ማስያ</button>
         <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-pregnancy" id="navbtn-pregnancy" data-target="tab-pregnancy" data-i18n="nav_pregnancy">የእርግዝና ጊዜ መከታተያ</button>
@@ -253,6 +257,63 @@
 
                 <button type="button" id="btn-search-synax" class="btn-primary" data-i18n="btn_search">ፈልግ</button>
                 <div id="synax-output" class="info-output margin-top" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section id="tab-gitsawe" class="tab-content" role="tabpanel" aria-labelledby="navbtn-gitsawe" hidden>
+            <div class="card">
+                <h2 data-i18n="gitsawe_title">መጽሐፈ ግጻዌ (የዕለቱ ንባባትና ምስባክ)</h2>
+                <button type="button" class="btn-secondary" data-embed-widget="gitsawe" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
+                <p data-i18n="gitsawe_desc">የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን የየዕለቱ የቅዳሴና የነግህ ምስባክ፣ ወንጌል፣ መልእክታትና ቅዳሴ።</p>
+                
+                <div class="form-group">
+                    <label for="gitsawe-mode" data-i18n="gitsawe_mode_label">የይዘት ዓይነት</label>
+                    <select id="gitsawe-mode">
+                        <option value="daily" data-i18n="gitsawe_mode_daily">የዕለቱ ግጻዌ (በቀን ይፈልጉ)</option>
+                        <option value="search" data-i18n="gitsawe_mode_search">በግጻዌ ውስጥ ፍለጋ</option>
+                        <option value="structure" data-i18n="gitsawe_mode_structure">የመጽሐፉ ማውጫና ገጾች</option>
+                    </select>
+                </div>
+
+                <div id="gitsawe-daily-group" class="form-row">
+                    <div class="form-group">
+                        <label for="gitsawe-month" data-i18n="gitsawe_label_month">ወር</label>
+                        <select id="gitsawe-month">
+                            <option value="1">መስከረም</option>
+                            <option value="2">ጥቅምት</option>
+                            <option value="3">ኅዳር</option>
+                            <option value="4">ታኅሣሥ</option>
+                            <option value="5">ጥር</option>
+                            <option value="6">የካቲት</option>
+                            <option value="7">መጋቢት</option>
+                            <option value="8">ሚያዝያ</option>
+                            <option value="9">ግንቦት</option>
+                            <option value="10">ሰኔ</option>
+                            <option value="11">ሐምሌ</option>
+                            <option value="12">ነሐሴ</option>
+                            <option value="13">ጳጉሜን</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gitsawe-day" data-i18n="gitsawe_label_day">ቀን (1-30)</label>
+                        <input type="number" id="gitsawe-day" min="1" max="30" value="1" placeholder="ቀን">
+                    </div>
+                    <div class="form-group" style="justify-content:flex-end;">
+                        <button type="button" id="btn-show-gitsawe" class="btn-primary" data-i18n="gitsawe_btn_show">ግጻዌ አሳይ</button>
+                    </div>
+                </div>
+
+                <div id="gitsawe-search-group" class="form-group" hidden>
+                    <label for="gitsawe-query" data-i18n="gitsawe_label_query">የመዝሙር፣ የወንጌል ወይም የበዓል ስም ያስገቡ</label>
+                    <input type="text" id="gitsawe-query" placeholder="ምሳሌ፡ አክሊለ ዓመት ወይም ሉቃስ" data-i18n="ph_gitsawe_search">
+                    <button type="button" id="btn-search-gitsawe" class="btn-primary margin-top" data-i18n="btn_search">ፈልግ</button>
+                </div>
+
+                <div id="gitsawe-structure-group" hidden>
+                    <div id="gitsawe-structure-output" class="info-output margin-top"></div>
+                </div>
+
+                <div id="gitsawe-output" class="info-output margin-top" aria-live="polite"></div>
             </div>
         </section>
 
@@ -439,6 +500,8 @@
     </div>
 
     <script src="app.js"></script>
+    <script src="gitsawe.js"></script>
+    <script src="bible-lookup.js"></script>
     <script src="sw-register.js"></script>
     <!-- Planning feature: load in dependency order -->
     <script src="planning.js"></script>

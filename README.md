@@ -7,7 +7,7 @@
 
 A comprehensive, fully offline-capable Progressive Web App (PWA) designed to provide accurate Ethiopian calendar calculations, Bahire Hasab (computus), holiday tracking, and complex date conversions. Built with a strong focus on accessibility and multi-language support.
 
-**[🚀 View Live Demo Here](https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/)*
+**[🚀 View Live Demo Here](https://mesiworkisha-glitch.github.io/ethiopian-calendar-pwa/)**
    
 ---
 
@@ -32,6 +32,9 @@ The application is divided into several powerful modules, accessible via a seaml
 *   **📖 Synaxarium Search (በስንክሳር ውስጥ ፍለጋ):**
     *   An offline search engine for the Ethiopian Orthodox Synaxarium.
     *   Query specific Saints or Feasts in Amharic (e.g., "ሚካኤል") to find their exact commemoration dates.
+*   **📜 Gitsawe Daily Lectionary (መጽሐፈ ግጻዌ):**
+    *   Offline lookup of the day's Psalm verse (Mesbak), Gospel, Epistle, and Anaphora readings for the Morning, Liturgy, and Evening services, plus full-text search across the whole lectionary and a browsable table of contents of the printed book.
+    *   Optionally expands any citation into its full Bible passage, cross-referenced against an 83-book Amharic Bible dataset, with a hand-verified correction layer applied wherever the printed source's citations are incomplete or ambiguous.
 *   **🩸 Menstrual Cycle Tracker (የወር አበባ ዑደት):**
     *   A localized health tool allowing users to track their menstrual cycle purely using the Ethiopian calendar.
     *   Calculates the estimated next period date and days remaining based on user-defined parameters.
@@ -42,7 +45,7 @@ The application is divided into several powerful modules, accessible via a seaml
 
 ## 🛠️ Additional Functionalities
 
-*   **Multi-Language Support:** Instantly toggle between Amharic (አማርኛ), English, Afaan Oromoo, and Tigrinya (ትግርኛ).
+*   **Multi-Language Support:** Instantly toggle between Amharic (አማርኛ), English, Afaan Oromoo, Tigrinya (ትግርኛ), and Somali (Soomaali).
 *   **Ge'ez Numerals Toggle:** Switch between standard Arabic numerals (1, 2, 3) and traditional Ge'ez numerals (፩, ፪, ፫) throughout the app.
 *   **Dark Mode:** Built-in theme toggle for comfortable nighttime viewing.
 *   **Live Clock:** Displays real-time Ethiopian time, dynamically converting standard time into the traditional 12-hour cycle (Day/Night) and displaying traditional time units (Kekros/Kaelit).
@@ -52,7 +55,7 @@ The application is divided into several powerful modules, accessible via a seaml
 
 *   **Frontend:** Pure HTML5, CSS3, and Vanilla JavaScript (No heavy frameworks or external dependencies).
 *   **PWA:** Utilizes a Service Worker (`sw.js`) and Web App Manifest (`manifest.json`) for full offline capabilities and installability on desktop and mobile devices.
-*   **Data Handling:** Uses `localStorage` to securely save user preferences and tracker data locally on the client side.
+*   **Data Handling:** Uses `localStorage` to securely save user preferences and tracker data locally on the client side, alongside bundled JSON datasets (Synaxarium, Gitsawe lectionary, and Bible text) fetched on demand for offline lookup.
 *   **SEO/SMO:** Implements `schema.org` structured data (JSON-LD) and full Open Graph/Twitter Card meta tags for rich social sharing.
 
 ## 🚀 Local Installation & Setup
@@ -61,4 +64,12 @@ Because this project uses vanilla web technologies, setup is incredibly straight
 
 1. **Clone the repository:**
    ```bash
-git clone [https://github.com/mesiworkisha-glitch/ethiopian-calendar-pwa.git)                
+   git clone https://github.com/mesiworkisha-glitch/ethiopian-calendar-pwa.git
+   cd ethiopian-calendar-pwa
+   ```
+2. **Serve the files locally** (opening `index.html` directly also works, but a local server avoids browser restrictions on Service Workers and `fetch`):
+   ```bash
+   npx serve .
+   ```
+3. **Open the app** at the URL the server prints (typically `http://localhost:3000`).
+

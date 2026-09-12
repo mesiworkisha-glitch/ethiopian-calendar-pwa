@@ -83,6 +83,16 @@
           "sizes": "192x192"
         }
       ]
+    },
+    {
+      "name": "Gitsawe",
+      "url": "./?tab=gitsawe",
+      "icons": [
+        {
+          "src": "icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ],
   "share_target": {

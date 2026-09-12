@@ -6,6 +6,8 @@
    islamicToJdn(), getIslamicMonthLength(), calculateBahreHasab(), getSeasons(),
    getUpcomingEvents(), getFdreHolidays(), loadSynaxarium(), setupConverter(),
    getEmbedWidgetContent().
+   The "gitsawe" widget additionally relies on EthioGitsawe (gitsawe.js),
+   which must be loaded before this file on any page that offers it.
    ========================================================================== */
 
 (function () {
@@ -115,7 +117,7 @@
         // A dedicated wrapper page (e.g. embed-holidays.html, used for oEmbed discovery)
         // can pin the widget type via a data-default-widget attribute on <body>,
         // while still letting ?lang=/?theme=/?id= etc. be customized per query string.
-        const widget = getParam('widget', document.body.dataset.defaultWidget || 'today');
+        const widget = getParam('widget', document.body.dataset.defaultWidget || window.EMBED_WIDGET_DEFAULT || 'today');
         const lang = getParam('lang', null) || detectPreferredLang();
         const theme = getParam('theme', null) || detectPreferredTheme();
         const numerals = getParam('numerals', 'arabic');

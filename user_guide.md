@@ -2,10 +2,11 @@
 
 A free, offline-capable Ethiopian calendar app: exact Bahire Hasab (ባሕረ
 ሐሳብ) calculations, movable feasts and fasting seasons, the Synaxarium
-(daily saints and commemorations), national holidays, and conversion
-between the Ethiopian, Gregorian, Julian, Hebrew, and Hijri (Islamic)
-calendars. Built with accessibility as a first priority — every screen
-works with a screen reader and full keyboard navigation.
+(daily saints and commemorations), the Gitsawe daily lectionary
+(መጽሐፈ ግጻዌ), national holidays, and conversion between the Ethiopian,
+Gregorian, Julian, Hebrew, and Hijri (Islamic) calendars. Built with
+accessibility as a first priority — every screen works with a screen
+reader and full keyboard navigation.
 
 This guide covers what each part of the app does and how to use it. It
 does not require any technical background.
@@ -106,6 +107,29 @@ holiday falls in a year far in the future.
 Search the Synaxarium (ስንክሳር) by the name of a saint or feast (in
 Amharic) to find which day(s) it's commemorated.
 
+### Gitsawe Daily Lectionary (መጽሐፈ ግጻዌ)
+
+The Gitsawe tab has three modes, switched with the dropdown at the top:
+
+- **Daily Reading (by date)** — pick an Ethiopian month and day to see
+  that day's commemoration and its Morning, Liturgy, and Evening service
+  readings: the Mesbak (ምስባክ, a Psalm verse), Gospel, the Epistles and
+  Acts readings, and the name of the day's Anaphora (ቅዳሴ), where
+  applicable.
+- **Search within Gitsawe** — search across the whole lectionary by a
+  hymn, Gospel, or feast name (e.g. "ሉቃስ") to find every day it's read.
+- **Book Contents & Pages** — a browsable table of contents of the
+  printed Gitsawe volume, organized by its parts, seasons, and months,
+  with page numbers.
+
+Next to most readings, a **ሙሉ ጽሑፍ አሳይ** ("show full text") button
+expands the citation into its actual Bible passage. Where a citation in
+the printed source is incomplete or ambiguous, a hand-verified correction
+is used instead and marked **(ማስተካከያ)** so it's clear the text shown
+differs from the raw citation. Full-text lookup needs a one-time
+download of the Bible dataset the first time you use it; after that it
+works offline.
+
 ### Period Tracker
 
 A private cycle tracker using the Ethiopian calendar. Enter the start
@@ -158,8 +182,8 @@ window with two options:
 - **Embed Code** — a small snippet you can paste into a blog, personal
   website, or link-in-bio page to show a live, auto-updating version of
   that content (today's date, this year's holidays, a specific feast,
-  and more). You can choose the width, height, light/dark theme,
-  language, and a compact "badge" style for sidebars.
+  today's Gitsawe reading, and more). You can choose the width, height,
+  light/dark theme, language, and a compact "badge" style for sidebars.
 - **Share Image** — a downloadable image styled like a printed calendar
   page, ready to share on social media, plus one-tap share buttons for
   Telegram, WhatsApp, X, and Facebook.
@@ -181,9 +205,10 @@ already loaded.
 Once installed:
 - **Offline use** — the app keeps working without an internet connection
   for everything except live data that needs a fresh fetch (like a
-  first-time Synaxarium lookup you haven't made before). If you're fully
-  offline and try to open a page that isn't available, you'll see a
-  friendly "You're Offline" screen with a retry button instead of a
+  first-time Synaxarium lookup, a first-time Gitsawe lookup, or a
+  first-time Bible full-text lookup you haven't made before). If you're
+  fully offline and try to open a page that isn't available, you'll see
+  a friendly "You're Offline" screen with a retry button instead of a
   browser error.
 - **Shortcuts** — press and hold the app's icon on your home screen for
   quick jumps straight to Today, the Date Converter, Holidays, or the
