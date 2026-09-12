@@ -3,9 +3,9 @@
  * check-i18n.js
  *
  * Verifies that every language block inside app.js's `i18n` object defines
- * exactly the same set of keys. This project supports 6 languages (am, en,
+ * exactly the same set of keys. This project supports 5 languages (am, en,
  * om, ti, so) and it's easy for a key to be added to one language while
- * writing a feature and forgotten in the other five — this script catches
+ * writing a feature and forgotten in the other four — this script catches
  * that before it ships.
  *
  * Usage: node scripts/check-i18n.js [path-to-app.js]

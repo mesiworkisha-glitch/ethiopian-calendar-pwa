@@ -13,14 +13,20 @@
         return `${d.ey}-${String(d.em).padStart(2, '0')}-${String(d.ed).padStart(2, '0')}`;
     }
 
+    function validateDateParts(d, sourceText) {
+        if (!Number.isInteger(d.ey) || d.em < 1 || d.em > 13 || d.ed < 1 || d.ed > 30) throw new Error(`Invalid Ethiopian date: ${sourceText}`);
+        if (typeof root.getMonthLength === 'function' && d.ed > root.getMonthLength(d.ey, d.em)) throw new Error(`Invalid Ethiopian date: ${sourceText}`);
+        return d;
+    }
+
     function parseDate(value) {
+        if (value && typeof value === 'object' && Number.isInteger(value.ey) && Number.isInteger(value.em) && Number.isInteger(value.ed)) {
+            return validateDateParts({ ey: value.ey, em: value.em, ed: value.ed }, JSON.stringify(value));
+        }
         const text = String(value || '').trim();
         const m = text.match(DATE_RE);
         if (!m) throw new Error(`Invalid Ethiopian date: ${text}`);
-        const d = { ey: Number(m[1]), em: Number(m[2]), ed: Number(m[3]) };
-        if (!Number.isInteger(d.ey) || d.em < 1 || d.em > 13 || d.ed < 1 || d.ed > 30) throw new Error(`Invalid Ethiopian date: ${text}`);
-        if (typeof root.getMonthLength === 'function' && d.ed > root.getMonthLength(d.ey, d.em)) throw new Error(`Invalid Ethiopian date: ${text}`);
-        return d;
+        return validateDateParts({ ey: Number(m[1]), em: Number(m[2]), ed: Number(m[3]) }, text);
     }
 
     function csvEscape(value) {
@@ -65,7 +71,12 @@
         if (kind === 'json') return JSON.stringify(target, null, 2);
         if (kind === 'csv' || kind === 'tsv') {
             const delimiter = kind === 'tsv' ? '\t' : ',';
-            return [HEADER, ...rows.map(rowFromPlan)].map(row => row.map(csvEscape).join(delimiter)).join('\n');
+            // For a blank form, leave the Title/Details/Status columns off each
+            // row entirely (rather than present-but-empty) so a person filling
+            // the file out — or code appending to it — can complete the row by
+            // typing straight after the last populated column.
+            const dataRows = rows.map(rowFromPlan).map(row => blank ? row.slice(0, 3) : row);
+            return [HEADER, ...dataRows].map(row => row.map(csvEscape).join(delimiter)).join('\n');
         }
         if (kind === 'md') {
             return `# ${target.name || 'Planning'}\n\n| Date | Ethiopian Date | Season | Title | Details | Status |\n|---|---|---|---|---|---|\n${rows.map(r => rowFromPlan(r).map(v => String(v).replace(/\|/g, '\\|')).join(' | ')).map(s => `| ${s} |`).join('\n')}`;

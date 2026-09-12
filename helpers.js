@@ -10,6 +10,13 @@ function loadApp() {
     // The repository keeps app.js at its root alongside the test files.
     const code = fs.readFileSync(path.join(__dirname, 'app.js'), 'utf8');
 
+    class CustomEvent {
+        constructor(type, options) {
+            this.type = type;
+            this.detail = options && options.detail;
+        }
+    }
+
     const sandbox = {
         window: {
             location: { href: 'https://example.com/', search: '' },
@@ -32,6 +39,10 @@ function loadApp() {
         console,
         URL,
         URLSearchParams,
+        CustomEvent,
+        dispatchEvent: () => true,
+        addEventListener: () => {},
+        removeEventListener: () => {},
         setTimeout,
         clearTimeout,
     };

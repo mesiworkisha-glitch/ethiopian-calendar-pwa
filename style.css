@@ -181,6 +181,10 @@ main {
     margin-bottom: 15px;
 }
 
+.form-group-end {
+    justify-content: flex-end;
+}
+
 .form-row {
     display: flex;
     flex-wrap: wrap; 
