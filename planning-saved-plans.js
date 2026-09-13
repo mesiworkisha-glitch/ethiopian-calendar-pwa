@@ -95,13 +95,6 @@
     if ([...select.options].some(option => option.value === current)) select.value = current;
   }
 
-  function setField(id, value){
-    const field = $(id);
-    if (!field) return;
-    field.value = value == null ? '' : value;
-    field.dispatchEvent(new Event('change', { bubbles:true }));
-  }
-
   function loadSelected(){
     const select = $('planning-saved-select');
     const status = $('planning-saved-status');
@@ -110,39 +103,13 @@
     const plan = getPlans().find(item => String(item.id) === String(id));
     if (!plan) return;
 
-    setField('planning-name', plan.name || 'Ethiopian Plan');
-    if (plan.start) {
-      setField('planning-year', plan.start.ey);
-      setField('planning-month', plan.start.em);
-      setField('planning-day', plan.start.ed);
+    // The saved plan already has fully-formed rows (title/details/status/
+    // season for each date), so hand it straight to the planning tab's own
+    // loader rather than re-generating the schedule from the form fields —
+    // that would rebuild empty rows and lose everything the user filled in.
+    if (typeof window.__planningLoadPlan === 'function') {
+      window.__planningLoadPlan(plan);
     }
-    setField('planning-period-value', plan.periodValue || 1);
-    setField('planning-period-unit', plan.periodUnit || 'month');
-    setField('planning-interval-value', plan.intervalValue || 1);
-    setField('planning-interval-unit', plan.intervalUnit || 'day');
-    setField('planning-season-family', plan.seasonCategory || 'all');
-
-    const season = $('planning-season');
-    if (season) {
-      season.value = plan.seasonId || 'all';
-      season.dispatchEvent(new Event('change', { bubbles:true }));
-    }
-
-    const form = $('planning-form-integrated');
-    if (form) form.requestSubmit();
-
-    setTimeout(function(){
-      const savedRows = Array.isArray(plan.rows) ? plan.rows : [];
-      const generatedRows = document.querySelectorAll('#planning-schedule-integrated tbody tr');
-      generatedRows.forEach(function(row, index){
-        const saved = savedRows[index];
-        if (!saved) return;
-        const inputs = row.querySelectorAll('input, textarea, select');
-        if (inputs[0]) inputs[0].value = saved.title || '';
-        if (inputs[1]) inputs[1].value = saved.details || '';
-        if (inputs[2]) inputs[2].value = saved.status || 'planned';
-      });
-    }, 350);
 
     if (status) status.textContent = t('loaded');
   }

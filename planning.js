@@ -33,5 +33,5 @@ function importDelimited(text,delimiter){const rows=parseDelimited(text,delimite
 function importPlanText(text,format){if(format==='json')return importJson(text);return importDelimited(text,format==='tsv'?'\t':',');}
 function injectFileTools(){/* Handled by planning-integrated.js and planning.html */}
 function watch(){/* Disabled to prevent duplicate injection */}
-global.EthioPlanner={addUnit,calculateEndDate,generateSchedule,generateScheduleToDate,seasonInfoForDate,matchesSeason,getSeasonCatalog,loadPlans,savePlan,deletePlan,exportText,downloadPlan,importPlanText};
+global.EthioPlanner={addUnit,calculateEndDate,generateSchedule,generateScheduleToDate,seasonInfoForDate,matchesSeason,getSeasonCatalog,loadPlans,savePlan,deletePlan,exportText,downloadPlan,importPlanText,dateLabel};
 })(window);
