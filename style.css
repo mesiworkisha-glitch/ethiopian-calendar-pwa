@@ -873,3 +873,64 @@ body.embed-body.badge-mode .embed-widget.card {
     color: var(--intro-text);
     font-style: italic;
 }
+
+.agenda-card {
+    padding: 16px;
+}
+
+.agenda-section {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.agenda-section:first-of-type {
+    margin-top: 10px;
+    padding-top: 0;
+    border-top: none;
+}
+
+.agenda-dash-output h4,
+.agenda-tasks-output h4 {
+    margin: 14px 0 6px 0;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.agenda-empty {
+    color: var(--intro-text);
+    font-style: italic;
+    margin: 4px 0 10px 0;
+}
+
+.agenda-task-list {
+    list-style: none;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+.agenda-task-item {
+    background: var(--card-bg);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+}
+
+.agenda-task-meta {
+    font-size: 0.82rem;
+    color: var(--intro-text);
+    margin-bottom: 4px;
+}
+
+.agenda-task-plan {
+    font-style: italic;
+}
+
+.agenda-task-body {
+    margin-bottom: 6px;
+}
+
+.agenda-status-select {
+    font-size: 0.85rem;
+}
