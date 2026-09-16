@@ -44,7 +44,7 @@ const i18n = {
         moon_new: "🌑 አዲስ ጨረቃ (New Moon)", moon_wax_cresc: "🌒 እየሞላ የሚሄድ (Waxing Crescent)", moon_first_q: "🌓 ግማሽ ጨረቃ (First Quarter)", moon_wax_gibb: "🌔 (Waxing Gibbous)", moon_full: "🌕 ሙሉ ጨረቃ (Full Moon)", moon_wan_gibb: "🌖 (Waning Gibbous)", moon_last_q: "🌗 የመጨረሻ ሩብ (Last Quarter)", moon_wan_cresc: "🌘 እየጎደለ የሚሄድ (Waning Crescent)",
         fast_none: "የአጽዋም ዘመን አይደለም", fast_abiy: "ዐቢይ ጾም", fast_nebiyat: "ጾመ ነቢያት", fast_filseta: "ጾመ ፍልሰታ", fast_hawaryat: "ጾመ ሐዋርያት", fast_nenewe: "ጾመ ነነዌ", fast_gehad: "ጾመ ገሀድ", fast_hamsa: "ኀምሳ ዕለት", fast_dihnet: "ጾመ ድኅነት",
         fest_debre_zeyit: "ደብረ ዘይት", fest_hosanna: "ሆሳዕና", fest_siklet: "ስቅለት", fest_tensae: "ትንሣኤ", fest_rikbe_kahnat: "ርክበ ካህናት", fest_erget: "ዕርገት", fest_parakletos: "ጰራቅሊጦስ",
-        hol_enkutatash: "እንቁጣጣሽ", hol_meskel: "መስቀል", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ ለማርያም", hol_genna: "ገና (ልደት)", hol_adwa: "የዓድዋ ድል", hol_patriots: "የአርበኞች ድል", hol_labor: "የሠራተኞች ቀን",
+        hol_enkutatash: "እንቁጣጣሽ", hol_meskel: "መስቀል", hol_buhe: "ቡሄ (ደብረ ታቦር)", hol_sigd: "ስግድ", hol_ashenda: "አሸንዳ", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ ለማርያም", hol_genna: "ገና (ልደት)", hol_adwa: "የዓድዋ ድል", hol_patriots: "የአርበኞች ድል", hol_labor: "የሠራተኞች ቀን",
         hol_ashura: "ዓሹራ (Ashura)", hol_mawlid: "መውሊድ (Mawlid)", hol_isra: "እስራ ወሚዕራጅ (Isra and Mi'raj)", hol_ramadan: "ረመዳን (Ramadan)", hol_laylat: "Laylat al‑Qadr", hol_eid_fitr: "ዒድ አልፊጥር (Eid al-Fitr)", hol_arafah: "የዐረፋ ቀን (Day of Arafah)", hol_eid_adha: "ዒድ አልአድሐ (Eid al-Adha)", hol_hajj: "Hajj",
         bh_medeb: "መደብ", bh_wenber: "ወንበር", bh_tinte: "ጥንተ ቀመር", bh_metqe: "መጥቅዕ", bh_abekte: "አበቅቴ", bh_hamer: "መባጃ ሐመር",
         isl_leap_year: "ዓመቱ ሰበቅ (ልዩ) ዓመት ነው።", isl_reg_year: "ዓመቱ መደበኛ ዓመት ነው።", isl_no_events: "ምንም የተመዘገበ በዓል የለም።", isl_disclaimer: "ማሳሰቢያ፦ ይህ በሒሳብ ስሌት (tabular calendar) ላይ የተመሠረተ ሂሳባዊ ቀን ሲሆን ከትክክለኛ ምልከታ ጋር በ1-2 ቀናት ሊለያይ ይችላል።", isl_ramadan_start: "የረመዳን መጀመሪያ", isl_ramadan_last_10: "የረመዳን መጨረሻዎቹ 10 ቀናት ይጀምራሉ", lbl_equiv_greg: "ተመጣጣኝ የግሪጎሪያን ቀን", lbl_equiv_eth: "ተመጣጣኝ የኢትዮጵያ ቀን", lbl_current_info: "ወቅታዊ መረጃ", lbl_months: "ወራት", lbl_key_dates: "ዋና ዋና ዕለታት",
@@ -95,7 +95,7 @@ const i18n = {
         moon_new: "🌑 New Moon", moon_wax_cresc: "🌒 Waxing Crescent", moon_first_q: "🌓 First Quarter", moon_wax_gibb: "🌔 Waxing Gibbous", moon_full: "🌕 Full Moon", moon_wan_gibb: "🌖 Waning Gibbous", moon_last_q: "🌗 Last Quarter", moon_wan_cresc: "🌘 Waning Crescent",
         fast_none: "Not a Fasting Period", fast_abiy: "Great Lent (Abiy Tsom)", fast_nebiyat: "Fast of the Prophets", fast_filseta: "Fast of Assumption (Filseta)", fast_hawaryat: "Fast of the Apostles", fast_nenewe: "Fast of Nineveh", fast_gehad: "Fast of Gehad", fast_hamsa: "Pentecost (Hamsa Elet)", fast_dihnet: "Fast of Salvation (Wed/Fri)",
         fest_debre_zeyit: "Mount of Olives (Debre Zeyit)", fest_hosanna: "Palm Sunday (Hosanna)", fest_siklet: "Good Friday (Siklet)", fest_tensae: "Easter (Tensae)", fest_rikbe_kahnat: "Meeting of Priests", fest_erget: "Ascension (Erget)", fest_parakletos: "Paraclete",
-        hol_enkutatash: "New Year (Enkutatash)", hol_meskel: "Finding of the True Cross (Meskel)", hol_timkat: "Epiphany (Timkat)", hol_filseta_maryam: "Assumption of Mary", hol_genna: "Christmas (Genna)", hol_adwa: "Victory of Adwa", hol_patriots: "Patriots' Victory Day", hol_labor: "Labor Day",
+        hol_enkutatash: "New Year (Enkutatash)", hol_meskel: "Finding of the True Cross (Meskel)", hol_buhe: "Buhe (Transfiguration)", hol_sigd: "Sigd", hol_ashenda: "Ashenda", hol_timkat: "Epiphany (Timkat)", hol_filseta_maryam: "Assumption of Mary", hol_genna: "Christmas (Genna)", hol_adwa: "Victory of Adwa", hol_patriots: "Patriots' Victory Day", hol_labor: "Labor Day",
         hol_ashura: "Ashura", hol_mawlid: "Mawlid", hol_isra: "Isra and Mi'raj", hol_ramadan: "Ramadan", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Eid al-Fitr", hol_arafah: "Day of Arafah", hol_eid_adha: "Eid al-Adha", hol_hajj: "Hajj",
         bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
         isl_leap_year: "This is a Leap Year.", isl_reg_year: "This is a Regular Year.", isl_no_events: "No specific events.", isl_disclaimer: "Note: This is based on a tabular calendar and may differ from actual sightings by 1-2 days.", isl_ramadan_start: "Start of Ramadan", isl_ramadan_last_10: "Last 10 days of Ramadan begin", lbl_equiv_greg: "Equivalent Gregorian Date", lbl_equiv_eth: "Equivalent Ethiopian Date", lbl_current_info: "Current Information", lbl_months: "Months", lbl_key_dates: "Key Dates",
@@ -146,7 +146,7 @@ const i18n = {
         moon_new: "🌑 Ji'a Haaraa", moon_wax_cresc: "🌒 Ji'a Guddataa", moon_first_q: "🌓 Kurmaana Duraa", moon_wax_gibb: "🌔 Ji'a Walakkaa", moon_full: "🌕 Ji'a Guutuu", moon_wan_gibb: "🌖 Ji'a Hir'ataa", moon_last_q: "🌗 Kurmaana Dhumaa", moon_wan_cresc: "🌘 Ji'a Dhumuuf",
         fast_none: "Yeroo Soomaa Miti", fast_abiy: "Sooma Guddaa", fast_nebiyat: "Sooma Raajotaa", fast_filseta: "Sooma Filsetaa", fast_hawaryat: "Sooma Ergamootaa", fast_nenewe: "Sooma Nanawaa", fast_gehad: "Sooma Gehaad", fast_hamsa: "Hamsa Elet", fast_dihnet: "Sooma Fayyinaa",
         fest_debre_zeyit: "Debre Zeyit", fest_hosanna: "Hosanna", fest_siklet: "Jimaata Fannoo", fest_tensae: "Du'aa Ka'uu (Tensae)", fest_rikbe_kahnat: "Rikbe Kahnat", fest_erget: "Erget", fest_parakletos: "Parakletos",
-        hol_enkutatash: "Ayyaana Haaraa (Enkutatash)", hol_meskel: "Masqala", hol_timkat: "Cuuphaa", hol_filseta_maryam: "Filsetaa", hol_genna: "Ayyaana Dhalootaa (Genna)", hol_adwa: "Injiifannoo Adwaa", hol_patriots: "Guyyaa Arbegnootaa", hol_labor: "Guyyaa Hojjettootaa",
+        hol_enkutatash: "Ayyaana Haaraa (Enkutatash)", hol_meskel: "Masqala", hol_buhe: "Buhee (Debre Taaboor)", hol_sigd: "Siigid", hol_ashenda: "Ashendaa", hol_timkat: "Cuuphaa", hol_filseta_maryam: "Filsetaa", hol_genna: "Ayyaana Dhalootaa (Genna)", hol_adwa: "Injiifannoo Adwaa", hol_patriots: "Guyyaa Arbegnootaa", hol_labor: "Guyyaa Hojjettootaa",
         hol_ashura: "Aashuraa", hol_mawlid: "Mawliid", hol_isra: "Isra fi Mi'raaj", hol_ramadan: "Ramadaana", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Iid Al-Faxir", hol_arafah: "Arafa", hol_eid_adha: "Iid Al-Adhaa", hol_hajj: "Hajjii",
         bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
         isl_leap_year: "Bara Utaalchaati.", isl_reg_year: "Bara Idileeti.", isl_no_events: "Ayyaanota hin jiru.", isl_disclaimer: "Hubachiisa: Kun herrega irratti kan hundaa'eedha, ji'a arguu irraa guyyaa 1-2 garaagarummaa qabaachuu danda'a.", isl_ramadan_start: "Jalqaba Ramadaanaa", isl_ramadan_last_10: "Guyyoota 10 dhumaa Ramadaanaa", lbl_equiv_greg: "Guyyaa Gregorian Walgitu", lbl_equiv_eth: "Guyyaa Itoophiyaa Walgitu", lbl_current_info: "Odeeffannoo Yeroo", lbl_months: "Ji'oota", lbl_key_dates: "Guyyoota Ijoo",
@@ -197,7 +197,7 @@ const i18n = {
         moon_new: "🌑 ሓዳስ ወርሒ", moon_wax_cresc: "🌒 እናመልአት እትኸይድ", moon_first_q: "🌓 ፈረቓ ወርሒ", moon_wax_gibb: "🌔 እናመልአት እትኸይድ", moon_full: "🌕 ምልእቲ ወርሒ", moon_wan_gibb: "🌖 እናጎደለት እትኸይድ", moon_last_q: "🌗 ናይ መወዳእታ ርብዒ", moon_wan_cresc: "🌘 እናጎደለት እትኸይድ",
         fast_none: "እዋን ጾም ኣይኮነን", fast_abiy: "ዓቢ ጾም", fast_nebiyat: "ጾመ ነቢያት", fast_filseta: "ጾመ ፍልሰታ", fast_hawaryat: "ጾመ ሓዋርያት", fast_nenewe: "ጾመ ነነዌ", fast_gehad: "ጾመ ገሃድ", fast_hamsa: "ሓምሳ ዕለት", fast_dihnet: "ጾመ ድሕነት",
         fest_debre_zeyit: "ደብረ ዘይት", fest_hosanna: "ሆሳእና", fest_siklet: "ስቕለት", fest_tensae: "ትንሳኤ", fest_rikbe_kahnat: "ርክበ ካህናት", fest_erget: "ዕርገት", fest_parakletos: "ጰራቅሊጦስ",
-        hol_enkutatash: "ሓዱሽ ዓመት", hol_meskel: "መስቀል", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ", hol_genna: "ልደት", hol_adwa: "ዓወት ዓድዋ", hol_patriots: "ዓወት ሓርበኛታት", hol_labor: "መዓልቲ ሰራሕተኛታት",
+        hol_enkutatash: "ሓዱሽ ዓመት", hol_meskel: "መስቀል", hol_buhe: "ቡሄ (ደብረ ታቦር)", hol_sigd: "ስግድ", hol_ashenda: "ኣሸንዳ", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ", hol_genna: "ልደት", hol_adwa: "ዓወት ዓድዋ", hol_patriots: "ዓወት ሓርበኛታት", hol_labor: "መዓልቲ ሰራሕተኛታት",
         hol_ashura: "ዓሹራ", hol_mawlid: "መውሊድ", hol_isra: "እስራ ወሚዕራጅ", hol_ramadan: "ረመዳን", hol_laylat: "ለይለተል ቀድር", hol_eid_fitr: "ዒድ ኣልፈጥር", hol_arafah: "መዓልቲ ዓረፋ", hol_eid_adha: "ዒድ ኣልኣድሓ", hol_hajj: "ሓጅ",
         bh_medeb: "መደብ", bh_wenber: "ወንበር", bh_tinte: "ጥንተ ቀመር", bh_metqe: "መጥቅዕ", bh_abekte: "ኣበቅቴ", bh_hamer: "መባጃ ሓመር",
         isl_leap_year: "ዓመቱ ዘመነ ሰበቅ (ፍሉይ) እዩ።", isl_reg_year: "ዓመቱ ስሩዕ ዓመት እዩ።", isl_no_events: "ምንም የተመዘገበ በዓል የለም።", isl_disclaimer: "መተሓሳሰቢ፦ እዚ ኣብ ስሌት ዝተመርኮሰ ኮይኑ፡ ምስ ርእየት ወርሒ ብ1-2 መዓልታት ክፈላለ ይኽእል እዩ።", isl_ramadan_start: "መጀመርታ ረመዳን", isl_ramadan_last_10: "ናይ መወዳእታ 10 መዓልታት ረመዳን ይጅምሩ", lbl_equiv_greg: "መዘና ዕለት ግሪጎሪያን", lbl_equiv_eth: "መዘና ዕለት ኢትዮጵያ", lbl_current_info: "እዋናዊ ሓበሬታ", lbl_months: "ኣዋርሕ", lbl_key_dates: "ዓበይቲ ዕለታት",
@@ -248,7 +248,7 @@ const i18n = {
         moon_new: "🌑 Dayax Cusub", moon_wax_cresc: "🌒 Sii Buuxaya", moon_first_q: "🌓 Rubuc Koowaad", moon_wax_gibb: "🌔 Sii Buuxaya (Weyn)", moon_full: "🌕 Dayax Buuxa", moon_wan_gibb: "🌖 Sii Yaraanaya (Weyn)", moon_last_q: "🌗 Rubuc Dambe", moon_wan_cresc: "🌘 Sii Yaraanaya",
         fast_none: "Ma Aha Xilli Soon", fast_abiy: "Sooma Weyn (Abiy Tsom)", fast_nebiyat: "Sooma Nebiyada", fast_filseta: "Sooma Filseta", fast_hawaryat: "Sooma Rasuullada", fast_nenewe: "Sooma Nenewe", fast_gehad: "Sooma Gehad", fast_hamsa: "Hamsa Elet", fast_dihnet: "Sooma Badbaadada",
         fest_debre_zeyit: "Debre Zeyit", fest_hosanna: "Hosanna", fest_siklet: "Siklet (Jimcaha Wanaagsan)", fest_tensae: "Tensae (Sarakicidda)", fest_rikbe_kahnat: "Rikbe Kahnat", fest_erget: "Erget (Kor u Baxa)", fest_parakletos: "Parakletos",
-        hol_enkutatash: "Sanad Cusub (Enkutatash)", hol_meskel: "Meskel", hol_timkat: "Timkat", hol_filseta_maryam: "Filseta Maryam", hol_genna: "Genna (Dhalashada)", hol_adwa: "Guushii Adwa", hol_patriots: "Maalinta Guusha Wadaniyiinta", hol_labor: "Maalinta Shaqaalaha",
+        hol_enkutatash: "Sanad Cusub (Enkutatash)", hol_meskel: "Meskel", hol_buhe: "Buhe (Iftiinka Rabbiga)", hol_sigd: "Sigd", hol_ashenda: "Ashenda", hol_timkat: "Timkat", hol_filseta_maryam: "Filseta Maryam", hol_genna: "Genna (Dhalashada)", hol_adwa: "Guushii Adwa", hol_patriots: "Maalinta Guusha Wadaniyiinta", hol_labor: "Maalinta Shaqaalaha",
         hol_ashura: "Ashuura", hol_mawlid: "Mawliid", hol_isra: "Israa iyo Micraaj", hol_ramadan: "Ramadaan", hol_laylat: "Laylatul Qadar", hol_eid_fitr: "Ciidul Fitr", hol_arafah: "Maalinta Arafah", hol_eid_adha: "Ciidul Adxa", hol_hajj: "Xajka",
         bh_medeb: "Medeb", bh_wenber: "Wenber", bh_tinte: "Tinte Qemer", bh_metqe: "Metqe", bh_abekte: "Abekte", bh_hamer: "Mebaja Hamer",
         isl_leap_year: "Sanadkani waa sanad boobsaday (gaar ah).", isl_reg_year: "Sanadkani waa sanad caadi ah.", isl_no_events: "Dhacdo lama qeexin.", isl_disclaimer: "Ogeysiis: Kani waxa uu ku salaysan yahay kalandarka jadwalka, waxaana laga yaabaa inuu 1-2 maalmood kaga duwan yahay aragista dayaxa dhabta ah.", isl_ramadan_start: "Bilawga Ramadaan", isl_ramadan_last_10: "10-kii maalmood ee ugu dambeeya ee Ramadaan bilaabmayaan", lbl_equiv_greg: "Taariikhda Gregorian ee la mid ah", lbl_equiv_eth: "Taariikhda Itoobiya ee la mid ah", lbl_current_info: "Macluumaadka Hadda", lbl_months: "Bilood", lbl_key_dates: "Taariikhaha Muhiimka ah",
@@ -644,6 +644,8 @@ function getFdreHolidays(ey) {
         { id: "hol_adwa", n: t('hol_adwa'), g: ethToGregorian(ey, 6, 23) },
         { id: "hol_patriots", n: t('hol_patriots'), g: ethToGregorian(ey, 8, 27) },
         { id: "hol_labor", n: t('hol_labor'), g: makeDate(yearG + 1, 5, 1) },
+        { id: "hol_buhe", n: t('hol_buhe'), g: ethToGregorian(ey, 12, 13) },
+        { id: "hol_ashenda", n: t('hol_ashenda'), g: ethToGregorian(ey, 12, 16) },
         { id: "fest_siklet", n: t('fest_siklet'), g: ethToGregorian(ey, bh.feasts.siklet.m, bh.feasts.siklet.d) },
         { id: "fest_tensae", n: t('fest_tensae'), g: ethToGregorian(ey, bh.feasts.tensae.m, bh.feasts.tensae.d) }
     ];
@@ -653,6 +655,12 @@ function getFdreHolidays(ey) {
         [[3,12,"hol_mawlid"],[10,1,"hol_eid_fitr"],[12,10,"hol_eid_adha"]].forEach(([m,d,i18nKey]) => {
             let j = islamicToJdn(y, m, d); if (j >= startJ && j < endJ) h.push({ id: i18nKey, n: t(i18nKey), g: jdnToGregorian(j) });
         });
+    }
+    // Sigd (Beta Israel): 29 Cheshvan, 50 days after Yom Kippur — Hebrew month 1 is
+    // Tishrei in this codebase's numbering (see getHebrewEvents), so Cheshvan is month 2.
+    let hebStart = jdnToHebrew(startJ).hy, hebEnd = jdnToHebrew(endJ).hy;
+    for (let y = hebStart - 1; y <= hebEnd + 1; y++) {
+        let j = hebrewToJdn(y, 2, 29); if (j >= startJ && j < endJ) h.push({ id: "hol_sigd", n: t('hol_sigd'), g: jdnToGregorian(j) });
     }
     return h.sort((a,b) => a.g - b.g);
 }
