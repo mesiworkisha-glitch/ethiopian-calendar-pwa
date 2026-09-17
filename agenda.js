@@ -1,16 +1,12 @@
 (function(){'use strict';
 const S={
-am:{nav:'አጀንዳ',title:'አጀንዳ',dashTitle:'የዕለቱ አጀንዳ',dashDesc:'ማንኛውንም የኢትዮጵያ ቀን ይምረጡ፤ ብሔራዊ በዓላት፣ ስንክሳር፣ ግጻዌ እና የወቅት መረጃ በአንድ ላይ ያሳያል።',year:'ዓመት',month:'ወር',day:'ቀን',show:'አሳይ',holidays:'በዓላት',synax:'ስንክሳር',gitsaweSection:'ግጻዌ',commemoration:'የዕለቱ መታሰቢያ',mesbak:'ምስባክ',gospel:'ወንጌል',seasonSection:'ወቅት',noHolidays:'በዚህ ቀን ምንም ብሔራዊ ወይም ሃይማኖታዊ በዓል የለም።',noSynax:'ለዚህ ቀን የስንክሳር መረጃ አልተገኘም።',noGitsawe:'ለዚህ ቀን የግጻዌ መረጃ አልተገኘም።',climatic:'የአየር ወቅት',fasting:'የጾም ወቅት',liturgical:'የቤ/ክ ዘመን',lentWeek:'የዐቢይ ጾም ሳምንት',taskListTitle:'የተግባር ዝርዝር',taskListDesc:'ከሁሉም የተቀመጡ ዕቅዶች የተውጣጣ በቀናት ቅደም ተከተል የተሰናዳ ዝርዝር።',showDone:'የተጠናቀቁና የተዘለሉትን አሳይ',overdue:'ያለፈ ጊዜው',todayGroup:'ዛሬ',upcoming:'መጪ',noPlans:'የተቀመጠ ዕቅድ የለም። በ«ዕቅድ» ትር ውስጥ ዕቅድ አዘጋጅተው ያስቀምጡ።',noTasks:'የሚታይ ተግባር የለም።',planned:'ታቅዷል',progress:'በሂደት',done:'ተጠናቋል',skipped:'ተዘለለ',refresh:'አድስ',loadErr:'መረጃውን መጫን አልተቻለም።',eventsTitle:'የግል ክንውኖች',eventsDesc:'የራስዎን ክንውን ወይም አስታዋሽ ይጨምሩ፤ በተመረጠው ቀን ስር እና በተግባር ዝርዝር ውስጥ ይታያል።',addEvent:'ክንውን ጨምር',deleteEvent:'አጥፋ',noEvents:'ምንም የግል ክንውን የለም።',eventBadge:'ክንውን',eventTitleLabel:'የክንውኑ ስም'},
-en:{nav:'Agenda',title:'Agenda',dashTitle:"Day's Agenda",dashDesc:'Pick any Ethiopian date to see national/religious holidays, Synaxarium, Gitsawe, and season info together.',year:'Year',month:'Month',day:'Day',show:'Show',holidays:'Holidays',synax:'Synaxarium',gitsaweSection:'Gitsawe',commemoration:"Day's commemoration",mesbak:'Mesbak',gospel:'Gospel',seasonSection:'Season',noHolidays:'No national or religious holiday on this date.',noSynax:'No Synaxarium entry found for this date.',noGitsawe:'No Gitsawe reading found for this date.',climatic:'Climatic season',fasting:'Fasting season',liturgical:'Liturgical season',lentWeek:'Great Lent week',taskListTitle:'Task List',taskListDesc:'A chronological list drawn from all of your saved plans.',showDone:'Show done and skipped',overdue:'Overdue',todayGroup:'Today',upcoming:'Upcoming',noPlans:'No saved plans yet. Create and save a plan in the "Planning" tab.',noTasks:'Nothing to show.',planned:'Planned',progress:'In progress',done:'Done',skipped:'Skipped',refresh:'Refresh',loadErr:'Could not load this information.',eventsTitle:'Personal Events',eventsDesc:"Add your own events or reminders; they'll show under the date you pick and in the task list.",addEvent:'Add Event',deleteEvent:'Delete',noEvents:'No personal events yet.',eventBadge:'Event',eventTitleLabel:'Event title'},
-om:{nav:'Ajandaa',title:'Ajandaa',dashTitle:'Ajandaa Guyyaa',dashDesc:"Guyyaa Itoophiyaa kamiyyuu filadhu; ayyaanota biyyaalessaa/amantii, Sinkisaar, Gitsawe fi odeeffannoo waqtii walitti qabee ni argisiisa.",year:'Waggaa',month:"Ji'a",day:'Guyyaa',show:'Agarsiisi',holidays:'Ayyaanota',synax:'Sinkisaar',gitsaweSection:'Gitsawe',commemoration:'Yaadannoo guyyaa',mesbak:'Mesbaak',gospel:'Wangeela',seasonSection:'Waqtii',noHolidays:'Guyyaa kana ayyaanni biyyaalessaa ykn amantii hin jiru.',noSynax:'Guyyaa kanaaf odeeffannoon Sinkisaar hin argamne.',noGitsawe:'Guyyaa kanaaf dubbisni Gitsawe hin argamne.',climatic:'Waqtii qilleensaa',fasting:'Waqtii soomaa',liturgical:'Waqtii mana kiristaanaa',lentWeek:'Torban Sooma Guddaa',taskListTitle:'Tarreeffama Hojii',taskListDesc:"Tarree yeroo ittiin ergame kan karoorota kee kaa'aman hunda irraa fudhatame.",showDone:'Kan xumurame fi darbitame agarsiisi',overdue:"Yeroon isaa darbe",todayGroup:"Har'a",upcoming:'Dhufaa jiru',noPlans:"Karoorri kaa'ame hin jiru. Gabatee «Karoora» keessatti karoora uumii kaa'i.",noTasks:'Wanti agarsiisamu hin jiru.',planned:'Karoorfame',progress:'Adeemsa irra',done:'Xumurame',skipped:'Darbitame',refresh:'Haaromsi',loadErr:"Odeeffannoo kana fe'uun hin danda'amne.",eventsTitle:'Taateewwan Dhuunfaa',eventsDesc:"Taateewwan yookaan yaadannoo kee mata keetii dabali; guyyaa filattee jalatti fi tarreeffama hojii keessatti ni mul'ata.",addEvent:'Taatee Dabali',deleteEvent:'Haqi',noEvents:'Taatee dhuunfaa hin jiru.',eventBadge:'Taatee',eventTitleLabel:'Mataduree taatee'},
-ti:{nav:'ኣጀንዳ',title:'ኣጀንዳ',dashTitle:'ናይ መዓልቲ ኣጀንዳ',dashDesc:'ዝኾነት ናይ ኢትዮጵያ ዕለት ምረጽ፤ ሃገራውን ሃይማኖታውን በዓላት፣ ስንክሳር፣ ግጻዌን ናይ ወቕቲ ሓበሬታን ብሓባር ዘርኢ።',year:'ዓመት',month:'ወርሒ',day:'መዓልቲ',show:'ኣርኢ',holidays:'በዓላት',synax:'ስንክሳር',gitsaweSection:'ግጻዌ',commemoration:'ናይ መዓልቲ መዘከርታ',mesbak:'ምስባክ',gospel:'ወንጌል',seasonSection:'ወቕቲ',noHolidays:'ኣብዚ መዓልቲ ሃገራዊ ወይ ሃይማኖታዊ በዓል የለን።',noSynax:'ንዚ መዓልቲ ሓበሬታ ስንክሳር ኣይተረኸበን።',noGitsawe:'ንዚ መዓልቲ ሓበሬታ ግጻዌ ኣይተረኸበን።',climatic:'ወቕቲ ኣየር',fasting:'ወቕቲ ጾም',liturgical:'ዘመነ ቤተክርስቲያን',lentWeek:'ሰሙን ዓቢይ ጾም',taskListTitle:'ዝርዝር ዕዮታት',taskListDesc:'ካብ ኩሎም እተዓቀቡ መደባት እተወስደ ብቕደም ሰዓት እተሰርዐ ዝርዝር።',showDone:'እተዛዘመን እተሓለፈን ኣርኢ',overdue:'ግዜኡ ዝሓለፈ',todayGroup:'ሎሚ',upcoming:'ዚመጽእ',noPlans:'እተዓቀበ መደብ የለን። ኣብ «መደብ» ትር መደብ ኣዳሉ ዓቅብ።',noTasks:'ዝርአ ዕዮ የለን።',planned:'ተመዲቡ',progress:'ኣብ ሂደት',done:'ተዛዚሙ',skipped:'ተሓሊፉ',refresh:'ኣሐድስ',loadErr:'እዚ ሓበሬታ ምጽዓን ኣይተኻእለን።',eventsTitle:'ናይ ውልቀ ኩነታት',eventsDesc:'ናትካ ኩነት ወይ መዘኻኸሪ ወስኽ፤ ኣብ ትሕቲ እትመርጾ ዕለትን ኣብ ዝርዝር ዕዮን ክርአ እዩ።',addEvent:'ኩነት ወስኽ',deleteEvent:'ደምስስ',noEvents:'ዝኾነ ናይ ውልቀ ኩነት የለን።',eventBadge:'ኩነት',eventTitleLabel:'ስም ኩነት'},
-so:{nav:'Ajandada',title:'Ajandada',dashTitle:'Ajandada Maalinta',dashDesc:'Dooro taariikh Itoobiya ah oo kasta; wuxuu isku soo bandhigayaa ciidaha qaranka/diinta, Synaxarium, Gitsawe, iyo xogta xilliga.',year:'Sannad',month:'Bil',day:'Maalin',show:'Muuji',holidays:'Ciidaha',synax:'Synaxarium',gitsaweSection:'Gitsawe',commemoration:'Xusuusta maalinta',mesbak:'Mesbak',gospel:'Injiil',seasonSection:'Xilli',noHolidays:'Maalintan ciid qaran ama diineed ma jiro.',noSynax:'Maalintan xog Synaxarium ah lama helin.',noGitsawe:'Maalintan akhris Gitsawe ah lama helin.',climatic:'Xilliga cimilada',fasting:'Xilliga soonka',liturgical:'Xilliga kaniisadda',lentWeek:'Toddobaadka Soonka Weyn',taskListTitle:'Liiska Hawlaha',taskListDesc:'Liis taariikh ahaan u kala horreeya oo laga soo saaray dhammaan qorshayaashaada la kaydiyay.',showDone:'Muuji kuwa la dhammeeyay iyo la boodayba',overdue:'Wakhtigu dhaafay',todayGroup:'Maanta',upcoming:'Soo socda',noPlans:'Wali qorshe lama kaydin. Ku samee oo ku kaydi qorshe gabalka "Qorshe".',noTasks:'Wax la muujiyo ma jiro.',planned:'La qorsheeyay',progress:'Socda',done:'La dhammeeyay',skipped:'La booday',refresh:'Cusboonaysii',loadErr:'Xogtan lama soo rari karin.',eventsTitle:'Dhacdooyinka Shakhsiga',eventsDesc:'Ku dar dhacdooyinkaaga ama xasuusinta; waxay ka muuqan doonaan taariikhda aad dooratay iyo liiska hawlaha.',addEvent:'Ku Dar Dhacdo',deleteEvent:'Tirtir',noEvents:'Wali dhacdo shakhsi ah ma jiraan.',eventBadge:'Dhacdo',eventTitleLabel:'Cinwaanka dhacdada'}
+am:{nav:'አጀንዳ',title:'አጀንዳ',dashTitle:'የዕለቱ አጀንዳ',dashDesc:'ማንኛውንም የኢትዮጵያ ቀን ይምረጡ፤ ብሔራዊ በዓላት፣ ስንክሳር፣ ግጻዌ እና የወቅት መረጃ በአንድ ላይ ያሳያል።',year:'ዓመት',month:'ወር',day:'ቀን',show:'አሳይ',holidays:'በዓላት',synax:'ስንክሳር',gitsaweSection:'ግጻዌ',commemoration:'የዕለቱ መታሰቢያ',mesbak:'ምስባክ',gospel:'ወንጌል',seasonSection:'ወቅት',noHolidays:'በዚህ ቀን ምንም ብሔራዊ ወይም ሃይማኖታዊ በዓል የለም።',noSynax:'ለዚህ ቀን የስንክሳር መረጃ አልተገኘም።',noGitsawe:'ለዚህ ቀን የግጻዌ መረጃ አልተገኘም።',climatic:'የአየር ወቅት',fasting:'የጾም ወቅት',liturgical:'የቤ/ክ ዘመን',lentWeek:'የዐቢይ ጾም ሳምንት',taskListTitle:'የተግባር ዝርዝር',taskListDesc:'ከሁሉም የተቀመጡ ዕቅዶች የተውጣጣ በቀናት ቅደም ተከተል የተሰናዳ ዝርዝር።',showDone:'የተጠናቀቁና የተዘለሉትን አሳይ',overdue:'ያለፈ ጊዜው',todayGroup:'ዛሬ',upcoming:'መጪ',noPlans:'የተቀመጠ ዕቅድ የለም። በ«ዕቅድ» ትር ውስጥ ዕቅድ አዘጋጅተው ያስቀምጡ።',noTasks:'የሚታይ ተግባር የለም።',planned:'ታቅዷል',progress:'በሂደት',done:'ተጠናቋል',skipped:'ተዘለለ',refresh:'አድስ',loadErr:'መረጃውን መጫን አልተቻለም።',eventsTitle:'የግል ክንውኖች',eventsDesc:'የራስዎን ክንውን ወይም አስታዋሽ ይጨምሩ፤ በተመረጠው ቀን ስር እና በተግባር ዝርዝር ውስጥ ይታያል።',addEvent:'ክንውን ጨምር',deleteEvent:'አጥፋ',noEvents:'ምንም የግል ክንውን የለም።',eventBadge:'ክንውን',eventTitleLabel:'የክንውኑ ስም',icalBtn:'iCal ወርድ',icalExported:'iCal ዝርዝሩን ማውረድ ተጀምሯል።'},
+en:{nav:'Agenda',title:'Agenda',dashTitle:"Day's Agenda",dashDesc:'Pick any Ethiopian date to see national/religious holidays, Synaxarium, Gitsawe, and season info together.',year:'Year',month:'Month',day:'Day',show:'Show',holidays:'Holidays',synax:'Synaxarium',gitsaweSection:'Gitsawe',commemoration:"Day's commemoration",mesbak:'Mesbak',gospel:'Gospel',seasonSection:'Season',noHolidays:'No national or religious holiday on this date.',noSynax:'No Synaxarium entry found for this date.',noGitsawe:'No Gitsawe reading found for this date.',climatic:'Climatic season',fasting:'Fasting season',liturgical:'Liturgical season',lentWeek:'Great Lent week',taskListTitle:'Task List',taskListDesc:'A chronological list drawn from all of your saved plans.',showDone:'Show done and skipped',overdue:'Overdue',todayGroup:'Today',upcoming:'Upcoming',noPlans:'No saved plans yet. Create and save a plan in the "Planning" tab.',noTasks:'Nothing to show.',planned:'Planned',progress:'In progress',done:'Done',skipped:'Skipped',refresh:'Refresh',loadErr:'Could not load this information.',eventsTitle:'Personal Events',eventsDesc:"Add your own events or reminders; they'll show under the date you pick and in the task list.",addEvent:'Add Event',deleteEvent:'Delete',noEvents:'No personal events yet.',eventBadge:'Event',eventTitleLabel:'Event title',icalBtn:'Download iCal',icalExported:'Downloading agenda as iCal…'},
+om:{nav:'Ajandaa',title:'Ajandaa',dashTitle:'Ajandaa Guyyaa',dashDesc:"Guyyaa Itoophiyaa kamiyyuu filadhu; ayyaanota biyyaalessaa/amantii, Sinkisaar, Gitsawe fi odeeffannoo waqtii walitti qabee ni argisiisa.",year:'Waggaa',month:"Ji'a",day:'Guyyaa',show:'Agarsiisi',holidays:'Ayyaanota',synax:'Sinkisaar',gitsaweSection:'Gitsawe',commemoration:'Yaadannoo guyyaa',mesbak:'Mesbaak',gospel:'Wangeela',seasonSection:'Waqtii',noHolidays:'Guyyaa kana ayyaanni biyyaalessaa ykn amantii hin jiru.',noSynax:'Guyyaa kanaaf odeeffannoon Sinkisaar hin argamne.',noGitsawe:'Guyyaa kanaaf dubbisni Gitsawe hin argamne.',climatic:'Waqtii qilleensaa',fasting:'Waqtii soomaa',liturgical:'Waqtii mana kiristaanaa',lentWeek:'Torban Sooma Guddaa',taskListTitle:'Tarreeffama Hojii',taskListDesc:"Tarree yeroo ittiin ergame kan karoorota kee kaa'aman hunda irraa fudhatame.",showDone:'Kan xumurame fi darbitame agarsiisi',overdue:"Yeroon isaa darbe",todayGroup:"Har'a",upcoming:'Dhufaa jiru',noPlans:"Karoorri kaa'ame hin jiru. Gabatee «Karoora» keessatti karoora uumii kaa'i.",noTasks:'Wanti agarsiisamu hin jiru.',planned:'Karoorfame',progress:'Adeemsa irra',done:'Xumurame',skipped:'Darbitame',refresh:'Haaromsi',loadErr:"Odeeffannoo kana fe'uun hin danda'amne.",eventsTitle:'Taateewwan Dhuunfaa',eventsDesc:"Taateewwan yookaan yaadannoo kee mata keetii dabali; guyyaa filattee jalatti fi tarreeffama hojii keessatti ni mul'ata.",addEvent:'Taatee Dabali',deleteEvent:'Haqi',noEvents:'Taatee dhuunfaa hin jiru.',eventBadge:'Taatee',eventTitleLabel:'Mataduree taatee',icalBtn:'iCal buusi',icalExported:'Ajandaan iCal dhaaf buufamaa jira…'},
+ti:{nav:'ኣጀንዳ',title:'ኣጀንዳ',dashTitle:'ናይ መዓልቲ ኣጀንዳ',dashDesc:'ዝኾነት ናይ ኢትዮጵያ ዕለት ምረጽ፤ ሃገራውን ሃይማኖታውን በዓላት፣ ስንክሳር፣ ግጻዌን ናይ ወቕቲ ሓበሬታን ብሓባር ዘርኢ።',year:'ዓመት',month:'ወርሒ',day:'መዓልቲ',show:'ኣርኢ',holidays:'በዓላት',synax:'ስንክሳር',gitsaweSection:'ግጻዌ',commemoration:'ናይ መዓልቲ መዘከርታ',mesbak:'ምስባክ',gospel:'ወንጌል',seasonSection:'ወቕቲ',noHolidays:'ኣብዚ መዓልቲ ሃገራዊ ወይ ሃይማኖታዊ በዓል የለን።',noSynax:'ንዚ መዓልቲ ሓበሬታ ስንክሳር ኣይተረኸበን።',noGitsawe:'ንዚ መዓልቲ ሓበሬታ ግጻዌ ኣይተረኸበን።',climatic:'ወቕቲ ኣየር',fasting:'ወቕቲ ጾም',liturgical:'ዘመነ ቤተክርስቲያን',lentWeek:'ሰሙን ዓቢይ ጾም',taskListTitle:'ዝርዝር ዕዮታት',taskListDesc:'ካብ ኩሎም እተዓቀቡ መደባት እተወስደ ብቕደም ሰዓት እተሰርዐ ዝርዝር።',showDone:'እተዛዘመን እተሓለፈን ኣርኢ',overdue:'ግዜኡ ዝሓለፈ',todayGroup:'ሎሚ',upcoming:'ዚመጽእ',noPlans:'እተዓቀበ መደብ የለን። ኣብ «መደብ» ትር መደብ ኣዳሉ ዓቅብ።',noTasks:'ዝርአ ዕዮ የለን።',planned:'ተመዲቡ',progress:'ኣብ ሂደት',done:'ተዛዚሙ',skipped:'ተሓሊፉ',refresh:'ኣሐድስ',loadErr:'እዚ ሓበሬታ ምጽዓን ኣይተኻእለን።',eventsTitle:'ናይ ውልቀ ኩነታት',eventsDesc:'ናትካ ኩነት ወይ መዘኻኸሪ ወስኽ፤ ኣብ ትሕቲ እትመርጾ ዕለትን ኣብ ዝርዝር ዕዮን ክርአ እዩ።',addEvent:'ኩነት ወስኽ',deleteEvent:'ደምስስ',noEvents:'ዝኾነ ናይ ውልቀ ኩነት የለን።',eventBadge:'ኩነት',eventTitleLabel:'ስም ኩነት',icalBtn:'iCal ኣውርድ',icalExported:'ኣጀንዳ ከም iCal ይወርድ ኣሎ…'},
+so:{nav:'Ajandada',title:'Ajandada',dashTitle:'Ajandada Maalinta',dashDesc:'Dooro taariikh Itoobiya ah oo kasta; wuxuu isku soo bandhigayaa ciidaha qaranka/diinta, Synaxarium, Gitsawe, iyo xogta xilliga.',year:'Sannad',month:'Bil',day:'Maalin',show:'Muuji',holidays:'Ciidaha',synax:'Synaxarium',gitsaweSection:'Gitsawe',commemoration:'Xusuusta maalinta',mesbak:'Mesbak',gospel:'Injiil',seasonSection:'Xilli',noHolidays:'Maalintan ciid qaran ama diineed ma jiro.',noSynax:'Maalintan xog Synaxarium ah lama helin.',noGitsawe:'Maalintan akhris Gitsawe ah lama helin.',climatic:'Xilliga cimilada',fasting:'Xilliga soonka',liturgical:'Xilliga kaniisadda',lentWeek:'Toddobaadka Soonka Weyn',taskListTitle:'Liiska Hawlaha',taskListDesc:'Liis taariikh ahaan u kala horreeya oo laga soo saaray dhammaan qorshayaashaada la kaydiyay.',showDone:'Muuji kuwa la dhammeeyay iyo la boodayba',overdue:'Wakhtigu dhaafay',todayGroup:'Maanta',upcoming:'Soo socda',noPlans:'Wali qorshe lama kaydin. Ku samee oo ku kaydi qorshe gabalka "Qorshe".',noTasks:'Wax la muujiyo ma jiro.',planned:'La qorsheeyay',progress:'Socda',done:'La dhammeeyay',skipped:'La booday',refresh:'Cusboonaysii',loadErr:'Xogtan lama soo rari karin.',eventsTitle:'Dhacdooyinka Shakhsiga',eventsDesc:'Ku dar dhacdooyinkaaga ama xasuusinta; waxay ka muuqan doonaan taariikhda aad dooratay iyo liiska hawlaha.',addEvent:'Ku Dar Dhacdo',deleteEvent:'Tirtir',noEvents:'Wali dhacdo shakhsi ah ma jiraan.',eventBadge:'Dhacdo',eventTitleLabel:'Cinwaanka dhacdada',icalBtn:'Soo deji iCal',icalExported:'Ajandada waxaa lagu soo dejinayaa iCal…'}
 };
 const $=id=>document.getElementById(id),t=k=>((S[localStorage.getItem('lang')||document.documentElement.lang]||S.am)[k]||S.en[k]||k);
-// Local copy of the Amharic month names, matching app.js's SYNAX_MONTH_NAMES_AM
-// exactly — kept self-contained rather than referencing that array directly,
-// since it's declared with `const` in app.js and this module has no reliable
-// way to depend on another script's top-level const/let bindings.
 const MONTH_NAMES_AM=["","መስከረም","ጥቅምት","ኅዳር","ታኅሣሥ","ጥር","የካቲት","መጋቢት","ሚያዝያ","ግንቦት","ሰኔ","ሐምሌ","ነሐሴ","ጳጉሜ"];
 
 function today(){const d=new Date();return window.jdnToEthiopian(window.gregorianToJdn(d.getFullYear(),d.getMonth()+1,d.getDate()));}
@@ -107,6 +103,37 @@ function computeTaskBuckets(){
   };
 }
 
+function downloadAgendaIcal(){
+  if(!window.EthioIcal)return;
+  const {overdue, todayItems, upcoming} = computeTaskBuckets();
+  const items = [...overdue, ...todayItems, ...upcoming];
+  if(!items.length) return;
+  const vevents = [];
+  items.forEach(it => {
+    let startG;
+    try {
+      startG = window.ethToGregorian(it.date.ey, it.date.em, it.date.ed);
+    } catch(e) { return; }
+    const endG = window.EthioIcal.addDays(startG, 1);
+    let descParts = [];
+    if(it.details) descParts.push(it.details);
+    if(it.planName) descParts.push('Plan: ' + it.planName);
+    if(it.status) descParts.push('Status: ' + it.status);
+    
+    const uid = `agenda-${it.isEvent ? 'ev' : 'task'}-${it.eventId || it.rowId || it.jdn}@ethio-calendar`;
+    vevents.push(window.EthioIcal.buildVevent({
+      uid,
+      summary: it.title || (it.isEvent ? 'Event' : 'Task'),
+      description: descParts.join('\\n'),
+      startG,
+      endG
+    }));
+  });
+  if(!vevents.length) return;
+  const calText = window.EthioIcal.buildCalendar(vevents, t('taskListTitle'));
+  window.EthioIcal.downloadIcs(calText, 'agenda.ics');
+}
+
 function renderTaskList(){
   const out=$('agenda-tasks-output');
   if(!out)return;
@@ -165,8 +192,16 @@ function setDefaultDate(){const e=today();$('agenda-year').value=e.ey;$('agenda-
 
 function bind(){
   $('agenda-dash-form').addEventListener('submit',e=>{e.preventDefault();showDashboard();});
-  $('agenda-show-done').addEventListener('change',renderTaskList);
-  $('agenda-refresh').addEventListener('click',renderTaskList);
+  $('agenda-show-done').addEventListener('change',renderTaskList);$('agenda-refresh').addEventListener('click',renderTaskList);
+  const icalBtn=$('agenda-ical-btn');
+  if(icalBtn){
+    icalBtn.addEventListener('click',()=>{
+      downloadAgendaIcal();
+      const oldTxt = icalBtn.textContent;
+      icalBtn.textContent = t('icalExported');
+      setTimeout(() => icalBtn.textContent = oldTxt, 2500);
+    });
+  }
   $('agenda-event-form').addEventListener('submit',e=>{
     e.preventDefault();
     const ey=+$('agenda-event-year').value,em=+$('agenda-event-month').value,ed=+$('agenda-event-day').value;
@@ -208,6 +243,7 @@ function relabel(){
   const taskDesc=$('agenda-tasks-desc');if(taskDesc)taskDesc.textContent=t('taskListDesc');
   const showDoneLbl=$('agenda-show-done-label');if(showDoneLbl)showDoneLbl.textContent=t('showDone');
   const refreshBtn=$('agenda-refresh');if(refreshBtn)refreshBtn.textContent=t('refresh');
+  const icalBtn=$('agenda-ical-btn');if(icalBtn)icalBtn.textContent=t('icalBtn');
   renderTaskList();
   renderEventsList();
 }
@@ -244,7 +280,7 @@ function init(){
     '<div id="agenda-events-output" class="agenda-tasks-output"></div></section>'+
     '<section class="agenda-section"><h3 id="agenda-tasks-title">'+t('taskListTitle')+'</h3><p id="agenda-tasks-desc">'+t('taskListDesc')+'</p>'+
     '<div class="form-row planning-columns-row"><label><input type="checkbox" id="agenda-show-done"> <span id="agenda-show-done-label">'+t('showDone')+'</span></label>'+
-    '<button id="agenda-refresh" class="btn-secondary" type="button">'+t('refresh')+'</button></div>'+
+    '<div><button id="agenda-refresh" class="btn-secondary" type="button">'+t('refresh')+'</button> <button id="agenda-ical-btn" class="btn-primary" type="button">'+t('icalBtn')+'</button></div></div>'+
     '<div id="agenda-tasks-output" class="agenda-tasks-output"></div></section></div>';
   main.appendChild(sec);
   setDefaultDate();
