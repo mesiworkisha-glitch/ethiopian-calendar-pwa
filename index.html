@@ -173,7 +173,12 @@
             <div class="card">
                 <h2 data-i18n="holidays_title">የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት</h2>
                 <button type="button" class="btn-secondary" data-embed-widget="holidays" data-i18n="btn_embed">🔗 አጋራ / አስገባ</button>
+                <button type="button" id="btn-holidays-ics" class="btn-secondary" data-i18n="btn_holidays_ics">📥 ሁሉንም ወደ ቀን መቁጠሪያ ላክ (.ics)</button>
                 <div id="holidays-output" class="info-output" aria-live="polite"></div>
+                <h3 data-i18n="holidays_fasts_title">የአጽዋም ወቅቶች</h3>
+                <div id="holidays-fasts-output" class="info-output" aria-live="polite"></div>
+                <h3 data-i18n="holidays_feasts_title">ተንቀሳቃሽ በዓላት</h3>
+                <div id="holidays-feasts-output" class="info-output" aria-live="polite"></div>
             </div>
         </section>
 
@@ -502,6 +507,7 @@
     <script src="app.js"></script>
     <script src="gitsawe.js"></script>
     <script src="bible-lookup.js"></script>
+    <script src="ical-export.js"></script>
     <script src="sw-register.js"></script>
     <!-- Planning feature: load in dependency order -->
     <script src="planning.js"></script>

@@ -521,6 +521,7 @@ body.embed-body {
     #local-time-bar,
     nav,
     .btn-embed-icon,
+    .btn-gcal-icon,
     footer,
     .skip-link,
     #embed-modal,
@@ -589,6 +590,28 @@ body.embed-body {
 }
 
 .btn-embed-icon:hover, .btn-embed-icon:focus-visible {
+    opacity: 1;
+}
+
+.btn-gcal-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 4px 6px;
+    margin: 0 0 0 2px;
+    min-width: 24px;
+    min-height: 24px;
+    opacity: 0.65;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn-gcal-icon:hover, .btn-gcal-icon:focus-visible {
     opacity: 1;
 }
 
@@ -925,6 +948,16 @@ body.embed-body.badge-mode .embed-widget.card {
 
 .agenda-task-plan {
     font-style: italic;
+}
+
+.agenda-task-badge {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #ffffff;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
 }
 
 .agenda-task-body {

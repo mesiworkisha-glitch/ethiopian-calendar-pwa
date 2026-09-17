@@ -1,10 +1,10 @@
 (function(){'use strict';
 const S={
-am:{nav:'አጀንዳ',title:'አጀንዳ',dashTitle:'የዕለቱ አጀንዳ',dashDesc:'ማንኛውንም የኢትዮጵያ ቀን ይምረጡ፤ ብሔራዊ በዓላት፣ ስንክሳር፣ ግጻዌ እና የወቅት መረጃ በአንድ ላይ ያሳያል።',year:'ዓመት',month:'ወር',day:'ቀን',show:'አሳይ',holidays:'በዓላት',synax:'ስንክሳር',gitsaweSection:'ግጻዌ',commemoration:'የዕለቱ መታሰቢያ',mesbak:'ምስባክ',gospel:'ወንጌል',seasonSection:'ወቅት',noHolidays:'በዚህ ቀን ምንም ብሔራዊ ወይም ሃይማኖታዊ በዓል የለም።',noSynax:'ለዚህ ቀን የስንክሳር መረጃ አልተገኘም።',noGitsawe:'ለዚህ ቀን የግጻዌ መረጃ አልተገኘም።',climatic:'የአየር ወቅት',fasting:'የጾም ወቅት',liturgical:'የቤ/ክ ዘመን',lentWeek:'የዐቢይ ጾም ሳምንት',taskListTitle:'የተግባር ዝርዝር',taskListDesc:'ከሁሉም የተቀመጡ ዕቅዶች የተውጣጣ በቀናት ቅደም ተከተል የተሰናዳ ዝርዝር።',showDone:'የተጠናቀቁና የተዘለሉትን አሳይ',overdue:'ያለፈ ጊዜው',todayGroup:'ዛሬ',upcoming:'መጪ',noPlans:'የተቀመጠ ዕቅድ የለም። በ«ዕቅድ» ትር ውስጥ ዕቅድ አዘጋጅተው ያስቀምጡ።',noTasks:'የሚታይ ተግባር የለም።',planned:'ታቅዷል',progress:'በሂደት',done:'ተጠናቋል',skipped:'ተዘለለ',refresh:'አድስ',loadErr:'መረጃውን መጫን አልተቻለም።'},
-en:{nav:'Agenda',title:'Agenda',dashTitle:"Day's Agenda",dashDesc:'Pick any Ethiopian date to see national/religious holidays, Synaxarium, Gitsawe, and season info together.',year:'Year',month:'Month',day:'Day',show:'Show',holidays:'Holidays',synax:'Synaxarium',gitsaweSection:'Gitsawe',commemoration:"Day's commemoration",mesbak:'Mesbak',gospel:'Gospel',seasonSection:'Season',noHolidays:'No national or religious holiday on this date.',noSynax:'No Synaxarium entry found for this date.',noGitsawe:'No Gitsawe reading found for this date.',climatic:'Climatic season',fasting:'Fasting season',liturgical:'Liturgical season',lentWeek:'Great Lent week',taskListTitle:'Task List',taskListDesc:'A chronological list drawn from all of your saved plans.',showDone:'Show done and skipped',overdue:'Overdue',todayGroup:'Today',upcoming:'Upcoming',noPlans:'No saved plans yet. Create and save a plan in the "Planning" tab.',noTasks:'Nothing to show.',planned:'Planned',progress:'In progress',done:'Done',skipped:'Skipped',refresh:'Refresh',loadErr:'Could not load this information.'},
-om:{nav:'Ajandaa',title:'Ajandaa',dashTitle:'Ajandaa Guyyaa',dashDesc:"Guyyaa Itoophiyaa kamiyyuu filadhu; ayyaanota biyyaalessaa/amantii, Sinkisaar, Gitsawe fi odeeffannoo waqtii walitti qabee ni argisiisa.",year:'Waggaa',month:"Ji'a",day:'Guyyaa',show:'Agarsiisi',holidays:'Ayyaanota',synax:'Sinkisaar',gitsaweSection:'Gitsawe',commemoration:'Yaadannoo guyyaa',mesbak:'Mesbaak',gospel:'Wangeela',seasonSection:'Waqtii',noHolidays:'Guyyaa kana ayyaanni biyyaalessaa ykn amantii hin jiru.',noSynax:'Guyyaa kanaaf odeeffannoon Sinkisaar hin argamne.',noGitsawe:'Guyyaa kanaaf dubbisni Gitsawe hin argamne.',climatic:'Waqtii qilleensaa',fasting:'Waqtii soomaa',liturgical:'Waqtii mana kiristaanaa',lentWeek:'Torban Sooma Guddaa',taskListTitle:'Tarreeffama Hojii',taskListDesc:"Tarree yeroo ittiin ergame kan karoorota kee kaa'aman hunda irraa fudhatame.",showDone:'Kan xumurame fi darbitame agarsiisi',overdue:"Yeroon isaa darbe",todayGroup:"Har'a",upcoming:'Dhufaa jiru',noPlans:"Karoorri kaa'ame hin jiru. Gabatee «Karoora» keessatti karoora uumii kaa'i.",noTasks:'Wanti agarsiisamu hin jiru.',planned:'Karoorfame',progress:'Adeemsa irra',done:'Xumurame',skipped:'Darbitame',refresh:'Haaromsi',loadErr:"Odeeffannoo kana fe'uun hin danda'amne."},
-ti:{nav:'ኣጀንዳ',title:'ኣጀንዳ',dashTitle:'ናይ መዓልቲ ኣጀንዳ',dashDesc:'ዝኾነት ናይ ኢትዮጵያ ዕለት ምረጽ፤ ሃገራውን ሃይማኖታውን በዓላት፣ ስንክሳር፣ ግጻዌን ናይ ወቕቲ ሓበሬታን ብሓባር ዘርኢ።',year:'ዓመት',month:'ወርሒ',day:'መዓልቲ',show:'ኣርኢ',holidays:'በዓላት',synax:'ስንክሳር',gitsaweSection:'ግጻዌ',commemoration:'ናይ መዓልቲ መዘከርታ',mesbak:'ምስባክ',gospel:'ወንጌል',seasonSection:'ወቕቲ',noHolidays:'ኣብዚ መዓልቲ ሃገራዊ ወይ ሃይማኖታዊ በዓል የለን።',noSynax:'ንዚ መዓልቲ ሓበሬታ ስንክሳር ኣይተረኸበን።',noGitsawe:'ንዚ መዓልቲ ሓበሬታ ግጻዌ ኣይተረኸበን።',climatic:'ወቕቲ ኣየር',fasting:'ወቕቲ ጾም',liturgical:'ዘመነ ቤተክርስቲያን',lentWeek:'ሰሙን ዓቢይ ጾም',taskListTitle:'ዝርዝር ዕዮታት',taskListDesc:'ካብ ኩሎም እተዓቀቡ መደባት እተወስደ ብቕደም ሰዓት እተሰርዐ ዝርዝር።',showDone:'እተዛዘመን እተሓለፈን ኣርኢ',overdue:'ግዜኡ ዝሓለፈ',todayGroup:'ሎሚ',upcoming:'ዚመጽእ',noPlans:'እተዓቀበ መደብ የለን። ኣብ «መደብ» ትር መደብ ኣዳሉ ዓቅብ።',noTasks:'ዝርአ ዕዮ የለን።',planned:'ተመዲቡ',progress:'ኣብ ሂደት',done:'ተዛዚሙ',skipped:'ተሓሊፉ',refresh:'ኣሐድስ',loadErr:'እዚ ሓበሬታ ምጽዓን ኣይተኻእለን።'},
-so:{nav:'Ajandada',title:'Ajandada',dashTitle:'Ajandada Maalinta',dashDesc:'Dooro taariikh Itoobiya ah oo kasta; wuxuu isku soo bandhigayaa ciidaha qaranka/diinta, Synaxarium, Gitsawe, iyo xogta xilliga.',year:'Sannad',month:'Bil',day:'Maalin',show:'Muuji',holidays:'Ciidaha',synax:'Synaxarium',gitsaweSection:'Gitsawe',commemoration:'Xusuusta maalinta',mesbak:'Mesbak',gospel:'Injiil',seasonSection:'Xilli',noHolidays:'Maalintan ciid qaran ama diineed ma jiro.',noSynax:'Maalintan xog Synaxarium ah lama helin.',noGitsawe:'Maalintan akhris Gitsawe ah lama helin.',climatic:'Xilliga cimilada',fasting:'Xilliga soonka',liturgical:'Xilliga kaniisadda',lentWeek:'Toddobaadka Soonka Weyn',taskListTitle:'Liiska Hawlaha',taskListDesc:'Liis taariikh ahaan u kala horreeya oo laga soo saaray dhammaan qorshayaashaada la kaydiyay.',showDone:'Muuji kuwa la dhammeeyay iyo la boodayba',overdue:'Wakhtigu dhaafay',todayGroup:'Maanta',upcoming:'Soo socda',noPlans:'Wali qorshe lama kaydin. Ku samee oo ku kaydi qorshe gabalka "Qorshe".',noTasks:'Wax la muujiyo ma jiro.',planned:'La qorsheeyay',progress:'Socda',done:'La dhammeeyay',skipped:'La booday',refresh:'Cusboonaysii',loadErr:'Xogtan lama soo rari karin.'}
+am:{nav:'አጀንዳ',title:'አጀንዳ',dashTitle:'የዕለቱ አጀንዳ',dashDesc:'ማንኛውንም የኢትዮጵያ ቀን ይምረጡ፤ ብሔራዊ በዓላት፣ ስንክሳር፣ ግጻዌ እና የወቅት መረጃ በአንድ ላይ ያሳያል።',year:'ዓመት',month:'ወር',day:'ቀን',show:'አሳይ',holidays:'በዓላት',synax:'ስንክሳር',gitsaweSection:'ግጻዌ',commemoration:'የዕለቱ መታሰቢያ',mesbak:'ምስባክ',gospel:'ወንጌል',seasonSection:'ወቅት',noHolidays:'በዚህ ቀን ምንም ብሔራዊ ወይም ሃይማኖታዊ በዓል የለም።',noSynax:'ለዚህ ቀን የስንክሳር መረጃ አልተገኘም።',noGitsawe:'ለዚህ ቀን የግጻዌ መረጃ አልተገኘም።',climatic:'የአየር ወቅት',fasting:'የጾም ወቅት',liturgical:'የቤ/ክ ዘመን',lentWeek:'የዐቢይ ጾም ሳምንት',taskListTitle:'የተግባር ዝርዝር',taskListDesc:'ከሁሉም የተቀመጡ ዕቅዶች የተውጣጣ በቀናት ቅደም ተከተል የተሰናዳ ዝርዝር።',showDone:'የተጠናቀቁና የተዘለሉትን አሳይ',overdue:'ያለፈ ጊዜው',todayGroup:'ዛሬ',upcoming:'መጪ',noPlans:'የተቀመጠ ዕቅድ የለም። በ«ዕቅድ» ትር ውስጥ ዕቅድ አዘጋጅተው ያስቀምጡ።',noTasks:'የሚታይ ተግባር የለም።',planned:'ታቅዷል',progress:'በሂደት',done:'ተጠናቋል',skipped:'ተዘለለ',refresh:'አድስ',loadErr:'መረጃውን መጫን አልተቻለም።',eventsTitle:'የግል ክንውኖች',eventsDesc:'የራስዎን ክንውን ወይም አስታዋሽ ይጨምሩ፤ በተመረጠው ቀን ስር እና በተግባር ዝርዝር ውስጥ ይታያል።',addEvent:'ክንውን ጨምር',deleteEvent:'አጥፋ',noEvents:'ምንም የግል ክንውን የለም።',eventBadge:'ክንውን',eventTitleLabel:'የክንውኑ ስም'},
+en:{nav:'Agenda',title:'Agenda',dashTitle:"Day's Agenda",dashDesc:'Pick any Ethiopian date to see national/religious holidays, Synaxarium, Gitsawe, and season info together.',year:'Year',month:'Month',day:'Day',show:'Show',holidays:'Holidays',synax:'Synaxarium',gitsaweSection:'Gitsawe',commemoration:"Day's commemoration",mesbak:'Mesbak',gospel:'Gospel',seasonSection:'Season',noHolidays:'No national or religious holiday on this date.',noSynax:'No Synaxarium entry found for this date.',noGitsawe:'No Gitsawe reading found for this date.',climatic:'Climatic season',fasting:'Fasting season',liturgical:'Liturgical season',lentWeek:'Great Lent week',taskListTitle:'Task List',taskListDesc:'A chronological list drawn from all of your saved plans.',showDone:'Show done and skipped',overdue:'Overdue',todayGroup:'Today',upcoming:'Upcoming',noPlans:'No saved plans yet. Create and save a plan in the "Planning" tab.',noTasks:'Nothing to show.',planned:'Planned',progress:'In progress',done:'Done',skipped:'Skipped',refresh:'Refresh',loadErr:'Could not load this information.',eventsTitle:'Personal Events',eventsDesc:"Add your own events or reminders; they'll show under the date you pick and in the task list.",addEvent:'Add Event',deleteEvent:'Delete',noEvents:'No personal events yet.',eventBadge:'Event',eventTitleLabel:'Event title'},
+om:{nav:'Ajandaa',title:'Ajandaa',dashTitle:'Ajandaa Guyyaa',dashDesc:"Guyyaa Itoophiyaa kamiyyuu filadhu; ayyaanota biyyaalessaa/amantii, Sinkisaar, Gitsawe fi odeeffannoo waqtii walitti qabee ni argisiisa.",year:'Waggaa',month:"Ji'a",day:'Guyyaa',show:'Agarsiisi',holidays:'Ayyaanota',synax:'Sinkisaar',gitsaweSection:'Gitsawe',commemoration:'Yaadannoo guyyaa',mesbak:'Mesbaak',gospel:'Wangeela',seasonSection:'Waqtii',noHolidays:'Guyyaa kana ayyaanni biyyaalessaa ykn amantii hin jiru.',noSynax:'Guyyaa kanaaf odeeffannoon Sinkisaar hin argamne.',noGitsawe:'Guyyaa kanaaf dubbisni Gitsawe hin argamne.',climatic:'Waqtii qilleensaa',fasting:'Waqtii soomaa',liturgical:'Waqtii mana kiristaanaa',lentWeek:'Torban Sooma Guddaa',taskListTitle:'Tarreeffama Hojii',taskListDesc:"Tarree yeroo ittiin ergame kan karoorota kee kaa'aman hunda irraa fudhatame.",showDone:'Kan xumurame fi darbitame agarsiisi',overdue:"Yeroon isaa darbe",todayGroup:"Har'a",upcoming:'Dhufaa jiru',noPlans:"Karoorri kaa'ame hin jiru. Gabatee «Karoora» keessatti karoora uumii kaa'i.",noTasks:'Wanti agarsiisamu hin jiru.',planned:'Karoorfame',progress:'Adeemsa irra',done:'Xumurame',skipped:'Darbitame',refresh:'Haaromsi',loadErr:"Odeeffannoo kana fe'uun hin danda'amne.",eventsTitle:'Taateewwan Dhuunfaa',eventsDesc:"Taateewwan yookaan yaadannoo kee mata keetii dabali; guyyaa filattee jalatti fi tarreeffama hojii keessatti ni mul'ata.",addEvent:'Taatee Dabali',deleteEvent:'Haqi',noEvents:'Taatee dhuunfaa hin jiru.',eventBadge:'Taatee',eventTitleLabel:'Mataduree taatee'},
+ti:{nav:'ኣጀንዳ',title:'ኣጀንዳ',dashTitle:'ናይ መዓልቲ ኣጀንዳ',dashDesc:'ዝኾነት ናይ ኢትዮጵያ ዕለት ምረጽ፤ ሃገራውን ሃይማኖታውን በዓላት፣ ስንክሳር፣ ግጻዌን ናይ ወቕቲ ሓበሬታን ብሓባር ዘርኢ።',year:'ዓመት',month:'ወርሒ',day:'መዓልቲ',show:'ኣርኢ',holidays:'በዓላት',synax:'ስንክሳር',gitsaweSection:'ግጻዌ',commemoration:'ናይ መዓልቲ መዘከርታ',mesbak:'ምስባክ',gospel:'ወንጌል',seasonSection:'ወቕቲ',noHolidays:'ኣብዚ መዓልቲ ሃገራዊ ወይ ሃይማኖታዊ በዓል የለን።',noSynax:'ንዚ መዓልቲ ሓበሬታ ስንክሳር ኣይተረኸበን።',noGitsawe:'ንዚ መዓልቲ ሓበሬታ ግጻዌ ኣይተረኸበን።',climatic:'ወቕቲ ኣየር',fasting:'ወቕቲ ጾም',liturgical:'ዘመነ ቤተክርስቲያን',lentWeek:'ሰሙን ዓቢይ ጾም',taskListTitle:'ዝርዝር ዕዮታት',taskListDesc:'ካብ ኩሎም እተዓቀቡ መደባት እተወስደ ብቕደም ሰዓት እተሰርዐ ዝርዝር።',showDone:'እተዛዘመን እተሓለፈን ኣርኢ',overdue:'ግዜኡ ዝሓለፈ',todayGroup:'ሎሚ',upcoming:'ዚመጽእ',noPlans:'እተዓቀበ መደብ የለን። ኣብ «መደብ» ትር መደብ ኣዳሉ ዓቅብ።',noTasks:'ዝርአ ዕዮ የለን።',planned:'ተመዲቡ',progress:'ኣብ ሂደት',done:'ተዛዚሙ',skipped:'ተሓሊፉ',refresh:'ኣሐድስ',loadErr:'እዚ ሓበሬታ ምጽዓን ኣይተኻእለን።',eventsTitle:'ናይ ውልቀ ኩነታት',eventsDesc:'ናትካ ኩነት ወይ መዘኻኸሪ ወስኽ፤ ኣብ ትሕቲ እትመርጾ ዕለትን ኣብ ዝርዝር ዕዮን ክርአ እዩ።',addEvent:'ኩነት ወስኽ',deleteEvent:'ደምስስ',noEvents:'ዝኾነ ናይ ውልቀ ኩነት የለን።',eventBadge:'ኩነት',eventTitleLabel:'ስም ኩነት'},
+so:{nav:'Ajandada',title:'Ajandada',dashTitle:'Ajandada Maalinta',dashDesc:'Dooro taariikh Itoobiya ah oo kasta; wuxuu isku soo bandhigayaa ciidaha qaranka/diinta, Synaxarium, Gitsawe, iyo xogta xilliga.',year:'Sannad',month:'Bil',day:'Maalin',show:'Muuji',holidays:'Ciidaha',synax:'Synaxarium',gitsaweSection:'Gitsawe',commemoration:'Xusuusta maalinta',mesbak:'Mesbak',gospel:'Injiil',seasonSection:'Xilli',noHolidays:'Maalintan ciid qaran ama diineed ma jiro.',noSynax:'Maalintan xog Synaxarium ah lama helin.',noGitsawe:'Maalintan akhris Gitsawe ah lama helin.',climatic:'Xilliga cimilada',fasting:'Xilliga soonka',liturgical:'Xilliga kaniisadda',lentWeek:'Toddobaadka Soonka Weyn',taskListTitle:'Liiska Hawlaha',taskListDesc:'Liis taariikh ahaan u kala horreeya oo laga soo saaray dhammaan qorshayaashaada la kaydiyay.',showDone:'Muuji kuwa la dhammeeyay iyo la boodayba',overdue:'Wakhtigu dhaafay',todayGroup:'Maanta',upcoming:'Soo socda',noPlans:'Wali qorshe lama kaydin. Ku samee oo ku kaydi qorshe gabalka "Qorshe".',noTasks:'Wax la muujiyo ma jiro.',planned:'La qorsheeyay',progress:'Socda',done:'La dhammeeyay',skipped:'La booday',refresh:'Cusboonaysii',loadErr:'Xogtan lama soo rari karin.',eventsTitle:'Dhacdooyinka Shakhsiga',eventsDesc:'Ku dar dhacdooyinkaaga ama xasuusinta; waxay ka muuqan doonaan taariikhda aad dooratay iyo liiska hawlaha.',addEvent:'Ku Dar Dhacdo',deleteEvent:'Tirtir',noEvents:'Wali dhacdo shakhsi ah ma jiraan.',eventBadge:'Dhacdo',eventTitleLabel:'Cinwaanka dhacdada'}
 };
 const $=id=>document.getElementById(id),t=k=>((S[localStorage.getItem('lang')||document.documentElement.lang]||S.am)[k]||S.en[k]||k);
 // Local copy of the Amharic month names, matching app.js's SYNAX_MONTH_NAMES_AM
@@ -20,6 +20,13 @@ function formatDateDisplay(date){
   try{weekday=window.getWeekdays()[window.ethToGregorian(date.ey,date.em,date.ed).getDay()]||'';}catch(e){}
   return weekday?`${weekday}፣ ${monthName} ${dayNum}`:`${monthName} ${dayNum}`;
 }
+
+const EVENTS_KEY='ethio_agenda_events';
+function loadEvents(){try{const v=JSON.parse(localStorage.getItem(EVENTS_KEY)||'[]');return Array.isArray(v)?v:[];}catch(e){return [];}}
+function saveEvents(list){try{localStorage.setItem(EVENTS_KEY,JSON.stringify(list));}catch(e){}}
+function addEvent(date,title,details){const list=loadEvents();list.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),date,title,details});saveEvents(list);return list;}
+function deleteEvent(id){saveEvents(loadEvents().filter(e=>String(e.id)!==String(id)));}
+function eventsOnDate(ey,em,ed){return loadEvents().filter(e=>e.date&&e.date.ey===ey&&e.date.em===em&&e.date.ed===ed);}
 
 async function showDashboard(){
   const out=$('agenda-dash-output');
@@ -67,6 +74,10 @@ async function showDashboard(){
     }
   }catch(e){html+='<p class="load-error">⚠️ '+t('loadErr')+'</p>';}
 
+  html+='<h4>'+t('eventsTitle')+'</h4>';
+  const dayEvents=eventsOnDate(ey,em,ed);
+  html+=dayEvents.length?('<ul>'+dayEvents.map(ev=>'<li><strong>'+window.escapeHtml(ev.title||'')+'</strong>'+(ev.details?(' — '+window.escapeHtml(ev.details)):'')+'</li>').join('')+'</ul>'):('<p class="agenda-empty">'+t('noEvents')+'</p>');
+
   out.innerHTML=html;
 }
 
@@ -79,10 +90,15 @@ function computeTaskBuckets(){
     (p.rows||[]).forEach(r=>{
       if(!showDone&&(r.status==='done'||r.status==='skipped'))return;
       const jdn=window.ethiopianToJdn(r.date.ey,r.date.em,r.date.ed);
-      items.push({planId:p.id,planName:p.name||'Ethiopian Plan',row:r,jdn});
+      items.push({isEvent:false,planId:p.id,planName:p.name||'Ethiopian Plan',title:r.title,details:r.details,status:r.status,rowId:r.id,date:r.date,jdn});
     });
   });
-  items.sort((a,b)=>a.jdn-b.jdn||a.planName.localeCompare(b.planName));
+  loadEvents().forEach(ev=>{
+    if(!ev.date)return;
+    const jdn=window.ethiopianToJdn(ev.date.ey,ev.date.em,ev.date.ed);
+    items.push({isEvent:true,eventId:ev.id,title:ev.title,details:ev.details,date:ev.date,jdn});
+  });
+  items.sort((a,b)=>a.jdn-b.jdn||(a.planName||'').localeCompare(b.planName||''));
   return{
     plans,
     overdue:items.filter(i=>i.jdn<todayJdn),
@@ -95,20 +111,27 @@ function renderTaskList(){
   const out=$('agenda-tasks-output');
   if(!out)return;
   const{plans,overdue,todayItems,upcoming}=computeTaskBuckets();
-  if(!plans.length){out.innerHTML='<p class="agenda-empty">'+t('noPlans')+'</p>';return;}
+  if(!plans.length&&!loadEvents().length){out.innerHTML='<p class="agenda-empty">'+t('noPlans')+'</p>';return;}
   const statusOpts=(current)=>[['planned','planned'],['in-progress','progress'],['done','done'],['skipped','skipped']].map(([v,k])=>'<option value="'+v+'"'+(current===v?' selected':'')+'>'+t(k)+'</option>').join('');
   const group=(label,list)=>{
     let h='<h4>'+label+' ('+(window.fNum?window.fNum(list.length):list.length)+')</h4>';
     if(!list.length)return h+'<p class="agenda-empty">'+t('noTasks')+'</p>';
     h+='<ul class="agenda-task-list">'+list.map(it=>{
-      const date=formatDateDisplay(it.row.date);
-      return '<li class="agenda-task-item"><div class="agenda-task-meta"><span class="agenda-task-date">'+date+'</span> <span class="agenda-task-plan">'+window.escapeHtml(it.planName)+'</span></div>'+
-        '<div class="agenda-task-body"><strong>'+window.escapeHtml(it.row.title||'')+'</strong>'+(it.row.details?(' — '+window.escapeHtml(it.row.details)):'')+'</div>'+
-        '<select class="agenda-status-select" data-plan="'+window.escapeHtml(String(it.planId))+'" data-row="'+window.escapeHtml(String(it.row.id))+'" aria-label="'+window.escapeHtml(it.row.title||date)+'">'+statusOpts(it.row.status)+'</select></li>';
+      const date=formatDateDisplay(it.date);
+      const tagHtml=it.isEvent?('<span class="agenda-task-badge">'+t('eventBadge')+'</span>'):('<span class="agenda-task-plan">'+window.escapeHtml(it.planName)+'</span>');
+      const controlHtml=it.isEvent
+        ?('<button type="button" class="agenda-event-delete btn-secondary" data-event="'+window.escapeHtml(String(it.eventId))+'">'+t('deleteEvent')+'</button>')
+        :('<select class="agenda-status-select" data-plan="'+window.escapeHtml(String(it.planId))+'" data-row="'+window.escapeHtml(String(it.rowId))+'" aria-label="'+window.escapeHtml(it.title||date)+'">'+statusOpts(it.status)+'</select>');
+      return '<li class="agenda-task-item"><div class="agenda-task-meta"><span class="agenda-task-date">'+date+'</span> '+tagHtml+'</div>'+
+        '<div class="agenda-task-body"><strong>'+window.escapeHtml(it.title||'')+'</strong>'+(it.details?(' — '+window.escapeHtml(it.details)):'')+'</div>'+
+        controlHtml+'</li>';
     }).join('')+'</ul>';
     return h;
   };
   out.innerHTML=group(t('overdue'),overdue)+group(t('todayGroup'),todayItems)+group(t('upcoming'),upcoming);
+  out.querySelectorAll('.agenda-event-delete').forEach(btn=>{
+    btn.addEventListener('click',()=>{deleteEvent(btn.dataset.event);renderTaskList();renderEventsList();});
+  });
   out.querySelectorAll('.agenda-status-select').forEach(sel=>{
     sel.addEventListener('change',()=>{
       const plans=window.EthioPlanner.loadPlans();
@@ -123,12 +146,38 @@ function renderTaskList(){
   });
 }
 
-function setDefaultDate(){const e=today();$('agenda-year').value=e.ey;$('agenda-month').value=e.em;$('agenda-day').value=e.ed;}
+function renderEventsList(){
+  const out=$('agenda-events-output');
+  if(!out)return;
+  const list=loadEvents().slice().sort((a,b)=>window.ethiopianToJdn(a.date.ey,a.date.em,a.date.ed)-window.ethiopianToJdn(b.date.ey,b.date.em,b.date.ed));
+  if(!list.length){out.innerHTML='<p class="agenda-empty">'+t('noEvents')+'</p>';return;}
+  out.innerHTML='<ul class="agenda-task-list">'+list.map(ev=>
+    '<li class="agenda-task-item"><div class="agenda-task-meta"><span class="agenda-task-date">'+formatDateDisplay(ev.date)+'</span></div>'+
+    '<div class="agenda-task-body"><strong>'+window.escapeHtml(ev.title||'')+'</strong>'+(ev.details?(' — '+window.escapeHtml(ev.details)):'')+'</div>'+
+    '<button type="button" class="agenda-event-delete btn-secondary" data-event="'+window.escapeHtml(String(ev.id))+'">'+t('deleteEvent')+'</button></li>'
+  ).join('')+'</ul>';
+  out.querySelectorAll('.agenda-event-delete').forEach(btn=>{
+    btn.addEventListener('click',()=>{deleteEvent(btn.dataset.event);renderEventsList();renderTaskList();});
+  });
+}
+
+function setDefaultDate(){const e=today();$('agenda-year').value=e.ey;$('agenda-month').value=e.em;$('agenda-day').value=e.ed;$('agenda-event-year').value=e.ey;$('agenda-event-month').value=e.em;$('agenda-event-day').value=e.ed;}
 
 function bind(){
   $('agenda-dash-form').addEventListener('submit',e=>{e.preventDefault();showDashboard();});
   $('agenda-show-done').addEventListener('change',renderTaskList);
   $('agenda-refresh').addEventListener('click',renderTaskList);
+  $('agenda-event-form').addEventListener('submit',e=>{
+    e.preventDefault();
+    const ey=+$('agenda-event-year').value,em=+$('agenda-event-month').value,ed=+$('agenda-event-day').value;
+    const title=$('agenda-event-title').value.trim();
+    if(!ey||!em||em<1||em>13||!ed||ed<1||ed>30||!title)return;
+    addEvent({ey,em,ed},title,$('agenda-event-details').value.trim());
+    $('agenda-event-title').value='';$('agenda-event-details').value='';
+    renderEventsList();renderTaskList();
+    const currentEy=+$('agenda-year').value,currentEm=+$('agenda-month').value,currentEd=+$('agenda-day').value;
+    if(currentEy===ey&&currentEm===em&&currentEd===ed)showDashboard();
+  });
   $('navbtn-agenda').onclick=activate;
 }
 function activate(){
@@ -149,12 +198,18 @@ function relabel(){
   const dashDesc=$('agenda-dash-desc');if(dashDesc)dashDesc.textContent=t('dashDesc');
   const lbl=(forId,key)=>{const l=tab.querySelector('label[for="'+forId+'"]');if(l)l.textContent=t(key);};
   lbl('agenda-year','year');lbl('agenda-month','month');lbl('agenda-day','day');
+  lbl('agenda-event-year','year');lbl('agenda-event-month','month');lbl('agenda-event-day','day');
+  lbl('agenda-event-title','eventTitleLabel');lbl('agenda-event-details','details');
   const showBtn=$('agenda-show-btn');if(showBtn)showBtn.textContent=t('show');
+  const eventsTitle=$('agenda-events-title');if(eventsTitle)eventsTitle.textContent=t('eventsTitle');
+  const eventsDesc=$('agenda-events-desc');if(eventsDesc)eventsDesc.textContent=t('eventsDesc');
+  const addEventBtn=$('agenda-event-add-btn');if(addEventBtn)addEventBtn.textContent=t('addEvent');
   const taskTitle=$('agenda-tasks-title');if(taskTitle)taskTitle.textContent=t('taskListTitle');
   const taskDesc=$('agenda-tasks-desc');if(taskDesc)taskDesc.textContent=t('taskListDesc');
   const showDoneLbl=$('agenda-show-done-label');if(showDoneLbl)showDoneLbl.textContent=t('showDone');
   const refreshBtn=$('agenda-refresh');if(refreshBtn)refreshBtn.textContent=t('refresh');
   renderTaskList();
+  renderEventsList();
 }
 
 function init(){
@@ -177,6 +232,16 @@ function init(){
     '<div class="form-group"><label for="agenda-day">'+t('day')+'</label><input id="agenda-day" type="number" min="1" max="30" required></div>'+
     '</div><button id="agenda-show-btn" class="btn-primary" type="submit">'+t('show')+'</button></form>'+
     '<div id="agenda-dash-output" class="agenda-dash-output" role="status" aria-live="polite"></div></section>'+
+    '<section class="agenda-section"><h3 id="agenda-events-title">'+t('eventsTitle')+'</h3><p id="agenda-events-desc">'+t('eventsDesc')+'</p>'+
+    '<form id="agenda-event-form"><div class="form-row">'+
+    '<div class="form-group"><label for="agenda-event-year">'+t('year')+'</label><input id="agenda-event-year" type="number" min="1" required></div>'+
+    '<div class="form-group"><label for="agenda-event-month">'+t('month')+'</label><input id="agenda-event-month" type="number" min="1" max="13" required></div>'+
+    '<div class="form-group"><label for="agenda-event-day">'+t('day')+'</label><input id="agenda-event-day" type="number" min="1" max="30" required></div>'+
+    '</div><div class="form-row">'+
+    '<div class="form-group"><label for="agenda-event-title">'+t('eventTitleLabel')+'</label><input id="agenda-event-title" type="text" required></div>'+
+    '<div class="form-group"><label for="agenda-event-details">'+t('details')+'</label><input id="agenda-event-details" type="text"></div>'+
+    '</div><button id="agenda-event-add-btn" class="btn-primary" type="submit">'+t('addEvent')+'</button></form>'+
+    '<div id="agenda-events-output" class="agenda-tasks-output"></div></section>'+
     '<section class="agenda-section"><h3 id="agenda-tasks-title">'+t('taskListTitle')+'</h3><p id="agenda-tasks-desc">'+t('taskListDesc')+'</p>'+
     '<div class="form-row planning-columns-row"><label><input type="checkbox" id="agenda-show-done"> <span id="agenda-show-done-label">'+t('showDone')+'</span></label>'+
     '<button id="agenda-refresh" class="btn-secondary" type="button">'+t('refresh')+'</button></div>'+
@@ -185,6 +250,7 @@ function init(){
   setDefaultDate();
   bind();
   renderTaskList();
+  renderEventsList();
 }
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
