@@ -104,10 +104,10 @@ function computeTaskBuckets(){
 }
 
 function downloadAgendaIcal(){
-  if(!window.EthioIcal)return;
+  if(!window.EthioIcal)return false;
   const {overdue, todayItems, upcoming} = computeTaskBuckets();
   const items = [...overdue, ...todayItems, ...upcoming];
-  if(!items.length) return;
+  if(!items.length) return false;
   const vevents = [];
   items.forEach(it => {
     let startG;
@@ -117,21 +117,22 @@ function downloadAgendaIcal(){
     const endG = window.EthioIcal.addDays(startG, 1);
     let descParts = [];
     if(it.details) descParts.push(it.details);
-    if(it.planName) descParts.push('Plan: ' + it.planName);
-    if(it.status) descParts.push('Status: ' + it.status);
-    
+    if(it.planName) descParts.push(t('taskListTitle') + ': ' + it.planName);
+    if(it.status) descParts.push(t('status') + ': ' + t(it.status === 'in-progress' ? 'progress' : it.status));
+
     const uid = `agenda-${it.isEvent ? 'ev' : 'task'}-${it.eventId || it.rowId || it.jdn}@ethio-calendar`;
     vevents.push(window.EthioIcal.buildVevent({
       uid,
-      summary: it.title || (it.isEvent ? 'Event' : 'Task'),
-      description: descParts.join('\\n'),
+      summary: it.title || (it.isEvent ? t('eventBadge') : t('taskListTitle')),
+      description: descParts.join('\n'),
       startG,
       endG
     }));
   });
-  if(!vevents.length) return;
+  if(!vevents.length) return false;
   const calText = window.EthioIcal.buildCalendar(vevents, t('taskListTitle'));
   window.EthioIcal.downloadIcs(calText, 'agenda.ics');
+  return true;
 }
 
 function renderTaskList(){
@@ -196,9 +197,9 @@ function bind(){
   const icalBtn=$('agenda-ical-btn');
   if(icalBtn){
     icalBtn.addEventListener('click',()=>{
-      downloadAgendaIcal();
+      const exported = downloadAgendaIcal();
       const oldTxt = icalBtn.textContent;
-      icalBtn.textContent = t('icalExported');
+      icalBtn.textContent = exported ? t('icalExported') : t('noTasks');
       setTimeout(() => icalBtn.textContent = oldTxt, 2500);
     });
   }

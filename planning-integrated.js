@@ -47,10 +47,10 @@ function downloadPlanIcal(){
     if(r.details)descParts.push(r.details);
     const s=r.season;
     if(s){if(s.climatic)descParts.push(t('climSeason')+': '+s.climatic);if(s.fasting)descParts.push(t('fastSeason')+': '+s.fasting);if(s.liturgical)descParts.push(t('litSeason')+': '+s.liturgical);if(s.greatLentWeek)descParts.push(t('lentWeek')+': '+s.greatLentWeek);}
-    if(r.status)descParts.push('Status: '+r.status);
-    descParts.push('Ethiopian: '+EthioPlanner.dateLabel(r.date));
+    if(r.status)descParts.push(t('status')+': '+t(r.status==='in-progress'?'progress':r.status));
+    descParts.push(formatDateDisplay(r.date));
     const uid=`plan-${(plan.id||'p')}-${r.id||EthioPlanner.dateLabel(r.date)}@ethio-calendar`;
-    vevents.push(window.EthioIcal.buildVevent({uid,summary:r.title||(plan.name||'Planned Event'),description:descParts.join('\\n'),startG,endG}));
+    vevents.push(window.EthioIcal.buildVevent({uid,summary:r.title||(plan.name||'Planned Event'),description:descParts.join('\n'),startG,endG}));
   });
   if(!vevents.length){$('planning-status-integrated').textContent=t('none');return;}
   const calText=window.EthioIcal.buildCalendar(vevents,plan.name||t('schedule'));
