@@ -119,6 +119,16 @@ function downloadAgendaIcal(){
     if(it.details) descParts.push(it.details);
     if(it.planName) descParts.push(t('taskListTitle') + ': ' + it.planName);
     if(it.status) descParts.push(t('status') + ': ' + t(it.status === 'in-progress' ? 'progress' : it.status));
+    try{
+      if(window.EthioPlanner){
+        const season=window.EthioPlanner.seasonInfoForDate(it.date)||{};
+        if(season.climatic)descParts.push(t('climatic')+': '+season.climatic);
+        if(season.fasting)descParts.push(t('fasting')+': '+season.fasting);
+        if(season.liturgical)descParts.push(t('liturgical')+': '+season.liturgical);
+        if(season.greatLentWeek)descParts.push(t('lentWeek')+': '+season.greatLentWeek);
+      }
+    }catch(e){}
+    descParts.push(formatDateDisplay(it.date));
 
     const uid = `agenda-${it.isEvent ? 'ev' : 'task'}-${it.eventId || it.rowId || it.jdn}@ethio-calendar`;
     vevents.push(window.EthioIcal.buildVevent({
@@ -132,6 +142,134 @@ function downloadAgendaIcal(){
   if(!vevents.length) return false;
   const calText = window.EthioIcal.buildCalendar(vevents, t('taskListTitle'));
   window.EthioIcal.downloadIcs(calText, 'agenda.ics');
+  return true;
+}
+
+
+function getAgendaExportItems(){
+  const items=[];
+  const plans=(window.EthioPlanner&&window.EthioPlanner.loadPlans())||[];
+  plans.forEach(plan=>{
+    (plan.rows||[]).forEach(row=>{
+      if(!row.date)return;
+      let season=row.season||{};
+      if(window.EthioPlanner&&typeof window.EthioPlanner.seasonInfoForDate==='function'){
+        try{season={...season,...(window.EthioPlanner.seasonInfoForDate(row.date)||{})};}catch(e){}
+      }
+      items.push({
+        date:row.date,
+        type:'task',
+        planName:plan.name||'',
+        climatic:season.climatic||'',
+        fasting:season.fasting||'',
+        liturgical:season.liturgical||'',
+        greatLentWeek:season.greatLentWeek||'',
+        title:row.title||'',
+        details:row.details||'',
+        status:row.status||''
+      });
+    });
+  });
+  loadEvents().forEach(ev=>{
+    if(!ev.date)return;
+    let season={};
+    if(window.EthioPlanner&&typeof window.EthioPlanner.seasonInfoForDate==='function'){
+      try{season=window.EthioPlanner.seasonInfoForDate(ev.date)||{};}catch(e){}
+    }
+    items.push({
+      id:ev.id,
+      date:ev.date,
+      type:'event',
+      planName:'',
+      climatic:season.climatic||'',
+      fasting:season.fasting||'',
+      liturgical:season.liturgical||'',
+      greatLentWeek:season.greatLentWeek||'',
+      title:ev.title||'',
+      details:ev.details||'',
+      status:''
+    });
+  });
+  items.sort((a,b)=>{
+    const ad=window.ethiopianToJdn(a.date.ey,a.date.em,a.date.ed);
+    const bd=window.ethiopianToJdn(b.date.ey,b.date.em,b.date.ed);
+    return ad-bd||(a.planName||'').localeCompare(b.planName||'')||(a.title||'').localeCompare(b.title||'');
+  });
+  return items;
+}
+
+function downloadAgendaExport(format){
+  const items=getAgendaExportItems();
+  if(!items.length)return false;
+  const kind=String(format||'csv').toLowerCase();
+  const headers=['Date','Ethiopian Date','Type','Plan','Climatic Season','Fasting Season','Liturgical Season','Great Lent Week','Title','Details','Status'];
+  const rows=items.map(it=>[
+    `${it.date.ey}-${String(it.date.em).padStart(2,'0')}-${String(it.date.ed).padStart(2,'0')}`,
+    `${it.date.ey}-${it.date.em}-${it.date.ed}`,
+    it.type,
+    it.planName,
+    it.climatic,
+    it.fasting,
+    it.liturgical,
+    it.greatLentWeek,
+    it.title,
+    it.details,
+    it.status
+  ]);
+  const csvEscape=value=>{
+    const text=value==null?'':String(value);
+    return /[",\n\r\t]/.test(text)?`"${text.replace(/"/g,'""')}"`:text;
+  };
+  let text, filename, mime;
+  if(kind==='csv'||kind==='tsv'){
+    const delimiter=kind==='tsv'?'\t':',';
+    text=[headers,...rows].map(row=>row.map(csvEscape).join(delimiter)).join('\n');
+    filename=`agenda.${kind}`;
+    mime=kind==='tsv'?'text/tab-separated-values;charset=utf-8':'text/csv;charset=utf-8';
+  }else if(kind==='json'){
+    text=JSON.stringify(items.map(it=>({
+      date:`${it.date.ey}-${it.date.em}-${it.date.ed}`,
+      ethiopianDate:{ey:it.date.ey,em:it.date.em,ed:it.date.ed},
+      type:it.type,
+      plan:it.planName,
+      season:{
+        climatic:it.climatic,
+        fasting:it.fasting,
+        liturgical:it.liturgical,
+        greatLentWeek:it.greatLentWeek
+      },
+      title:it.title,
+      details:it.details,
+      status:it.status
+    })),null,2);
+    filename='agenda.json';
+    mime='application/json;charset=utf-8';
+  }else if(kind==='md'){
+    const esc=v=>String(v==null?'':v).replace(/\|/g,'\\|').replace(/\n/g,'<br>');
+    text='# Agenda\n\n| Date | Ethiopian Date | Type | Plan | Climatic Season | Fasting Season | Liturgical Season | Great Lent Week | Title | Details | Status |\n|---|---|---|---|---|---|---|---|---|---|---|\n'+
+      rows.map(r=>`| ${r.map(esc).join(' | ')} |`).join('\n');
+    filename='agenda.md';
+    mime='text/markdown;charset=utf-8';
+  }else if(kind==='html'){
+    const esc=v=>String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    text='<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Agenda</title></head><body><table><thead><tr>'+
+      headers.map(h=>`<th>${esc(h)}</th>`).join('')+'</tr></thead><tbody>'+
+      rows.map(r=>`<tr>${r.map(v=>`<td>${esc(v)}</td>`).join('')}</tr>`).join('')+
+      '</tbody></table></body></html>';
+    filename='agenda.html';
+    mime='text/html;charset=utf-8';
+  }else{
+    throw new Error(`Unsupported agenda export format: ${format}`);
+  }
+  if(window.EthioPlanningFileIO&&typeof window.EthioPlanningFileIO.download==='function'){
+    window.EthioPlanningFileIO.download(text,filename,mime);
+  }else{
+    const blob=new Blob([text],{type:mime});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');
+    link.href=url;link.download=filename;document.body.appendChild(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),0);
+  }
   return true;
 }
 
@@ -203,6 +341,11 @@ function bind(){
       setTimeout(() => icalBtn.textContent = oldTxt, 2500);
     });
   }
+  document.querySelectorAll('[data-ae]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      try{downloadAgendaExport(btn.dataset.ae);}catch(err){console.error(err);}
+    });
+  });
   $('agenda-event-form').addEventListener('submit',e=>{
     e.preventDefault();
     const ey=+$('agenda-event-year').value,em=+$('agenda-event-month').value,ed=+$('agenda-event-day').value;
@@ -281,7 +424,7 @@ function init(){
     '<div id="agenda-events-output" class="agenda-tasks-output"></div></section>'+
     '<section class="agenda-section"><h3 id="agenda-tasks-title">'+t('taskListTitle')+'</h3><p id="agenda-tasks-desc">'+t('taskListDesc')+'</p>'+
     '<div class="form-row planning-columns-row"><label><input type="checkbox" id="agenda-show-done"> <span id="agenda-show-done-label">'+t('showDone')+'</span></label>'+
-    '<div><button id="agenda-refresh" class="btn-secondary" type="button">'+t('refresh')+'</button> <button id="agenda-ical-btn" class="btn-primary" type="button">'+t('icalBtn')+'</button></div></div>'+
+    '<div><button id="agenda-refresh" class="btn-secondary" type="button">'+t('refresh')+'</button> <button type="button" data-ae="csv">CSV</button> <button type="button" data-ae="tsv">TSV</button> <button type="button" data-ae="json">JSON</button> <button type="button" data-ae="md">Markdown</button> <button type="button" data-ae="html">HTML</button> <button id="agenda-ical-btn" class="btn-primary" type="button">'+t('icalBtn')+'</button></div></div>'+
     '<div id="agenda-tasks-output" class="agenda-tasks-output"></div></section></div>';
   main.appendChild(sec);
   setDefaultDate();
