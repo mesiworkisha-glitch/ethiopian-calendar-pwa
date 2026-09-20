@@ -41,8 +41,8 @@ const i18n = {
         islamic_months: ["", "ሙሐረም", "ሰፈር", "ረቢዑል አወል", "ረቢዑል ሳኒ", "ጀማደል አወል", "ጀማደል ሳኒ", "ረጀብ", "ሻእባን", "ረመዳን", "ሸዋል", "ዙልቂዳህ", "ዙልሒጃህ"],
         season_autumn: "መፀው (Autumn)", season_summer: "በጋ (Summer)", season_spring: "በልግ (Spring)", season_winter: "ክረምት (Winter)",
         liturgical_kremt: "ዘመነ ክረምት",
-        moon_new: "🌑 አዲስ ጨረቃ (New Moon)", moon_wax_cresc: "🌒 እየሞላ የሚሄድ (Waxing Crescent)", moon_first_q: "🌓 ግማሽ ጨረቃ (First Quarter)", moon_wax_gibb: "🌔 (Waxing Gibbous)", moon_full: "🌕 ሙሉ ጨረቃ (Full Moon)", moon_wan_gibb: "🌖 (Waning Gibbous)", moon_last_q: "🌗 የመጨረሻ ሩብ (Last Quarter)", moon_wan_cresc: "🌘 እየጎደለ የሚሄድ (Waning Crescent)",
-        fast_none: "የአጽዋም ዘመን አይደለም", fast_abiy: "ዐቢይ ጾም", fast_nebiyat: "ጾመ ነቢያት", fast_filseta: "ጾመ ፍልሰታ", fast_hawaryat: "ጾመ ሐዋርያት", fast_nenewe: "ጾመ ነነዌ", fast_gehad: "ጾመ ገሀድ", fast_hamsa: "ኀምሳ ዕለት", fast_dihnet: "ጾመ ድኅነት",
+        moon_new: "🌑 አዲስ ጨረቃ (New Moon)", moon_wax_cresc: "🌒 እየሞላ የሚሄድ (Waxing Crescent)", moon_first_q: "🌓 ግማሽ ጨረቃ (First Quarter)", moon_wax_gibb: "🌔 እየሞላ የሚሄድ (Waxing Gibbous)", moon_full: "🌕 ሙሉ ጨረቃ (Full Moon)", moon_wan_gibb: "🌖 እየጎደለ የሚሄድ (Waning Gibbous)", moon_last_q: "🌗 የመጨረሻ ሩብ (Last Quarter)", moon_wan_cresc: "🌘 እየጎደለ የሚሄድ (Waning Crescent)",
+        fast_none: "የአጽዋም ዘመን አይደለም", fast_abiy: "ዐቢይ ጾም", fast_nebiyat: "ጾመ ነቢያት", fast_filseta: "ጾመ ፍልሰታ", fast_hawaryat: "ጾመ ሐዋርያት", fast_nenewe: "ጾመ ነነዌ", fast_gehad: "ጾመ ገሀድ", fast_hamsa: "ኀምሳ ዕለት", fast_dihnet: "ጾመ ድኅነት", fast_holiday: "በዓል (አይጾምም)",
         fest_debre_zeyit: "ደብረ ዘይት", fest_hosanna: "ሆሳዕና", fest_siklet: "ስቅለት", fest_tensae: "ትንሣኤ", fest_rikbe_kahnat: "ርክበ ካህናት", fest_erget: "ዕርገት", fest_parakletos: "ጰራቅሊጦስ",
         hol_enkutatash: "እንቁጣጣሽ", hol_meskel: "መስቀል", hol_buhe: "ቡሄ (ደብረ ታቦር)", hol_sigd: "ስግድ", hol_ashenda: "አሸንዳ", hol_timkat: "ጥምቀት", hol_filseta_maryam: "ፍልሰታ ለማርያም", hol_genna: "ገና (ልደት)", hol_adwa: "የዓድዋ ድል", hol_patriots: "የአርበኞች ድል", hol_labor: "የሠራተኞች ቀን",
         hol_ashura: "ዓሹራ (Ashura)", hol_mawlid: "መውሊድ (Mawlid)", hol_isra: "እስራ ወሚዕራጅ (Isra and Mi'raj)", hol_ramadan: "ረመዳን (Ramadan)", hol_laylat: "Laylat al‑Qadr", hol_eid_fitr: "ዒድ አልፊጥር (Eid al-Fitr)", hol_arafah: "የዐረፋ ቀን (Day of Arafah)", hol_eid_adha: "ዒድ አልአድሐ (Eid al-Adha)", hol_hajj: "Hajj",
@@ -93,7 +93,7 @@ const i18n = {
         season_autumn: "Autumn (Meher)", season_summer: "Summer (Bega)", season_spring: "Spring (Belg)", season_winter: "Winter (Kiremt)",
         liturgical_kremt: "Zemene Kiremt",
         moon_new: "🌑 New Moon", moon_wax_cresc: "🌒 Waxing Crescent", moon_first_q: "🌓 First Quarter", moon_wax_gibb: "🌔 Waxing Gibbous", moon_full: "🌕 Full Moon", moon_wan_gibb: "🌖 Waning Gibbous", moon_last_q: "🌗 Last Quarter", moon_wan_cresc: "🌘 Waning Crescent",
-        fast_none: "Not a Fasting Period", fast_abiy: "Great Lent (Abiy Tsom)", fast_nebiyat: "Fast of the Prophets", fast_filseta: "Fast of Assumption (Filseta)", fast_hawaryat: "Fast of the Apostles", fast_nenewe: "Fast of Nineveh", fast_gehad: "Fast of Gehad", fast_hamsa: "Pentecost (Hamsa Elet)", fast_dihnet: "Fast of Salvation (Wed/Fri)",
+        fast_none: "Not a Fasting Period", fast_abiy: "Great Lent (Abiy Tsom)", fast_nebiyat: "Fast of the Prophets", fast_filseta: "Fast of Assumption (Filseta)", fast_hawaryat: "Fast of the Apostles", fast_nenewe: "Fast of Nineveh", fast_gehad: "Fast of Gehad", fast_hamsa: "Pentecost (Hamsa Elet)", fast_dihnet: "Fast of Salvation (Wed/Fri)", fast_holiday: "Feast Day (No Fasting)",
         fest_debre_zeyit: "Mount of Olives (Debre Zeyit)", fest_hosanna: "Palm Sunday (Hosanna)", fest_siklet: "Good Friday (Siklet)", fest_tensae: "Easter (Tensae)", fest_rikbe_kahnat: "Meeting of Priests", fest_erget: "Ascension (Erget)", fest_parakletos: "Paraclete",
         hol_enkutatash: "New Year (Enkutatash)", hol_meskel: "Finding of the True Cross (Meskel)", hol_buhe: "Buhe (Transfiguration)", hol_sigd: "Sigd", hol_ashenda: "Ashenda", hol_timkat: "Epiphany (Timkat)", hol_filseta_maryam: "Assumption of Mary", hol_genna: "Christmas (Genna)", hol_adwa: "Victory of Adwa", hol_patriots: "Patriots' Victory Day", hol_labor: "Labor Day",
         hol_ashura: "Ashura", hol_mawlid: "Mawlid", hol_isra: "Isra and Mi'raj", hol_ramadan: "Ramadan", hol_laylat: "Laylat al-Qadr", hol_eid_fitr: "Eid al-Fitr", hol_arafah: "Day of Arafah", hol_eid_adha: "Eid al-Adha", hol_hajj: "Hajj",
@@ -578,13 +578,15 @@ function getSeasons(ey, em, ed, bh) {
     let fTensae = (bh.feasts.tensae.m - 1) * 30 + bh.feasts.tensae.d, fHawariat = (bh.feasts.hawaryat.m - 1) * 30 + bh.feasts.hawaryat.d;
     let fPentecost = (bh.feasts.parakletos.m - 1) * 30 + bh.feasts.parakletos.d;
 
+    let gennaDay = mod(ey, 4) === 0 ? 118 : 119;
     let fasting = t('fast_none');
-    if (dayNum >= fAbiy && dayNum < fTensae) {
+    if (dayNum === gennaDay || dayNum === 131) fasting = t('fast_holiday');
+    else if (dayNum >= fAbiy && dayNum < fTensae) {
         fasting = t('fast_abiy');
         let weekKey = getGreatLentWeek(dayNum, bh);
         if (weekKey) fasting += ` (${t(weekKey)})`;
     }
-    else if (dayNum >= 75 && dayNum <= 118) fasting = t('fast_nebiyat');
+    else if (dayNum >= 75 && dayNum < gennaDay) fasting = t('fast_nebiyat');
     else if (dayNum >= 331 && dayNum <= 345) fasting = t('fast_filseta');
     else if (dayNum >= fHawariat && dayNum <= 305) fasting = t('fast_hawaryat');
     else if (dayNum >= fNenewe && dayNum < fNenewe + 3) fasting = t('fast_nenewe');
@@ -592,7 +594,7 @@ function getSeasons(ey, em, ed, bh) {
     else if (dayNum >= fTensae && dayNum <= fPentecost) fasting = t('fast_hamsa');
     else { let wd = ethToGregorian(ey, em, ed).getDay(); if (wd === 3 || wd === 5) fasting = t('fast_dihnet'); }
 
-    let progress = "", ranges = [ {n: t('fast_nenewe'), s: fNenewe, l: 3}, {n: t('fast_abiy'), s: fAbiy, l: fTensae - fAbiy}, {n: t('fast_nebiyat'), s: 75, l: 44}, {n: t('fast_hawaryat'), s: fHawariat, l: 305 - fHawariat + 1}, {n: t('fast_filseta'), s: 331, l: 15} ];
+    let progress = "", ranges = [ {n: t('fast_nenewe'), s: fNenewe, l: 3}, {n: t('fast_abiy'), s: fAbiy, l: fTensae - fAbiy}, {n: t('fast_nebiyat'), s: 75, l: gennaDay - 75}, {n: t('fast_hawaryat'), s: fHawariat, l: 305 - fHawariat + 1}, {n: t('fast_filseta'), s: 331, l: 15} ];
     for (let r of ranges) { if (dayNum >= r.s && dayNum < r.s + r.l) { progress = `(${r.n}: ${fNum(dayNum - r.s + 1)} / ${fNum(r.l)})`; break; } }
     return { climatic, liturgical: getLiturgicalSeason(ey, em, ed, bh), fasting, progress };
 }
@@ -606,14 +608,17 @@ function getUpcomingEvents(ey, em, ed, bh) {
         events.push([(dateObj.m - 1) * 30 + dateObj.d, i18nKey]);
     }
     events.sort((a,b) => a[0] - b[0]);
+    const describe = (key, dayNum, daysLeft) => {
+        let targetEm = Math.floor((dayNum - 1) / 30) + 1, targetEd = ((dayNum - 1) % 30) + 1;
+        let eventName = t(key), dateStr = `${m[targetEm]} ${fNum(targetEd)}`;
+        return key.startsWith('fast_') ? `${eventName} (${dateStr}) — በ${fNum(daysLeft)} ቀናት ውስጥ ይጀምራል` : `${eventName} (${dateStr}) — በ${fNum(daysLeft)} ቀናት ውስጥ`;
+    };
     for (let i = 0; i < events.length; i++) {
-        if (events[i][0] > todayNum) {
-            let daysLeft = events[i][0] - todayNum, targetEm = Math.floor((events[i][0] - 1) / 30) + 1, targetEd = ((events[i][0] - 1) % 30) + 1;
-            let eventName = t(events[i][1]), dateStr = `${m[targetEm]} ${fNum(targetEd)}`;
-            return events[i][1].startsWith('fast_') ? `${eventName} (${dateStr}) — በ${fNum(daysLeft)} ቀናት ውስጥ ይጀምራል` : `${eventName} (${dateStr}) — በ${fNum(daysLeft)} ቀናት ውስጥ`;
-        }
+        if (events[i][0] > todayNum) return describe(events[i][1], events[i][0], events[i][0] - todayNum);
     }
-    return "";
+    let nextYearFirst = getNamedEventsForYear(ey + 1)[0];
+    if (!nextYearFirst) return "";
+    return describe(nextYearFirst[1], nextYearFirst[0], 360 + getMonthLength(ey, 13) - todayNum + nextYearFirst[0]);
 }
 
 function ethiopianDayOfYear(em, ed) { return (em - 1) * 30 + ed; }
@@ -645,7 +650,7 @@ function getFastingPeriods(ey) {
     let ranges = [
         { id: "fast_nenewe", s: fNenewe, l: 3 },
         { id: "fast_abiy", s: fAbiy, l: fTensae - fAbiy },
-        { id: "fast_nebiyat", s: 75, l: 44 },
+        { id: "fast_nebiyat", s: 75, l: (mod(ey, 4) === 0 ? 118 : 119) - 75 },
         { id: "fast_hawaryat", s: fHawariat, l: 305 - fHawariat + 1 },
         { id: "fast_filseta", s: 331, l: 15 }
     ];
@@ -1219,10 +1224,16 @@ function renderHolidays() {
 function downloadYearCalendarIcs() {
     if (!window.EthioIcal) return;
     let now = new Date(), eth = gregorianToEthiopian(now.getFullYear(), now.getMonth()+1, now.getDate());
-    let vevents = [];
-    getFdreHolidays(eth.ey).forEach(item => vevents.push(window.EthioIcal.buildVevent({ uid: `${item.id}-${eth.ey}@ethio-calendar`, summary: item.n, startG: item.g, endG: window.EthioIcal.addDays(item.g, 1) })));
-    getFastingPeriods(eth.ey).forEach(f => vevents.push(window.EthioIcal.buildVevent({ uid: `${f.id}-${eth.ey}@ethio-calendar`, summary: f.n, startG: f.startG, endG: window.EthioIcal.addDays(f.endG, 1) })));
-    getMovableFeasts(eth.ey).forEach(item => vevents.push(window.EthioIcal.buildVevent({ uid: `${item.id}-${eth.ey}@ethio-calendar`, summary: item.n, startG: item.g, endG: window.EthioIcal.addDays(item.g, 1) })));
+    let vevents = [], usedUids = new Set(), holidays = getFdreHolidays(eth.ey), holidayIds = new Set(holidays.map(item => item.id));
+    const addEvent = (id, summary, startG, endG) => {
+        let uid = `${id}-${eth.ey}@ethio-calendar`;
+        if (usedUids.has(uid)) uid = `${id}-start-${eth.ey}@ethio-calendar`;
+        usedUids.add(uid);
+        vevents.push(window.EthioIcal.buildVevent({ uid, summary, startG, endG }));
+    };
+    holidays.forEach(item => addEvent(item.id, item.n, item.g, window.EthioIcal.addDays(item.g, 1)));
+    getFastingPeriods(eth.ey).forEach(f => addEvent(f.id, f.n, f.startG, window.EthioIcal.addDays(f.endG, 1)));
+    getMovableFeasts(eth.ey).filter(item => !holidayIds.has(item.id)).forEach(item => addEvent(item.id, item.n, item.g, window.EthioIcal.addDays(item.g, 1)));
     let calText = window.EthioIcal.buildCalendar(vevents, t('holidays_title'));
     window.EthioIcal.downloadIcs(calText, `ethiopian-calendar-${eth.ey}.ics`);
 }
