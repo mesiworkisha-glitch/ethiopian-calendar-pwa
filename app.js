@@ -1383,9 +1383,10 @@ function setupGitsawe() {
         btn.setAttribute('aria-label', `ደብቅ፦ ${ctx}`);
         btn.setAttribute('aria-expanded', 'true');
         if (target.dataset.loaded) return;
-        try { await Promise.all([EthioBible.loadBible(), EthioBible.loadCorrections()]); } catch (err) { target.innerHTML = `<p class="gitsawe-fulltext-error">${t('err_bible_load_failed')}</p>`; return; }
+        target.innerHTML = `<p class="gitsawe-fulltext-loading">…</p>`;
         const ref = btn.dataset.month && btn.dataset.day ? { month: parseInt(btn.dataset.month, 10), day: parseInt(btn.dataset.day, 10), slot: btn.dataset.slot, role: btn.dataset.role } : null;
-        const result = EthioBible.resolveAndFetch(btn.dataset.book, btn.dataset.cv, btn.dataset.context, ref);
+        let result;
+        try { result = await EthioBible.resolveAndFetch(btn.dataset.book, btn.dataset.cv, btn.dataset.context, ref); } catch (err) { target.innerHTML = `<p class="gitsawe-fulltext-error">${t('err_bible_load_failed')}</p>`; return; }
         if (!result) { target.innerHTML = `<p class="gitsawe-fulltext-error">${t('gitsawe_fulltext_unavailable')}</p>`; return; }
         target.dataset.loaded = '1';
         let vFirst = result.verses[0].verse, vLast = result.verses[result.verses.length - 1].verse;

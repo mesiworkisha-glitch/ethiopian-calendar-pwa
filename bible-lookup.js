@@ -1,32 +1,31 @@
-/* ── Bible Cross-Reference Module (80-weahadu.json) ─────────────────────── */
+/* ── Bible Cross-Reference Module (per-book files under bible-books/) ───── */
 (function (root) {
     'use strict';
 
-    let bibleData = null;
-    let bibleByNumber = null;
-    let loadPromise = null;
+    const bookCache = new Map();
+    const bookLoadPromises = new Map();
     let corrections = null;
     let correctionsPromise = null;
 
-    async function loadBible() {
-        if (bibleData) return bibleData;
-        if (loadPromise) return loadPromise;
+    async function loadBook(bookNumber) {
+        if (bookCache.has(bookNumber)) return bookCache.get(bookNumber);
+        if (bookLoadPromises.has(bookNumber)) return bookLoadPromises.get(bookNumber);
 
-        loadPromise = (async () => {
+        const promise = (async () => {
             try {
-                const res = await fetch('80-weahadu.json');
-                bibleData = await res.json();
-                bibleByNumber = new Map();
-                bibleData.forEach(b => bibleByNumber.set(b.book_number, b));
-                return bibleData;
+                const res = await fetch(`bible-books/${bookNumber}.json`);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const book = await res.json();
+                bookCache.set(bookNumber, book);
+                return book;
             } catch (err) {
-                console.error('Failed to load Bible dataset:', err);
-                loadPromise = null;
+                bookLoadPromises.delete(bookNumber);
                 throw err;
             }
         })();
 
-        return loadPromise;
+        bookLoadPromises.set(bookNumber, promise);
+        return promise;
     }
 
     async function loadCorrections() {
@@ -175,9 +174,7 @@
         return null;
     }
 
-    function getVerses(bookNumber, chapter, vstart, vend) {
-        if (!bibleByNumber) return null;
-        const book = bibleByNumber.get(bookNumber);
+    function getVersesFromBook(book, chapter, vstart, vend) {
         if (!book || !chapter) return null;
         const chapterObj = book.chapters.find(c => c.chapter === chapter);
         if (!chapterObj) return null;
@@ -196,32 +193,37 @@
         };
     }
 
-    function resolveAndFetch(bookToken, chapterVerseStr, context, ref) {
+    async function resolveAndFetch(bookToken, chapterVerseStr, context, ref) {
         const cv = parseChapterVerse(chapterVerseStr);
         const masterBn = resolveBook(bookToken, context);
         const masterOk = !!(cv && cv.chapter && masterBn);
+
+        await loadCorrections();
 
         if (ref && corrections) {
             const key = `${ref.month}-${ref.day}-${ref.slot}-${ref.role}`;
             const c = corrections[key];
             if (c && (!masterOk || (masterBn === c.bn && cv.chapter === c.sc))) {
-                const result = getVerses(c.bn, c.sc, c.sv, c.sc === c.ec ? c.ev : 'END');
-                if (result) return Object.assign({ corrected: true }, result);
+                try {
+                    const book = await loadBook(c.bn);
+                    const result = getVersesFromBook(book, c.sc, c.sv, c.sc === c.ec ? c.ev : 'END');
+                    if (result) return Object.assign({ corrected: true }, result);
+                } catch (err) { /* fall through to master lookup */ }
             }
         }
 
         if (!masterOk) return null;
-        return getVerses(masterBn, cv.chapter, cv.vstart, cv.vend);
+        const book = await loadBook(masterBn);
+        return getVersesFromBook(book, cv.chapter, cv.vstart, cv.vend);
     }
 
     root.EthioBible = {
-        loadBible,
+        loadBook,
         loadCorrections,
         geezToNumber,
         parseChapterVerse,
         resolveBook,
-        getVerses,
         resolveAndFetch,
-        getBookByNumber: n => bibleByNumber ? bibleByNumber.get(n) : null
+        getBookByNumber: n => bookCache.get(n) || null
     };
 })(typeof window !== 'undefined' ? window : globalThis);
