@@ -12,7 +12,7 @@ const i18n = {
         conv_title: "ቀን መፈለጊያና መቀየሪያ", conv_label_type: "የቀን ዓይነት", opt_eth: "የኢትዮጵያ ቀን", opt_greg: "የግሪጎሪያን (ፈረንጅ) ቀን", opt_jul: "የጁሊያን (Julian) ቀን", opt_heb: "የዕብራውያን (Hebrew) ቀን", opt_hij: "የሂጅሪ (እስላማዊ) ቀን",
         conv_label_year: "ዓመት (አማራጭ)", conv_label_month: "ወር (አማራጭ)", conv_label_day: "ቀን (አማራጭ)", ph_year: "ዓመት", ph_month: "ወር", ph_day: "ቀን", btn_convert: "ቀይር / ፈልግ",
         synax_title: "በስንክሳር ውስጥ ፍለጋ", synax_label: "የቅዱስ ወይም የበዓል ስም ያስገቡ", ph_synax: "ለምሳሌ፡ ሚካኤል", btn_search: "ፈልግ",
-        gitsawe_title: "መጽሐፈ ግጻዌ (የዕለቱ ንባባትና ምስባክ)", gitsawe_desc: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን የየዕለቱ የቅዳሴና የነግህ ምስባክ፣ ወንጌል፣ መልእክታትና ቅዳሴ።", gitsawe_mode_label: "የይዘት ዓይነት", gitsawe_mode_daily: "የዕለቱ ግጻዌ (በቀን ይፈልጉ)", gitsawe_mode_search: "በግጻዌ ውስጥ ፍለጋ", gitsawe_mode_structure: "የመጽሐፉ ማውጫና ገጾች", gitsawe_label_month: "ወር", gitsawe_label_day: "ቀን (1-30)", gitsawe_btn_show: "ግጻዌ አሳይ", gitsawe_label_query: "የመዝሙር፣ የወንጌል ወይም የበዓል ስም ያስገቡ", ph_gitsawe_search: "ምሳሌ፡ አክሊለ ዓመት ወይም ሉቃስ", err_gitsawe_load_failed: "የግጻዌ መረጃ መጫን አልተቻለም። ግንኙነትዎን ያረጋግጡና እንደገና ይሞክሩ።", gitsawe_no_results: "ምንም ውጤት አልተገኘም።", gitsawe_structure_title: "የመጽሐፉ ማውጫ", gitsawe_structure_pages: "ገጽ", gitsawe_results_found: "ውጤቶች ተገኝተዋል", err_bible_load_failed: "የመጽሐፍ ቅዱስ ጽሑፍ መጫን አልተቻለም።", gitsawe_fulltext_unavailable: "ሙሉ ጽሑፉ ራሱን በራሱ ሊገኝ አልቻለም።", logo_alt: "የቀን መቁጠሪያ ምልክት በኢትዮጵያ ሰንደቅ ዓላማ ቀለማት",
+        gitsawe_title: "መጽሐፈ ግጻዌ (የዕለቱ ንባባትና ምስባክ)", gitsawe_desc: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን የየዕለቱ የቅዳሴና የነግህ ምስባክ፣ ወንጌል፣ መልእክታትና ቅዳሴ።", gitsawe_mode_label: "የይዘት ዓይነት", gitsawe_mode_daily: "የዕለቱ ግጻዌ (በቀን ይፈልጉ)", gitsawe_mode_search: "በግጻዌ ውስጥ ፍለጋ", gitsawe_mode_structure: "የመጽሐፉ ማውጫና ገጾች", gitsawe_label_month: "ወር", gitsawe_label_day: "ቀን (1-30)", gitsawe_btn_show: "ግጻዌ አሳይ", gitsawe_label_query: "የመዝሙር፣ የወንጌል ወይም የበዓል ስም ያስገቡ", ph_gitsawe_search: "ምሳሌ፡ አክሊለ ዓመት ወይም ሉቃስ", err_gitsawe_load_failed: "የግጻዌ መረጃ መጫን አልተቻለም። ግንኙነትዎን ያረጋግጡና እንደገና ይሞክሩ።", gitsawe_no_results: "ምንም ውጤት አልተገኘም።", gitsawe_structure_title: "የመጽሐፉ ማውጫ", gitsawe_structure_pages: "ገጽ", gitsawe_results_found: "ውጤቶች ተገኝተዋል", err_bible_load_failed: "የመጽሐፍ ቅዱስ ጽሑፍ መጫን አልተቻለም።", gitsawe_fulltext_unavailable: "ሙሉ ጽሑፉ ራሱን በራሱ ሊገኝ አልቻለም።", txt_loading: "በመጫን ላይ...", logo_alt: "የቀን መቁጠሪያ ምልክት በኢትዮጵያ ሰንደቅ ዓላማ ቀለማት",
         per_title: "የወር አበባ ዑደት ማቀናበሪያ", per_desc: "የመጨረሻው የወር አበባ የታየበትን ቀን በኢትዮጵያ አቆጣጠር ያስገቡ፦", per_year: "ዓመት", per_month: "ወር (1-13)", per_day: "ቀን", per_cycle_len: "የዑደት ርዝመት (በቀናት)", per_period_len: "የወር አበባ የሚቆይበት ጊዜ", btn_save: "አስቀምጥ", btn_clear: "መረጃ አጥፋ",
         age_title: "ትክክለኛ ዕድሜ ማስያ", age_desc: "የትውልድ ቀንዎን በኢትዮጵያ አቆጣጠር ያስገቡ፦", btn_calc_age: "ዕድሜዬን አስላ",
         preg_title: "የእርግዝና እና የወሊድ ጊዜ መገመቻ", preg_desc: "የመጨረሻው የወር አበባ የታየበትን የመጀመሪያ ቀን (LMP) ያስገቡ፦", btn_calc_preg: "አስላ",
@@ -63,7 +63,7 @@ const i18n = {
         conv_title: "Search & Convert Dates", conv_label_type: "Calendar Type", opt_eth: "Ethiopian", opt_greg: "Gregorian", opt_jul: "Julian", opt_heb: "Hebrew", opt_hij: "Hijri (Islamic)",
         conv_label_year: "Year (Optional)", conv_label_month: "Month (Optional)", conv_label_day: "Day (Optional)", ph_year: "Year", ph_month: "Month", ph_day: "Day", btn_convert: "Convert / Search",
         synax_title: "Synaxarium Search", synax_label: "Enter Saint or Feast Name (Amharic)", ph_synax: "e.g., ሚካኤል", btn_search: "Search",
-        gitsawe_title: "Gitsawe – Daily Lectionary", gitsawe_desc: "The Ethiopian Orthodox Tewahedo Church's daily Psalm verses (Mesbak), Gospel, Epistle readings, and Anaphora for the Liturgy and Morning/Evening prayers.", gitsawe_mode_label: "Content Type", gitsawe_mode_daily: "Daily Reading (by date)", gitsawe_mode_search: "Search within Gitsawe", gitsawe_mode_structure: "Book Contents & Pages", gitsawe_label_month: "Month", gitsawe_label_day: "Day (1-30)", gitsawe_btn_show: "Show Reading", gitsawe_label_query: "Enter a hymn, Gospel, or feast name", ph_gitsawe_search: "e.g. Aklile Amet or Luke", err_gitsawe_load_failed: "Couldn't load Gitsawe data. Check your connection and try again.", gitsawe_no_results: "No results found.", gitsawe_structure_title: "Table of Contents", gitsawe_structure_pages: "Pages", gitsawe_results_found: "results found", err_bible_load_failed: "Couldn't load the Bible text.", gitsawe_fulltext_unavailable: "Full text couldn't be located automatically.", logo_alt: "Calendar logo in the colors of the Ethiopian flag",
+        gitsawe_title: "Gitsawe – Daily Lectionary", gitsawe_desc: "The Ethiopian Orthodox Tewahedo Church's daily Psalm verses (Mesbak), Gospel, Epistle readings, and Anaphora for the Liturgy and Morning/Evening prayers.", gitsawe_mode_label: "Content Type", gitsawe_mode_daily: "Daily Reading (by date)", gitsawe_mode_search: "Search within Gitsawe", gitsawe_mode_structure: "Book Contents & Pages", gitsawe_label_month: "Month", gitsawe_label_day: "Day (1-30)", gitsawe_btn_show: "Show Reading", gitsawe_label_query: "Enter a hymn, Gospel, or feast name", ph_gitsawe_search: "e.g. Aklile Amet or Luke", err_gitsawe_load_failed: "Couldn't load Gitsawe data. Check your connection and try again.", gitsawe_no_results: "No results found.", gitsawe_structure_title: "Table of Contents", gitsawe_structure_pages: "Pages", gitsawe_results_found: "results found", err_bible_load_failed: "Couldn't load the Bible text.", gitsawe_fulltext_unavailable: "Full text couldn't be located automatically.", txt_loading: "Loading…", logo_alt: "Calendar logo in the colors of the Ethiopian flag",
         per_title: "Menstrual Cycle Tracker", per_desc: "Enter the date of your last period (Ethiopian Calendar):", per_year: "Year", per_month: "Month (1-13)", per_day: "Day", per_cycle_len: "Cycle Length (days)", per_period_len: "Period Length (days)", btn_save: "Save", btn_clear: "Clear Data",
         age_title: "Exact Age Calculator", age_desc: "Enter your birth date (Ethiopian Calendar):", btn_calc_age: "Calculate Age",
         preg_title: "Pregnancy & Due Date Calculator", preg_desc: "Enter the first day of your last menstrual period (LMP):", btn_calc_preg: "Calculate Due Date",
@@ -114,7 +114,7 @@ const i18n = {
         conv_title: "Guyyaa Barbaadi & Jijjiiri", conv_label_type: "Gosa Kalaandarii", opt_eth: "Itoophiyaa", opt_greg: "Gregorian (Awurooppaa)", opt_jul: "Julian", opt_heb: "Hebrew", opt_hij: "Hijiraa (Islaamaa)",
         conv_label_year: "Bara", conv_label_month: "Ji'a", conv_label_day: "Guyyaa", ph_year: "Bara", ph_month: "Ji'a", ph_day: "Guyyaa", btn_convert: "Jijjiiri / Barbaadi",
         synax_title: "Sinksikara Barbaadi", synax_label: "Maqaa Qulqulluu (Afaan Amaaraatiin)", ph_synax: "Fkn: ሚካኤል", btn_search: "Barbaadi",
-        gitsawe_title: "Gitsawe – Dubbisa Guyyaa Guyyaa", gitsawe_desc: "Dubbisa Mazmura (Mesbak), Wangeelaa, Ergaawwanii fi Anaphora kan Kanisaa Ortodoksii Tewahidoo Itoophiyaa kan Kiddaasee fi Kadhannaa Ganamaa/Galgalaa guyyaa guyyaan.", gitsawe_mode_label: "Gosa Qabiyyee", gitsawe_mode_daily: "Dubbisa Guyyaa (guyyaan barbaadi)", gitsawe_mode_search: "Gitsawe Keessatti Barbaadi", gitsawe_mode_structure: "Qabiyyee Kitaabaa fi Fuulota", gitsawe_label_month: "Ji'a", gitsawe_label_day: "Guyyaa (1-30)", gitsawe_btn_show: "Dubbisa Agarsiisi", gitsawe_label_query: "Maqaa Faarfannaa, Wangeelaa ykn Ayyaanaa galchi", ph_gitsawe_search: "Fkn: አክሊለ ዓመት ykn ሉቃስ", err_gitsawe_load_failed: "Ragaan Gitsawe fe'amuu hin dandeenye. Sirna interneetii keessan mirkaneessitanii irra deebi'aa yaalaa.", gitsawe_no_results: "Bu'aan hin argamne.", gitsawe_structure_title: "Qabiyyee Kitaabaa", gitsawe_structure_pages: "Fuula", gitsawe_results_found: "bu'aaleen argaman", err_bible_load_failed: "Barreeffama Macaafa Qulqulluu fe'uun hin danda'amne.", gitsawe_fulltext_unavailable: "Barreeffamni guutuun ofumaan hin argamne.", logo_alt: "Mallattoo kalandarii halluu alaabaa Itoophiyaatiin",
+        gitsawe_title: "Gitsawe – Dubbisa Guyyaa Guyyaa", gitsawe_desc: "Dubbisa Mazmura (Mesbak), Wangeelaa, Ergaawwanii fi Anaphora kan Kanisaa Ortodoksii Tewahidoo Itoophiyaa kan Kiddaasee fi Kadhannaa Ganamaa/Galgalaa guyyaa guyyaan.", gitsawe_mode_label: "Gosa Qabiyyee", gitsawe_mode_daily: "Dubbisa Guyyaa (guyyaan barbaadi)", gitsawe_mode_search: "Gitsawe Keessatti Barbaadi", gitsawe_mode_structure: "Qabiyyee Kitaabaa fi Fuulota", gitsawe_label_month: "Ji'a", gitsawe_label_day: "Guyyaa (1-30)", gitsawe_btn_show: "Dubbisa Agarsiisi", gitsawe_label_query: "Maqaa Faarfannaa, Wangeelaa ykn Ayyaanaa galchi", ph_gitsawe_search: "Fkn: አክሊለ ዓመት ykn ሉቃስ", err_gitsawe_load_failed: "Ragaan Gitsawe fe'amuu hin dandeenye. Sirna interneetii keessan mirkaneessitanii irra deebi'aa yaalaa.", gitsawe_no_results: "Bu'aan hin argamne.", gitsawe_structure_title: "Qabiyyee Kitaabaa", gitsawe_structure_pages: "Fuula", gitsawe_results_found: "bu'aaleen argaman", err_bible_load_failed: "Barreeffama Macaafa Qulqulluu fe'uun hin danda'amne.", gitsawe_fulltext_unavailable: "Barreeffamni guutuun ofumaan hin argamne.", txt_loading: "Fe'amaa jira...", logo_alt: "Mallattoo kalandarii halluu alaabaa Itoophiyaatiin",
         per_title: "Hordoffii Marsaa Laguu", per_desc: "Guyyaa marsaan laguu kee xumuraa itti eegale galchi (Kalaandarii Itoophiyaatiin):", per_year: "Bara", per_month: "Ji'a (1-13)", per_day: "Guyyaa", per_cycle_len: "Dheerina Marsaa (guyyoota)", per_period_len: "Turmaata Laguu (guyyoota)", btn_save: "Olkaa'i", btn_clear: "Haquu",
         age_title: "Herrega Umrii Sirrii", age_desc: "Guyyaa dhaloota kee galchi (Kalaandarii Itoophiyaatiin):", btn_calc_age: "Umrii Koo Herregi",
         preg_title: "Herrega Yeroo Ulfaa fi Dahumsaa", preg_desc: "Guyyaa marsaan laguu kee xumuraa itti eegale galchi (LMP):", btn_calc_preg: "Herregi",
@@ -165,7 +165,7 @@ const i18n = {
         conv_title: "መድለዪን መቐየሪን ዕለት", conv_label_type: "ዓይነት ዕለት", opt_eth: "ናይ ኢትዮጵያ ዕለት", opt_greg: "ግሪጎሪያን (ፈረንጂ)", opt_jul: "ጁልያን", opt_heb: "እብራውያን", opt_hij: "ሂጅራ (እስልምና)",
         conv_label_year: "ዓመት", conv_label_month: "ወርሒ", conv_label_day: "መዓልቲ", ph_year: "ዓመት", ph_month: "ወርሒ", ph_day: "መዓልቲ", btn_convert: "ቀይር / ድለ",
         synax_title: "ኣብ ስንክሳር ድለ", synax_label: "ስም ቅዱስ ወይ በዓል ኣእቱ (ብኣምሓርኛ)", ph_synax: "ንኣብነት፡ ሚካኤል", btn_search: "ድለ",
-        gitsawe_title: "ግጻዌ – ንባባት መዓልታዊ", gitsawe_desc: "ናይ ቤተክርስትያን ኦርቶዶክስ ተዋህዶ ኢትዮጵያ መዓልታዊ ምስባክ፣ ወንጌል፣ መልእኽትን ቅዳሴን ናይ ቅዳሴን ናይ ንጋህን ምሸትን ጸሎት።", gitsawe_mode_label: "ዓይነት ትሕዝቶ", gitsawe_mode_daily: "ናይ መዓልቲ ግጻዌ (ብዕለት ድለ)", gitsawe_mode_search: "ኣብ ግጻዌ ድለ", gitsawe_mode_structure: "ማውጫን ገጻትን መጽሓፍ", gitsawe_label_month: "ወርሒ", gitsawe_label_day: "መዓልቲ (1-30)", gitsawe_btn_show: "ግጻዌ ኣርኢ", gitsawe_label_query: "ስም መዝሙር፣ ወንጌል ወይ በዓል ኣእቱ", ph_gitsawe_search: "ንኣብነት፡ አክሊለ ዓመት ወይ ሉቃስ", err_gitsawe_load_failed: "ሓበሬታ ግጻዌ ክምጻእ ኣይከኣለን። ግንኙነትካ ኣረጋግጽ እሞ ደጊምካ ፈትን።", gitsawe_no_results: "ውጽኢት ኣይተረኸበን።", gitsawe_structure_title: "ማውጫ መጽሓፍ", gitsawe_structure_pages: "ገጽ", gitsawe_results_found: "ውጽኢታት ተረኺቦም", err_bible_load_failed: "ጽሑፍ መጽሓፍ ቅዱስ ክምጻእ ኣይከኣለን።", gitsawe_fulltext_unavailable: "ምሉእ ጽሑፍ ብገዛእ ርእሱ ክርከብ ኣይከኣለን።", logo_alt: "ናይ ቀመር ምልክት ብሕብሪ ባንዴራ ኢትዮጵያ",
+        gitsawe_title: "ግጻዌ – ንባባት መዓልታዊ", gitsawe_desc: "ናይ ቤተክርስትያን ኦርቶዶክስ ተዋህዶ ኢትዮጵያ መዓልታዊ ምስባክ፣ ወንጌል፣ መልእኽትን ቅዳሴን ናይ ቅዳሴን ናይ ንጋህን ምሸትን ጸሎት።", gitsawe_mode_label: "ዓይነት ትሕዝቶ", gitsawe_mode_daily: "ናይ መዓልቲ ግጻዌ (ብዕለት ድለ)", gitsawe_mode_search: "ኣብ ግጻዌ ድለ", gitsawe_mode_structure: "ማውጫን ገጻትን መጽሓፍ", gitsawe_label_month: "ወርሒ", gitsawe_label_day: "መዓልቲ (1-30)", gitsawe_btn_show: "ግጻዌ ኣርኢ", gitsawe_label_query: "ስም መዝሙር፣ ወንጌል ወይ በዓል ኣእቱ", ph_gitsawe_search: "ንኣብነት፡ አክሊለ ዓመት ወይ ሉቃስ", err_gitsawe_load_failed: "ሓበሬታ ግጻዌ ክምጻእ ኣይከኣለን። ግንኙነትካ ኣረጋግጽ እሞ ደጊምካ ፈትን።", gitsawe_no_results: "ውጽኢት ኣይተረኸበን።", gitsawe_structure_title: "ማውጫ መጽሓፍ", gitsawe_structure_pages: "ገጽ", gitsawe_results_found: "ውጽኢታት ተረኺቦም", err_bible_load_failed: "ጽሑፍ መጽሓፍ ቅዱስ ክምጻእ ኣይከኣለን።", gitsawe_fulltext_unavailable: "ምሉእ ጽሑፍ ብገዛእ ርእሱ ክርከብ ኣይከኣለን።", txt_loading: "ይጻዓን ኣሎ...", logo_alt: "ናይ ቀመር ምልክት ብሕብሪ ባንዴራ ኢትዮጵያ",
         per_title: "ዑደት ጽግያት መከታተሊ", per_desc: "ናይ መወዳእታ ጽግያት ዝረኣኹምሉ ዕለት ብኣቆጻጽራ ኢትዮጵያ ኣእትዉ፦", per_year: "ዓመት", per_month: "ወርሒ (1-13)", per_day: "መዓልቲ", per_cycle_len: "ንውሓት ዑደት (ብመዓልታት)", per_period_len: "ግዜ ጽግያት (ብመዓልታት)", btn_save: "ኣቐምጥ", btn_clear: "ሓበሬታ ኣጥፍእ",
         age_title: "ልክዕ ዕድመ መሕሰቢ", age_desc: "ዕለት ልደትኩም ብኣቆጻጽራ ኢትዮጵያ ኣእትዉ፦", btn_calc_age: "ዕድመይ ሕሰብ",
         preg_title: "ግምት ዕለተ ወሊድን ጥንስን", preg_desc: "ናይ መወዳእታ ጽግያት ዝረኣኹምሉ ዕለት (LMP) ኣእትዉ፦", btn_calc_preg: "ሕሰብ",
@@ -216,7 +216,7 @@ const i18n = {
         conv_title: "Raadi & Beddel Taariikhda", conv_label_type: "Nooca Kalandarka", opt_eth: "Taariikhda Itoobiya", opt_greg: "Gregorian", opt_jul: "Julian", opt_heb: "Cibraaniga", opt_hij: "Hijriga (Islaamka)",
         conv_label_year: "Sanadka (Ikhtiyaari)", conv_label_month: "Bisha (Ikhtiyaari)", conv_label_day: "Maalinta (Ikhtiyaari)", ph_year: "Sanad", ph_month: "Bil", ph_day: "Maalin", btn_convert: "Beddel / Raadi",
         synax_title: "Raadinta Synaxarium", synax_label: "Geli Magaca Quduuska ah ama Ciidda (Amxaari)", ph_synax: "tusaale: ሚካኤል", btn_search: "Raadi",
-        gitsawe_title: "Gitsawe – Akhrinta Maalinlaha ah", gitsawe_desc: "Akhrinta Sabuurka maalinlaha ah (Mesbak), Injiilka, Waraaqaha, iyo Anaphora ee Kaniisadda Ortodokska Tewahedo ee Itoobiya ee Kiddaasaha iyo Salaadda Subaxa/Fiidnimo.", gitsawe_mode_label: "Nooca Qabiyada", gitsawe_mode_daily: "Akhrinta Maalinta (taariikh raadi)", gitsawe_mode_search: "Gitsawe Ku Raadi", gitsawe_mode_structure: "Tusmada Buugga & Bogagga", gitsawe_label_month: "Bil", gitsawe_label_day: "Maalin (1-30)", gitsawe_btn_show: "Muuji Akhriska", gitsawe_label_query: "Geli magaca heesta, Injiilka, ama ciidda", ph_gitsawe_search: "tusaale: አክሊለ ዓመት ama ሉቃስ", err_gitsawe_load_failed: "Xogta Gitsawe lama soo dejin karin. Hubi xiriirkaaga oo isku day mar kale.", gitsawe_no_results: "Natiijo lama helin.", gitsawe_structure_title: "Tusmada Buugga", gitsawe_structure_pages: "Bogag", gitsawe_results_found: "natiijo la helay", err_bible_load_failed: "Qoraalka Kitaabka Quduuska ah lama soo dejin karin.", gitsawe_fulltext_unavailable: "Qoraalka buuxa si toos ah looma helin.", logo_alt: "Astaanta kalandarka leh midabyada calanka Itoobiya",
+        gitsawe_title: "Gitsawe – Akhrinta Maalinlaha ah", gitsawe_desc: "Akhrinta Sabuurka maalinlaha ah (Mesbak), Injiilka, Waraaqaha, iyo Anaphora ee Kaniisadda Ortodokska Tewahedo ee Itoobiya ee Kiddaasaha iyo Salaadda Subaxa/Fiidnimo.", gitsawe_mode_label: "Nooca Qabiyada", gitsawe_mode_daily: "Akhrinta Maalinta (taariikh raadi)", gitsawe_mode_search: "Gitsawe Ku Raadi", gitsawe_mode_structure: "Tusmada Buugga & Bogagga", gitsawe_label_month: "Bil", gitsawe_label_day: "Maalin (1-30)", gitsawe_btn_show: "Muuji Akhriska", gitsawe_label_query: "Geli magaca heesta, Injiilka, ama ciidda", ph_gitsawe_search: "tusaale: አክሊለ ዓመት ama ሉቃስ", err_gitsawe_load_failed: "Xogta Gitsawe lama soo dejin karin. Hubi xiriirkaaga oo isku day mar kale.", gitsawe_no_results: "Natiijo lama helin.", gitsawe_structure_title: "Tusmada Buugga", gitsawe_structure_pages: "Bogag", gitsawe_results_found: "natiijo la helay", err_bible_load_failed: "Qoraalka Kitaabka Quduuska ah lama soo dejin karin.", gitsawe_fulltext_unavailable: "Qoraalka buuxa si toos ah looma helin.", txt_loading: "Waa la soo dejinayaa...", logo_alt: "Astaanta kalandarka leh midabyada calanka Itoobiya",
         per_title: "La-socodka Xaydha", per_desc: "Geli taariikhda xaydhii kuu dambeysay (Kalandarka Itoobiya):", per_year: "Sanad", per_month: "Bil (1-13)", per_day: "Maalin", per_cycle_len: "Dhererka Wareegga (maalmo)", per_period_len: "Dhererka Xaydha (maalmo)", btn_save: "Kaydi", btn_clear: "Tirtir Xogta",
         age_title: "Xisaabiyaha Da'da Saxda ah", age_desc: "Geli taariikhda dhalashadaada (Kalandarka Itoobiya):", btn_calc_age: "Xisaabi Da'da",
         preg_title: "Xisaabiyaha Uurka & Taariikhda Dhalmada", preg_desc: "Geli maalinta ugu horreysay ee xaydhii kuu dambeysay (LMP):", btn_calc_preg: "Xisaabi",
@@ -903,11 +903,12 @@ async function loadSynaxarium() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark' || (!storedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.setAttribute('data-theme', 'dark');
     const langSelect = document.getElementById('lang-selector'); if (langSelect) langSelect.value = currentLang;
     updateStaticTranslations();
     const modules = [
-        { name: "Tabs Control", func: setupTabs }, { name: "Nav Groups", func: setupNavGroups }, { name: "Preferences Toggles", func: setupPreferences },
+        { name: "Tabs Control", func: setupTabs }, { name: "Nav Groups", func: setupNavGroups }, { name: "Tab Roving Focus", func: setupTabRoving }, { name: "Preferences Toggles", func: setupPreferences },
         { name: "Live Clock", func: initClock }, { name: "Today View", func: renderToday },
         { name: "This Year View", func: renderThisYear },
         { name: "Holidays View", func: renderHolidays }, { name: "Islamic View", func: renderIslamic },
@@ -959,6 +960,37 @@ function setupNavGroups() {
     });
 }
 
+function refreshRovingTabindex() {
+    document.querySelectorAll('nav[role="tablist"]').forEach(tablist => {
+        const tabs = Array.from(tablist.querySelectorAll('.nav-btn'));
+        if (!tabs.length) return;
+        let current = tabs.findIndex(b => b.getAttribute('aria-selected') === 'true');
+        if (current < 0) current = 0;
+        tabs.forEach((b, i) => b.setAttribute('tabindex', i === current ? '0' : '-1'));
+    });
+}
+window.__refreshTabRoving = refreshRovingTabindex;
+
+function setupTabRoving() {
+    refreshRovingTabindex();
+    document.querySelectorAll('nav[role="tablist"]').forEach(tablist => {
+        tablist.addEventListener('keydown', e => {
+            if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft' && e.key !== 'Home' && e.key !== 'End') return;
+            const tabs = Array.from(tablist.querySelectorAll('.nav-btn'));
+            const currentIndex = tabs.indexOf(document.activeElement);
+            if (currentIndex < 0) return;
+            let nextIndex = currentIndex;
+            if (e.key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabs.length;
+            else if (e.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+            else if (e.key === 'Home') nextIndex = 0;
+            else if (e.key === 'End') nextIndex = tabs.length - 1;
+            e.preventDefault();
+            tabs[nextIndex].focus();
+            tabs[nextIndex].click();
+        });
+    });
+}
+
 function setupTabs() {
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -969,6 +1001,7 @@ function setupTabs() {
             document.querySelectorAll('.tab-content').forEach(t => { t.classList.remove('active'); t.hidden = true; });
             btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
             let contentTab = document.getElementById(targetId); if (contentTab) { contentTab.classList.add('active'); contentTab.hidden = false; }
+            refreshRovingTabindex();
         });
     });
 
@@ -1361,7 +1394,7 @@ function setupGitsawe() {
 
     const showBtn = document.getElementById('btn-show-gitsawe');
     if (showBtn) showBtn.addEventListener('click', async () => {
-        output.innerHTML = '';
+        output.innerHTML = `<p role="status">${t('txt_loading')}</p>`;
         try { await EthioGitsawe.loadGitsawe(); } catch (err) { output.innerHTML = `<p class="load-error">⚠️ ${t('err_gitsawe_load_failed')}</p>`; return; }
         const em = parseInt(monthSelect ? monthSelect.value : '', 10), ed = parseInt(dayInput ? dayInput.value : '', 10), maxDay = em === 13 ? 6 : 30;
         if (!em || em < 1 || em > 13) { output.innerHTML = `<p class="load-error">⚠️ ${t('err_invalid_month_eth')}</p>`; return; }
@@ -1372,7 +1405,7 @@ function setupGitsawe() {
 
     const searchBtn = document.getElementById('btn-search-gitsawe');
     if (searchBtn) searchBtn.addEventListener('click', async () => {
-        output.innerHTML = '';
+        output.innerHTML = `<p role="status">${t('txt_loading')}</p>`;
         try { await EthioGitsawe.loadGitsawe(); } catch (err) { output.innerHTML = `<p class="load-error">⚠️ ${t('err_gitsawe_load_failed')}</p>`; return; }
         const qInput = document.getElementById('gitsawe-query'), q = qInput ? qInput.value.trim() : '';
         if (!q) return;
@@ -1397,7 +1430,7 @@ function setupGitsawe() {
         btn.setAttribute('aria-label', `ደብቅ፦ ${ctx}`);
         btn.setAttribute('aria-expanded', 'true');
         if (target.dataset.loaded) return;
-        target.innerHTML = `<p class="gitsawe-fulltext-loading">…</p>`;
+        target.innerHTML = `<p class="gitsawe-fulltext-loading" role="status">${t('txt_loading')}</p>`;
         const ref = btn.dataset.month && btn.dataset.day ? { month: parseInt(btn.dataset.month, 10), day: parseInt(btn.dataset.day, 10), slot: btn.dataset.slot, role: btn.dataset.role } : null;
         let result;
         try { result = await EthioBible.resolveAndFetch(btn.dataset.book, btn.dataset.cv, btn.dataset.context, ref); } catch (err) { target.innerHTML = `<p class="gitsawe-fulltext-error">${t('err_bible_load_failed')}</p>`; return; }
@@ -1414,7 +1447,7 @@ function setupGitsawe() {
 async function renderGitsaweStructure() {
     const out = document.getElementById('gitsawe-structure-output');
     if (!out) return;
-    out.innerHTML = '';
+    out.innerHTML = `<p role="status">${t('txt_loading')}</p>`;
     let data;
     try { data = await EthioGitsawe.loadGitsawe(); } catch (err) { out.innerHTML = `<p class="load-error">⚠️ ${t('err_gitsawe_load_failed')}</p>`; return; }
     const structure = data.structure;

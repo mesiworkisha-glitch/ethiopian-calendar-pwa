@@ -24,13 +24,13 @@
 <label class="planning-field">Season family<select id="season-category"><option value="all">All dates</option><option value="climatic">Climatic season</option><option value="fasting">Fasting season</option><option value="liturgical">Liturgical season</option><option value="lent-week">Great Lent named week</option></select></label>
 <label class="planning-field" id="season-choice-field">Season<select id="season-choice" disabled><option value="all">All dates</option></select></label>
 </div><div id="season-info" class="planning-info" role="status" aria-live="polite"></div></fieldset>
-<div class="planning-actions"><button type="submit">Generate schedule</button><button type="button" id="new-plan">Clear</button></div>
+<div class="planning-actions"><button type="submit" class="btn-primary">Generate schedule</button><button type="button" id="save-plan" class="btn-secondary">Save plan</button><button type="button" id="new-plan" class="btn-secondary">Clear</button></div>
 </form>
 <div id="planning-status" class="planning-status" role="status" aria-live="polite"></div>
 <section aria-labelledby="schedule-heading"><h2 id="schedule-heading">Schedule</h2><div id="schedule-wrap" class="planning-table-wrap"></div></section>
 <section aria-labelledby="file-heading"><h2 id="file-heading">Planning forms and files</h2><p class="planning-help">Create a blank form with the generated dates, or export the current filled plan. JSON preserves the complete plan for later restoration. CSV and TSV are suitable for spreadsheet editing.</p><div class="planning-actions">
-<button type="button" id="blank-csv">Blank CSV</button><button type="button" id="blank-tsv">Blank TSV</button><button type="button" id="blank-json">Blank JSON</button><button type="button" id="blank-md">Blank Markdown</button><button type="button" id="blank-html">Blank HTML</button>
-<button type="button" id="filled-csv">Filled CSV</button><button type="button" id="filled-tsv">Filled TSV</button><button type="button" id="filled-json">Filled JSON</button><button type="button" id="filled-md">Filled Markdown</button><button type="button" id="filled-html">Filled HTML</button>
+<button type="button" id="blank-csv" class="btn-secondary">Blank CSV</button><button type="button" id="blank-tsv" class="btn-secondary">Blank TSV</button><button type="button" id="blank-json" class="btn-secondary">Blank JSON</button><button type="button" id="blank-md" class="btn-secondary">Blank Markdown</button><button type="button" id="blank-html" class="btn-secondary">Blank HTML</button>
+<button type="button" id="filled-csv" class="btn-secondary">Filled CSV</button><button type="button" id="filled-tsv" class="btn-secondary">Filled TSV</button><button type="button" id="filled-json" class="btn-secondary">Filled JSON</button><button type="button" id="filled-md" class="btn-secondary">Filled Markdown</button><button type="button" id="filled-html" class="btn-secondary">Filled HTML</button>
 <label class="planning-file-input">Import JSON/CSV/TSV<input id="plan-file" type="file" accept=".json,.csv,.tsv,application/json,text/csv,text/tab-separated-values"></label>
 </div></section>
 <section aria-labelledby="saved-heading"><h2 id="saved-heading">Saved plans</h2><div id="saved-plans" class="planning-saved"></div></section>

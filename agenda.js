@@ -365,6 +365,7 @@ function activate(){
   const grp=$('navbtn-agenda').closest('.nav-group');if(grp&&grp.tagName==='DETAILS')grp.open=true;
   $('tab-agenda').hidden=false;$('tab-agenda').classList.add('active');
   $('navbtn-agenda').classList.add('active');$('navbtn-agenda').setAttribute('aria-selected','true');
+  if(window.__refreshTabRoving)window.__refreshTabRoving();
   const main=$('main-content');if(main)main.focus();
   renderTaskList();
 }
@@ -402,6 +403,7 @@ function init(){
   b.setAttribute('role','tab');b.setAttribute('aria-selected','false');b.setAttribute('aria-controls','tab-agenda');
   b.dataset.target='tab-agenda';b.textContent=t('nav');
   nav.appendChild(b);
+  if(window.__refreshTabRoving)window.__refreshTabRoving();
   const sec=document.createElement('section');
   sec.id='tab-agenda';sec.className='tab-content';sec.hidden=true;
   sec.setAttribute('role','tabpanel');sec.setAttribute('aria-labelledby','navbtn-agenda');

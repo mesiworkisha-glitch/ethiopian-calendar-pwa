@@ -11,16 +11,16 @@
 
     --section-today: #0066cc;
     --section-thisyear: #7c3aed;
-    --section-holidays: #158443;
-    --section-hijri: #0e9488;
+    --section-holidays: #13773c;
+    --section-hijri: #0b736a;
     --section-hebrew: #3949ab;
-    --section-converter: #c2660f;
+    --section-converter: #9c520c;
     --section-synaxarium: #9c2b3c;
-    --section-gitsawe: #9a6b00;
+    --section-gitsawe: #8b6000;
     --section-periodic: #c2185b;
     --section-age: #55607a;
-    --section-pregnancy: #d1477a;
-    --section-planning: #4d7c0f;
+    --section-pregnancy: #bb2f63;
+    --section-planning: #47730e;
 }
 
 #tab-today { --primary-color: var(--section-today); }
@@ -59,6 +59,19 @@
     --nav-bg: #2d3748;
     --intro-bg: #1a2635;
     --intro-text: #a0aec0;
+
+    --section-today: #47a3ff;
+    --section-thisyear: #b48ef5;
+    --section-holidays: #1db95e;
+    --section-hijri: #11b5a6;
+    --section-hebrew: #939ddb;
+    --section-converter: #ee8420;
+    --section-synaxarium: #de8794;
+    --section-gitsawe: #d79600;
+    --section-periodic: #ef7aa8;
+    --section-age: #98a1b7;
+    --section-pregnancy: #e084a6;
+    --section-planning: #6fb316;
 }
 
 body {
@@ -210,6 +223,16 @@ select.btn-control-toggle option {
     transition: transform 0.15s ease-in-out;
 }
 
+.nav-group:not([open]):has(.nav-btn.active) .nav-group-summary::after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    margin-inline-start: 6px;
+}
+
 .nav-group[open] .nav-group-caret {
     transform: rotate(180deg);
 }
@@ -223,6 +246,7 @@ nav {
 .nav-btn {
     flex: 1 1 auto;
     min-width: 100px;
+    min-height: 44px;
     padding: 10px 12px;
     border: none;
     background: none;
@@ -308,6 +332,15 @@ main {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
+}
+
+[aria-invalid="true"] {
+    border-color: var(--danger-color) !important;
+    outline: 2px solid transparent;
+}
+
+[aria-invalid="true"]:focus-visible {
+    outline-color: var(--danger-color);
 }
 
 label {
@@ -1066,4 +1099,11 @@ body.embed-body.badge-mode .embed-widget.card {
 
 .agenda-status-select {
     font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
 }
