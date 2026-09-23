@@ -104,11 +104,15 @@
         if (btn) btn.addEventListener('click', () => {
             const val = dateInput.value;
             if (!val) return;
-            const parts = val.split('-').map(Number), gy = parts[0], gm = parts[1], gd = parts[2];
-            const gjdn = gregorianToJdn(gy, gm, gd);
-            const gisl = jdnToIslamic(gjdn), geth = jdnToEthiopian(gjdn);
-            const mList = getMonths(), islMonths = t('islamic_months');
-            resultEl.innerHTML = `<p><strong>${t('lbl_hijri')}:</strong> ${islMonths[gisl.im]} ${fNum(gisl.id)}, ${fNum(gisl.iy)}</p><p><strong>${t('lbl_ethiopian')}:</strong> ${mList[geth.em]} ${fNum(geth.ed)}, ${fNum(geth.ey)}</p>`;
+            try {
+                const parts = val.split('-').map(Number), gy = parts[0], gm = parts[1], gd = parts[2];
+                const gjdn = gregorianToJdn(gy, gm, gd);
+                const gisl = jdnToIslamic(gjdn), geth = jdnToEthiopian(gjdn);
+                const mList = getMonths(), islMonths = t('islamic_months');
+                resultEl.innerHTML = `<p><strong>${t('lbl_hijri')}:</strong> ${islMonths[gisl.im]} ${fNum(gisl.id)}, ${fNum(gisl.iy)}</p><p><strong>${t('lbl_ethiopian')}:</strong> ${mList[geth.em]} ${fNum(geth.ed)}, ${fNum(geth.ey)}</p>`;
+            } catch (e) {
+                resultEl.innerHTML = `<p class="load-error">⚠️ ${t('err_generic')}</p>`;
+            }
             notifyResize();
         });
     }
@@ -139,6 +143,8 @@
         }
 
         if (!container) return;
+
+        container.innerHTML = `<p role="status">${typeof t === 'function' ? t('txt_loading') : 'Loading…'}</p>`;
 
         try {
             if (style === 'badge') {
