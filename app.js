@@ -2,7 +2,7 @@ const i18n = {
     am: {
         app_title: "የኢትዮጵያ ካላንደርና ባሕረ ሐሳብ",
         intro_desc: "ነጻ እና ከመስመር ውጭም (ያለ ኢንተርኔት) ሙሉ በሙሉ የሚሠራ መተግበሪያ፦ ትክክለኛ የባሕረ ሐሳብ ስሌት፣ ተንቀሳቃሽ በዓላት፣ የአጽዋም ወቅቶች፣ የስንክሳር ፍለጋ፣ የዕብራውያንና የሂጅሪ ቀን መቀየሪያ።",
-        nav_today: "ዛሬ", nav_this_year: "ዘንድሮ", nav_holidays: "ብሔራዊ በዓላት", nav_hijri: "ሂጅሪ አቆጣጠር", nav_hebrew: "ዕብራውያን አቆጣጠር", nav_converter: "ቀን መቀየሪያ", nav_synaxarium: "ስንክሳር ፍለጋ", nav_period: "የወር አበባ ዑደት", nav_age: "ዕድሜ ማስያ", nav_pregnancy: "የእርግዝና እና የወሊድ ጊዜ መገመቻ",
+        nav_today: "ዛሬ", nav_this_year: "ዘንድሮ", nav_holidays: "ብሔራዊ በዓላት", nav_hijri: "ሂጅሪ አቆጣጠር", nav_hebrew: "ዕብራውያን አቆጣጠር", nav_converter: "ቀን መቀየሪያ", nav_synaxarium: "ስንክሳር ፍለጋ", nav_period: "የወር አበባ ዑደት", nav_age: "ዕድሜ ማስያ", nav_pregnancy: "የእርግዝና እና የወሊድ ጊዜ መገመቻ", nav_group_calendar: "ቀንና ካላንደር", nav_group_altcal: "ሌሎች የቀን አቆጣጠሮች", nav_group_church: "ቤተ ክርስቲያንና ሥርዓተ አምልኮ", nav_group_health: "ጤናና የሕይወት ክትትል", nav_group_planning: "ዕቅድና አጀንዳ",
         today_title: "የዕለቱ ሙሉ መረጃ", this_year_title: "የዘንድሮ ሙሉ መረጃ", btn_copy_date: "ቀኑን ኮፒ አድርግ",
         holidays_title: "የዘንድሮ ብሔራዊ በዓላትና መታሰቢያ ቀናት",
         hijri_title: "የእስልምና (ሂጅሪ) ቀን አቆጣጠር", btn_copy_hijri: "ሂጅሪ ቀን ኮፒ አድርግ",
@@ -53,7 +53,7 @@ const i18n = {
     en: {
         app_title: "Ethiopian Calendar & Bahire Hasab",
         intro_desc: "Free, offline-capable app: Accurate Bahire Hasab, movable feasts, fasting seasons, Synaxarium search, and conversion for Gregorian, Julian, Hebrew, and Hijri dates.",
-        nav_today: "Today", nav_this_year: "This Year", nav_holidays: "National Holidays", nav_hijri: "Hijri Calendar", nav_hebrew: "Hebrew Calendar", nav_converter: "Date Converter", nav_synaxarium: "Synaxarium", nav_period: "Period Tracker", nav_age: "Age Calculator", nav_pregnancy: "Pregnancy Calc",
+        nav_today: "Today", nav_this_year: "This Year", nav_holidays: "National Holidays", nav_hijri: "Hijri Calendar", nav_hebrew: "Hebrew Calendar", nav_converter: "Date Converter", nav_synaxarium: "Synaxarium", nav_period: "Period Tracker", nav_age: "Age Calculator", nav_pregnancy: "Pregnancy Calc", nav_group_calendar: "Calendar & Dates", nav_group_altcal: "Other Calendar Systems", nav_group_church: "Church & Liturgy", nav_group_health: "Health & Life Tracking", nav_group_planning: "Planning & Agenda",
         today_title: "Today's Full Details", this_year_title: "This Year's Full Details", btn_copy_date: "Copy Date",
         holidays_title: "This Year's National Holidays",
         hijri_title: "Islamic (Hijri) Calendar", btn_copy_hijri: "Copy Hijri Date",
@@ -104,7 +104,7 @@ const i18n = {
     om: {
         app_title: "Kalaandarii Itoophiyaa & Bahire Hasab",
         intro_desc: "Appii tolaa, sarara malee hojjetu: Herrega Bahire Hasab sirrii, ayyaanoota, yeroo soomaa, fi jijjiirraa guyyaa (Gregorian, Julian, Hebrew, Hijri).",
-        nav_today: "Har'a", nav_this_year: "Bara Kana", nav_holidays: "Ayyaanoota", nav_hijri: "Kalaandarii Hijiraa", nav_hebrew: "Kalaandarii Hebrew", nav_converter: "Guyyaa Jijjiiri", nav_synaxarium: "Sinksikara", nav_period: "Hordoffii Marsaa", nav_age: "Umrii Herregi", nav_pregnancy: "Herrega Ulfaa",
+        nav_today: "Har'a", nav_this_year: "Bara Kana", nav_holidays: "Ayyaanoota", nav_hijri: "Kalaandarii Hijiraa", nav_hebrew: "Kalaandarii Hebrew", nav_converter: "Guyyaa Jijjiiri", nav_synaxarium: "Sinksikara", nav_period: "Hordoffii Marsaa", nav_age: "Umrii Herregi", nav_pregnancy: "Herrega Ulfaa", nav_group_calendar: "Guyyaa fi Kalaandarii", nav_group_altcal: "Kalaandaroota Biroo", nav_group_church: "Waldaa Kiristaanaa fi Sirna Amantaa", nav_group_health: "Fayyaa fi Hordoffii Jireenyaa", nav_group_planning: "Karoora fi Ajandaa",
         today_title: "Odeeffannoo Har'aa Guutuu", this_year_title: "Odeeffannoo Bara Kanaa Guutuu", btn_copy_date: "Guyyaa Garagalchi",
         holidays_title: "Ayyaanoota Biyyooleessa Bara Kanaa",
         hijri_title: "Kalaandarii Islaamaa (Hijiraa)", btn_copy_hijri: "Guyyaa Hijiraa Garagalchi",
@@ -155,7 +155,7 @@ const i18n = {
     ti: {
         app_title: "ካላንደር ኢትዮጵያን ባሕረ ሓሳብን",
         intro_desc: "ብነጻን ብዘይ ኢንተርነትን ዝሰርሕ ኣፕሊኬሽን፦ ቅኑዕ ስሌት ባሕረ ሓሳብ፣ ተንቀሳቐስቲ በዓላት፣ እዋናት ጾም፣ መርበብ ስንክሳርን መቐየሪ ዕለታትን።",
-        nav_today: "ሎሚ", nav_this_year: "ሎምዘመን", nav_holidays: "ሃገራዊ በዓላት", nav_hijri: "ኣቆጻጽራ ሂጅራ", nav_hebrew: "ኣቆጻጽራ እብራውያን", nav_converter: "መቐየሪ ዕለት", nav_synaxarium: "ድለያ ስንክሳር", nav_period: "ዑደት ጽግያት", nav_age: "ዕድመ መሕሰቢ", nav_pregnancy: "ግምት መሕረሲ",
+        nav_today: "ሎሚ", nav_this_year: "ሎምዘመን", nav_holidays: "ሃገራዊ በዓላት", nav_hijri: "ኣቆጻጽራ ሂጅራ", nav_hebrew: "ኣቆጻጽራ እብራውያን", nav_converter: "መቐየሪ ዕለት", nav_synaxarium: "ድለያ ስንክሳር", nav_period: "ዑደት ጽግያት", nav_age: "ዕድመ መሕሰቢ", nav_pregnancy: "ግምት መሕረሲ", nav_group_calendar: "ዕለትን ካላንደርን", nav_group_altcal: "ካልኦት ኣቆጻጽራ ግዜ", nav_group_church: "ቤተ ክርስትያንን ስርዓተ ኣምልኾን", nav_group_health: "ጥዕናን ናብራን ምክትታል", nav_group_planning: "መደብን ኣጀንዳን",
         today_title: "ናይ ሎሚ ምሉእ ሓበሬታ", this_year_title: "ናይ ሎምዘመን ምሉእ ሓበሬታ", btn_copy_date: "ዕለት ኮፒ ግበር",
         holidays_title: "ናይ ሎምዘመን ሃገራዊ በዓላት",
         hijri_title: "ኣቆጻጽራ እስልምና (ሂጅራ)", btn_copy_hijri: "ዕለት ሂጅራ ኮፒ ግበር",
@@ -206,7 +206,7 @@ const i18n = {
     so: {
         app_title: "Kalandarka Itoobiya & Bahire Hasab",
         intro_desc: "Abuur bilaash ah oo offline u shaqeeya: Xisaabinta saxda ah ee Bahire Hasab, ciidaha dhaqaaqa, xilliyada soonka, raadinta Synaxarium, iyo beddelka taariikhaha Gregorian, Julian, Cibraaniga, iyo Hijriga.",
-        nav_today: "Maanta", nav_this_year: "Sanadkan", nav_holidays: "Ciidaha Qaranka", nav_hijri: "Kalandarka Hijriga", nav_hebrew: "Kalandarka Cibraaniga", nav_converter: "Beddelaha Taariikhda", nav_synaxarium: "Raadinta Synaxarium", nav_period: "La-socodka Xaydha", nav_age: "Xisaabiyaha Da'da", nav_pregnancy: "Xisaabiyaha Uurka",
+        nav_today: "Maanta", nav_this_year: "Sanadkan", nav_holidays: "Ciidaha Qaranka", nav_hijri: "Kalandarka Hijriga", nav_hebrew: "Kalandarka Cibraaniga", nav_converter: "Beddelaha Taariikhda", nav_synaxarium: "Raadinta Synaxarium", nav_period: "La-socodka Xaydha", nav_age: "Xisaabiyaha Da'da", nav_pregnancy: "Xisaabiyaha Uurka", nav_group_calendar: "Taariikhda & Kalandarka", nav_group_altcal: "Kalandarrada Kale", nav_group_church: "Kaniisadda & Cibaadada", nav_group_health: "Caafimaadka & La-socodka Nolosha", nav_group_planning: "Qorshaha & Ajandada",
         today_title: "Faahfaahinta Buuxda ee Maanta", this_year_title: "Faahfaahinta Buuxda ee Sanadkan", btn_copy_date: "Koobi Taariikhda",
         holidays_title: "Ciidaha Qaranka ee Sanadkan",
         hijri_title: "Kalandarka Islaamka (Hijriga)", btn_copy_hijri: "Koobi Taariikhda Hijriga",
@@ -907,7 +907,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const langSelect = document.getElementById('lang-selector'); if (langSelect) langSelect.value = currentLang;
     updateStaticTranslations();
     const modules = [
-        { name: "Tabs Control", func: setupTabs }, { name: "Preferences Toggles", func: setupPreferences },
+        { name: "Tabs Control", func: setupTabs }, { name: "Nav Groups", func: setupNavGroups }, { name: "Preferences Toggles", func: setupPreferences },
         { name: "Live Clock", func: initClock }, { name: "Today View", func: renderToday },
         { name: "This Year View", func: renderThisYear },
         { name: "Holidays View", func: renderHolidays }, { name: "Islamic View", func: renderIslamic },
@@ -947,10 +947,24 @@ function handleSharedContent() {
     }
 }
 
+function setupNavGroups() {
+    document.querySelectorAll('.nav-group[id]').forEach(details => {
+        const key = `navgroup-${details.id}`;
+        const saved = localStorage.getItem(key);
+        if (saved === 'closed') details.open = false;
+        else if (saved === 'open') details.open = true;
+        details.addEventListener('toggle', () => {
+            localStorage.setItem(key, details.open ? 'open' : 'closed');
+        });
+    });
+}
+
 function setupTabs() {
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             let targetId = btn.getAttribute('data-target') || btn.dataset.target; if (!targetId) return;
+            const grp = btn.closest('.nav-group');
+            if (grp && grp.tagName === 'DETAILS') grp.open = true;
             document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
             document.querySelectorAll('.tab-content').forEach(t => { t.classList.remove('active'); t.hidden = true; });
             btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');

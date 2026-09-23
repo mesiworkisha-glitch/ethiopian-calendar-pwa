@@ -8,7 +8,48 @@
     --nav-bg: #e2e8f0;
     --intro-bg: #eaf2fc;
     --intro-text: #5a6b85;
+
+    --section-today: #0066cc;
+    --section-thisyear: #7c3aed;
+    --section-holidays: #158443;
+    --section-hijri: #0e9488;
+    --section-hebrew: #3949ab;
+    --section-converter: #c2660f;
+    --section-synaxarium: #9c2b3c;
+    --section-gitsawe: #9a6b00;
+    --section-periodic: #c2185b;
+    --section-age: #55607a;
+    --section-pregnancy: #d1477a;
+    --section-planning: #4d7c0f;
 }
+
+#tab-today { --primary-color: var(--section-today); }
+#tab-thisyear { --primary-color: var(--section-thisyear); }
+#tab-holidays { --primary-color: var(--section-holidays); }
+#tab-islamic { --primary-color: var(--section-hijri); }
+#tab-hebrew { --primary-color: var(--section-hebrew); }
+#tab-converter { --primary-color: var(--section-converter); }
+#tab-synaxarium { --primary-color: var(--section-synaxarium); }
+#tab-gitsawe { --primary-color: var(--section-gitsawe); }
+#tab-periodic { --primary-color: var(--section-periodic); }
+#tab-age { --primary-color: var(--section-age); }
+#tab-pregnancy { --primary-color: var(--section-pregnancy); }
+#tab-agenda { --primary-color: var(--section-planning); }
+#tab-planning { --primary-color: var(--section-planning); }
+
+.nav-btn[data-target="tab-today"].active { color: var(--section-today); border-top-color: var(--section-today); }
+.nav-btn[data-target="tab-thisyear"].active { color: var(--section-thisyear); border-top-color: var(--section-thisyear); }
+.nav-btn[data-target="tab-holidays"].active { color: var(--section-holidays); border-top-color: var(--section-holidays); }
+.nav-btn[data-target="tab-islamic"].active { color: var(--section-hijri); border-top-color: var(--section-hijri); }
+.nav-btn[data-target="tab-hebrew"].active { color: var(--section-hebrew); border-top-color: var(--section-hebrew); }
+.nav-btn[data-target="tab-converter"].active { color: var(--section-converter); border-top-color: var(--section-converter); }
+.nav-btn[data-target="tab-synaxarium"].active { color: var(--section-synaxarium); border-top-color: var(--section-synaxarium); }
+.nav-btn[data-target="tab-gitsawe"].active { color: var(--section-gitsawe); border-top-color: var(--section-gitsawe); }
+.nav-btn[data-target="tab-periodic"].active { color: var(--section-periodic); border-top-color: var(--section-periodic); }
+.nav-btn[data-target="tab-age"].active { color: var(--section-age); border-top-color: var(--section-age); }
+.nav-btn[data-target="tab-pregnancy"].active { color: var(--section-pregnancy); border-top-color: var(--section-pregnancy); }
+.nav-btn[data-target="tab-agenda"].active { color: var(--section-planning); border-top-color: var(--section-planning); }
+.nav-btn[data-target="tab-planning"].active { color: var(--section-planning); border-top-color: var(--section-planning); }
 
 [data-theme="dark"] {
     --bg-color: #121212;
@@ -121,11 +162,61 @@ select.btn-control-toggle option {
     font-size: 0.95rem;
 }
 
+.nav-groups {
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding-top: 4px;
+}
+
+.nav-group {
+    margin-bottom: 2px;
+}
+
+.nav-group-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 16px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.nav-group-summary::-webkit-details-marker {
+    display: none;
+}
+
+.nav-group-summary:hover .nav-group-label {
+    color: var(--primary-color);
+}
+
+.nav-group-summary:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: -2px;
+}
+
+.nav-group-label {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--intro-text);
+}
+
+.nav-group-caret {
+    font-size: 0.7rem;
+    color: var(--intro-text);
+    transition: transform 0.15s ease-in-out;
+}
+
+.nav-group[open] .nav-group-caret {
+    transform: rotate(180deg);
+}
+
 nav {
     display: flex;
     overflow-x: auto;
-    background: var(--nav-bg);
-    border-bottom: 1px solid var(--border-color);
     -webkit-overflow-scrolling: touch;
 }
 
@@ -173,6 +264,15 @@ main {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     margin-bottom: 20px;
     overflow-wrap: break-word;
+}
+
+.tab-content .card {
+    border-top: 4px solid var(--primary-color);
+}
+
+.card > h2,
+.card > h3 {
+    color: var(--primary-color);
 }
 
 .form-group {

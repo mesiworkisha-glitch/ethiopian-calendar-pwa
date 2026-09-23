@@ -138,19 +138,58 @@
 
     <div id="status-announcer" class="sr-only" role="status" aria-live="assertive"></div>
 
-    <nav aria-label="የመተግበሪያው ክፍሎች" role="tablist">
-        <button type="button" class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-today" id="navbtn-today" data-target="tab-today" data-i18n="nav_today">ዛሬ</button>
-        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-thisyear" id="navbtn-thisyear" data-target="tab-thisyear" data-i18n="nav_this_year">ዘንድሮ</button>
-        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-holidays" id="navbtn-holidays" data-target="tab-holidays" data-i18n="nav_holidays">ብሔራዊ በዓላት</button>
-        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-islamic" id="navbtn-islamic" data-target="tab-islamic" data-i18n="nav_hijri">ሂጅሪ አቆጣጠር</button>
-        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-hebrew" id="navbtn-hebrew" data-target="tab-hebrew" data-i18n="nav_hebrew">ዕብራውያን አቆጣጠር</button>
-        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-converter" id="navbtn-converter" data-target="tab-converter" data-i18n="nav_converter">ቀን መቀየሪያ</button>
-        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium" data-i18n="nav_synaxarium">ስንክሳር ፍለጋ</button>
-        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-gitsawe" id="navbtn-gitsawe" data-target="tab-gitsawe" data-i18n="nav_gitsawe">መጽሐፈ ግጻዌ</button>
-        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-periodic" id="navbtn-periodic" data-target="tab-periodic" data-i18n="nav_period">የወር አበባ ዑደት</button>
-        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-age" id="navbtn-age" data-target="tab-age" data-i18n="nav_age">ዕድሜ ማስያ</button>
-        <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-pregnancy" id="navbtn-pregnancy" data-target="tab-pregnancy" data-i18n="nav_pregnancy">የእርግዝና ጊዜ መከታተያ</button>
-    </nav>
+    <div class="nav-groups">
+        <details class="nav-group" id="navgroup-calendar" open>
+            <summary class="nav-group-summary">
+                <h2 class="nav-group-label" id="navgroup-calendar-label" data-i18n="nav_group_calendar">ቀንና ካላንደር</h2>
+                <span class="nav-group-caret" aria-hidden="true">▾</span>
+            </summary>
+            <nav aria-labelledby="navgroup-calendar-label" role="tablist">
+                <button type="button" class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-today" id="navbtn-today" data-target="tab-today" data-i18n="nav_today">ዛሬ</button>
+                <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-thisyear" id="navbtn-thisyear" data-target="tab-thisyear" data-i18n="nav_this_year">ዘንድሮ</button>
+                <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-holidays" id="navbtn-holidays" data-target="tab-holidays" data-i18n="nav_holidays">ብሔራዊ በዓላት</button>
+                <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-converter" id="navbtn-converter" data-target="tab-converter" data-i18n="nav_converter">ቀን መቀየሪያ</button>
+            </nav>
+        </details>
+        <details class="nav-group" id="navgroup-altcal" open>
+            <summary class="nav-group-summary">
+                <h2 class="nav-group-label" id="navgroup-altcal-label" data-i18n="nav_group_altcal">ሌሎች የቀን አቆጣጠሮች</h2>
+                <span class="nav-group-caret" aria-hidden="true">▾</span>
+            </summary>
+            <nav aria-labelledby="navgroup-altcal-label" role="tablist">
+                <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-islamic" id="navbtn-islamic" data-target="tab-islamic" data-i18n="nav_hijri">ሂጅሪ አቆጣጠር</button>
+                <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-hebrew" id="navbtn-hebrew" data-target="tab-hebrew" data-i18n="nav_hebrew">ዕብራውያን አቆጣጠር</button>
+            </nav>
+        </details>
+        <details class="nav-group" id="navgroup-church" open>
+            <summary class="nav-group-summary">
+                <h2 class="nav-group-label" id="navgroup-church-label" data-i18n="nav_group_church">ቤተ ክርስቲያንና ሥርዓተ አምልኮ</h2>
+                <span class="nav-group-caret" aria-hidden="true">▾</span>
+            </summary>
+            <nav aria-labelledby="navgroup-church-label" role="tablist">
+                <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-synaxarium" id="navbtn-synaxarium" data-target="tab-synaxarium" data-i18n="nav_synaxarium">ስንክሳር ፍለጋ</button>
+                <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-gitsawe" id="navbtn-gitsawe" data-target="tab-gitsawe" data-i18n="nav_gitsawe">መጽሐፈ ግጻዌ</button>
+            </nav>
+        </details>
+        <details class="nav-group" id="navgroup-health" open>
+            <summary class="nav-group-summary">
+                <h2 class="nav-group-label" id="navgroup-health-label" data-i18n="nav_group_health">ጤናና የሕይወት ክትትል</h2>
+                <span class="nav-group-caret" aria-hidden="true">▾</span>
+            </summary>
+            <nav aria-labelledby="navgroup-health-label" role="tablist">
+                <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-periodic" id="navbtn-periodic" data-target="tab-periodic" data-i18n="nav_period">የወር አበባ ዑደት</button>
+                <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-age" id="navbtn-age" data-target="tab-age" data-i18n="nav_age">ዕድሜ ማስያ</button>
+                <button type="button" class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-pregnancy" id="navbtn-pregnancy" data-target="tab-pregnancy" data-i18n="nav_pregnancy">የእርግዝና ጊዜ መከታተያ</button>
+            </nav>
+        </details>
+        <details class="nav-group" id="navgroup-planning" open>
+            <summary class="nav-group-summary">
+                <h2 class="nav-group-label" id="navgroup-planning-label" data-i18n="nav_group_planning">ዕቅድና አጀንዳ</h2>
+                <span class="nav-group-caret" aria-hidden="true">▾</span>
+            </summary>
+            <nav id="navlist-planning" aria-labelledby="navgroup-planning-label" role="tablist"></nav>
+        </details>
+    </div>
 
     <main id="main-content" tabindex="-1">
         <section id="tab-today" class="tab-content active" role="tabpanel" aria-labelledby="navbtn-today">

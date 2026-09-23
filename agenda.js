@@ -362,6 +362,7 @@ function bind(){
 function activate(){
   document.querySelectorAll('.tab-content').forEach(x=>{x.hidden=true;x.classList.remove('active');});
   document.querySelectorAll('.nav-btn').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false');});
+  const grp=$('navbtn-agenda').closest('.nav-group');if(grp&&grp.tagName==='DETAILS')grp.open=true;
   $('tab-agenda').hidden=false;$('tab-agenda').classList.add('active');
   $('navbtn-agenda').classList.add('active');$('navbtn-agenda').setAttribute('aria-selected','true');
   const main=$('main-content');if(main)main.focus();
@@ -394,7 +395,7 @@ function relabel(){
 
 function init(){
   if(!window.EthioPlanner||$('navbtn-agenda'))return;
-  const nav=document.querySelector('nav[role="tablist"]'),main=$('main-content');
+  const nav=document.getElementById('navlist-planning')||document.querySelector('nav[role="tablist"]'),main=$('main-content');
   if(!nav||!main)return;
   const b=document.createElement('button');
   Object.assign(b,{type:'button',id:'navbtn-agenda',className:'nav-btn'});
